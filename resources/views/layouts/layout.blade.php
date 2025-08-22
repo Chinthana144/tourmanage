@@ -15,9 +15,11 @@
    </head>
 <body>
 
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+
     @include('layouts.navbar')
 
-    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
+
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/navbar.js') }}"></script>
 

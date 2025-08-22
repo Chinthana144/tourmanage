@@ -1,0 +1,27 @@
+// database structure
+
+//--- tables --- //
+
+//user roles
+id
+user_role
+
+//users
+firstname
+lastname
+email
+password
+phone
+profile_pic
+status
+
+//role
+admin
+owner
+manager
+accountant
+sales agent
+booking manager
+guide
+hotel user
+intern

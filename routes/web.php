@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,5 +23,9 @@ Route::middleware('auth')->group(function () {
 Route::get('/template', function () {
     return view('layouts.template');
 });
+
+    //users
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/user-store', [UserController::class, 'store'])->name('user.store');
 
 require __DIR__.'/auth.php';

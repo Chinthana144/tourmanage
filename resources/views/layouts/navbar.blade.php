@@ -41,7 +41,16 @@
           </li>
 
           <li><a href="#">ABOUT US</a></li>
-          <li><a href="#">CONTACT US</a></li>
+          <li>
+            <a href="#"><i class="bx bx-cog"></i> Settings</a>
+            <i class='bx bxs-chevron-down js-arrow arrow'></i>
+            <ul class="js-sub-menu sub-menu">
+              <li><a href="/users">Users</a></li>
+              <li><a href="#">Form Validation</a></li>
+              <li><a href="#">Card Slider</a></li>
+              <li><a href="#">Complete Website</a></li>
+            </ul>
+          </li>
         </ul>
       </div>
       <div class="search-box">
@@ -54,7 +63,11 @@
         <img src="{{ URL('images/profiles/profile.jpg') }}" alt="profile" class="img_profile">
         <i class="bx bxs-chevron-down js-arrow arrow"></i>
         <div class="profile-menu">
-            <p>pastha</p>
+            <ul id="profile_ul">
+                <li><img src="{{ URL('images/profiles/profile.jpg') }}" alt="" class="img_profile"></li>
+                <li><i class="bx bx-user fs-3"></i> My Profile</li>
+                <li><i class="bx bx-power-off fs-3"></i> Logout</li>
+            </ul>
         </div>
       </div>
     </div>

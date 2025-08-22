@@ -187,9 +187,10 @@ nav .navbar .links li:hover .js-sub-menu{
 }
 
 #footer{
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
+    z-index: 100;
 }
 #footer p{
     text-align: right;
@@ -202,7 +203,7 @@ nav .navbar .links li:hover .js-sub-menu{
     position: absolute;
     top: 70px;
     right: 0;
-    background: #3E8DA8;
+    background: #324dc5;
     width: 200px;
     padding: 10px;
     border-radius: 4px;
@@ -212,6 +213,19 @@ nav .navbar .links li:hover .js-sub-menu{
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+#profile_ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+#profile_ul li{
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    color: #fff;
+    cursor: pointer;
 }
 
 @media (max-width:920px) {
