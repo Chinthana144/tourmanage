@@ -8,8 +8,9 @@
         </button>
       </div>
 
-    <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('user.update') }}" method="post" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <input type="hidden" name="hidden_user_id" id="hidden_user_id" value="0">
         <div class="modal-body">
 
@@ -44,7 +45,7 @@
 
                     <label for="" class="form-label">Profile Picture</label>
                     <input type="file" class="form-control mb-2" name="profile_edit_image" id="profile_edit_image" accept="image/*">
-                    <span id="message_warning" style="color:red;">Profile picture should less than 5MB</span>
+                    <span id="message_edit_warning" style="color:red;">Profile picture should less than 5MB</span>
 
                     <img src="{{ asset('images/profiles/profile.jpg') }}" alt="profile image" id="image_edit_preview" style="width: 300px; height:auto; border-radius:10px; object-fit:cover;">
                 </div>
@@ -52,7 +53,7 @@
         </div>
 
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary btn-sm">Add User</button>
+            <button type="submit" class="btn btn-primary btn-sm">Update User</button>
             {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
         </div>
     </form>

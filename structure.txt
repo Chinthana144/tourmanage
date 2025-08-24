@@ -1,11 +1,22 @@
 // database structure
 
+//---- walk through ----//
+* laravel install
+* breeze install
+* user roles
+* users
+* locations
+* hotels
+* hotel rooms
+* tourists
+* tourist health
+* travel packages
+* travel package route
+* tours
+* tour members
+* hotel booking
+
 //--- tables --- //
-
-//user roles
-id
-user_role
-
 //users
 firstname
 lastname
@@ -15,7 +26,7 @@ phone
 profile_pic
 status
 
-//role
+//roles
 admin
 owner
 manager

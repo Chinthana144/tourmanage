@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('#message_warning').css('display', 'none');
+    $('#message_edit_warning').css('display', 'none');
 
     $("#btn_open_register_modal").click(function(){
         $("#registerModal").modal('toggle');
@@ -40,9 +41,11 @@ $(document).ready(function () {
             data: {user_id: id},
             // dataType: "dataType",
             success: function (response) {
-                console.log(response);
+                // console.log(response);
 
-                $("#")
+                $('#userEditModal').modal('toggle');
+
+                $("#hidden_user_id").val(response.id);
 
                 $("#hidden_user_id").val(response.id);
                 $("#first_name").val(response.first_name);
@@ -50,7 +53,7 @@ $(document).ready(function () {
                 $("#phone1").val(response.phone1);
                 $("#phone2").val(response.phone2);
                 $("#email").val(response.email);
-                $("#password").val(response.password);
+                // $("#password").val(response.password);
                 $("#cmb_edit_roles").val(response.role_id);
                 if(response.profile_image){
                     $("#image_edit_preview").attr("src", "/images/profiles/"+response.profile_image);

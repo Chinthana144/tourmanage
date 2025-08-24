@@ -21,6 +21,11 @@ Route::middleware('auth')->group(function () {
     //logout
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
+    //users
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::post('/user-store', [UserController::class, 'store'])->name('user.store');
+    Route::put('/user-update', [UserController::class, 'update'])->name('user.update');
+    Route::post('/remove-user', [UserController::class, 'removeUser'])->name('user.remove');
     Route::get('/getOneUser', [UserController::class, 'getOneUser']);
 });
 
@@ -28,8 +33,6 @@ Route::get('/template', function () {
     return view('layouts.template');
 });
 
-    //users
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::post('/user-store', [UserController::class, 'store'])->name('user.store');
+
 
 require __DIR__.'/auth.php';

@@ -19,7 +19,8 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th>Edit</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +43,17 @@
                             </td>
                             <td>
                                 <button class="btn btn-sm btn-outline-warning btn_edit_user"><i class="bx bx-edit"></i></button>
-                                <button class="btn btn-sm btn-outline-danger"><i class="bx bx-trash"></i></button>
+                            </td>
+                            <td>
+                                <form action="{{ route('user.remove') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="hidden_user_id" value="{{ $user->id }}">
+                                    @if ($user->status == 1)
+                                        <button class="btn btn-sm btn-outline-secondary" onclick="return confirm('Are you sure to deactivate this user?')"><i class="bx bx-user-x"></i></button>
+                                    @else
+                                        <button class="btn btn-sm btn-outline-success" onclick="return confirm('Are you sure to activate this user?')"><i class="bx bx-user-check"></i></button>
+                                    @endif
+                                </form>
                             </td>
                         </tr>
                     @endforeach
