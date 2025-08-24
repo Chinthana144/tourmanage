@@ -1,11 +1,12 @@
   <nav>
     <div class="navbar">
       <i class='bx bx-menu'></i>
+      <div><img src="{{ asset('images/company/akagi_logo_6.png') }}" alt="" style="width: 50px; height:auto;"></div>
       <div class="logo"><a href="#">Akagi eXperience</a></div>
       <div class="nav-links">
         <div class="sidebar-logo">
           <span class="logo-name">Akagi eXperience</span>
-          <i class='bx bx-x' ></i>
+          <i class='bx bx-x'></i>
         </div>
         <ul class="links">
           <li><a href="/dashboard">HOME</a></li>
@@ -66,7 +67,7 @@
             <ul id="profile_ul">
                 <li><img src="{{ URL('images/profiles/profile.jpg') }}" alt="" class="img_profile"></li>
                 <li><i class="bx bx-user fs-3"></i> My Profile</li>
-                <li><i class="bx bx-power-off fs-3"></i> Logout</li>
+                <li><a href="{{ route('logout') }}"><i class="bx bx-power-off fs-3"></i> Logout</a></li>
             </ul>
         </div>
       </div>
