@@ -1,8 +1,8 @@
-<div class="modal" tabindex="-1" role="dialog" id="registerModal">
+<div class="modal" tabindex="-1" role="dialog" id="userEditModal">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add New User</h5>
+        <h5 class="modal-title">Edit User</h5>
         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" id="btn_close_register_modal">
           {{-- <span aria-hidden="true">&times;</span> --}}
         </button>

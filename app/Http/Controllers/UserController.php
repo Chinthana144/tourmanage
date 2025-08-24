@@ -43,8 +43,7 @@ class UserController extends Controller
         //store profile picture if exists
         if ($request->hasFile('profile_image')) {
             $file = $request->file('profile_image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            // dd($filename);
+            $filename = 'P_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/profiles'), $filename);
             $user->profile_picture = 'images/profiles/' . $filename;
         }
@@ -52,5 +51,11 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');
+    }
+
+    public function getOneUser(Request $request){
+        $user_id = $request->input('user_id');
+        $user = User::find($user_id);
+        return response()->json($user);
     }
 }//class
