@@ -31,17 +31,25 @@
           </li>
 
           <li>
-            <a href="#">JAVASCRIPT</a>
+            <a href="#">PLACES</a>
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Dynamic Clock</a></li>
-              <li><a href="#">Form Validation</a></li>
-              <li><a href="#">Card Slider</a></li>
-              <li><a href="#">Complete Website</a></li>
+              <li><a href="/locations">Locations</a></li>
+              <li><a href="#">Hotels</a></li>
             </ul>
           </li>
 
-          <li><a href="#">ABOUT US</a></li>
+          <li>
+            <a href="#">TOURS</a>
+            <i class='bx bxs-chevron-down js-arrow arrow'></i>
+            <ul class="js-sub-menu sub-menu">
+              <li><a href="#">Tours</a></li>
+              <li><a href="#">Touists</a></li>
+              <li><a href="#">Tour Packages</a></li>
+              <li><a href="#">Package Routes</a></li>
+            </ul>
+          </li>
+
           <li>
             <a href="#"><i class="bx bx-cog"></i> Settings</a>
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
@@ -52,6 +60,7 @@
               <li><a href="#">Complete Website</a></li>
             </ul>
           </li>
+
         </ul>
       </div>
       <div class="search-box">

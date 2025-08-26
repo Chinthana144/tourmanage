@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/user-update', [UserController::class, 'update'])->name('user.update');
     Route::post('/remove-user', [UserController::class, 'removeUser'])->name('user.remove');
     Route::get('/getOneUser', [UserController::class, 'getOneUser']);
+
+    //locations
+    Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
 });
 
 Route::get('/template', function () {
