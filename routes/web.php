@@ -31,6 +31,11 @@ Route::middleware('auth')->group(function () {
 
     //locations
     Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');
+    Route::get('/create-location', [LocationController::class, 'create'])->name('locations.create');
+    Route::post('/store-location', [LocationController::class, 'store'])->name('locations.store');
+    Route::get('/get-districts-by-province', [LocationController::class, 'getDistrictByProvince']);
+    Route::get('/get-cities-by-district', [LocationController::class, 'getCityByDistrict']);
+    Route::get('/get-one-city-by-id', [LocationController::class, 'getOneCityById']);
 });
 
 Route::get('/template', function () {

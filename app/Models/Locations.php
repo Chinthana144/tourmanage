@@ -22,6 +22,7 @@ class Locations extends Model
         'image2',
         'image3',
         'image4',
+        'status',
     ];
 
     public function city()
