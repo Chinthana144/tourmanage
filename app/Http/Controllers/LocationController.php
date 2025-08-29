@@ -64,33 +64,35 @@ class LocationController extends Controller
 
         if($request->hasFile('image1')) {
             $file = $request->file('image1');
-            $filename = 'L1' . time() . '.' . $file->getClientOriginalExtension();
+            $filename = 'L1_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/locations'), $filename);
             $location->image1 = 'images/locations/' . $filename;
         }
 
         if($request->hasFile('image2')) {
             $file = $request->file('image2');
-            $filename = 'L2' . time() . '.' . $file->getClientOriginalExtension();
+            $filename = 'L2_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/locations'), $filename);
             $location->image2 = 'images/locations/' . $filename;
         }
 
         if($request->hasFile('image3')) {
             $file = $request->file('image3');
-            $filename = 'L3' . time() . '.' . $file->getClientOriginalExtension();
+            $filename = 'L3_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/locations'), $filename);
             $location->image3 = 'images/locations/' . $filename;
         }
 
         if($request->hasFile('image4')) {
             $file = $request->file('image4');
-            $filename = 'L4' . time() . '.' . $file->getClientOriginalExtension();
+            $filename = 'L4_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/locations'), $filename);
             $location->image4 = 'images/locations/' . $filename;
         }
 
         $location->save();
+
+        return redirect()->route('locations.index')->with('success', 'Location created successfully.');
     }
 
     /**

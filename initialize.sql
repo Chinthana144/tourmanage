@@ -12,6 +12,11 @@ VALUES
  (NULL, 'Intern', NULL, NULL);
 
 
+-- add default user
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `phone1`, `phone2`, `email`, `email_verified_at`, `password`, `profile_picture`, `status`, `remember_token`, `created_at`, `updated_at`, `role_id`) VALUES
+(1, 'Main', 'Admin', '0525094487', '0769641844', 'chinthana144@gmail.com', NULL, '$2y$12$zoSCnmKYGIJEFz6Ixa1xW.3oHBGOx2aYKe8awQamJyehsyZQQve56', 'images/profiles/profile.jpg', 1, 'A7NIo5J1keFShEjs7HTbRklqxEJb2METOGPmFaaDj4tz0QyjpLlwJo1Yfpbz', '2025-08-23 01:07:09', '2025-08-24 14:25:40', 1);
+
+
 -- add provinces
 INSERT INTO `provinces` (`id`, `name_en`, `name_si`, `name_ta`) VALUES
 (1, 'Western', 'බස්නාහිර', 'மேல்'),
