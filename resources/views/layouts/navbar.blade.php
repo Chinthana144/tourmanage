@@ -89,7 +89,7 @@
 
     <div id="footer">
         <p>
-            © 2026 Akagi eXperience. All rights reserved.
+            © 2025 Akagi eXperience. All rights reserved.
             <br>
             powered by Akagi eXperience.
         </p>
