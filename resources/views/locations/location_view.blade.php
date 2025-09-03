@@ -26,7 +26,7 @@
                                 <p><strong>Latitude:</strong> {{ $location->latitude }}</p>
                                 <p><strong>Longitude:</strong> {{ $location->longitude }}</p>
                             </div>
-                            <div class="col-md-7">
+                            <div class="col-md-5">
                                 @if ($location->primary_image)
                                     <div id="div_primary_image" class="mb-2">
                                         <img src="{{ asset($location->primary_image) }}" alt="Location Image" id="img_main">
@@ -58,13 +58,28 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="col-md-2">
+                                <form action="{{ route('location.edit') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="hide_location_id" value="{{ $location->id }}">
+                                    <button type="submit" class="btn btn-outline-warning mb-3"><i class="bx bx-edit"></i> Edit</button>
+                                </form>
+
+                                <form action="{{ route('location.deactivate') }}" method="post">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="hide_location_id" value="{{ $location->id }}">
+                                    <button type="submit" class="btn btn-outline-danger"><i class="bx bx-trash"></i> Remove</button>
+                                </form>
+                            </div>
                         </div>
-
-
                     </div>
-
                 </div>
             @endforeach
+
+            <div>
+                {{ $locations->links() }}
+            </div>
         </div>
     </div>
 @endsection
