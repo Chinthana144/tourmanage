@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Hotelcontroller;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -40,7 +41,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-cities-by-district', [LocationController::class, 'getCityByDistrict']);
     Route::get('/get-one-city-by-id', [LocationController::class, 'getOneCityById']);
 
-
+    //hotels
+    Route::get('/hotels', [Hotelcontroller::class, 'index'])->name('hotels.index');
+    Route::get('/create-hotel', [Hotelcontroller::class, 'create'])->name('hotels.create');
 });
 
 Route::get('/template', function () {

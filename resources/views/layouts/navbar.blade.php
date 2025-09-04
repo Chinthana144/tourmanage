@@ -35,7 +35,7 @@
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
               <li><a href="/locations">Locations</a></li>
-              <li><a href="#">Hotels</a></li>
+              <li><a href="/hotels">Hotels</a></li>
             </ul>
           </li>
 
