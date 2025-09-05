@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities');
             $table->string('city_name');

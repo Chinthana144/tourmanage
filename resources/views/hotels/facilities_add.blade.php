@@ -6,7 +6,7 @@
         <h5>{{ $hotel->name }} Facilities</h5>
         </div>
         <div class="card-body">
-            <form action="" method="post">
+            <form action="{{ route('facilities.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">
                 <div class="row">
@@ -19,6 +19,7 @@
                             </div>
                         @endforeach
                     </div>
+
                     <div class="col-md-3">
                         <h4>Food & Drinks</h4>
                         @foreach ($food_drink_facilities as $fd)
