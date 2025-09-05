@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\ProfileController;
@@ -44,6 +45,10 @@ Route::middleware('auth')->group(function () {
     //hotels
     Route::get('/hotels', [Hotelcontroller::class, 'index'])->name('hotels.index');
     Route::get('/create-hotel', [Hotelcontroller::class, 'create'])->name('hotels.create');
+    Route::post('/store-hotel', [Hotelcontroller::class, 'store'])->name('hotels.store');
+
+    //facilities
+    Route::post('store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
 });
 
 Route::get('/template', function () {

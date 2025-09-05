@@ -1907,3 +1907,79 @@ INSERT INTO `cities` (`id`, `district_id`, `name_en`, `name_si`, `name_ta`, `sub
 (1844, 5, 'Colombo 11', 'කොළඹ 11', 'கொழும்பு 11', 'Pettah', 'පිට කොටුව', 'புறக் கோட்டை', '1100', 6.936667, 79.849722),
 (1845, 5, 'Colombo 12', 'කොළඹ 12', 'கொழும்பு 12', 'Hulftsdorp', 'අලුත් කඩේ', 'புதுக்கடை', '1200', 6.9425, 79.858333),
 (1846, 5, 'Colombo 14', 'කොළඹ 14', 'கொழும்பு 14', 'Grandpass', 'ග්‍රන්ඩ්පාස්', 'பாலத்துறை', '1400', 6.9475, 79.874722);
+
+
+-- adding facilities types
+INSERT INTO `facilities_types` (`id`, `name`, `created_at`, `updated_at`)
+VALUES
+(1, 'General Facilities', NULL, NULL),
+(2, 'Food & Drink', NULL, NULL),
+(3, 'Wellness & Recreation', NULL, NULL),
+(4, 'Services', NULL, NULL),
+(5, 'Family & Kids', NULL, NULL),
+(6, 'Outdoors & Activities', NULL, NULL),
+(7, 'In-Room Facilities', NULL, NULL);
+
+INSERT INTO `facilities` (`name`, `facilities_type_id`) VALUES
+-- General Facilities (1)
+('24-hour front desk', 1),
+('Free Wi-Fi', 1),
+('Parking', 1),
+('Airport shuttle', 1),
+('Elevator', 1),
+('Air conditioning', 1),
+('Heating', 1),
+('Non-smoking rooms', 1),
+('Family rooms', 1),
+('Disabled access', 1),
+
+-- Food & Drink (2)
+('Restaurant', 2),
+('Bar', 2),
+('Coffee shop', 2),
+('Room service', 2),
+('Breakfast included', 2),
+('Buffet meals', 2),
+('Outdoor dining area', 2),
+
+-- Wellness & Recreation (3)
+('Swimming pool (indoor)', 3),
+('Swimming pool (outdoor)', 3),
+('Spa', 3),
+('Sauna', 3),
+('Fitness center / Gym', 3),
+('Hot tub / Jacuzzi', 3),
+('Massage services', 3),
+('Yoga classes', 3),
+
+-- Services (4)
+('Laundry service', 4),
+('Daily housekeeping', 4),
+('Concierge service', 4),
+('Luggage storage', 4),
+('Currency exchange', 4),
+('Business center', 4),
+('Meeting / banquet facilities', 4),
+
+-- Family & Kids (5)
+('Babysitting / childcare', 5),
+('Kids club', 5),
+('Playground', 5),
+('Family-friendly rooms', 5),
+
+-- Outdoors & Activities (6)
+('Garden', 6),
+('Terrace', 6),
+('BBQ facilities', 6),
+('Hiking tours', 6),
+('Cycling rental', 6),
+('Beach access', 6),
+
+-- In-Room Facilities (7)
+('TV', 7),
+('Cable channels', 7),
+('Mini bar', 7),
+('Coffee/tea maker', 7),
+('Safe deposit box', 7),
+('Hair dryer', 7),
+('Desk/workspace', 7);
