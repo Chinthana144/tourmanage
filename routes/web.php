@@ -46,10 +46,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/hotels', [Hotelcontroller::class, 'index'])->name('hotels.index');
     Route::get('/create-hotel', [Hotelcontroller::class, 'create'])->name('hotels.create');
     Route::post('/store-hotel', [Hotelcontroller::class, 'store'])->name('hotels.store');
+    Route::get('/edit-hotel', [Hotelcontroller::class, 'edit'])->name('hotels.edit');
+    Route::post('remove', [Hotelcontroller::class, 'remove'])->name('hotel.remove');
 
     //facilities
     Route::post('store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
     Route::get('edit-facilities', [FacilitiesController::class, 'edit'])->name('facilities.edit');
+    Route::put('update-facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+
 });
 
 Route::get('/template', function () {

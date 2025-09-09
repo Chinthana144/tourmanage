@@ -66,3 +66,16 @@ longitude
 cover_image
 image1
 image2
+
+//hotel facilities
+
+//facilities_types
+name
+
+//facilities
+name
+facility_type_id
+
+//hotel_facilities
+hotel_id
+facility_id

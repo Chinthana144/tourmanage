@@ -156,4 +156,29 @@ class FacilitiesController extends Controller
         return view('hotels.facilities_edit', compact('hotel', 'gf_data', 'fdf_data', 'wrf_data', 'sf_data', 'fkf_data', 'oaf_data', 'irf_data', 'hotel_facilities'));
 
     }//goto edit
+
+    public function update(Request $request){
+        $hotel_id = $request->input('hide_hotel_id');
+
+        $facilities = Facilities::all();
+
+        //delete existing facilities for the hotel
+        HotelFacilities::where('hotel_id', $hotel_id)->delete();
+
+        foreach($facilities as $facility)
+        {
+            $facility_id = $facility->id;
+            $input_name = 'fcl_' . $facility_id;
+            if($request->has($input_name)){
+                $hotel_facility = new HotelFacilities();
+                $hotel_facility->hotel_id = $hotel_id;
+                $hotel_facility->facility_id = $facility_id;
+                $hotel_facility->save();
+            }
+        }//foreach
+
+        return redirect()->route('hotels.index')->with('success', 'Facilities added successfully.');
+
+    }//update
+
 }//class

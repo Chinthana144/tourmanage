@@ -6,8 +6,9 @@
         <h5>{{ $hotel->name }} Facilities</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('facilities.store') }}" method="post">
+            <form action="{{ route('facilities.update') }}" method="post">
                 @csrf
+                @method('PUT')
                 <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">
                 <div class="row">
                     <div class="col-md-3">
@@ -82,7 +83,7 @@
                 </div>
 
                 <div>
-                    <button type="submit" class="btn btn-primary">Save Facilities</button>
+                    <button type="submit" class="btn btn-primary">Update Facilities</button>
                 </div>
             </form>
         </div>

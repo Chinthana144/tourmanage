@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cities;
+use App\Models\Districts;
 use App\Models\Facilities;
+use App\Models\HotelFacilities;
 use App\Models\Hotels;
 use App\Models\Provinces;
 use Illuminate\Http\Request;
@@ -14,8 +17,33 @@ class Hotelcontroller extends Controller
      */
     public function index()
     {
-        $hotels = Hotels::where('status', 1)->get();
-        return view('hotels.hotel_view', compact('hotels'));
+        $hotels = Hotels::where('status', 1)
+            ->paginate(5);
+
+        $hotel_data = [];
+        $facility_data = [];
+
+        foreach($hotels as $hotel)
+        {
+            $facilities = HotelFacilities::join('facilities', 'hotel_facilities.facility_id', '=', 'facilities.id')
+                ->where('hotel_id', $hotel->id)
+                ->get();
+
+            $facility_data[] = [
+                'hotel' => $hotel,
+                'facilities' => $facilities
+            ];
+        }//foreach
+
+        // $hotel_data[] = [
+        //     'hotel' => $hotels,
+        //     'facilities' => $facility_data
+        // ];
+
+
+        // dd($facility_data);
+
+        return view('hotels.hotel_view', compact('hotels', 'facility_data', 'hotel_data'));
     }
 
     /**
@@ -83,7 +111,6 @@ class Hotelcontroller extends Controller
 
         return view('hotels.facilities_add', compact('hotel', 'general_facilities', 'food_drink_facilities', 'wellness_recreation_facilities', 'services_facilities', 'family_kids_facilities', 'outdoors_activities_facilities', 'in_room_facilities'));
 
-        // return redirect()->route('hotels.index')->with('success', 'Hotel created successfully.');
     }
 
     /**
@@ -97,9 +124,19 @@ class Hotelcontroller extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Request $request)
     {
-        //
+        $hotel_id = $request->input('hide_hotel_id');
+        $hotel = Hotels::find($hotel_id);
+
+        $province_id = $request->input('cmb_province');
+        $district_id = $request->input('cmb_district');
+        $city_id = $request->input('cmb_city');
+
+        $districts = Districts::where('province_id', $province_id)->get();
+        $cities = Cities::where('district_id', $district_id);
+
+
     }
 
     /**
@@ -117,4 +154,19 @@ class Hotelcontroller extends Controller
     {
         //
     }
+
+    /*
+    * remove status
+    */
+    public function remove(Request $request)
+    {
+        $hotel_id = $request->input('hide_hotel_id');
+
+        $hotel = Hotels::find($hotel_id);
+        $hotel->status = 0;
+
+        $hotel->save();
+
+        return redirect()->route('hotels.index')->with('success', 'Facilities added successfully.');
+    }//remove
 }
