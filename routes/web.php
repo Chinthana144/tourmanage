@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
     //facilities
     Route::post('store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
+    Route::get('edit-facilities', [FacilitiesController::class, 'edit'])->name('facilities.edit');
 });
 
 Route::get('/template', function () {

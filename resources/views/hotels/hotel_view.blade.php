@@ -62,10 +62,10 @@
 
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <form action="" method="post">
+                                <form action="{{ route('facilities.edit') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">
-                                    <button type="submit" class="btn btn-outline-warning">Edit</button>
+                                    <button type="submit" class="btn btn-outline-warning">Facilities</button>
                                 </form>
                             </div>
                         </div>
