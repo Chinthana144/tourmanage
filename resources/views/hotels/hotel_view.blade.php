@@ -71,7 +71,7 @@
 
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <form action="{{ route('hotels.edit') }}" method="post">
+                                <form action="{{ route('hotels.edit') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
                                     <button type="submit" class="btn btn-success">Edit Hotel</button>

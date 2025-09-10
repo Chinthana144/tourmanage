@@ -129,22 +129,76 @@ class Hotelcontroller extends Controller
         $hotel_id = $request->input('hide_hotel_id');
         $hotel = Hotels::find($hotel_id);
 
-        $province_id = $request->input('cmb_province');
-        $district_id = $request->input('cmb_district');
-        $city_id = $request->input('cmb_city');
+        $province_id = $hotel->province_id;
+        $district_id = $hotel->district_id;
+        $city_id = $hotel->city_id;
 
+        $provinces = Provinces::all();
         $districts = Districts::where('province_id', $province_id)->get();
-        $cities = Cities::where('district_id', $district_id);
+        $cities = Cities::where('district_id', $district_id)->get();
 
-
+        return view('hotels.hotel_edit', compact('hotel', 'provinces', 'districts', 'cities'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $hotel_id = $request->input('hide_hotel_id');
+        $province_id = $request->input('cmb_province');
+        $district_id = $request->input('cmb_district');
+        $city_id = $request->input('cmb_city');
+
+        $hotel = Hotels::find($hotel_id);
+        $hotel->name = $request->input('txt_hotel_name');
+        $hotel->address = $request->input('txt_hotel_address');
+        $hotel->phone = $request->input('txt_hotel_phone');
+        $hotel->email = $request->input('txt_hotel_email');
+        $hotel->website = $request->input('txt_hotel_website');
+        $hotel->star_rating = $request->input('txt_hotel_rating');
+        $hotel->latitude = $request->input('txt_hotel_latitude');
+        $hotel->longitude = $request->input('txt_hotel_longitude');
+        $hotel->province_id = $province_id;
+        $hotel->district_id = $district_id;
+        $hotel->city_id = $city_id;
+
+        // Handle file uploads
+        if ($request->hasFile('cover_image')) {
+            $oldImagePath = public_path($hotel->cover_image);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);  // Delete the old image file
+            }
+            $file = $request->file('cover_image');
+            $filename = 'H_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/hotels'), $filename);
+            $hotel->cover_image = $filename;
+        }
+
+        if ($request->hasFile('image_1')) {
+            $oldImagePath = public_path($hotel->image1);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);  // Delete the old image file
+            }
+            $file = $request->file('image_1');
+            $filename = 'H1_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/hotels'), $filename);
+            $hotel->image1 = $filename;
+        }
+        if ($request->hasFile('image_2')) {
+            $oldImagePath = public_path($hotel->image2);
+            if (file_exists($oldImagePath)) {
+                unlink($oldImagePath);  // Delete the old image file
+            }
+            $file = $request->file('image_2');
+            $filename = 'H2_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/hotels'), $filename);
+            $hotel->image2 = $filename;
+        }
+
+        $hotel->save();
+
+        return redirect()->route('hotels.index')->with('success', 'Hotel updated successfully.');
     }
 
     /**
