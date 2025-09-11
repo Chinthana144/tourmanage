@@ -11,12 +11,12 @@
         <ul class="links">
           <li><a href="/dashboard">HOME</a></li>
           <li>
-            <a href="#">HTML & CSS</a>
+            <a href="#">Packages</a>
             <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
             <ul class="htmlCss-sub-menu sub-menu">
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Login Forms</a></li>
-              <li><a href="#">Card Design</a></li>
+              <li><a href="/packages">Packages</a></li>
+              <li><a href="#">Package Routes</a></li>
+              <li><a href="#">Package Settings</a></li>
               <li class="more">
                 <span><a href="#">More</a>
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>

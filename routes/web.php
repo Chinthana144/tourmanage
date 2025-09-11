@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,9 @@ Route::middleware('auth')->group(function () {
     Route::get('edit-facilities', [FacilitiesController::class, 'edit'])->name('facilities.edit');
     Route::put('update-facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
 
+    //travel packages
+    Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
+    Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
 });
 
 Route::get('/template', function () {
