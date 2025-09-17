@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Packages;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -27,7 +28,25 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $package = new Packages();
+
+        $package->title = $request->input('title');
+        $package->description = $request->input('description');
+        $package->price_per_person = $request->input('price_per_person');
+        $package->duration_days = $request->input('duration_days');
+        $package->availability_startdate = $request->input('available_startdate');
+        $package->availability_enddate = $request->input('available_startdate');
+        $package->status = 1;
+
+        // Handle file uploads
+        if ($request->hasFile('cover_image')) {
+            $file = $request->file('cover_image');
+            $filename = 'P_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/packages'), $filename);
+            $package->cover_image = $filename;
+        }
+
+
     }
 
     /**

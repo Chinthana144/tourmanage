@@ -1,7 +1,7 @@
-$(document).ready(function (event) {
+$(document).ready(function () {
     $("#cover_image_error").css('display', 'none');
 
-    $("#cover_image").change(function(){
+    $("#cover_image").change(function(event){
         var size=this.files[0].size;
         if(size>5242880){
             $("#cover_image_error").css('display','block');

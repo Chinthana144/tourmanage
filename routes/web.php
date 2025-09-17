@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
+    Route::get('/store-package', [PackageController::class, 'store'])->name('package.store');
 });
 
 Route::get('/template', function () {

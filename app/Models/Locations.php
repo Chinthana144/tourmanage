@@ -29,4 +29,9 @@ class Locations extends Model
     {
         return $this->belongsTo(Cities::class, 'city_id');
     }
+
+    public function route()
+    {
+        return $this->morphMany(PackageRoutes::class, 'stoppable');
+    }
 }
