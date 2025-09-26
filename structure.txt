@@ -1,0 +1,81 @@
+// database structure
+
+//---- walk through ----//
+* laravel install
+* breeze install
+* user roles
+* users
+* locations
+* hotels
+* hotel rooms
+* tourists
+* tourist health
+* travel packages
+* travel package route
+* tours
+* tour members
+* hotel booking
+
+//--- tables --- //
+//users
+firstname
+lastname
+email
+password
+phone
+profile_pic
+status
+
+//roles
+admin
+owner
+manager
+accountant
+sales agent
+booking manager
+guide
+hotel user
+intern
+
+//locations
+name
+description
+city
+district
+privince
+latitude
+longitude
+primary image
+image1
+image2
+image3
+image4
+
+//hotels
+name
+address
+email
+phone
+province_id
+district_id
+city_id
+website
+star_rating
+latitude
+longitude
+cover_image
+image1
+image2
+
+//hotel facilities
+
+//facilities_types
+name
+
+//facilities
+name
+facility_type_id
+
+//hotel_facilities
+hotel_id
+facility_id

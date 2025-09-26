@@ -1,0 +1,16 @@
+#img_main{
+    width: 430px;
+}
+#div_gallary{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.img_gallery{
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
