@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('package_routes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('travel_package_id')->constrained()->onDelete('cascade');
+            $table->foreignId('travel_package_id');
             $table->morphs('stoppable');
             $table->integer('day_no');
             $table->integer('order_no');

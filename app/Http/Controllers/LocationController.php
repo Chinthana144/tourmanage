@@ -245,6 +245,15 @@ class LocationController extends Controller
     }
 
     /*
+    * location ajax methods
+    */
+    public function getLocations(Request $request){
+        $locations = Locations::where('status', 1)->get();
+
+        return response()->json($locations);
+    }
+
+    /*
     * get district by province id
     */
     public function getDistrictByProvince(Request $request)

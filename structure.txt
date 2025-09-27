@@ -16,6 +16,10 @@
 * tour members
 * hotel booking
 
+//requirements
+* Quatations
+* hotel booking
+
 //--- tables --- //
 //users
 firstname
