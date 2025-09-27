@@ -5,6 +5,7 @@ use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PackageController;
+use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/get-districts-by-province', [LocationController::class, 'getDistrictByProvince']);
     Route::get('/get-cities-by-district', [LocationController::class, 'getCityByDistrict']);
     Route::get('/get-one-city-by-id', [LocationController::class, 'getOneCityById']);
+    Route::get('/getLocations', [LocationController::class, 'getLocations']);
 
     //hotels
     Route::get('/hotels', [Hotelcontroller::class, 'index'])->name('hotels.index');
@@ -50,6 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-hotel', [Hotelcontroller::class, 'edit'])->name('hotels.edit');
     Route::put('/update-hotel', [Hotelcontroller::class, 'update'])->name('hotels.update');
     Route::post('remove', [Hotelcontroller::class, 'remove'])->name('hotel.remove');
+    Route::get('/getHotels', [Hotelcontroller::class, 'getHotels']);
 
     //facilities
     Route::post('store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
@@ -59,7 +62,10 @@ Route::middleware('auth')->group(function () {
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
-    Route::get('/store-package', [PackageController::class, 'store'])->name('package.store');
+    Route::post('/store-package', [PackageController::class, 'store'])->name('package.store');
+
+    //package route
+    Route::post('/store-packageroute', [PackageRouteController::class, 'store'])->name('packageroute.store');
 });
 
 Route::get('/template', function () {

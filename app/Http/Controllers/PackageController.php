@@ -46,7 +46,7 @@ class PackageController extends Controller
             $package->cover_image = $filename;
         }
 
-
+        return view('packageroutes.packageroute_create', compact('package'));
     }
 
     /**

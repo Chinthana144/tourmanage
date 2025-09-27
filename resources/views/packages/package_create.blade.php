@@ -22,17 +22,17 @@
                     </div>
                     <div class="col-md-6">
                         <label for="" class="mt-3">Duration(Days)</label>
-                        <input type="text" name="duration_days" id="duration_days" class="form-control" required>
+                        <input type="number" step="1" name="duration_days" id="duration_days" class="form-control" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="" class="mt-3">Available Start Date</label>
-                        <input type="text" name="available_startdate" id="available_startdate" class="form-control">
+                        <input type="date" name="available_startdate" id="available_startdate" class="form-control">
                     </div>
 
                     <div class="col-md-6">
                         <label for="" class="mt-3">Available End Date</label>
-                        <input type="text" name="available_enddate" id="available_enddate" class="form-control">
+                        <input type="date" name="available_enddate" id="available_enddate" class="form-control">
                     </div>
 
                     <div class="col-md-6">

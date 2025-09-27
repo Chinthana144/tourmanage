@@ -223,4 +223,11 @@ class Hotelcontroller extends Controller
 
         return redirect()->route('hotels.index')->with('success', 'Facilities added successfully.');
     }//remove
-}
+
+    //get hotels
+    public function getHotels(){
+        $hotels = Hotels::where('status', 1)->get();
+
+        return response()->json($hotels);
+    }
+}//class
