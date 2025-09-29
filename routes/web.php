@@ -66,6 +66,8 @@ Route::middleware('auth')->group(function () {
 
     //package route
     Route::post('/store-packageroute', [PackageRouteController::class, 'store'])->name('packageroute.store');
+    Route::post('/edit-packageroute', [PackageRouteController::class, 'edit'])->name('packageroute.edit');
+    Route::post('/delete-packageroute', [PackageRouteController::class, 'destroy'])->name('packageroute.delete');
 });
 
 Route::get('/template', function () {

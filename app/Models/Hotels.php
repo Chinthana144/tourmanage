@@ -44,7 +44,7 @@ class Hotels extends Model
         return $this->hasMany(HotelFacilities::class, 'hotel_id');
     }
 
-    public function route()
+    public function stoppable()
     {
         return $this->morphMany(PackageRoutes::class, 'stoppable');
     }

@@ -12,7 +12,9 @@ class PackageController extends Controller
      */
     public function index()
     {
-        return view('packages.package_view');
+        $packages = Packages::where('status', 1)->get();
+
+        return view('packages.package_view', compact('packages'));
     }
 
     /**
@@ -38,6 +40,7 @@ class PackageController extends Controller
         $package->availability_enddate = $request->input('available_startdate');
         $package->status = 1;
 
+        $package->cover_image  = "";
         // Handle file uploads
         if ($request->hasFile('cover_image')) {
             $file = $request->file('cover_image');
@@ -45,6 +48,8 @@ class PackageController extends Controller
             $file->move(public_path('images/packages'), $filename);
             $package->cover_image = $filename;
         }
+
+        $package->save();
 
         return view('packageroutes.packageroute_create', compact('package'));
     }

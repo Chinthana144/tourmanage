@@ -6,6 +6,43 @@
             <h5>{{ $package->title }} - Route</h5>
         </div>
         <div class="card-body">
+            
+            @if ($package_route)
+            <table class="table">
+                    <tr>
+                        <th>No</th>
+                        <th>Day</th>
+                        <th>Type</th>
+                        <th>Place</th>
+                        <th>Duration</th>
+                        <th>Action</th>
+                    </tr>
+                @foreach ($package_route as $route)
+                    <tr>
+                        <td>{{$route->order_no}}</td>
+                        <td>Day {{$route->day_no}}</td>
+                        <td>{{$route->stoppable_type}}</td>
+                        @if ($route->stoppable_type == 'location')
+                            <td>{{$route->stoppable->name}}</td>
+                        @else
+                            <td>{{$route->stoppable->name}}</td>
+                        @endif
+                        
+                        <td>{{$route->stay_duration}} days</td>
+                        <td>
+                            <form action="{{ route('packageroute.delete') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="hide_package_id" value="{{ $package->id }}">
+                                <input type="hidden" name="hide_route_id" value="{{ $route->id }}">
+                                <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bx bx-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr> 
+                @endforeach  
+            </table>
+                            
+            @endif
+
             <form action="{{ route('packageroute.store') }}" method="post">
                 @csrf
                 <input type="hidden" name="hide_package_id" value="{{ $package->id }}">
@@ -38,7 +75,9 @@
                         <input type="number" name="stay_duration" class="form-control" placeholder="duration">
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary btn-sm"><i class="bx bx-plus"></i> Add</button>
+                        <label for="">Actions</label>
+                        <br>
+                        <button type="submit" class="btn btn-primary"><i class="bx bx-plus"></i> Add</button>
                     </div>
                 </div>
             </form>
