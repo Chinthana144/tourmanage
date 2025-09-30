@@ -165,8 +165,8 @@ class Hotelcontroller extends Controller
 
         // Handle file uploads
         if ($request->hasFile('cover_image')) {
-            $oldImagePath = public_path($hotel->cover_image);
-            if (file_exists($oldImagePath)) {
+            $oldImagePath = public_path('images/hotels/'. $hotel->cover_image);
+            if (file_exists($oldImagePath) && !is_null($hotel->cover_image)) {
                 unlink($oldImagePath);  // Delete the old image file
             }
             $file = $request->file('cover_image');
@@ -176,8 +176,8 @@ class Hotelcontroller extends Controller
         }
 
         if ($request->hasFile('image_1')) {
-            $oldImagePath = public_path($hotel->image1);
-            if (file_exists($oldImagePath)) {
+            $oldImagePath = public_path('images/hotels/'. $hotel->image1);
+            if (file_exists($oldImagePath) && !is_null($hotel->image1)) {
                 unlink($oldImagePath);  // Delete the old image file
             }
             $file = $request->file('image_1');
@@ -186,8 +186,8 @@ class Hotelcontroller extends Controller
             $hotel->image1 = $filename;
         }
         if ($request->hasFile('image_2')) {
-            $oldImagePath = public_path($hotel->image2);
-            if (file_exists($oldImagePath)) {
+            $oldImagePath = public_path('images/hotels/'. $hotel->image2);
+            if (file_exists($oldImagePath) && !is_null($hotel->image2)) {
                 unlink($oldImagePath);  // Delete the old image file
             }
             $file = $request->file('image_2');

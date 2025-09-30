@@ -3,36 +3,38 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h5>Create a new package</h5>
+            <h5>Update package</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('package.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('package.update') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
+                <input type="hidden" name="hide_package_id" value="{{ $package->id }}">
                 <div class="row">
                     <div class="col-md-12">
                         <label for="">Package Title</label>
-                        <input type="text" name="title" id="title" class="form-control" required>
+                        <input type="text" name="title" id="title" class="form-control" value="{{ $package->title }}" required>
 
                         <label for="" class="mt-3">Description</label>
-                        <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                        <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{ $package->description }}</textarea>
                     </div>
                     <div class="col-md-6">
                         <label for="" class="mt-3">Price per person</label>
-                        <input type="text" name="price_per_person" id="price_per_person" class="form-control" required>
+                        <input type="text" name="price_per_person" id="price_per_person" class="form-control" value="{{ $package->price_per_person }}" required>
                     </div>
                     <div class="col-md-6">
                         <label for="" class="mt-3">Duration(Days)</label>
-                        <input type="number" step="1" name="duration_days" id="duration_days" class="form-control" required>
+                        <input type="number" step="1" name="duration_days" id="duration_days" class="form-control" value="{{ $package->duration_days }}" required>
                     </div>
 
                     <div class="col-md-6">
                         <label for="" class="mt-3">Available Start Date</label>
-                        <input type="date" name="available_startdate" id="available_startdate" class="form-control">
+                        <input type="date" name="available_startdate" id="available_startdate" class="form-control" value="{{ $package->availability_startdate }}">
                     </div>
 
                     <div class="col-md-6">
                         <label for="" class="mt-3">Available End Date</label>
-                        <input type="date" name="available_enddate" id="available_enddate" class="form-control">
+                        <input type="date" name="available_enddate" id="available_enddate" class="form-control" value="{{ $package->availability_enddate }}">
                     </div>
 
                     <div class="col-md-6">
@@ -42,11 +44,11 @@
                     </div>
 
                     <div class="col-md-6 mt-3">
-                        <img src="" alt="no image" id="cover_image_preview" style="width:100%; height:auto; border-radius:10px;">
+                        <img src="{{ asset('images/packages/'. $package->cover_image ) }}" alt="no image" id="cover_image_preview" style="width:100%; height:auto; border-radius:10px;">
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary mt-3">Save & Continue</button>
+                <button type="submit" class="btn btn-primary mt-3">Update</button>
             </form>
 
         </div>

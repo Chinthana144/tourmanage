@@ -63,6 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
     Route::post('/store-package', [PackageController::class, 'store'])->name('package.store');
+    Route::post('/edit-package', [PackageController::class, 'edit'])->name('package.edit');
+    Route::put('/update-package', [PackageController::class, 'update'])->name('package.update');
 
     //package route
     Route::post('/store-packageroute', [PackageRouteController::class, 'store'])->name('packageroute.store');
