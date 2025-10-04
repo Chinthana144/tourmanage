@@ -7,6 +7,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TouristController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-packageroute', [PackageRouteController::class, 'store'])->name('packageroute.store');
     Route::post('/edit-packageroute', [PackageRouteController::class, 'edit'])->name('packageroute.edit');
     Route::post('/delete-packageroute', [PackageRouteController::class, 'destroy'])->name('packageroute.delete');
+
+    //tourists
+    Route::get('/tourists', [TouristController::class, 'index'])->name('tourists.index');
+
 });
 
 Route::get('/template', function () {

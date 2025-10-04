@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
-            $table->string('country_name');
-            $table->string('code1');
-            $table->string('code2');
-            $table->string('flag');
+            $table->string('shortname')->varchar(3);
+            $table->string('name')->varchar(150);
+            $table->integer('phonecode');
+            $table->string('flag')->varchar(30)->nullable();
             $table->timestamps();
         });
     }
