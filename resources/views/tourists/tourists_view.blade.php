@@ -5,7 +5,7 @@
         <div class="card-header">
             <h5>
                 Tourists
-                <button class="btn btn-primary btn-sm float-end">Add Tourist</button>
+                <a href="/create-tourist" class="btn btn-primary btn-sm float-end">Add Tourist</a>
             </h5>
         </div>
         <div class="card-body">

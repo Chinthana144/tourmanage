@@ -74,6 +74,8 @@ Route::middleware('auth')->group(function () {
 
     //tourists
     Route::get('/tourists', [TouristController::class, 'index'])->name('tourists.index');
+    Route::get('/create-tourist', [TouristController::class, 'create'])->name('tourists.create');
+    Route::post('/store-tourist', [TouristController::class, 'store'])->name('tourists.store');
 
 });
 
