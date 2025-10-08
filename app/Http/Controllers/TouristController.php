@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BloodGroup;
 use App\Models\Countries;
+use App\Models\DietaryPreference;
 use App\Models\Languages;
 use App\Models\Tourists;
 use Illuminate\Http\Request;
@@ -47,6 +49,10 @@ class TouristController extends Controller
 
         // $tourist->save();
 
-        //redirect to health profile
+        //gether necessary data
+        $blood_groups = BloodGroup::all();
+        $dietary_types = DietaryPreference::all();
+
+        return view('tourist_health.tourist_health', compact('tourist', 'blood_groups', 'dietary_types'));
     }
 }//class

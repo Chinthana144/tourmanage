@@ -2232,3 +2232,46 @@ INSERT INTO `countries` (`id`, `shortname`, `name`, `phonecode`, `flag`) VALUES
 (244, 'YU', 'Yugoslavia', 38, NULL),
 (245, 'ZM', 'Zambia', 260, 'ZM.png'),
 (246, 'ZW', 'Zimbabwe', 263, 'ZW.png');
+
+-- blood groups
+INSERT INTO `blood_groups` (`id`, `name`, `created_at`, `updated_at`) 
+VALUES 
+(1, 'A+', NULL, NULL), 
+(2, 'A-', NULL, NULL), 
+(3, 'B+', NULL, NULL), 
+(4, 'B-', NULL, NULL), 
+(5, 'AB+', NULL, NULL), 
+(6, 'AB-', NULL, NULL), 
+(7, 'O+', NULL, NULL), 
+(8, 'O-', NULL, NULL);
+
+-- dietary preferences
+INSERT INTO `dietary_preferences` (`id`, `name`, `description`, `created_at`, `updated_at`)
+VALUES
+(1, 'Omnivore', 'Eats all types of food without dietary restrictions.', NULL, NULL),
+(2, 'Vegetarian', 'Avoids meat, poultry, and seafood.', NULL, NULL),
+(3, 'Vegan', 'Avoids all animal products including meat, dairy, eggs, and honey.', NULL, NULL),
+(4, 'Pescatarian', 'Eats fish but avoids other meats.', NULL, NULL),
+(5, 'Flexitarian', 'Mostly vegetarian but occasionally eats meat.', NULL, NULL),
+(6, 'Pollotarian', 'Eats poultry but avoids red meat and seafood.', NULL, NULL),
+(7, 'Halal', 'Follows Islamic dietary laws; avoids pork, alcohol, and non-halal meat.', NULL, NULL),
+(8, 'Kosher', 'Follows Jewish dietary laws, including separation of meat and dairy.', NULL, NULL),
+(9, 'Hindu Vegetarian', 'Avoids meat, especially beef, and sometimes eggs.', NULL, NULL),
+(10, 'Jain Vegetarian', 'Strict vegetarian avoiding root vegetables and animal by-products.', NULL, NULL),
+(11, 'Buddhist Vegetarian', 'Vegetarian diet, may avoid strong-flavored vegetables like garlic or onions.', NULL, NULL),
+(12, 'Ital', 'Rastafarian natural diet emphasizing plant-based, unprocessed foods.', NULL, NULL),
+(13, 'Gluten-free', 'Avoids foods containing gluten such as wheat, barley, and rye.', NULL, NULL),
+(14, 'Dairy-free', 'Avoids milk and dairy products due to allergy or intolerance.', NULL, NULL),
+(15, 'Nut-free', 'Avoids nuts and nut-based products.', NULL, NULL),
+(16, 'Egg-free', 'Avoids eggs and egg-based products.', NULL, NULL),
+(17, 'Soy-free', 'Avoids soy and soy-derived foods.', NULL, NULL),
+(18, 'Low-FODMAP', 'Avoids fermentable carbohydrates to reduce digestive discomfort.', NULL, NULL),
+(19, 'Keto', 'Follows a low-carbohydrate, high-fat ketogenic diet.', NULL, NULL),
+(20, 'Paleo', 'Eats foods presumed available to early humans; excludes processed foods, grains, and dairy.', NULL, NULL),
+(21, 'Raw Food', 'Consumes mostly raw, uncooked foods.', NULL, NULL),
+(22, 'Macrobiotic', 'Plant-based diet emphasizing whole grains and seasonal foods.', NULL, NULL),
+(23, 'Whole30', 'A 30-day elimination diet avoiding sugar, grains, dairy, and legumes.', NULL, NULL),
+(24, 'Frugivore', 'Primarily eats fruits as main food source.', NULL, NULL),
+(25, 'Medical / Therapeutic Diet', 'Diet prescribed for medical reasons such as low-sodium or diabetic diets.', NULL, NULL),
+(26, 'No Preference', 'No specific dietary restrictions or preferences.', NULL, NULL),
+(27, 'Other', 'Other or custom dietary preference not listed above.', NULL, NULL);

@@ -36,7 +36,6 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-
         $location = new Locations();
         $province_id = $request->input('cmb_province');
         $district_id = $request->input('cmb_district');

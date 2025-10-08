@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             <div class="container container-md">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="{{ route('tourists.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
                         <div class="col-md-6">
