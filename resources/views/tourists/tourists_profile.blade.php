@@ -12,29 +12,29 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="">First Name</label>
-                            <input type="text" name="first_name" class="form-control" placeholder="First Name"> 
+                            <input type="text" name="first_name" class="form-control" placeholder="First Name" required> 
                         </div>
                         <div class="col-md-6">
                             <label for="">Last Name</label>
-                            <input type="text" name="last_name" class="form-control" placeholder="Last Name">
+                            <input type="text" name="last_name" class="form-control" placeholder="Last Name" required>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="">Email</label>
-                            <input type="text" name="email" class="form-control" placeholder="Email"> 
+                            <input type="text" name="email" class="form-control" placeholder="Email" required> 
                         </div>
                         <div class="col-md-6">
                             <label for="">Phone</label>
-                            <input type="text" name="phone" class="form-control" placeholder="phone">
+                            <input type="text" name="phone" class="form-control" placeholder="phone" required>
                         </div>
                     </div>
                 
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="">Passport No</label>
-                            <input type="text" name="passport_no" class="form-control" placeholder="Passport No"> 
+                            <input type="text" name="passport_no" class="form-control" placeholder="Passport No" required> 
                         </div>
                         <div class="col-md-6">
                             <label for="">Select Country</label>
@@ -50,7 +50,7 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <label for="">Birthday</label>
-                            <input type="date" name="dob" id="dob" class="form-control" placeholder="YYYY-MM-DD">
+                            <input type="date" name="dob" id="dob" class="form-control" placeholder="YYYY-MM-DD" required>
                             <span id="dob_error"></span>
                         </div>
                         <div class="col-md-6">

@@ -14,8 +14,11 @@ class TouristController extends Controller
     public function index()
     {
         $tourists = Tourists::paginate(10);
+        //gether necessary data
+        $blood_groups = BloodGroup::all();
+        $dietary_types = DietaryPreference::all();
 
-        return view('tourists.tourists_view', compact('tourists'));
+        return view('tourists.tourists_view', compact('tourists', 'blood_groups', 'dietary_types'));
     }
 
     public function create()
@@ -47,7 +50,7 @@ class TouristController extends Controller
             $tourist->profile_picture = 'images/tourists/' . $filename;
         }//upload primary image
 
-        // $tourist->save();
+        $tourist->save();
 
         //gether necessary data
         $blood_groups = BloodGroup::all();
@@ -55,4 +58,6 @@ class TouristController extends Controller
 
         return view('tourist_health.tourist_health', compact('tourist', 'blood_groups', 'dietary_types'));
     }
+
+    
 }//class

@@ -8,7 +8,9 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TouristController;
+use App\Http\Controllers\TouristHealthController;
 use App\Http\Controllers\UserController;
+use App\Models\TouristHealth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -78,7 +80,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-tourist', [TouristController::class, 'store'])->name('tourists.store');
 
     //tourist health
-    // Route::get('/tourist-health', []);
+    Route::post('/store-tourist-health', [TouristHealthController::class, 'store'])->name('tourist_health.store');
+    Route::put('/update-tourist-health', [TouristHealthController::class, 'update'])->name('tourist_health.update');
+    Route::get('/get-tourist-health', [TouristHealthController::class, 'getTouristHealth']);
 
 });
 

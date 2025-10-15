@@ -27,7 +27,7 @@
             
 
             <div class="container container-md mt-3">
-                <form action="" method="POST">
+                <form action="{{ route('tourist_health.store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="tourist_id" value="{{ $tourist->id }}">
                     <div class="col-md-12">
