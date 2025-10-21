@@ -38,9 +38,75 @@ $(document).ready(function () {
                 $("#tourist_health_modal").modal('toggle');
             }
         });
+    });
 
-        
+    //edit tourist
+    $("#tbl_tourists").on('click', '.btn_tourist_edit', function(){
+        let row = $(this).closest('tr');
+        let id = row.data('id');
 
+        $.ajax({
+            type: "get",
+            url: '/getOneTourist',
+            data: {id:id},
+            // dataType: "dataType",
+            success: function (response) {
+                // console.log(response);
+                $("#tourist_edit_modal").modal('toggle');  
+                console.log("id = " + response.id);
+                  
+
+                $("#hidden_tourist_id").val(response.id);
+                $("#first_name").val(response.firstname);
+                $("#last_name").val(response.lastname);
+                $("#email").val(response.email);
+                $("#phone").val(response.phone);
+                $("#passport_no").val(response.passport_no);
+                $("#cmb_country").val(response.country_id);
+                $("#dob").val(response.dob);
+                $("#cmb_language").val(response.language_id);
+                $("#address").val(response.address);
+                $("#img_profile_picture").attr('src', response.profile_picture);
+
+            }
+        });
+    });
+
+    //close button
+    $("#btn_close_tourist_edit").click(function(){
+        $("#tourist_edit_modal").modal('hide');    
+    });
+
+    //add image
+    $("#profile_picture").change(function(event){
+        var size=this.files[0].size;
+        if(size>5242880){
+            alert("File size exceeds 5MB");
+            $(this).css('border-color', 'red');
+        }
+        else{
+            var url = URL.createObjectURL(event.target.files[0]);
+            $("#img_profile_picture").attr("src", url);
+            $(this).css('border-color', 'green');
+        }
+    });
+
+    //check dob
+    $("#dob").change(function(){
+        var dob = new Date(this.value);
+        var today = new Date();
+
+        var age = today - dob;
+        if(age<0){
+            $('#dob_error').html('Invalid date of birth');
+            $("#dob_error").css('display', 'block');
+            $('#dob_error').css('color', 'red');
+            $("#dob").css('border-color', 'red');
+        }
+        else{
+            $("#dob_error").css('display', 'none');
+            $("#dob").css('border-color', 'green');
+        }
     });
 
 });//jQuery

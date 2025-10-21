@@ -37,7 +37,7 @@
                             <button class="btn btn-outline-success btn-sm btn_tourist_health"><i class="bx bx-heart"></i></button>
                         </td>
                         <td>
-                            <button class="btn btn-outline-warning btn-sm"><i class="bx bx-edit"></i></button>
+                            <button class="btn btn-outline-warning btn-sm btn_tourist_edit"><i class="bx bx-edit"></i></button>
                         </td>
                     </tr>
                    
@@ -47,6 +47,7 @@
     </div>
 
     @include('tourists.tourist_health_modal')
+    @include('tourists.tourist_edit_modal')
 
     <script src="{{ asset('js/tourist_view.js') }}"></script>
 @endsection

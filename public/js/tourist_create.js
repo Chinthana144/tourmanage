@@ -3,7 +3,7 @@ $(document).ready(function(){
     $("#profile_picture").change(function(event){
         var size=this.files[0].size;
         if(size>5242880){
-
+            alert("File size exceeds 5MB"); 
         }
         else{
             var url = URL.createObjectURL(event.target.files[0]);

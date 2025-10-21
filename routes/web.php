@@ -78,12 +78,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/tourists', [TouristController::class, 'index'])->name('tourists.index');
     Route::get('/create-tourist', [TouristController::class, 'create'])->name('tourists.create');
     Route::post('/store-tourist', [TouristController::class, 'store'])->name('tourists.store');
+    Route::put('/update-tourist', [TouristController::class, 'update'])->name('tourists.update');
+    Route::get('/getOneTourist', [TouristController::class, 'getOneTourist']);
 
     //tourist health
     Route::post('/store-tourist-health', [TouristHealthController::class, 'store'])->name('tourist_health.store');
     Route::put('/update-tourist-health', [TouristHealthController::class, 'update'])->name('tourist_health.update');
     Route::get('/get-tourist-health', [TouristHealthController::class, 'getTouristHealth']);
-
 });
 
 Route::get('/template', function () {
