@@ -85,6 +85,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-tourist-health', [TouristHealthController::class, 'store'])->name('tourist_health.store');
     Route::put('/update-tourist-health', [TouristHealthController::class, 'update'])->name('tourist_health.update');
     Route::get('/get-tourist-health', [TouristHealthController::class, 'getTouristHealth']);
+
+    
 });
 
 Route::get('/template', function () {
