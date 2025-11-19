@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
 use App\Http\Controllers\LocationController;
@@ -86,6 +87,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/update-tourist-health', [TouristHealthController::class, 'update'])->name('tourist_health.update');
     Route::get('/get-tourist-health', [TouristHealthController::class, 'getTouristHealth']);
 
+    //customers
+    Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::post('/store-customer', [CustomerController::class, 'store'])->name('customers.store');
     
 });
 

@@ -12,4 +12,9 @@ class Countries extends Model
         'phonecode',
         'flag'
     ];
-}
+
+    public function customers()
+    {
+        return $this->hasMany(Customers::class, 'country_id');
+    }
+}//class
