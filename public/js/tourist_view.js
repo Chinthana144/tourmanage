@@ -53,8 +53,7 @@ $(document).ready(function () {
             success: function (response) {
                 // console.log(response);
                 $("#tourist_edit_modal").modal('toggle');  
-                console.log("id = " + response.id);
-                  
+                // console.log("id = " + response.id);
 
                 $("#hidden_tourist_id").val(response.id);
                 $("#first_name").val(response.firstname);

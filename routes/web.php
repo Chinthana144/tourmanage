@@ -90,13 +90,16 @@ Route::middleware('auth')->group(function () {
     //customers
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
     Route::post('/store-customer', [CustomerController::class, 'store'])->name('customers.store');
+    Route::put('/update-customer', [CustomerController::class, 'update'])->name('customers.update');
+    Route::get('/getOneCustomer', [CustomerController::class, 'getOneCustomer']);
+
+    //tour request
     
 });
 
 Route::get('/template', function () {
     return view('layouts.template');
 });
-
 
 
 require __DIR__.'/auth.php';

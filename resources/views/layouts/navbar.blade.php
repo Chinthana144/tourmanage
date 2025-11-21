@@ -43,11 +43,21 @@
             <a href="#">TOURS</a>
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
-              <li><a href="/customers">Customers</a></li>
               <li><a href="#">Tours</a></li>
               <li><a href="/tourists">Touists</a></li>
               <li><a href="#">Tour Packages</a></li>
               <li><a href="#">Package Routes</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">Quotations</a>
+            <i class='bx bxs-chevron-down js-arrow arrow'></i>
+            <ul class="js-sub-menu sub-menu">
+              <li><a href="/customers">Customers</a></li>
+              <li><a href="#">Tour Requests</a></li>
+              <li><a href="#">Tour Quotation</a></li>
+              <li><a href="#">Tour Pricing</a></li>
             </ul>
           </li>
 

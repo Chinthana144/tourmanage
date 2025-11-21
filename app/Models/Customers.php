@@ -18,4 +18,9 @@ class Customers extends Model
     {
         return $this->belongsTo(Countries::class, 'country_id');
     }
+
+    public function tourRequests()
+    {
+        return $this->hasMany(TourRequest::class, 'customer_id');
+    }
 }//class

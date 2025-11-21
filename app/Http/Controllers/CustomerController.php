@@ -70,9 +70,19 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $customer_id = $request->input('hide_customer_id');
+        $customer = Customers::find($customer_id);
+
+        $customer->first_name = $request->input('first_name');
+        $customer->last_name = $request->input('last_name');
+        $customer->email = $request->input('email');
+        $customer->phone_number = $request->input('phone_number');
+        $customer->country_id = $request->input('country_id');
+        $customer->save();
+
+        return redirect()->route('customers.index')->with('success', 'Customer updated successfully.');
     }
 
     /**
@@ -81,5 +91,15 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    //ajax
+    public function getOneCustomer(Request $request)
+    {
+        $customer_id = $request->input('customer_id');
+
+        $customer = Customers::find($customer_id);
+
+        return response()->json($customer);
     }
 }

@@ -9,7 +9,7 @@
             </h5>
         </div>
         <div class="card-body">
-            <table class="table">
+            <table class="table" id="tbl_customers">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -18,11 +18,12 @@
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Country</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($customers as $customer)
-                        <tr>
+                        <tr data-id="{{ $customer->id }}">
                             <td>{{ $customer->id }}</td>
                             <td>{{ $customer->first_name }}</td>
                             <td>{{ $customer->last_name }}</td>
@@ -32,6 +33,10 @@
                                 <img src="{{ asset('images/countries/' . $customer->country->flag) }}" alt="" style="width: 25px; height: 15px;">
                                 {{ $customer->country->name }}
                             </td>
+                            <td>
+                                <button class="btn btn-sm btn-info btn_edit_customer"><i class="bx bx-edit"></i></button>
+                                <button  class="btn btn-success btn-sm btn_add_request"><i class="bx bx-plus"></i> Tour Request</button>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -40,6 +45,8 @@
     </div>
 
     @include('customers.customer_add_modal')
+    @include('customers.customer_edit_modal')
+    @include('customers.request_add_modal')
 
     <script src="{{ asset('js/customer_view.js') }}"></script>
 @endsection
