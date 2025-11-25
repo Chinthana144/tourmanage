@@ -10,6 +10,7 @@ use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
+use App\Http\Controllers\TourRequestController;
 use App\Http\Controllers\UserController;
 use App\Models\TouristHealth;
 use Illuminate\Support\Facades\Route;
@@ -94,7 +95,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/getOneCustomer', [CustomerController::class, 'getOneCustomer']);
 
     //tour request
-    
+    Route::get('/tour-requests', [TourRequestController::class, 'index'])->name('tour_requests.index');
+    Route::post('/store-tour-request', [TourRequestController::class, 'store'])->name('tour_request.store');
+
 });
 
 Route::get('/template', function () {

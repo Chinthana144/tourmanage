@@ -6,10 +6,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="" method="post">
+      <form action="{{ route('tour_request.store') }}" method="post">
         <div class="modal-body">
             <p id="p_customer_details"></p>
             @csrf
+            <input type="hidden" name="hide_request_customer_id" id="hide_request_customer_id">
             <label for="">Travel Start Date</label>
             <input type="date" class="form-control mb-2" name="travel_date" required>
 
