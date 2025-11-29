@@ -6,7 +6,7 @@
             <h5>Tour Requests</h5>
         </div>
         <div class="card-body">
-            <table class="table">
+            <table class="table" id="tbl_requests">
                 <tr>
                     <th>Customer</th>
                     <th>Start Date</th>
@@ -19,7 +19,7 @@
                     <th>Action</th>
                 </tr>
                 @foreach ($all_requests as $request)
-                    <tr>
+                    <tr data-id="{{ $request->id }}">
                         <td>{{ $request->customer->first_name . " " . $request->customer->last_name}}</td>
                         <td>{{ $request->travel_date }}</td>
                         <td>{{ $request->return_date }}</td>
@@ -31,17 +31,21 @@
                             @if ($request->status == 1)
                                 <label for="" class="badge bg-primary">Pending</label>
                             @elseif ($request->status == 2)
-                                Approved
+                                <label for="" class="badge bg-success">Approved</label>
                             @elseif ($request->status == 3)
-                                Rejected
+                                <label for="" class="badge bg-danger">Rejected</label>
                             @endif
                         </td>
                         <td>
-                            <button class="btn btn-primary btn-sm">edit</button>
+                            <button class="btn btn-primary btn-sm btn_edit_request">edit</button>
                         </td>
                     </tr>                    
                 @endforeach
             </table>
         </div>
     </div>
+
+    @include('tour_requests.request_edit_modal')
+
+    <script src="{{ asset('js/tour_request.js') }}"></script>
 @endsection

@@ -97,6 +97,8 @@ Route::middleware('auth')->group(function () {
     //tour request
     Route::get('/tour-requests', [TourRequestController::class, 'index'])->name('tour_requests.index');
     Route::post('/store-tour-request', [TourRequestController::class, 'store'])->name('tour_request.store');
+    Route::put('/update-tour-request', [TourRequestController::class, 'update'])->name('tour_request.update');
+    Route::get('/getOneRequest', [TourRequestController::class, 'getOneRequest']);
 
 });
 
