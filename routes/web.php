@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
+use App\Http\Controllers\HotelRoomController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
@@ -60,9 +61,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/getHotels', [Hotelcontroller::class, 'getHotels']);
 
     //facilities
-    Route::post('store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
-    Route::get('edit-facilities', [FacilitiesController::class, 'edit'])->name('facilities.edit');
-    Route::put('update-facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+    Route::post('/store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
+    Route::get('/edit-facilities', [FacilitiesController::class, 'edit'])->name('facilities.edit');
+    Route::put('/update-facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+
+    //hotel rooms
+    Route::get('/hotel-rooms', [HotelRoomController::class, 'index'])->name('hotelrooms.index');
 
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');

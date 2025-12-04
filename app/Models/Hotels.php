@@ -24,6 +24,11 @@ class Hotels extends Model
         'status',
     ];
 
+    public function hotelRoomType()
+    {
+        return $this->hasMany(HotelRoomTypes::class, 'hotel_id');
+    }
+
     public function province()
     {
         return $this->belongsTo(Provinces::class, 'province_id');

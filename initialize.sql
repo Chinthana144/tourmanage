@@ -2275,3 +2275,39 @@ VALUES
 (25, 'Medical / Therapeutic Diet', 'Diet prescribed for medical reasons such as low-sodium or diabetic diets.', NULL, NULL),
 (26, 'No Preference', 'No specific dietary restrictions or preferences.', NULL, NULL),
 (27, 'Other', 'Other or custom dietary preference not listed above.', NULL, NULL);
+
+
+-- add room types
+INSERT INTO `room_types`(`name`) VALUES
+('Standard Room'),
+('Superior Room'),
+('Deluxe Room'),
+('Premier Room'),
+('Executive Room'),
+('Family Room'),
+('Triple Room'),
+('Quad Room'),
+('Junior Suite'),
+('Executive Suite'),
+('Family Suite'),
+('Deluxe Suite'),
+('Presidential Suite'),
+('Cabana'),
+('Chalet'),
+('Villa Room'),
+('Garden View Room'),
+('Ocean View Room'),
+('Mountain View Room'),
+('Pool View Room');
+
+-- add bed types
+INSERT INTO `bed_types` (`name`) VALUES
+('Single Bed'),
+('Twin Beds'),
+('Double Bed'),
+('Queen Bed'),
+('King Bed'),
+('Super King Bed'),
+('Bunk Bed'),
+('Sofa Bed'),
+('Extra Bed (Rollaway Bed)');
