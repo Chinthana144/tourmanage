@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="" method="post">
+      <form action="{{ route('hotelrooms.store') }}" method="post">
         @csrf
         <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">
         <div class="modal-body">
@@ -153,12 +153,12 @@
 
           <div class="row">
             <div class="col-md-6">
-              <label for="">Extra Bed Price</label>
+              <label for="">Extra Bed Price($)</label>
               <input type="number" step="0.01" name="txt_extra_bed_price" class="form-control">
             </div>
 
             <div class="col-md-6">
-              <label for="">Base price per night</label>
+              <label for="">Base price per night($)</label>
               <input type="number" step="0.01" name="txt_base_price" class="form-control">
             </div>
           </div>
