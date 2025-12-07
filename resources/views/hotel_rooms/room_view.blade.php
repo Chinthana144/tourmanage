@@ -19,6 +19,7 @@
                     <th>Perks</th>
                     <th>Price</th>
                     <th>Actions</th>
+                    <th>Delete</th>
                 </tr>
                 @foreach ($hotel_rooms as $room)
                     <tr data-id="{{ $room->id }}">
@@ -99,7 +100,14 @@
                             Price per Night: <b>{{ number_format($room->base_price_per_night, 2) }}</b>
                         </td>
                         <td>
-                            <button class="btn btn-outline-warning btn_edit_room">Edit</button>
+                            <button class="btn btn-outline-warning btn-sm btn_edit_room">Edit</button>
+                        </td>
+                        <td>
+                            <form action="{{ route('hotelrooms.destroy') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="hide_room_id" value="{{ $room->id }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </td>
                     </tr>                    
                 @endforeach

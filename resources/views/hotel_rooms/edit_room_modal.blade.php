@@ -2,13 +2,15 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add Hotel Rooms</h5>
+        <h5 class="modal-title">Update Hotel Room</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="{{ route('hotelrooms.store') }}" method="post">
+      <form action="{{ route('hotelrooms.update') }}" method="post">
         @csrf
+        @method('PUT')
         <input type="hidden" name="hide_edit_hotel_id" id="hide_edit_hotel_id" value="{{ $hotel->id }}">
+        <input type="hidden" name="hide_room_id" id="hide_room_id">
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">
@@ -128,8 +130,8 @@
           <div class="row">
             <div class="col-md-6">
               <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="chk_edit_shoking" name="chk_edit_shoking">
-                <label class="form-check-label" for="chk_edit_shoking">Smoking Allowed</label>
+                <input class="form-check-input" type="checkbox" id="chk_edit_smorking" name="chk_edit_smorking">
+                <label class="form-check-label" for="chk_edit_smorking">Smoking Allowed</label>
               </div>
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="chk_edit_breakfast" name="chk_edit_breakfast">

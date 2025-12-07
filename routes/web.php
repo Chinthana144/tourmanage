@@ -68,6 +68,9 @@ Route::middleware('auth')->group(function () {
     //hotel rooms
     Route::get('/hotel-rooms', [HotelRoomController::class, 'index'])->name('hotelrooms.index');
     Route::post('/store-hotel-room', [HotelRoomController::class, 'store'])->name('hotelrooms.store');
+    Route::put('/update-hotel-room', [HotelRoomController::class, 'update'])->name('hotelrooms.update');
+    Route::post('/destroy-hotel-room', [HotelRoomController::class, 'destroy'])->name('hotelrooms.destroy');
+    Route::get('/getOneRoom', [HotelRoomController::class, 'getOneRoom']);
 
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
