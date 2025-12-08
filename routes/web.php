@@ -72,6 +72,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/destroy-hotel-room', [HotelRoomController::class, 'destroy'])->name('hotelrooms.destroy');
     Route::get('/getOneRoom', [HotelRoomController::class, 'getOneRoom']);
 
+    //hotel prices
+
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
