@@ -8,7 +8,7 @@ class HotelPrices extends Model
 {
     protected $fillable = [
         'hotel_id',
-        'room_type_id',
+        'hotel_room_type_id',
         'season_name',
         'season_start_date',
         'season_end_date',
@@ -22,7 +22,7 @@ class HotelPrices extends Model
 
     public function roomType()
     {
-        return $this->belongsTo(RoomTypes::class, 'room_type_id');
+        return $this->belongsTo(RoomTypes::class, 'hotel_room_type_id');
     }
     
 }//class

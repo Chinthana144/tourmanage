@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
+use App\Http\Controllers\HotelPriceController;
 use App\Http\Controllers\HotelRoomController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PackageController;
@@ -73,6 +74,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/getOneRoom', [HotelRoomController::class, 'getOneRoom']);
 
     //hotel prices
+    Route::get('/hotel-prices', [HotelPriceController::class, 'index'])->name('hotelprices.index');
+    Route::post('/store-hotel-price', [HotelPriceController::class, 'store'])->name('hotelprices.store');
 
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');

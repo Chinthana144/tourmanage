@@ -109,3 +109,8 @@ hotel_pricing
 transport_modes
 tour_route_transports ------ later
 
+hotel price
+transport media
+tour route
+calculate price
+generate quotation

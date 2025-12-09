@@ -95,7 +95,7 @@
                             </div>
 
                             <div class="col-md-2">
-                                <form action="" method="get">
+                                <form action="{{ route('hotelprices.index') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
                                     <button type="submit" class="btn btn-primary">Hotel Prices</button>
