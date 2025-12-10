@@ -73,4 +73,80 @@ $(document).ready(function () {
             }
         });
     });
+
+    //edit
+    $("#tbl_prices").on('click', '.btn_edit_price', function(){
+        let row = $(this).closest('tr');
+        let id = row.data('id');
+
+        $.ajax({
+            type: "get",
+            url: "/getOneHotelPrice",
+            data: {
+                hotel_price_id: id,
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response); 
+
+                $("#edit_price_modal").modal('toggle');
+                
+                $("#cmb_edit_room_type").val(response.hotel_room_type_id);
+
+                //show room details
+                var p_edit_details = "Adults: " + response.max_adults + " Children: " + response.max_children + " Total guests: " + response.max_guests_total + "<br>";
+                p_edit_details += "Amenities: <br>";
+
+                var amenties = JSON.parse(response.amenities);
+
+                if(amenties.air_conditioning == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Air Conditioning</span> ";}
+                if(amenties.wifi == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Wifi</span> ";}
+                if(amenties.tv == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>TV</span> ";}
+                if(amenties.mini_fridge == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Mini Fridge</span> ";}
+                if(amenties.mini_bar == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Mini Bar</span> ";}
+                if(amenties.coffee_maker == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Coffee Maker</span> ";}
+                if(amenties.balcony == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Balcony</span> ";}
+                if(amenties.safety_box == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Safety Box</span> ";}
+                if(amenties.hot_water == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Hot Water</span> ";}
+                if(amenties.bathtub == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Bathtub</span> ";}
+                if(amenties.shower == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Shower</span> ";}
+                if(amenties.hair_dryer == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Hair Dryer</span> ";}
+                if(amenties.towels == 1)
+                    { p_edit_details += "<span class='badge bg-primary'>Towels</span> ";}
+                if(amenties.toiletries == 1)
+                    {p_edit_details += "<span class='badge bg-primary'>Toiletries</span> ";}
+                
+                    p_edit_details += "<br>Others: <br>"
+
+                //sepcial ones
+                if(response.smoking_allowed == 1)
+                    {p_edit_details += "<span class='badge bg-success'>Smorking Allowed</span> ";}
+                if(response.has_breakfast == 1)
+                    {p_edit_details += "<span class='badge bg-success'>Has Breakfast</span> ";}
+                if(response.has_free_cancellation == 1)
+                    {p_edit_details += "<span class='badge bg-success'>Free Cancellation</span> ";}
+                if(response.extra_bed_allowed == 1)
+                    {p_edit_details += "<span class='badge bg-success'>Extra Bed Allowed</span> ";}
+
+                p_edit_details += "<br>Prices: <br>"
+
+                p_edit_details += "Extra bed price: <b>"+ response.extra_bed_price +"</b><br>";
+                p_edit_details += "Base price: <b>"+ response.base_price_per_night +"</b><br>";
+
+                $("#p_edit_room_details").html(p_edit_details);
+            }
+        });
+    });
 });//price view jQuery

@@ -2311,3 +2311,13 @@ INSERT INTO `bed_types` (`name`) VALUES
 ('Bunk Bed'),
 ('Sofa Bed'),
 ('Extra Bed (Rollaway Bed)');
+
+-- add boarding types
+INSERT INTO `boarding_types`(`name`, `description`) VALUES
+('Room Only', 'No meals included — just the room.'),
+('Self-Catering', 'You cook your own meals; a kitchen is provided.'),
+('Bed & Breakfast (B&B)', 'Breakfast included (usually buffet-style, sometimes à la carte in boutique or luxury hotels).'),
+('Half Board', 'Breakfast + one main meal (usually dinner); drinks may not be included.'),
+('Full Board', 'All three main meals included; drinks often cost extra.'),
+('All-Inclusive', 'Meals, snacks, drinks (alcoholic too), and sometimes activities included.'),
+('Ultra All-Inclusive', 'All of the above plus extras like 24/7 service, à la carte restaurants, and premium drinks.');

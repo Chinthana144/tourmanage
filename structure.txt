@@ -93,24 +93,6 @@ Seasonalpackages (off season / season)
 Suppliment
 
 
-//hotel Tour Quotation
-
- - Customers
- - tour request
- - tours (quotation header)
- - tour route
- - tour hotels
- - tour transport
- - tour activities
- - tour custom charges
- - tour pricing summary
-
-hotel_pricing
-transport_modes
-tour_route_transports ------ later
-
-hotel price
-transport media
-tour route
-calculate price
-generate quotation
+//hotel
+rooms
+boarding type

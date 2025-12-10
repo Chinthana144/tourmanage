@@ -38,4 +38,9 @@ class HotelRoomTypes extends Model
     {
         return $this->belongsTo(BedTypes::class, 'bed_type_id');
     }
+
+    public function hotelRoom()
+    {
+        return $this->hasMany(HotelPrices::class, 'hotel_room_type_id');
+    }
 }//class

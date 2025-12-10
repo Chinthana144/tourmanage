@@ -7,7 +7,7 @@
         </div>
         <div class="card-body">
             
-            @if ($package_route)
+            @if (isset($package_route))
             <table class="table">
                     <tr>
                         <th>No</th>

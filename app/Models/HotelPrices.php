@@ -8,6 +8,7 @@ class HotelPrices extends Model
 {
     protected $fillable = [
         'hotel_id',
+        'boarding_type_id',
         'hotel_room_type_id',
         'season_name',
         'season_start_date',
@@ -20,9 +21,14 @@ class HotelPrices extends Model
         return $this->belongsTo(Hotels::class, 'hotel_id');
     }
 
-    public function roomType()
+    public function hotelRoom()
     {
-        return $this->belongsTo(RoomTypes::class, 'hotel_room_type_id');
+        return $this->belongsTo(HotelRoomTypes::class, 'hotel_room_type_id');
+    }
+
+    public function boardingType()
+    {
+        return $this->belongsTo(BoardingType::class, 'boarding_type_id');
     }
     
 }//class
