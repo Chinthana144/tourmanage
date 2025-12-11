@@ -16,4 +16,9 @@ class Packages extends Model
         'status',
         'cover_image'
     ];
+
+    public function routes()
+    {
+        return $this->hasMany(PackageRoutes::class, 'package_id');
+    }
 }

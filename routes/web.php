@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
 use App\Http\Controllers\TourRequestController;
+use App\Http\Controllers\TravelMediaController;
 use App\Http\Controllers\UserController;
 use App\Models\TouristHealth;
 use Illuminate\Support\Facades\Route;
@@ -114,6 +115,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/update-tour-request', [TourRequestController::class, 'update'])->name('tour_request.update');
     Route::get('/getOneRequest', [TourRequestController::class, 'getOneRequest']);
 
+    //travel media
+    Route::get('/travel-media', [TravelMediaController::class, 'index'])->name('travel_media.index');
+    Route::post('/store-travel-media', [TravelMediaController::class, 'store'])->name('travel_media.store');
+    Route::put('/update-travel-media', [TravelMediaController::class, 'update'])->name('travel_media.update');
+    Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
 });
 
 Route::get('/template', function () {
