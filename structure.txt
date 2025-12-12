@@ -102,5 +102,7 @@ restaurants
 restaurant_meals ----> polymorphic with tour_route
 meal_types
 
-//tour
+resturant meal
+meal_types
+
 

@@ -125,6 +125,9 @@ Route::middleware('auth')->group(function () {
     //restaurants
     Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
     Route::get('/create-restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
+    Route::post('/store-restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
+    Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
+
 });
 
 Route::get('/template', function () {

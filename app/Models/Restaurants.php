@@ -22,4 +22,19 @@ class Restaurants extends Model
         'image1',
         'image2',
     ];
+
+    public function province()
+    {
+        return $this->belongsTo(Provinces::class, 'province_id');
+    }
+
+    public function district()
+    {
+        return $this->belongsTo(Districts::class, 'district_id');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(Cities::class, 'city_id');
+    }
 }//class
