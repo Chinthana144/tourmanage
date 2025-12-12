@@ -10,6 +10,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
 use App\Http\Controllers\TourRequestController;
@@ -120,6 +121,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-travel-media', [TravelMediaController::class, 'store'])->name('travel_media.store');
     Route::put('/update-travel-media', [TravelMediaController::class, 'update'])->name('travel_media.update');
     Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
+
+    //restaurants
+    Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
+    Route::get('/create-restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
 });
 
 Route::get('/template', function () {

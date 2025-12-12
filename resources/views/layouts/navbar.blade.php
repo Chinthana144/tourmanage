@@ -36,6 +36,7 @@
             <ul class="js-sub-menu sub-menu">
               <li><a href="/locations">Locations</a></li>
               <li><a href="/hotels">Hotels</a></li>
+              <li><a href="/restaurants">Restaurants</a></li>
               <li><a href="/travel-media">Travel Media</a></li>
             </ul>
           </li>

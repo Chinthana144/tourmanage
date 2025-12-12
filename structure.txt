@@ -97,5 +97,10 @@ Suppliment
 rooms
 boarding type
 
+//restaurants
+restaurants
+restaurant_meals ----> polymorphic with tour_route
+meal_types
+
 //tour
 

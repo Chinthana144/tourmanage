@@ -2322,3 +2322,10 @@ INSERT INTO `boarding_types`(`name`, `description`) VALUES
 ('All-Inclusive', 'Meals, snacks, drinks (alcoholic too), and sometimes activities included.'),
 ('Ultra All-Inclusive', 'All of the above plus extras like 24/7 service, à la carte restaurants, and premium drinks.');
 
+-- add meal types
+INSERT INTO `meal_types`(`name`) VALUES
+('Breakfast'),
+('Lunch'),
+('Dinner'),
+('Snacks'),
+('Brunch');
