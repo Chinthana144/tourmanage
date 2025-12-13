@@ -71,6 +71,12 @@
                                     <input type="hidden" name="hide_location_id" value="{{ $location->id }}">
                                     <button type="submit" class="btn btn-outline-danger"><i class="bx bx-trash"></i> Remove</button>
                                 </form>
+
+                                <form action="{{ route('activities.index') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="hide_location_id" value="{{ $location->id }}">
+                                    <button type="submit" class="btn btn-primary">Activities</button>
+                                </form>
                             </div>
                         </div>
                     </div>

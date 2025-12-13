@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FacilitiesController;
@@ -128,6 +129,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
     Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
     Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
+
+    //activities
+    Route::post('/activities', [ActivityController::class, 'index'])->name('activities.index');
+    
 });
 
 Route::get('/template', function () {

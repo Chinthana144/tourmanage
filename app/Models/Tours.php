@@ -9,12 +9,18 @@ class Tours extends Model
     protected $fillable = [
         'title',
         'description',
-        'duration_days',
-        'price_per_person',
         'start_date',
         'end_date',
+        'total_days',
+        'total_nights',
+        'adults',
+        'children',
+        'currency',
+        'sub_total',
+        'discount_amount',
+        'tax_amount',
+        'grand_total',
         'status',
+        'note',
     ];
-
-    
 }//class
