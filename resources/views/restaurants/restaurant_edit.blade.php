@@ -3,12 +3,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h5>Add Restaurant</h5>
+            <h5>Update Restaurant</h5>
         </div>
         <div class="card-body">
             <div class="container container-md">
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('restaurants.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @method('PUT')
+                    <input type="hidden" name="hide_restaurant_id" id="hide_restaurant_id" value="{{ $restaurant->id }}">
                     <div class="row">
                         <div class="col-md-4">
                             <select name="cmb_province" id="cmb_province" class="form-select">
@@ -28,7 +30,7 @@
                         <div class="col-md-4">
                             <select name="cmb_city" id="cmb_city" class="form-select">
                                 @foreach ($cities as $city)
-                                    <option value="{{ $city->id }}" @selected($city->id == $restaurant->district_id)>{{ $city->name_en }}</option>
+                                    <option value="{{ $city->id }}" @selected($city->id == $restaurant->city_id)>{{ $city->name_en }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -76,7 +78,7 @@
                     <div class="row mt-3">
                         <div class="col-md-4">
                             <label for="">Cover Image</label>
-                            <input type="file" name="cover_image" id="cover_image" class="form-control" accept=".jpg,.jpeg,.png" required>
+                            <input type="file" name="cover_image" id="cover_image" class="form-control" accept=".jpg,.jpeg,.png">
                             <span id="cover_image_error" class="text-danger">Image size must be less than 5MB</span>
                             <img src="{{ asset('images/restaurants/' . $restaurant->cover_image) }}" alt="cover_image" id="cover_image_preview" class="img-fluid mt-2">
                         </div>
@@ -84,17 +86,17 @@
                             <label for="">Image 1</label>
                             <input type="file" name="image_1" id="image_1" class="form-control" accept=".jpg,.jpeg,.png">
                             <span id="image_1_error" class="text-danger">Image size must be less than 5MB</span>
-                            <img src="{{ asset('images/restaurants/' . $restaurant->cover_image) }}" alt="image_1" id="image_1_preview" class="img-fluid mt-2">
+                            <img src="{{ asset('images/restaurants/' . $restaurant->image1) }}" alt="image_1" id="image_1_preview" class="img-fluid mt-2">
                         </div>
                         <div class="col-md-4">
                             <label for="">Image 2</label>
                             <input type="file" name="image_2" id="image_2" class="form-control" accept=".jpg,.jpeg,.png">
                             <span id="image_2_error" class="text-danger">Image size must be less than 5MB</span>
-                            <img src="{{ asset('images/restaurants/' . $restaurant->cover_image) }}" alt="image_2" id="image_2_preview" class="img-fluid mt-2">
+                            <img src="{{ asset('images/restaurants/' . $restaurant->image2) }}" alt="image_2" id="image_2_preview" class="img-fluid mt-2">
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mt-3">Add Restaurant</button>
+                    <button type="submit" class="btn btn-primary mt-3">Update Restaurant</button>
                 </form>
             </div>
         </div>

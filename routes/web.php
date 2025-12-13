@@ -127,7 +127,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/create-restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
     Route::post('/store-restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
     Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
-
+    Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
 });
 
 Route::get('/template', function () {
