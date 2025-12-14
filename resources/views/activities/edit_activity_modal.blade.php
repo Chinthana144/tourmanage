@@ -1,8 +1,8 @@
-<div class="modal" tabindex="-1" id="add_activity_modal">
+<div class="modal" tabindex="-1" id="edit_activity_modal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add Activity</h5>
+        <h5 class="modal-title">Update Activity</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -30,7 +30,7 @@
               <input type="number" name="num_duration" class="form-control mb-2">
 
               <label for="">Best time for the activity</label>
-              <select name="cmb_best_time" id="cmb_best_time" class="form-select mb-2">
+              <select name="cmb_pricing_type" id="cmb_pricing_type" class="form-select mb-2">
                   <option value="morning">Morning</option>
                   <option value="noon">Noon</option>
                   <option value="evening">Evening</option>

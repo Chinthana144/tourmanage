@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('best_time');
             $table->tinyInteger('is_optional');
             $table->tinyInteger('requires_guide');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->tinyInteger('status');
             $table->timestamps();
         });

@@ -131,8 +131,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
 
     //activities
-    Route::post('/activities', [ActivityController::class, 'index'])->name('activities.index');
-    
+    Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
+    Route::post('/store-activities', [ActivityController::class, 'store'])->name('activities.store');
 });
 
 Route::get('/template', function () {
