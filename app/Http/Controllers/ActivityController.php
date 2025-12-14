@@ -44,5 +44,12 @@ class ActivityController extends Controller
 
     }//store
 
-    
+    //AJAX methods
+    public function getOneActivity(Request $request)
+    {
+        $activity_id = $request->input('activity_id');
+        $activities = Activities::find($activity_id);
+
+        return response()->json($activities);
+    }//getOneActivity   
 }//class

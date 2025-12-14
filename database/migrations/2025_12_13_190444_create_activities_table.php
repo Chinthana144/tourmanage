@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('location_id');
             $table->string('name');
-            $table->string('category');
+            $table->integer('category_id');
             $table->string('description');
             $table->tinyInteger('is_paid')->default(0);
-            $table->string('pricing_type')->nullable();
+            $table->integer('pricing_type_id')->nullable();
             $table->decimal('price_adult', 10, 2)->nullable();
             $table->decimal('price_child', 10, 2)->nullable();
             $table->decimal('group_price', 10, 2)->nullable();
             $table->integer('duration_minutes');
-            $table->string('best_time');
+            $table->integer('best_time_id');
             $table->tinyInteger('is_optional');
             $table->tinyInteger('requires_guide');
             $table->text('notes')->nullable();

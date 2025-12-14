@@ -7,6 +7,17 @@ $(document).ready(function () {
         let row = $(this).closest('tr');
         let id = row.data('id');
 
-        alert("id = " + id);
+        $.ajax({
+            type: "get",
+            url: "/getOneActivity",
+            data: {
+                activity_id: id,
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                
+            }
+        });
     });
 });//activities jQuery

@@ -133,6 +133,7 @@ Route::middleware('auth')->group(function () {
     //activities
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
     Route::post('/store-activities', [ActivityController::class, 'store'])->name('activities.store');
+    Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
 });
 
 Route::get('/template', function () {

@@ -20,10 +20,10 @@
 
               <label for="">Category</label>
               <select name="cmb_category" id="cmb_category" class="form-select mb-2">
-                  <option value="Adventure">Adventure</option>
-                  <option value="Custural">Custural</option>
-                  <option value="Wildlife">Wildlife</option>
-                  <option value="Leisure">Leisure</option>
+                  <option value="1">Adventure</option>
+                  <option value="2">Custural</option>
+                  <option value="3">Wildlife</option>
+                  <option value="4">Leisure</option>
               </select>
 
               <label for="">Duration(minutes)</label>
@@ -31,11 +31,11 @@
 
               <label for="">Best time for the activity</label>
               <select name="cmb_pricing_type" id="cmb_pricing_type" class="form-select mb-2">
-                  <option value="morning">Morning</option>
-                  <option value="noon">Noon</option>
-                  <option value="evening">Evening</option>
-                  <option value="night">Night</option>
-                  <option value="fullday">Full Day</option>
+                  <option value="1">Morning</option>
+                  <option value="2">Noon</option>
+                  <option value="3">Evening</option>
+                  <option value="4">Night</option>
+                  <option value="5">Full Day</option>
               </select>
             </div>
 
@@ -47,8 +47,8 @@
 
               <label for="">Select pricing type</label>
               <select name="cmb_pricing_type" id="cmb_pricing_type" class="form-select mb-2">
-                  <option value="per_person">per person</option>
-                  <option value="per_group">per group</option>
+                  <option value="1">per person</option>
+                  <option value="2">per group</option>
               </select>
 
               <label for="">Adult Price</label>
