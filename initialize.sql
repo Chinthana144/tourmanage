@@ -2329,3 +2329,18 @@ INSERT INTO `meal_types`(`name`) VALUES
 ('Dinner'),
 ('Snacks'),
 ('Brunch');
+
+-- add Activity categories
+INSERT INTO `activity_categories`(`name`) VALUES
+('Adventure'),
+('Cultural'),
+('Wildlife'),
+('Leisure');
+
+-- add activity times
+INSERT INTO `activity_times`(`name`) VALUES
+('Morning'),
+('Noon'),
+('Evening'),
+('Night'),
+('Full Day');

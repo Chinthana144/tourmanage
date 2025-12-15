@@ -67,6 +67,7 @@
     </div>
 
     @include('activities.add_activity_modal')
+    @include('activities.edit_activity_modal')
 
     <script src="{{ asset('js/activities.js') }}"></script>
 @endsection
