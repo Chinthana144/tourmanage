@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activities;
+use App\Models\ActivityCategories;
+use App\Models\ActivityPrices;
+use App\Models\ActivityTimes;
 use App\Models\Locations;
 use Illuminate\Http\Request;
 
@@ -13,9 +16,14 @@ class ActivityController extends Controller
         $location_id = $request->input('hide_location_id');
 
         $location = Locations::find($location_id);
+
+        $categories = ActivityCategories::all();
+        $times = ActivityTimes::all();
+        $price_types = ActivityPrices::all();
+
         $activities = Activities::where('location_id', $location_id)->get();
 
-        return view('activities.activities_view', compact('location', 'activities'));
+        return view('activities.activities_view', compact('location', 'activities', 'categories', 'times', 'price_types'));
     }//index
 
     public function store(Request $request)

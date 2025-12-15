@@ -23,4 +23,19 @@ class Activities extends Model
         'notes',
         'status',
     ];
+
+    public function ActivityCategory()
+    {
+        return $this->belongsTo(ActivityCategories::class, 'category_id');
+    }
+
+    public function ActivitytTime()
+    {
+        return $this->belongsTo(ActivityTimes::class, 'best_time_id');
+    }
+
+    public function ActivityPrice()
+    {
+        return $this->belongsTo(ActivityPrices::class, 'pricing_type_id');
+    }
 }//class

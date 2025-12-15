@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ActivityCategories extends Model
+class ActivityPrices extends Model
 {
     protected $fillable = [
         'name'
@@ -12,6 +12,6 @@ class ActivityCategories extends Model
 
     public function Activities()
     {
-        return $this->hasMany(Activities::class, 'category_id');
+        return $this->hasMany(Activities::class, 'pricing_type_id');
     }
 }//class

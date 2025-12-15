@@ -20,10 +20,9 @@
 
               <label for="">Category</label>
               <select name="cmb_category" id="cmb_category" class="form-select mb-2">
-                  <option value="1">Adventure</option>
-                  <option value="2">Custural</option>
-                  <option value="3">Wildlife</option>
-                  <option value="4">Leisure</option>
+                  @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>                      
+                  @endforeach
               </select>
 
               <label for="">Duration(minutes)</label>
@@ -31,11 +30,9 @@
 
               <label for="">Best time for the activity</label>
               <select name="cmb_best_time" id="cmb_best_time" class="form-select mb-2">
-                  <option value="1">Morning</option>
-                  <option value="2">Noon</option>
-                  <option value="3">Evening</option>
-                  <option value="4">Night</option>
-                  <option value="5">Full Day</option>
+                  @foreach ($times as $time)
+                      <option value="{{ $time->id }}">{{ $time->name }}</option>
+                  @endforeach
               </select>
             </div>
 
@@ -47,8 +44,9 @@
 
               <label for="">Select pricing type</label>
               <select name="cmb_pricing_type" id="cmb_pricing_type" class="form-select mb-2">
-                  <option value="1">per person</option>
-                  <option value="2">per group</option>
+                  @foreach ($price_types as $price_type)
+                      <option value="{{ $price_type->id }}">{{ $price_type->name }}</option>
+                  @endforeach
               </select>
 
               <label for="">Adult Price</label>

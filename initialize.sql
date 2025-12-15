@@ -2344,3 +2344,8 @@ INSERT INTO `activity_times`(`name`) VALUES
 ('Evening'),
 ('Night'),
 ('Full Day');
+
+-- add activity prices
+INSERT INTO `activity_prices`(`name`) VALUES
+('Per Person'),
+('Per Group');

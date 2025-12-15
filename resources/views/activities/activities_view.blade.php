@@ -12,7 +12,7 @@
             <table class="table" id="tbl_activities">
                 <tr>
                     <th>Name</th>
-                    <th>Category</th>
+                    <th>Type</th>
                     <th>Price</th>
                     <th>Duration</th>
                     <th>Best time</th>
@@ -21,23 +21,29 @@
                 </tr>
                 @foreach ($activities as $activity)
                     <tr data-id="{{ $activity->id }}">
-                        <td>{{ $activity->name }}</td>
-                        <td>{{ $activity->category }}</td>
                         <td>
-                            @if ($activity->pricing_type == "per_person")
-                                <span class="badge bg-primary">For Person</span>
-                            @else
-                                <span class="badge bg-primary">For Group</span>
-                            @endif
-                            
+                            <b>{{ $activity->name }}</b>
+                            <br>
+                            Category: <b>{{ $activity->ActivityCategory->name }}</b>
+                        </td>
+                        <td>
+                            <span class="badge bg-primary">{{ $activity->ActivityPrice->name }}</span>
+                            <br>
                             @if ($activity->is_paid)
                                 <span class="badge bg-primary">Paid Activity</span>
                             @else
                                 <span class="badge bg-primary">Free Activity</span>
-                            @endif
+                            @endif 
                         </td>
-                        <td>{{ $activity->duration_minutes }}</td>
-                        <td>{{ $activity->best_time }}</td>
+                        <td>
+                            Adult: <b>{{ $activity->price_adult ?? 0 }}</b>
+                            <br>
+                            Child: <b>{{ $activity->price_child ?? 0 }}</b>
+                            <br>
+                            Group: <b>{{ $activity->group_price ?? 0 }}</b>
+                        </td>
+                        <td>{{ $activity->duration_minutes }} min</td>
+                        <td>{{ $activity->ActivitytTime->name }}</td>
                         <td>
                             @if ($activity->is_optional)
                                 <span class="badge bg-success">Optional</span>
