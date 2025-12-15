@@ -1,0 +1,71 @@
+@extends('layouts.layout')
+
+@section('content')
+    <div class="card">
+        <div class="card-header">
+            <h5>
+                Restaurants
+                <a href="/create-restaurants" class="btn btn-primary btn-sm float-end">Add Restaurant</a>
+            </h5>
+        </div>
+        <div class="card-body">
+            @foreach ($restaurants as $restaurant)
+                <div class="card mt-2">
+                    <div class="card-header">
+                        <h5>{{ $restaurant->name }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p>
+                                    Province: <b>{{$restaurant->province->name_en}}</b>
+                                    <br>
+                                    District: <b>{{$restaurant->district->name_en}}</b>
+                                    <br>
+                                    City: <b>{{$restaurant->city->name_en}}</b>
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>
+                                    Address: <b>{{$restaurant->address}}</b>
+                                    <br>
+                                    Phone: <b>{{$restaurant->phone}}</b>
+                                    <br>
+                                    Website: <b>{{$restaurant->website}}</b>
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <p>
+                                    Latitude: <b>{{ $restaurant->latitude }}</b>
+                                    <br>
+                                    Longitude: <b>{{ $restaurant->longitude }}</b>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ asset('images/restaurants/' . $restaurant->cover_image) }}" alt="con" style="width: 100%; height:auto; border-radius: 8px;">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="{{ asset('images/restaurants/' . $restaurant->image1) }}" alt="con" style="width: 100%; height:auto; border-radius: 8px;">
+                            </div>
+                            <div class="col-md-4">
+                                <img src="{{ asset('images/restaurants/' . $restaurant->image2) }}" alt="con" style="width: 100%; height:auto; border-radius: 8px;">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <form action="{{ route('restaurants.edit') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="hdie_restaurant_id" value="{{ $restaurant->id }}">
+                                    <button type="submit" class="btn btn-warning">Edit Restaurant</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+            @endforeach
+        </div>
+    </div>
+@endsection

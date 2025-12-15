@@ -6,7 +6,7 @@
             <h5>Create a new package</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('package.store') }}" method="post">
+            <form action="{{ route('package.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">

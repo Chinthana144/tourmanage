@@ -1,13 +1,23 @@
 <?php
 
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
+use App\Http\Controllers\HotelPriceController;
+use App\Http\Controllers\HotelRoomController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\TouristController;
+use App\Http\Controllers\TouristHealthController;
+use App\Http\Controllers\TourRequestController;
+use App\Http\Controllers\TravelMediaController;
 use App\Http\Controllers\UserController;
+use App\Models\TouristHealth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -55,23 +65,82 @@ Route::middleware('auth')->group(function () {
     Route::get('/getHotels', [Hotelcontroller::class, 'getHotels']);
 
     //facilities
-    Route::post('store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
-    Route::get('edit-facilities', [FacilitiesController::class, 'edit'])->name('facilities.edit');
-    Route::put('update-facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+    Route::post('/store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
+    Route::get('/edit-facilities', [FacilitiesController::class, 'edit'])->name('facilities.edit');
+    Route::put('/update-facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+
+    //hotel rooms
+    Route::get('/hotel-rooms', [HotelRoomController::class, 'index'])->name('hotelrooms.index');
+    Route::post('/store-hotel-room', [HotelRoomController::class, 'store'])->name('hotelrooms.store');
+    Route::put('/update-hotel-room', [HotelRoomController::class, 'update'])->name('hotelrooms.update');
+    Route::post('/destroy-hotel-room', [HotelRoomController::class, 'destroy'])->name('hotelrooms.destroy');
+    Route::get('/getOneRoom', [HotelRoomController::class, 'getOneRoom']);
+
+    //hotel prices
+    Route::get('/hotel-prices', [HotelPriceController::class, 'index'])->name('hotelprices.index');
+    Route::post('/store-hotel-price', [HotelPriceController::class, 'store'])->name('hotelprices.store');
+    Route::get('/getOneHotelPrice', [HotelPriceController::class, 'getOneHotelPrice']);
 
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
     Route::post('/store-package', [PackageController::class, 'store'])->name('package.store');
+    Route::post('/edit-package', [PackageController::class, 'edit'])->name('package.edit');
+    Route::put('/update-package', [PackageController::class, 'update'])->name('package.update');
 
     //package route
     Route::post('/store-packageroute', [PackageRouteController::class, 'store'])->name('packageroute.store');
+    Route::post('/edit-packageroute', [PackageRouteController::class, 'edit'])->name('packageroute.edit');
+    Route::post('/delete-packageroute', [PackageRouteController::class, 'destroy'])->name('packageroute.delete');
+
+    //tourists
+    Route::get('/tourists', [TouristController::class, 'index'])->name('tourists.index');
+    Route::get('/create-tourist', [TouristController::class, 'create'])->name('tourists.create');
+    Route::post('/store-tourist', [TouristController::class, 'store'])->name('tourists.store');
+    Route::put('/update-tourist', [TouristController::class, 'update'])->name('tourists.update');
+    Route::get('/getOneTourist', [TouristController::class, 'getOneTourist']);
+
+    //tourist health
+    Route::post('/store-tourist-health', [TouristHealthController::class, 'store'])->name('tourist_health.store');
+    Route::put('/update-tourist-health', [TouristHealthController::class, 'update'])->name('tourist_health.update');
+    Route::get('/get-tourist-health', [TouristHealthController::class, 'getTouristHealth']);
+
+    //customers
+    Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::post('/store-customer', [CustomerController::class, 'store'])->name('customers.store');
+    Route::put('/update-customer', [CustomerController::class, 'update'])->name('customers.update');
+    Route::get('/getOneCustomer', [CustomerController::class, 'getOneCustomer']);
+
+    //tour request
+    Route::get('/tour-requests', [TourRequestController::class, 'index'])->name('tour_requests.index');
+    Route::post('/store-tour-request', [TourRequestController::class, 'store'])->name('tour_request.store');
+    Route::put('/update-tour-request', [TourRequestController::class, 'update'])->name('tour_request.update');
+    Route::get('/getOneRequest', [TourRequestController::class, 'getOneRequest']);
+
+    //travel media
+    Route::get('/travel-media', [TravelMediaController::class, 'index'])->name('travel_media.index');
+    Route::post('/store-travel-media', [TravelMediaController::class, 'store'])->name('travel_media.store');
+    Route::put('/update-travel-media', [TravelMediaController::class, 'update'])->name('travel_media.update');
+    Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
+
+    //restaurants
+    Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
+    Route::get('/create-restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
+    Route::post('/store-restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
+    Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
+    Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
+
+    //activities
+    Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
+    Route::post('/store-activities', [ActivityController::class, 'store'])->name('activities.store');
+    Route::put('/update-activities', [ActivityController::class, 'update'])->name('activities.update');
+    Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
+    
 });
 
 Route::get('/template', function () {
     return view('layouts.template');
 });
-
 
 
 require __DIR__.'/auth.php';

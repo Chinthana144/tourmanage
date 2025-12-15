@@ -36,7 +36,6 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-
         $location = new Locations();
         $province_id = $request->input('cmb_province');
         $district_id = $request->input('cmb_district');
@@ -156,8 +155,8 @@ class LocationController extends Controller
         $location->longitude = $request->input('txt_longitude');
 
         if($request->hasFile('primary_image')){
-            $oldImagePath = public_path($location->primary_image);
-            if (file_exists($oldImagePath)) {
+            $oldImagePath = public_path('images/locations/'. $location->primary_image);
+            if (file_exists($oldImagePath) && !is_null($location->primary_image)) {
                 unlink($oldImagePath);  // Delete the old image file
             }
             //store new image
@@ -169,51 +168,52 @@ class LocationController extends Controller
 
 
         if($request->hasFile('image1')){
-            $oldImagePath = public_path($location->image1);
-            if (file_exists($oldImagePath)) {
+            $oldImagePath = public_path('images/locations/'. $location->image1);
+            if (file_exists($oldImagePath) && !is_null($location->image1)) {
                 unlink($oldImagePath);  // Delete the old image file
             }
             //store new image
             $file = $request->file('image1');
             $filename = 'L1_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/locations'), $filename);
-            $location->primary_image = 'images/locations/' . $filename;
+            $location->image1 = 'images/locations/' . $filename;
         }//has image1
 
         if($request->hasFile('image2')){
-            $oldImagePath = public_path($location->image2);
-            if (file_exists($oldImagePath)) {
+            $oldImagePath = public_path('images/locations/'. $location->image2);
+            if (file_exists($oldImagePath) && !is_null($location->image2)) {
                 unlink($oldImagePath);  // Delete the old image file
             }
             //store new image
             $file = $request->file('image2');
             $filename = 'L2_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/locations'), $filename);
-            $location->primary_image = 'images/locations/' . $filename;
+            $location->image2 = 'images/locations/' . $filename;
         }//has image2
 
         if($request->hasFile('image3')){
-            $oldImagePath = public_path($location->image3);
-            if (file_exists($oldImagePath)) {
+            $oldImagePath = public_path('images/locations/'. $location->image3);
+
+            if (file_exists($oldImagePath) && !is_null($location->image3)) {
                 unlink($oldImagePath);  // Delete the old image file
             }
             //store new image
             $file = $request->file('image3');
             $filename = 'L3_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/locations'), $filename);
-            $location->primary_image = 'images/locations/' . $filename;
+            $location->image3 = 'images/locations/' . $filename;
         }//has image3
 
         if($request->hasFile('image4')){
-            $oldImagePath = public_path($location->image4);
-            if (file_exists($oldImagePath)) {
+            $oldImagePath = public_path('images/locations/'. $location->image4);
+            if (file_exists($oldImagePath) && !is_null($location->image4)) {
                 unlink($oldImagePath);  // Delete the old image file
             }
             //store new image
             $file = $request->file('image4');
             $filename = 'L4_' . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('images/locations'), $filename);
-            $location->primary_image = 'images/locations/' . $filename;
+            $location->image4 = 'images/locations/' . $filename;
         }//has image4
 
         $location->save();

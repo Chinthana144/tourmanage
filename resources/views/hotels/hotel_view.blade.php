@@ -69,8 +69,8 @@
                             </p>
                         </div>
 
-                        <div class="row mt-3">
-                            <div class="col-md-4">
+                        <div class="row mt-2">
+                            <div class="col-md-3">
                                 <form action="{{ route('hotels.edit') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
@@ -78,7 +78,7 @@
                                 </form>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <form action="{{ route('facilities.edit') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
@@ -86,7 +86,23 @@
                                 </form>
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-2">
+                                <form action="{{ route('hotelrooms.index') }}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
+                                    <button type="submit" class="btn btn-secondary">Hotel Rooms</button>
+                                </form>
+                            </div>
+
+                            <div class="col-md-2">
+                                <form action="{{ route('hotelprices.index') }}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
+                                    <button type="submit" class="btn btn-primary">Hotel Prices</button>
+                                </form>
+                            </div>
+
+                            <div class="col-md-2">
                                 <form action="{{ route('hotel.remove') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">

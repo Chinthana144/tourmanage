@@ -31,11 +31,13 @@
           </li>
 
           <li>
-            <a href="#">PLACES</a>
+            <a href="#">ROUTES</a>
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
               <li><a href="/locations">Locations</a></li>
               <li><a href="/hotels">Hotels</a></li>
+              <li><a href="/restaurants">Restaurants</a></li>
+              <li><a href="/travel-media">Travel Media</a></li>
             </ul>
           </li>
 
@@ -44,9 +46,20 @@
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
               <li><a href="#">Tours</a></li>
-              <li><a href="#">Touists</a></li>
+              <li><a href="/tourists">Touists</a></li>
               <li><a href="#">Tour Packages</a></li>
               <li><a href="#">Package Routes</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#">Quotations</a>
+            <i class='bx bxs-chevron-down js-arrow arrow'></i>
+            <ul class="js-sub-menu sub-menu">
+              <li><a href="/customers">Customers</a></li>
+              <li><a href="/tour-requests">Tour Requests</a></li>
+              <li><a href="#">Tour Quotation</a></li>
+              <li><a href="#">Tour Pricing</a></li>
             </ul>
           </li>
 

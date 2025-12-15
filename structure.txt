@@ -70,6 +70,8 @@ longitude
 cover_image
 image1
 image2
+sales_person
+sales_person_contact
 
 //hotel facilities
 
@@ -83,3 +85,24 @@ facility_type_id
 //hotel_facilities
 hotel_id
 facility_id
+
+//hotel booking
+hotel pricing
+hotel packages
+Seasonalpackages (off season / season)
+Suppliment
+
+
+//hotel
+rooms
+boarding type
+
+//restaurants
+restaurants
+restaurant_meals ----> polymorphic with tour_route
+meal_types
+
+resturant meal
+meal_types
+
+

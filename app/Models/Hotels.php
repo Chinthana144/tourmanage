@@ -24,6 +24,11 @@ class Hotels extends Model
         'status',
     ];
 
+    public function hotelRoomType()
+    {
+        return $this->hasMany(HotelRoomTypes::class, 'hotel_id');
+    }
+
     public function province()
     {
         return $this->belongsTo(Provinces::class, 'province_id');
@@ -44,7 +49,7 @@ class Hotels extends Model
         return $this->hasMany(HotelFacilities::class, 'hotel_id');
     }
 
-    public function route()
+    public function stoppable()
     {
         return $this->morphMany(PackageRoutes::class, 'stoppable');
     }
