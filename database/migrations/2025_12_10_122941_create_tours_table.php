@@ -21,13 +21,13 @@ return new class extends Migration
             $table->integer('total_nights');
             $table->integer('adults');
             $table->integer('children');
-            $table->string('currency');
+            $table->unsignedInteger('currency_id');
             $table->decimal('sub_total', 10, 2);
             $table->decimal('discount_amount', 10, 2);
             $table->decimal('tax_amount', 10, 2);
             $table->decimal('grand_total', 10, 2);
-            $table->tinyInteger('status')->default('1');
-            $table->string('note');
+            $table->smallInteger('status')->default('1');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

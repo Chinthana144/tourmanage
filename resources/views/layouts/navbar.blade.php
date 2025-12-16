@@ -45,7 +45,7 @@
             <a href="#">TOURS</a>
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
-              <li><a href="#">Tours</a></li>
+              <li><a href="/tours">Tours</a></li>
               <li><a href="/tourists">Touists</a></li>
               <li><a href="#">Tour Packages</a></li>
               <li><a href="#">Package Routes</a></li>

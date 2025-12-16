@@ -12,6 +12,7 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\TourController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
 use App\Http\Controllers\TourRequestController;
@@ -136,6 +137,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/update-activities', [ActivityController::class, 'update'])->name('activities.update');
     Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
     
+    //tours
+    Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
+    Route::post('/store-tours', [TourController::class, 'store'])->name('tours.store');
 });
 
 Route::get('/template', function () {
