@@ -38,4 +38,35 @@ class TourController extends Controller
 
         return redirect()->route('tours.index');
     }//store
+
+    public function update(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $tour = Tours::find($tour_id);
+
+        $tour->title = $request->input('txt_edit_title');
+        $tour->description = $request->input('txt_edit_description');
+        $tour->start_date = $request->input('edit_start_date');
+        $tour->end_date = $request->input('edit_end_date');
+        $tour->total_days = $request->input('edit_num_days');
+        $tour->total_nights = $request->input('edit_num_nights');
+        $tour->adults = $request->input('edit_num_adults');
+        $tour->children = $request->input('edit_num_children');
+        $tour->currency_id = $request->input('edit_cmb_currencies');
+        $tour->note = $request->input('txt_edit_notes');
+
+        $tour->save();
+
+        return redirect()->route('tours.index');
+    }//
+
+    //AJAX methods
+    public function getOneTour(Request $request)
+    {
+        $tour_id = $request->input('tour_id');
+
+        $tour = Tours::find($tour_id);
+
+        return response()->json($tour);
+    }//getOneTour
 }//class

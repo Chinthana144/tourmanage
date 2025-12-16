@@ -140,6 +140,8 @@ Route::middleware('auth')->group(function () {
     //tours
     Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
     Route::post('/store-tours', [TourController::class, 'store'])->name('tours.store');
+    Route::put('/update-tours', [TourController::class, 'update'])->name('tours.update');
+    Route::get('/getOneTour', [TourController::class, 'getOneTour']);
 });
 
 Route::get('/template', function () {
