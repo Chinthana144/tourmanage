@@ -47,7 +47,8 @@
                         <td>{{ $tour->grand_total }}</td>
                         <td>
                             <button class="btn btn-warning btn-sm btn_edit_tour">Edit</button>
-                            <form action="" method="get">
+                            <form action="{{ route('tour_route.index') }}" method="get">
+                                @csrf
                                 <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                                 <button type="submit" class="btn btn-success btn-sm mt-2">Routes</button>
                             </form>

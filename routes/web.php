@@ -16,6 +16,7 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
 use App\Http\Controllers\TourRequestController;
+use App\Http\Controllers\TourRouteController;
 use App\Http\Controllers\TravelMediaController;
 use App\Http\Controllers\UserController;
 use App\Models\TouristHealth;
@@ -136,12 +137,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-activities', [ActivityController::class, 'store'])->name('activities.store');
     Route::put('/update-activities', [ActivityController::class, 'update'])->name('activities.update');
     Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
+    Route::get('/getActivitybyLocation', [ActivityController::class, 'getActivitybyLocation']);
     
     //tours
     Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
     Route::post('/store-tours', [TourController::class, 'store'])->name('tours.store');
     Route::put('/update-tours', [TourController::class, 'update'])->name('tours.update');
     Route::get('/getOneTour', [TourController::class, 'getOneTour']);
+
+    //tour route
+    Route::get('/tour-routes', [TourRouteController::class, 'index'])->name('tour_route.index');
+    Route::post('/activityStore', [TourRouteController::class, 'activityStore'])->name('tour_route.activity_store');
+    
 });
 
 Route::get('/template', function () {

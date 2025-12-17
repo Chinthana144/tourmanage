@@ -8,8 +8,9 @@ class TourRoutes extends Model
 {
     protected $fillable = [
         'tour_id',
-        'routable_id',
         'routable_type',
+        'routable_id',
+        'quantity',
         'price_adult',
         'price_child',
         'total_price_adult',
