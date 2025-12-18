@@ -8,6 +8,8 @@
         <div class="card-body">
             <table class="table">
                 <tr>
+                    <th>No</th>
+                    <th>Day No</th>
                     <th>Route Type</th>
                     <th>Route Name</th>
                     <th>Adult Price</th>
@@ -17,7 +19,29 @@
                 </tr>
                 @foreach ($routes as $route)
                     <tr>
-                        <td>{{ $route->routable_type }}</td>
+                        <td>{{ $route->order_no }}</td>
+                        <td>Day {{ $route->day_no }}</td>
+                        <td>
+                            @switch($route->routable_type)
+                                @case('App\Models\Locations')
+                                    Location
+                                    @break
+                                @case('App\Models\Hotels')
+                                    Hotel
+                                    @break
+                                @case('App\Models\Meals')
+                                    Restaurant Meal
+                                    @break
+                                @case('App\Models\Activities')
+                                    Activity
+                                    @break
+                                @case('App\Models\Travel')
+                                    Travel
+                                    @break
+                                @default
+                                    
+                            @endswitch
+                        </td>
                         <td>{{ $route->routable->name }}</td>
                         <td>{{ $route->price_adult }}</td>
                         <td>{{ $route->price_adult }}</td>
@@ -46,16 +70,42 @@
                         </select>
                     </div>
                     <div class="col-md-9">
+                        {{-- div Locations --}}
+                        <div id="div_locations">
+                            <h5 class="mt-2">Locations</h5>
+                            <form action="{{ route('tour_route.location_store') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="">Day No</label>
+                                        <input type="number" name="loc_day_no" id="loc_day_no" class="form-control">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Select Location</label>
+                                        <select name="loc_cmb_locations" id="loc_cmb_locations" class="form-select"></select>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary float-end mt-2">Add Location</button>
+                            </form>
+                        </div>
+                        {{-- div Locations --}}
+
                         {{-- div activities --}}
                         <div id="div_activities">
-                            <h5>Activities</h5>
                             <form action="{{ route('tour_route.activity_store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                                <input type="hidden" name="act_routable_type" id="act_routable_type">
                                 <input type="hidden" name="act_num_adult" id="act_num_adult" value="{{ $tour->adults }}">
                                 <input type="hidden" name="act_num_children" id="act_num_children" value="{{ $tour->children ?? 0 }}">
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mt-2">Activities</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Day No</label>
+                                        <input type="number" name="act_day_no" id="act_day_no" class="form-control">
+                                    </div>
                                     <div class="col-md-6">
                                         <label for="">Select Location</label>
                                         <select name="cmb_locations" id="cmb_locations" class="form-select"></select>

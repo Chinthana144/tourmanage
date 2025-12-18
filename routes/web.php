@@ -148,7 +148,7 @@ Route::middleware('auth')->group(function () {
     //tour route
     Route::get('/tour-routes', [TourRouteController::class, 'index'])->name('tour_route.index');
     Route::post('/activityStore', [TourRouteController::class, 'activityStore'])->name('tour_route.activity_store');
-    
+    Route::post('/locationStore', [TourRouteController::class, 'locationStore'])->name('tour_route.location_store');
 });
 
 Route::get('/template', function () {

@@ -1,6 +1,7 @@
 $(document).ready(function () {
     //initiatives
     $("#div_activities").css('display', 'none');
+    $("#div_locations").css('display', 'none');
 
     //type change
     $("#cmb_routeble_type").change(function(){
@@ -8,7 +9,28 @@ $(document).ready(function () {
 
         switch (routable_type) {
             case 'location':
-                alert('location');
+                $("#div_activities").css('display', 'none');
+                $("#div_locations").css('display', 'block');
+                //get all locations
+                $.ajax({
+                    type: "get",
+                    url: "/getLocations",
+                    // data: "data",
+                    // dataType: "dataType",
+                    success: function (response) {
+                        // console.log(response);
+                        $("#loc_cmb_locations").empty();
+                        $("#loc_cmb_locations").append($('<option>', {value: 0, text: "--- Select Location ---",}));
+                        $.each(response, function (key, val) { 
+                            // console.log("val = " + val.name);
+                            $("#loc_cmb_locations").append($('<option>', {
+                                value: val.id,
+                                text: val.name,
+                            }));
+                        });
+                    }
+                });
+
             break;
             case 'hotel':
                 alert('hotel');
@@ -18,6 +40,7 @@ $(document).ready(function () {
             break;
             case 'activities':
                 $("#div_activities").css('display', 'block');
+                $("#div_locations").css('display', 'none');
                 //get all locations
                 $.ajax({
                     type: "get",
@@ -34,7 +57,7 @@ $(document).ready(function () {
                                 value: val.id,
                                 text: val.name,
                             }));
-                            $("#act_routable_type").val('location');
+                            $("#act_routable_type").val('Activities');
                         });
                     }
                 });
