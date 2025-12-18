@@ -47,10 +47,27 @@
                         <td>{{ $route->price_adult }}</td>
                         <td>{{ $route->price_adult }}</td>
                         <td>
-                            <form action="" method="post">
-                                <input type="hidden" name="hide_route_id" value="{{ $route->id }}">
-                                <button type="submit" class="btn btn-danger btn-sm"><i class="bx bx-trash"></i></button>
-                            </form>
+                            <div class="d-flex gap-2 align-items-center">
+                                <form action="{{ route('tour_route.order_up') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                                    <input type="hidden" name="hide_route_id" value="{{ $route->id }}">
+                                    <button class="btn btn-success btn-sm"><i class="bx bx-caret-up"></i></button>
+                                </form>
+                                <form action="{{ route('tour_route.order_down') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                                    <input type="hidden" name="hide_route_id" value="{{ $route->id }}">
+                                    <button class="btn btn-success btn-sm"><i class="bx bx-caret-down"></i></button>
+                                </form>
+                                <form action="{{ route('tour_route.destroy') }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                                    <input type="hidden" name="hide_route_id" value="{{ $route->id }}">
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="bx bx-trash"></i></button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -134,8 +151,50 @@
                                 <button type="submit" class="btn btn-primary float-end mt-2">Add to Route</button>
                             </form>
                         </div>
-                        
                         {{-- div activities --}}
+
+                        {{-- div travel --}}
+                        <div id="div_travel">
+                            <h5 class="mt-2">Travelling</h5>
+                            <form action="" method="post">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="">Select Start Type</label>
+                                        <select name="tvl_start_type" id="tvl_start_type" class="form-select">
+                                            <option value="0">--- Select Start Type ---</option>
+                                            <option value="1">Location</option>
+                                            <option value="2">Hote</option>
+                                            <option value="3">Restaurant</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Select start place</label>
+                                        <select name="tvl_start_place" id="tvl_start_place" class="form-select"></select>
+                                    </div>
+
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Select start type</label>
+                                        <select name="tvl_end_type" id="tvl_end_type" class="form-select">
+                                            <option value="0">--- Select Start Type ---</option>
+                                            <option value="1">Location</option>
+                                            <option value="2">Hote</option>
+                                            <option value="3">Restaurant</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Select End place</label>
+                                        <select name="tvl_end_place" id="tvl_end_place" class="form-select"></select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="">Select travel media</label>
+                                        <select name="tvl_cmb_media" id="tvl_cmb_media" class="form-select"></select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        {{-- div travel --}}
 
                     </div>
                 </div>

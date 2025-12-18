@@ -2,6 +2,7 @@ $(document).ready(function () {
     //initiatives
     $("#div_activities").css('display', 'none');
     $("#div_locations").css('display', 'none');
+    $("#div_travel").css('display', 'none');
 
     //type change
     $("#cmb_routeble_type").change(function(){
@@ -11,6 +12,7 @@ $(document).ready(function () {
             case 'location':
                 $("#div_activities").css('display', 'none');
                 $("#div_locations").css('display', 'block');
+                $("#div_travel").css('display', 'none');
                 //get all locations
                 $.ajax({
                     type: "get",
@@ -41,6 +43,7 @@ $(document).ready(function () {
             case 'activities':
                 $("#div_activities").css('display', 'block');
                 $("#div_locations").css('display', 'none');
+                $("#div_travel").css('display', 'none');
                 //get all locations
                 $.ajax({
                     type: "get",
@@ -63,7 +66,28 @@ $(document).ready(function () {
                 });
             break;
             case 'travel':
-                alert('travel');
+                $("#div_locations").css('display', 'none');
+                $("#div_activities").css('display', 'none');
+                $("#div_travel").css('display', 'block');
+                
+                //get all tarvel
+                $.ajax({
+                    type: "get",
+                    url: "/getTravelMedia",
+                    // data: "data",
+                    // dataType: "dataType",
+                    success: function (response) {
+                        // console.log(response);
+                        $("#tvl_cmb_media").empty();
+                        $("#tvl_cmb_media").append($('<option>', {value: 0, text: "--- Select Travel Media ---",}));
+                        $.each(response, function (key, val) { 
+                            $("#tvl_cmb_media").append($('<option>', {
+                                value: val.id,
+                                text: val.vehicle_type,
+                            }));
+                        });
+                    }
+                });
             break;
         
             default:

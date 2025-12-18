@@ -124,6 +124,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-travel-media', [TravelMediaController::class, 'store'])->name('travel_media.store');
     Route::put('/update-travel-media', [TravelMediaController::class, 'update'])->name('travel_media.update');
     Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
+    Route::get('/getTravelMedia', [TravelMediaController::class, 'getTravelMedia']);
 
     //restaurants
     Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
@@ -149,6 +150,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-routes', [TourRouteController::class, 'index'])->name('tour_route.index');
     Route::post('/activityStore', [TourRouteController::class, 'activityStore'])->name('tour_route.activity_store');
     Route::post('/locationStore', [TourRouteController::class, 'locationStore'])->name('tour_route.location_store');
+    Route::delete('/route-destroy', [TourRouteController::class, 'destroy'])->name('tour_route.destroy');
+    Route::post('/route-orderUp', [TourRouteController::class, 'orderUp'])->name('tour_route.order_up');
+    Route::post('/route-orderDown', [TourRouteController::class, 'orderDown'])->name('tour_route.order_down');
 });
 
 Route::get('/template', function () {

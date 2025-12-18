@@ -30,4 +30,5 @@ class TourRoutes extends Model
     {
         return $this->belongsTo(Tours::class, 'tour_id');
     }
+
 }//class

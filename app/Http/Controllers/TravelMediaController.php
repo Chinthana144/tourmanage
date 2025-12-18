@@ -45,4 +45,11 @@ class TravelMediaController extends Controller
         $travel_media = TravelMedia::find($request->input('travel_media_id'));
         return response()->json($travel_media);
     }
+
+    public function getTravelMedia()
+    {
+        $travel_media = TravelMedia::all();
+
+        return response()->json($travel_media);
+    }
 }//class

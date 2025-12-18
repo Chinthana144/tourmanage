@@ -14,7 +14,9 @@ class TourRouteController extends Controller
     {
         $tour_id = $request->input('hide_tour_id');
         $tour = Tours::find($tour_id);
-        $routes = TourRoutes::where('tour_id', $tour_id)->get();
+        $routes = TourRoutes::where('tour_id', $tour_id)
+            ->orderBy('order_no', 'ASC')
+            ->get();
 
         return view('tour_routes.tour_route_create', compact('tour', 'routes'));
     }//index
@@ -77,4 +79,65 @@ class TourRouteController extends Controller
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
     }//location store
 
+    //destroy
+    public function destroy(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $route_id = $request->input('hide_route_id');
+
+        $route = TourRoutes::find($route_id);
+        $route->delete();
+
+        return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route deleted successfully!');
+    }//destroy
+
+    //order up
+    public function orderUp(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $route_id = $request->input('hide_route_id');
+        $route = TourRoutes::find($route_id);
+        $current_order_no = $route->order_no;
+
+        if($current_order_no > 1)
+        {
+            $new_order_no = $current_order_no - 1;
+            $old_route = TourRoutes::where("tour_id", $tour_id)
+                ->where('order_no', $new_order_no)
+                ->first();
+
+            $old_route->order_no = $current_order_no;
+            $old_route->save();
+
+            $route->order_no = $new_order_no;
+            $route->save();
+        }//less than one
+
+        return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route order changed successfully!');
+    }//order up
+
+    public function orderDown(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $route_id = $request->input('hide_route_id');
+        $route = TourRoutes::find($route_id);
+        $current_order_no = $route->order_no;
+
+        $rount_count = TourRoutes::where('tour_id', $tour_id)->count();
+
+        $new_order_no = $current_order_no + 1;
+        if($rount_count >= $new_order_no)
+        {
+            $old_route = TourRoutes::where("tour_id", $tour_id)
+                    ->where('order_no', $new_order_no)
+                    ->first();
+            $old_route->order_no = $current_order_no;
+            $old_route->save();
+
+            $route->order_no = $new_order_no;
+            $route->save();
+        }
+
+        return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route order changed successfully!');
+    }//order down
 }//class

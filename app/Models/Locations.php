@@ -34,4 +34,9 @@ class Locations extends Model
     {
         return $this->morphMany(PackageRoutes::class, 'stoppable');
     }
-}
+
+    public function routable()
+    {
+        return $this->morphMany(TourRoutes::class, 'routable');
+    }
+}//class
