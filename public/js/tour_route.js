@@ -170,4 +170,169 @@ $(document).ready(function () {
         $("#act_total_price_child").val(total_price_children);
     });
 
+    //===================================== Travelling ==================================//
+    $("#tvl_start_type").change(function(){
+        var start_type = $(this).val();
+        if(start_type > 0)
+        {
+            switch (start_type) {
+                case "1":
+                    //location
+                    $.ajax({
+                        type: "get",
+                        url: "/getLocations",
+                        // data: "data",
+                        // dataType: "dataType",
+                        success: function (response) {
+                            // console.log(response);
+                            $("#tvl_start_place").empty();
+                            $("#tvl_start_place").append($('<option>', {value: 0, text: "--- Select Location ---",}));
+                            $.each(response, function (key, val) { 
+                                // console.log("val = " + val.name);
+                                $("#tvl_start_place").append($('<option>', {
+                                    value: val.id,
+                                    text: val.name,
+                                }));
+                            });
+                        }
+                    });
+                break;
+                case "2":
+                    //hotels
+                    $.ajax({
+                        type: "get",
+                        url: "/getHotels",
+                        // data: "data",
+                        // dataType: "dataType",
+                        success: function (response) {
+                            $("#tvl_start_place").empty();
+                            $("#tvl_start_place").append($('<option>', {value: 0, text: "--- Select Hotels ---",}));
+                            $.each(response, function (key, val) { 
+                                $("#tvl_start_place").append($('<option>', {
+                                    value: val.id,
+                                    text: val.name,
+                                })); 
+                            });
+                        }
+                    });
+                break;
+                case "3":
+                    //restaurants
+                    $.ajax({
+                        type: "get",
+                        url: "/getRestaurants",
+                        // data: "data",
+                        // dataType: "dataType",
+                        success: function (response) {
+                            $("#tvl_start_place").empty();
+                            $("#tvl_start_place").append($('<option>', {value: 0, text: "--- Select Restaurants ---",}));
+                            $.each(response, function (key, val) { 
+                                $("#tvl_start_place").append($('<option>', {
+                                    value: val.id,
+                                    text: val.name,
+                                }));
+                            });
+                        }
+                    });
+                break;
+            }//switch
+        }//has val
+    });
+
+    $("#tvl_end_type").change(function(){
+        var end_type = $(this).val();
+        if(end_type > 0)
+        {
+            switch (end_type) {
+                case "1":
+                    //location
+                    $.ajax({
+                        type: "get",
+                        url: "/getLocations",
+                        // data: "data",
+                        // dataType: "dataType",
+                        success: function (response) {
+                            // console.log(response);
+                            $("#tvl_end_place").empty();
+                            $("#tvl_end_place").append($('<option>', {value: 0, text: "--- Select Location ---",}));
+                            $.each(response, function (key, val) { 
+                                // console.log("val = " + val.name);
+                                $("#tvl_end_place").append($('<option>', {
+                                    value: val.id,
+                                    text: val.name,
+                                }));
+                            });
+                        }
+                    });
+                break;
+                case "2":
+                    //hotels
+                    $.ajax({
+                        type: "get",
+                        url: "/getHotels",
+                        // data: "data",
+                        // dataType: "dataType",
+                        success: function (response) {
+                            $("#tvl_end_place").empty();
+                            $("#tvl_end_place").append($('<option>', {value: 0, text: "--- Select Hotels ---",}));
+                            $.each(response, function (key, val) { 
+                                $("#tvl_end_place").append($('<option>', {
+                                    value: val.id,
+                                    text: val.name,
+                                })); 
+                            });
+                        }
+                    });
+                break;
+                case "3":
+                    //restaurants
+                    $.ajax({
+                        type: "get",
+                        url: "/getRestaurants",
+                        // data: "data",
+                        // dataType: "dataType",
+                        success: function (response) {
+                            $("#tvl_end_place").empty();
+                            $("#tvl_end_place").append($('<option>', {value: 0, text: "--- Select Restaurants ---",}));
+                            $.each(response, function (key, val) { 
+                                $("#tvl_end_place").append($('<option>', {
+                                    value: val.id,
+                                    text: val.name,
+                                }));
+                            });
+                        }
+                    });
+                break;
+            }//switch
+        }//has place type
+    });
+
+    $("#tvl_cmb_media").change(function(){
+        var travel_media_id = $(this).val();
+
+        $.ajax({
+            type: "get",
+            url: "/getOneTravelMedia",
+            data: {
+                travel_media_id: travel_media_id,
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                // console.log(response);
+                $("#tvl_price_per_km").val(response.price_per_km);
+            }
+        });
+    });
+    
+    $("#tvl_distance_km").keyup(function (e) { 
+        var price_per_km = $("#tvl_price_per_km").val();
+        if(price_per_km !== null || price_per_km !== "")
+        {
+            var distance_km = $("#tvl_distance_km").val();
+            var price = parseFloat(distance_km) * parseFloat(price_per_km);
+            
+            $("#tvl_price").val(price);
+        }
+    });
+
 });//tour route jQuery  

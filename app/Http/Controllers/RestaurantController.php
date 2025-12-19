@@ -136,4 +136,13 @@ class RestaurantController extends Controller
 
         return redirect()->route('restaurants.index')->with('success', 'Restaurant updated successfully.');
     }//update
+
+    //AJAX methods
+    public function getRestaurants()
+    {
+        $restaurants = Restaurants::where('status', 1)->get();
+
+        return response()->json($restaurants);
+    }//get restaurants
+
 }//class

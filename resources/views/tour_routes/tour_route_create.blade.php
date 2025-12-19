@@ -35,7 +35,7 @@
                                 @case('App\Models\Activities')
                                     Activity
                                     @break
-                                @case('App\Models\Travel')
+                                @case('App\Models\TravelMedia')
                                     Travel
                                     @break
                                 @default
@@ -155,21 +155,28 @@
 
                         {{-- div travel --}}
                         <div id="div_travel">
-                            <h5 class="mt-2">Travelling</h5>
-                            <form action="" method="post">
+                            <form action="{{ route('tour_route.travel_store') }}" method="post">
                                 @csrf
+                                <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                                 <div class="row">
                                     <div class="col-md-6">
+                                        <h5 class="mt-2">Tour Travel</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Day No</label>
+                                        <input type="number" name="tvl_day_no" id="tvl_day_no" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
                                         <label for="">Select Start Type</label>
                                         <select name="tvl_start_type" id="tvl_start_type" class="form-select">
                                             <option value="0">--- Select Start Type ---</option>
                                             <option value="1">Location</option>
-                                            <option value="2">Hote</option>
+                                            <option value="2">Hotel</option>
                                             <option value="3">Restaurant</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="">Select start place</label>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Select end place</label>
                                         <select name="tvl_start_place" id="tvl_start_place" class="form-select"></select>
                                     </div>
 
@@ -178,20 +185,40 @@
                                         <select name="tvl_end_type" id="tvl_end_type" class="form-select">
                                             <option value="0">--- Select Start Type ---</option>
                                             <option value="1">Location</option>
-                                            <option value="2">Hote</option>
+                                            <option value="2">Hotel</option>
                                             <option value="3">Restaurant</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="">Select End place</label>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Select end place</label>
                                         <select name="tvl_end_place" id="tvl_end_place" class="form-select"></select>
                                     </div>
-
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mt-2">
                                         <label for="">Select travel media</label>
                                         <select name="tvl_cmb_media" id="tvl_cmb_media" class="form-select"></select>
                                     </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Price per Km</label>
+                                        <input type="number" name="tvl_price_per_km" id="tvl_price_per_km" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Distance (Km)</label>
+                                        <input type="number" name="tvl_distance_km" id="tvl_distance_km" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Duration (Minutes)</label>
+                                        <input type="number" name="tvl_duration_minutes" id="tvl_duration_minutes" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Price</label>
+                                        <input type="number" name="tvl_price" id="tvl_price" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Note</label>
+                                        <input type="text" name="tvl_note" id="tvl_note" class="form-control">
+                                    </div>
                                 </div>
+                                <button type="submit" class="btn btn-primary float-end">Add Tour Travel</button>
                             </form>
                         </div>
                         {{-- div travel --}}

@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activities;
+use App\Models\Hotels;
 use App\Models\Locations;
+use App\Models\Restaurants;
 use App\Models\TourRoutes;
 use App\Models\Tours;
+use App\Models\TourTravel;
+use App\Models\TravelMedia;
 use Illuminate\Http\Request;
 
 class TourRouteController extends Controller
@@ -29,6 +33,7 @@ class TourRouteController extends Controller
         $order_no = TourRoutes::where('tour_id', $tour_id)->count();
 
         $quantity = TourRoutes::where('tour_id', $tour_id)
+            ->where('routable_type', Activities::class)
             ->where('routable_id', $routable_id)
             ->count();
 
@@ -58,6 +63,7 @@ class TourRouteController extends Controller
         $order_no = TourRoutes::where('tour_id', $tour_id)->count();
 
         $quantity = TourRoutes::where('tour_id', $tour_id)
+            ->where('routable_type', Locations::class)
             ->where('routable_id', $routable_id)
             ->count();
 
@@ -78,6 +84,91 @@ class TourRouteController extends Controller
 
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
     }//location store
+
+    //tour travel store
+    public function travelStore(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $order_no = TourRoutes::where('tour_id', $tour_id)->count();
+
+        $routable_id = $request->input('tvl_cmb_media');
+        $quantity = TourRoutes::where('tour_id', $tour_id)
+            ->where('routable_type', TravelMedia::class)
+            ->where('routable_id', $routable_id)
+            ->count();
+
+        /*
+        * storing tour_route like this, to get id for tour_travel table
+        */
+        //store tour route
+        $tour_route = new TourRoutes();
+
+        $tour_route->tour_id = $tour_id;
+        $tour_route->order_no = $order_no;
+        $tour_route->routable_type = TravelMedia::class;
+        $tour_route->routable_id = $routable_id;
+        $tour_route->day_no = $request->input('tvl_day_no');
+        $tour_route->quantity = $quantity;
+        $tour_route->price_adult = 0;
+        $tour_route->price_child = 0;
+        $tour_route->total_price_adult = 0;
+        $tour_route->total_price_child = 0;
+        $tour_route->line_total = $request->input('tvl_price');
+        $tour_route->notes = $request->input('tvl_note');
+
+        $tour_route->save();
+
+        //store tour_travel
+        $startable_type = $request->input('tvl_start_type');
+        $startable = "";
+        if($startable_type > 0)
+        {
+            switch ($startable_type) {
+                case '1': //location
+                    $startable =  Locations::class;
+                break;
+                case '2': //hotels
+                    $startable =  Hotels::class;
+                break;
+                case '3': //restaurants
+                    $startable =  Restaurants::class;
+                break;
+            }
+        }//has value
+
+        $endable_type = $request->input('tvl_end_type');
+        $endable = "";
+        if($endable_type > 0)
+        {
+            switch ($endable) {
+                case '1': //location
+                    $endable =  Locations::class;
+                break;
+                case '2': //hotels
+                    $endable =  Hotels::class;
+                break;
+                case '3': //restaurants
+                    $endable =  Restaurants::class;
+                break;
+            }
+        }//has value
+        
+        TourTravel::create([
+            'tour_id' => $tour_id,
+            'tour_route_id' => $tour_route->id,
+            'travel_media_id'=> $routable_id,
+            'startable_type' => $startable,
+            'startable_id' => $request->input('tvl_start_place'),
+            'endable_type' => $endable,
+            'endable_id' => $request->input('tvl_end_place'),
+            'distance_km' => $request->input('tvl_distance_km'),
+            'duration_minutes' => $request->input('tvl_duration_minutes'),
+            'price' => $request->input('tvl_price'),
+            'notes' => $request->input('tvl_note'),
+        ]); 
+
+        return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
+    }//travel store
 
     //destroy
     public function destroy(Request $request)

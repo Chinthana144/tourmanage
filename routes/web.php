@@ -132,6 +132,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
     Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
     Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
+    Route::get('/getRestaurants', [RestaurantController::class, 'getRestaurants']);
 
     //activities
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
@@ -150,6 +151,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-routes', [TourRouteController::class, 'index'])->name('tour_route.index');
     Route::post('/activityStore', [TourRouteController::class, 'activityStore'])->name('tour_route.activity_store');
     Route::post('/locationStore', [TourRouteController::class, 'locationStore'])->name('tour_route.location_store');
+    Route::post('/travelStore', [TourRouteController::class, 'travelStore'])->name('tour_route.travel_store');
     Route::delete('/route-destroy', [TourRouteController::class, 'destroy'])->name('tour_route.destroy');
     Route::post('/route-orderUp', [TourRouteController::class, 'orderUp'])->name('tour_route.order_up');
     Route::post('/route-orderDown', [TourRouteController::class, 'orderDown'])->name('tour_route.order_down');
