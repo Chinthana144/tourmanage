@@ -1,7 +1,8 @@
 $(document).ready(function () {
     //initiatives
-    $("#div_activities").css('display', 'none');
     $("#div_locations").css('display', 'none');
+    $("#div_restaurants").css('display', 'none');
+    $("#div_activities").css('display', 'none');
     $("#div_travel").css('display', 'none');
 
     //type change
@@ -10,8 +11,9 @@ $(document).ready(function () {
 
         switch (routable_type) {
             case 'location':
-                $("#div_activities").css('display', 'none');
                 $("#div_locations").css('display', 'block');
+                $("#div_restaurants").css('display', 'none');
+                $("#div_activities").css('display', 'none');
                 $("#div_travel").css('display', 'none');
                 //get all locations
                 $.ajax({
@@ -38,11 +40,52 @@ $(document).ready(function () {
                 alert('hotel');
             break;
             case 'restaurants':
-                alert('restaurants');
+                $("#div_locations").css('display', 'none');
+                $("#div_restaurants").css('display', 'block');
+                $("#div_activities").css('display', 'none');
+                $("#div_travel").css('display', 'none');
+                //get all restaurants
+                $.ajax({
+                    type: "get",
+                    url: "/getRestaurants",
+                    // data: "data",
+                    // dataType: "dataType",
+                    success: function (response) {
+                        console.log(response);
+                        $("#cmb_restaurants").empty();
+                        $("#cmb_restaurants").append($('<option>', {value: 0, text: "--- Select Restaurant ---",}));
+                        $.each(response, function (kay, val) { 
+                            $("#cmb_restaurants").append($('<option>', {
+                                value: val.id,
+                                text: val.name,
+                            }));
+                        });
+                    }
+                });
+
+                //get meals types
+                $.ajax({
+                    type: "get",
+                    url: "/getMealTypes",
+                    // data: "data",
+                    // dataType: "dataType",
+                    success: function (response) {
+                        console.log(response);
+                        $("#res_meal_type").empty();
+                        $("#res_meal_type").append($('<option>', {value: 0, text: "--- Select MealType ---",}));
+                        $.each(response, function (key, val) { 
+                            $("#res_meal_type").append($('<option>', {
+                                value: val.id,
+                                text: val.name,
+                            }));
+                        });
+                    }
+                });
             break;
             case 'activities':
-                $("#div_activities").css('display', 'block');
                 $("#div_locations").css('display', 'none');
+                $("#div_restaurants").css('display', 'none');
+                $("#div_activities").css('display', 'block');
                 $("#div_travel").css('display', 'none');
                 //get all locations
                 $.ajax({
@@ -66,6 +109,7 @@ $(document).ready(function () {
                 });
             break;
             case 'travel':
+                $("#div_restaurants").css('display', 'none');
                 $("#div_locations").css('display', 'none');
                 $("#div_activities").css('display', 'none');
                 $("#div_travel").css('display', 'block');
@@ -91,10 +135,11 @@ $(document).ready(function () {
             break;
         
             default:
-                break;
+            break;
         }
     });
 
+    //=================================== Locations ============================//
     //location cmb changed
     $("#cmb_locations").change(function(){
         var location_id = $(this).val();
@@ -122,6 +167,28 @@ $(document).ready(function () {
         }//has location
     });
 
+    //======================================= Restaurants ================================//
+    $("#cmb_restaurants").change(function(){
+        var restaurant_id = $(this).val();
+        if(restaurant_id > 0)
+        {
+            $.ajax({
+                type: "get",
+                url: "/getOneRestaurant",
+                data: {
+                    restaurant_id: restaurant_id,
+                },
+                // dataType: "dataType",
+                success: function (response) {
+                    // console.log(response);
+                    $("#res_open_time").val(response.opening_time);
+                    $("#res_close_time").val(response.closing_time);
+                }
+            });
+        }//has restaurant
+    });
+
+    //======================================= Activities =================================//
     //activity cmb chnaged
     $("#cmb_activities").change(function(){
         var activity_id = $(this).val();
@@ -169,6 +236,7 @@ $(document).ready(function () {
 
         $("#act_total_price_child").val(total_price_children);
     });
+
 
     //===================================== Travelling ==================================//
     $("#tvl_start_type").change(function(){

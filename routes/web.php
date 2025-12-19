@@ -133,6 +133,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
     Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
     Route::get('/getRestaurants', [RestaurantController::class, 'getRestaurants']);
+    Route::get('/getOneRestaurant', [RestaurantController::class, 'getOneRestaurant']);
+    Route::get('/getMealTypes', [RestaurantController::class, 'getMealTypes']);
 
     //activities
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');

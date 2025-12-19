@@ -108,6 +108,75 @@
                         </div>
                         {{-- div Locations --}}
 
+                        {{-- div restaurants --}}
+                        <div id="div_restaurants">
+                            <form action="" method="post">
+                                @csrf
+                                <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                                <input type="hidden" name="res_num_adult" id="res_num_adult" value="{{ $tour->adults }}">
+                                <input type="hidden" name="res_num_children" id="res_num_children" value="{{ $tour->children ?? 0 }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mt-2">Restaurants</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Day No</label>
+                                        <input type="number" name="res_day_no" id="res_day_no" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Select Restaurant</label>
+                                        <select name="cmb_restaurants" id="cmb_restaurants" class="form-select"></select>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Select meal type</label>
+                                        <select name="res_meal_type" id="res_meal_type" class="form-select"></select>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Meal Name</label>
+                                        <input type="text" name="res_meal_name" id="res_meal_name" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Meal description</label>
+                                        <input type="text" name="res_meal_description" id="res_meal_description" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Price per adult</label>
+                                        <input type="number" step="0.01" name="res_price_per_adult" id="res_price_per_adult" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Price per child</label>
+                                        <input type="number" step="0.01" name="res_price_per_child" id="res_price_per_child" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Total price adult</label>
+                                        <input type="number" step="0.01" name="res_total_price_adult" id="res_total_price_adult" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Total price child</label>
+                                        <input type="number" step="0.01" name="res_total_price_child" id="res_total_price_child" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Total price</label>
+                                        <input type="number" step="0.01" name="res_total_price" id="res_total_price" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Note</label>
+                                        <input type="text" name="res_note" id="res_note" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Opening time</label>
+                                        <input type="time" name="res_open_time" id="res_open_time" class="form-control">
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <label for="">Closing time</label>
+                                        <input type="time" name="res_close_time" id="res_close_time" class="form-control">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary float-end mt-2">Add Restaurant Meal</button>
+                            </form>
+                        </div>
+                        {{-- div restaurants --}}
+
                         {{-- div activities --}}
                         <div id="div_activities">
                             <form action="{{ route('tour_route.activity_store') }}" method="post">

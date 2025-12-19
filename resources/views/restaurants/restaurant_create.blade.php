@@ -41,11 +41,11 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="">Phone</label>
-                            <input type="text" name="txt_restaurant_phone" id="txt_restaurant_phone" class="form-control" placeholder="Address">
+                            <input type="text" name="txt_restaurant_phone" id="txt_restaurant_phone" class="form-control" placeholder="+9412345678">
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="">Address</label>
-                            <input type="text" name="txt_restaurant_website" id="txt_restaurant_website" class="form-control" placeholder="Address">
+                            <label for="">Website</label>
+                            <input type="text" name="txt_restaurant_website" id="txt_restaurant_website" class="form-control" placeholder="restaurantname.com">
                         </div>
 
                         {{-- Latitude & longitude --}}
