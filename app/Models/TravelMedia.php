@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class TravelMedia extends Model
 {
     protected $fillable = [
-        'vehicle_type',
+        'name',
+        'vehicle_no',
         'max_passengers',
         'price_per_km',
     ];
-}
+}//class

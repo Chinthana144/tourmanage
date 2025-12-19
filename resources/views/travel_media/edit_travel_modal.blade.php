@@ -11,8 +11,11 @@
         @method('PUT')
         <input type="hidden" name="hide_travel_media_id" id="hide_travel_media_id">
         <div class="modal-body">
+            <label for="">Name</label>
+            <input type="text" name="edit_name" id="edit_name" class="form-control mb-2" placeholder="Car AA-1234" required>
+
             <label for="">Vehicle Type</label>
-            <input type="text" name="edit_vehicle_type" id="edit_vehicle_type" class="form-control mb-2" required placeholder="Car AA-1234">
+            <input type="text" name="edit_vehicle_no" id="edit_vehicle_no" class="form-control mb-2" placeholder="AA-1234" required>
 
             <label for="">Max Passengers</label>
             <input type="number" name="edit_max_passengers" id="edit_max_passengers" class="form-control mb-2" required>

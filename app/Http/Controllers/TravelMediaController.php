@@ -17,7 +17,8 @@ class TravelMediaController extends Controller
     public function store(Request $request)
     {   
         TravelMedia::create([
-            'vehicle_type' => $request->input('vehicle_type'),
+            'name' => $request->input('name'),
+            'vehicle_no' => $request->input('vehicle_no'),
             'max_passengers' => $request->input('max_passengers'),
             'price_per_km' => $request->input('price_per_km'),
         ]);
@@ -30,7 +31,8 @@ class TravelMediaController extends Controller
         $travel_media_id = $request->input('hide_travel_media_id');
 
         $travel_media = TravelMedia::find($travel_media_id);
-        $travel_media->vehicle_type = $request->input('edit_vehicle_type');
+        $travel_media->name = $request->input('edit_name');
+        $travel_media->vehicle_no = $request->input('edit_vehicle_no');
         $travel_media->max_passengers = $request->input('edit_max_passengers');
         $travel_media->price_per_km = $request->input('edit_price_per_km');
 

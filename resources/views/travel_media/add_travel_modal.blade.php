@@ -9,8 +9,11 @@
       <form action="{{ route('travel_media.store') }}" method="post">
         @csrf
         <div class="modal-body">
-            <label for="">Vehicle Type</label>
-            <input type="text" name="vehicle_type" class="form-control mb-2" required placeholder="Car AA-1234">
+            <label for="">Vehicle</label>
+            <input type="text" name="name" class="form-control mb-2" required placeholder="Car AA-1234">
+
+            <label for="">Vehicle No</label>
+            <input type="text" name="vehicle_no" class="form-control mb-2" required placeholder="AA-1234">
 
             <label for="">Max Passengers</label>
             <input type="number" name="max_passengers" class="form-control mb-2" required>
