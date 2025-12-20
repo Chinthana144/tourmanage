@@ -188,6 +188,33 @@ $(document).ready(function () {
         }//has restaurant
     });
 
+    $("#res_price_per_adult").keyup(function (e) { 
+        var price_per_adult = $(this).val();
+        var num_adult = $("#res_num_adult").val();
+
+        var total_price_adult = parseFloat(num_adult) * parseFloat(price_per_adult);
+
+        $("#res_total_price_adult").val(total_price_adult);
+    });
+
+    $("#res_price_per_child").keyup(function(){
+        var price_per_child = parseFloat(isNaN($(this).val())) ? 0 : $(this).val();
+        var num_children = parseFloat($("#res_num_children").val()) ?? 0;
+
+        var total_price_children = num_children * price_per_child;
+
+        $("#res_total_price_child").val(total_price_children);
+
+        //get total
+        var total_price_adult = parseFloat($("#res_total_price_adult").val());
+
+        // console.log('price = ' + total_price_adult);
+
+        var total_price = total_price_children + total_price_adult;
+
+        $("#res_total_price").val(total_price);
+    });
+
     //======================================= Activities =================================//
     //activity cmb chnaged
     $("#cmb_activities").change(function(){

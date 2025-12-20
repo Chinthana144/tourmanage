@@ -29,7 +29,7 @@
                                 @case('App\Models\Hotels')
                                     Hotel
                                     @break
-                                @case('App\Models\Meals')
+                                @case('App\Models\Restaurants')
                                     Restaurant Meal
                                     @break
                                 @case('App\Models\Activities')
@@ -110,7 +110,7 @@
 
                         {{-- div restaurants --}}
                         <div id="div_restaurants">
-                            <form action="" method="post">
+                            <form action="{{ route('tour_route.restaurant_store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                                 <input type="hidden" name="res_num_adult" id="res_num_adult" value="{{ $tour->adults }}">

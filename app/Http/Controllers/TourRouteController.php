@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Activities;
 use App\Models\Hotels;
 use App\Models\Locations;
+use App\Models\RestaurantMeals;
 use App\Models\Restaurants;
 use App\Models\TourRoutes;
 use App\Models\Tours;
@@ -85,6 +86,59 @@ class TourRouteController extends Controller
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
     }//location store
 
+    //tour restaurant store
+    public function restaurantStore(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $order_no = TourRoutes::where('tour_id', $tour_id)->count();
+
+        $routable_id = $request->input('cmb_restaurants');
+        $quantity = TourRoutes::where('tour_id', $tour_id)
+            ->where('routable_type', TravelMedia::class)
+            ->where('routable_id', $routable_id)
+            ->count();
+
+         /*
+        * storing tour_route like this, to get id for tour_travel table
+        */
+        //store tour route
+        $tour_route = new TourRoutes();
+        $tour_route->tour_id = $tour_id;
+        $tour_route->order_no = $order_no + 1;
+        $tour_route->routable_type = Restaurants::class;
+        $tour_route->routable_id = $routable_id;
+        $tour_route->day_no = $request->input('res_day_no');
+        $tour_route->quantity = $quantity;
+        $tour_route->price_adult = $request->input('res_price_per_adult');
+        $tour_route->price_child = $request->input('res_price_per_child');
+        $tour_route->total_price_adult = $request->input('res_total_price_adult');
+        $tour_route->total_price_child = $request->input('res_total_price_child');
+        $tour_route->line_total = $request->input('res_total_price');
+        $tour_route->notes = $request->input('res_note');
+
+        $tour_route->save();
+
+        //store restaurant meal
+        RestaurantMeals::create([
+            'restaurant_id' => $routable_id,
+            'tour_route_id' => $tour_route->id,
+            'meal_type_id' => $request->input('res_meal_type'),
+            'name' => $request->input('res_meal_name'),
+            'description' => $request->input('res_meal_description'),
+            'price_per_adult' => $request->input('res_price_per_adult'),
+            'price_per_child' => $request->input('res_price_per_child'),
+            'total_price_adult' => $request->input('res_total_price_adult'),
+            'total_price_child' => $request->input('res_total_price_child'),
+            'total_price' => $request->input('res_total_price'),
+            'opening_time' => $request->input('res_open_time'),
+            'closing_time' => $request->input('res_close_time'),
+            'status' => 1,
+            'notes' => $request->input('res_note') ?? "",
+        ]);
+
+        return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
+    }//restaurant store
+
     //tour travel store
     public function travelStore(Request $request)
     {
@@ -104,7 +158,7 @@ class TourRouteController extends Controller
         $tour_route = new TourRoutes();
 
         $tour_route->tour_id = $tour_id;
-        $tour_route->order_no = $order_no;
+        $tour_route->order_no = $order_no + 1;
         $tour_route->routable_type = TravelMedia::class;
         $tour_route->routable_id = $routable_id;
         $tour_route->day_no = $request->input('tvl_day_no');
