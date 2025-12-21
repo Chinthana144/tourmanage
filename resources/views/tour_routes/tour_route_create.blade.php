@@ -108,6 +108,16 @@
                         </div>
                         {{-- div Locations --}}
 
+                        {{-- div Hotels --}}
+                        <div id="div_hotels">
+                            <form action="" method="post">
+                                @csrf
+                                <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                                add hotel room and boarding type
+                            </form>
+                        </div>
+                        {{-- div Hotels --}}
+
                         {{-- div restaurants --}}
                         <div id="div_restaurants">
                             <form action="{{ route('tour_route.restaurant_store') }}" method="post">
