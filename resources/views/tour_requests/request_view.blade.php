@@ -23,8 +23,8 @@
                         <td>{{ $request->customer->first_name . " " . $request->customer->last_name}}</td>
                         <td>{{ $request->travel_date }}</td>
                         <td>{{ $request->return_date }}</td>
-                        <td>{{ $request->number_of_adults }}</td>
-                        <td>{{ $request->number_of_children }}</td>
+                        <td>{{ $request->adults }}</td>
+                        <td>{{ $request->children }}</td>
                         <td>{{ $request->budget }}</td>
                         <td>{{ $request->tour_pourpose }}</td>
                         <td>
@@ -37,7 +37,16 @@
                             @endif
                         </td>
                         <td>
-                            <button class="btn btn-primary btn-sm btn_edit_request">edit</button>
+                            <div class="d-flex">
+                                <form action="{{ route('tour_request_rooms.index') }}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="tour_request_id" value="{{ $request->id }}">
+                                    <button type="submit" class="btn btn-success btn-sm me-1">Rooms</button>
+                                </form>
+                                
+                                <button class="btn btn-primary btn-sm btn_edit_request">Edit</button>
+                            </div>
+                            
                         </td>
                     </tr>                    
                 @endforeach

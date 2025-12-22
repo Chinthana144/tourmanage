@@ -16,10 +16,12 @@ use App\Http\Controllers\TourController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
 use App\Http\Controllers\TourRequestController;
+use App\Http\Controllers\TourRequestRoomController;
 use App\Http\Controllers\TourRouteController;
 use App\Http\Controllers\TravelMediaController;
 use App\Http\Controllers\UserController;
 use App\Models\TouristHealth;
+use App\Models\TourRequestRooms;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -119,6 +121,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-tour-request', [TourRequestController::class, 'store'])->name('tour_request.store');
     Route::put('/update-tour-request', [TourRequestController::class, 'update'])->name('tour_request.update');
     Route::get('/getOneRequest', [TourRequestController::class, 'getOneRequest']);
+
+    //tour room request
+    Route::get('/tour-request_rooms', [TourRequestRoomController::class, 'index'])->name('tour_request_rooms.index');
+    Route::post('/store-request_rooms', [TourRequestRoomController::class, 'store'])->name('tour_request_rooms.store');
+    Route::delete('/delete-request_rooms', [TourRequestRoomController::class, 'destroy'])->name('tour_request_rooms.destroy');
+    Route::get('/getOneRequestRoom', [TourRequestRoomController::class, 'getOneRequestRoom']);
 
     //travel media
     Route::get('/travel-media', [TravelMediaController::class, 'index'])->name('travel_media.index');

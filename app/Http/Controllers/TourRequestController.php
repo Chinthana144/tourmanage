@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BedTypes;
 use App\Models\BoardingType;
 use App\Models\Customers;
+use App\Models\RoomTypes;
 use App\Models\TourRequest;
 use Illuminate\Http\Request;
 
@@ -33,18 +35,16 @@ class TourRequestController extends Controller
         $tour_request->travel_date = $request->input('travel_date');
         $tour_request->return_date = $request->input('return_date');
         $tour_request->adults = $request->input('num_adults');
-        $tour_request->children = $request->input('num_children');
-        $tour_request->infants = $request->input('num_infants');
+        $tour_request->children = $request->input('num_children') ?? 0;
+        $tour_request->infants = $request->input('num_infants') ?? 0;
+        $tour_request->tour_pourpose = $request->input('tour_pourpose');
         $tour_request->budget = $request->input('hide_customer_id');
         $tour_request->special_requests = $request->input('txt_special_requests');
         $tour_request->status = 1; //pening
 
         $tour_request->save();
 
-        //get customer
-        $customer = Customers::find($request->input('hide_customer_id'));
-
-        return view('tour_requests.request_rooms', compact('customer', 'tour_request'));
+        return redirect()->route('tour_request_rooms.index');
 
     }//store
 

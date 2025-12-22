@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('adults');
             $table->integer('children')->default(0);
             $table->integer('infants')->default(0);
-            $table->String('tour_pourpose');
+            $table->String('tour_pourpose')->nullable();
             $table->decimal('budget', 10, 2)->nullable();
             $table->text('special_requests')->nullable();
             $table->tinyInteger('status')->default(1);
