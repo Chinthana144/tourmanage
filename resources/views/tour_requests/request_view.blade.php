@@ -44,7 +44,14 @@
                                     <button type="submit" class="btn btn-success btn-sm me-1">Rooms</button>
                                 </form>
                                 
-                                <button class="btn btn-primary btn-sm btn_edit_request">Edit</button>
+                                <button class="btn btn-warning btn-sm btn_edit_request"><i class="bx bx-edit"></i></button>
+
+                                {{-- <form action{{ route('tour_request.destroy') }} method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="tour_request_id" value="{{ $request->id }}">
+                                    <button type="submit" class="btn btn-danger btn-sm ms-1"><i class="bx bx-trash"></i></button>
+                                </form> --}}
                             </div>
                             
                         </td>

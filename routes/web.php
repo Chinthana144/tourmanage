@@ -121,6 +121,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/create-tour-requests', [TourRequestController::class, 'create'])->name('tour_requests.create');
     Route::post('/store-tour-request', [TourRequestController::class, 'store'])->name('tour_request.store');
     Route::put('/update-tour-request', [TourRequestController::class, 'update'])->name('tour_request.update');
+    Route::delete('/delete-tour-request', [TourRequestController::class, 'destroy'])->name('tour_request.destroy');
     Route::get('/getOneRequest', [TourRequestController::class, 'getOneRequest']);
 
     //tour request room
@@ -131,6 +132,7 @@ Route::middleware('auth')->group(function () {
 
     //tour request location
     Route::get('/tour-request-location', [TourRequestLocationController::class, 'index'])->name('tour_request_location.index');
+    Route::post('store-tour-request-location', [TourRequestLocationController::class, 'store'])->name('tour_request_location.store');
     Route::post('/storeTourRequestLocation', [TourRequestLocationController::class, 'storeTourRequestLocation']);
 
     //travel media

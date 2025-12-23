@@ -38,7 +38,7 @@ class TourRequestController extends Controller
         $tour_request->children = $request->input('num_children') ?? 0;
         $tour_request->infants = $request->input('num_infants') ?? 0;
         $tour_request->tour_pourpose = $request->input('tour_pourpose');
-        $tour_request->budget = $request->input('hide_customer_id');
+        $tour_request->budget = $request->input('budget');
         $tour_request->special_requests = $request->input('txt_special_requests');
         $tour_request->status = 1; //pening
 
@@ -56,8 +56,8 @@ class TourRequestController extends Controller
         
         $tour_request->travel_date = $request->input('travel_date');
         $tour_request->return_date = $request->input('return_date');
-        $tour_request->number_of_adults = $request->input('number_of_adults');
-        $tour_request->number_of_children = $request->input('number_of_children');
+        $tour_request->adults = $request->input('number_of_adults');
+        $tour_request->children = $request->input('number_of_children');
         $tour_request->tour_pourpose = $request->input('tour_pourpose');
         $tour_request->budget = $request->input('budget');
         $tour_request->special_requests = $request->input('special_requests');
@@ -67,6 +67,16 @@ class TourRequestController extends Controller
 
         return redirect()->route('tour_requests.index');
     }//update
+
+    public function destroy(Request $request)
+    {
+        $tour_request_id = $request->input('tour_request_id');
+        $tour_request = TourRequest::find($tour_request_id);
+
+        $tour_request->delete();
+
+        return redirect()->route('tour_request_rooms.index');
+    }//destroy
 
     public function getOneRequest(Request $request)
     {
@@ -86,8 +96,8 @@ class TourRequestController extends Controller
             'email' => $customer->email,
             'travel_date' => $tour_request->travel_date,
             'return_date' => $tour_request->return_date,
-            'number_of_adults' => $tour_request->number_of_adults,
-            'number_of_children' => $tour_request->number_of_children,
+            'adults' => $tour_request->adults,
+            'children' => $tour_request->children,
             'tour_pourpose' => $tour_request->tour_pourpose,
             'budget' => $tour_request->budget,
             'special_requests' => $tour_request->special_requests,

@@ -27,6 +27,30 @@ class TourRequestLocationController extends Controller
         return view('tour_requests.request_locations', compact('tour_request', 'customer', 'locations'));
     }//index
 
+    public function store(Request $request)
+    {
+        $tour_request_id = $request->input('tour_request_id');
+
+        $locations = Locations::where('status', 1)->get();
+
+        foreach ($locations as $location)
+        {
+            if($request->has('chk_location_' . $location->id))
+            {
+                TourRequestLocations::create([
+                    'tour_request_id' => $tour_request_id,
+                    'location_id' => $location->id,
+                ]);
+            }//has selected
+            else
+            {
+                continue;
+            }
+        }
+
+        return redirect()->route('tour_requests.index');
+    }//store
+
     /*
     * storing tour request location using AJAX
     */
