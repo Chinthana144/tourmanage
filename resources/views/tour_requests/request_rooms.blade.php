@@ -88,9 +88,15 @@
             </div>
 
             <div class="container container-md">
-                <div id="div_footer mb-0">
+                <div id="div_footer mb-0" class="d-flex">
                     <button class="btn btn-primary m-2"><i class='bx bx-caret-left'></i> Back</button>
-                    <button class="btn btn-primary float-end m-2">Continue <i class='bx bx-caret-right'></i></button>
+
+                    <form action="{{ route('tour_request_location.index') }}" method="get">
+                        @csrf
+                        <input type="hidden" name="tour_request_id" value="{{ $tour_request->id }}">
+                        <button type="submit" class="btn btn-primary float-end m-2">Continue <i class='bx bx-caret-right'></i></button>
+                    </form>
+                    
                 </div>
             </div>
         </div>

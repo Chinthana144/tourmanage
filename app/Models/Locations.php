@@ -39,4 +39,9 @@ class Locations extends Model
     {
         return $this->morphMany(TourRoutes::class, 'routable');
     }
+
+    public function activities()
+    {
+        return $this->hasMany(Activities::class, 'location_id');
+    }
 }//class

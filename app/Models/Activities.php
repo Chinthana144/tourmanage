@@ -24,6 +24,11 @@ class Activities extends Model
         'status',
     ];
 
+    public function location()
+    {
+        return $this->belongsTo(Locations::class, 'location_id');
+    }
+
     public function ActivityCategory()
     {
         return $this->belongsTo(ActivityCategories::class, 'category_id');
