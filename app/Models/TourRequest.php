@@ -8,10 +8,12 @@ class TourRequest extends Model
 {
     protected $fillable = [
         'customer_id',
+        'boarding_type_id',
         'travel_date',
         'return_date',
-        'number_of_adults',
-        'number_of_children',
+        'adults',
+        'children',
+        'infants',
         'tour_pourpose',
         'budget',
         'special_requests',
@@ -22,4 +24,9 @@ class TourRequest extends Model
     {
         return $this->belongsTo(Customers::class, 'customer_id');
     }
-}
+
+    public function boardingType()
+    {
+        return $this->belongsTo(BoardingType::class, 'boarding_type_id');
+    }
+}//class

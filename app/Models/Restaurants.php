@@ -21,6 +21,7 @@ class Restaurants extends Model
         'cover_image',
         'image1',
         'image2',
+        'status',
     ];
 
     public function province()

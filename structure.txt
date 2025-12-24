@@ -105,4 +105,16 @@ meal_types
 resturant meal
 meal_types
 
+tour_travel
 
+tour request 
+tour request rooms
+tour request locations or activities
+
+tour route -> add hotels and rooms
+
+tour route quotation generator
+
+
+//= = = = = = = = = =  Pending List =  = = = = = = = = =//
+* tour request foreign key delete on cascade

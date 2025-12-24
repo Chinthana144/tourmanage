@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('tour_routes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tour_id');
+            $table->integer('order_no');
             $table->morphs('routable');
+            $table->integer('day_no');
             $table->integer('quantity');
             $table->decimal('price_adult', 10, 2);
             $table->decimal('price_child', 10, 2);

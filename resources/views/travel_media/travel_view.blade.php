@@ -12,13 +12,15 @@
             <table class="table" id="tbl_travel_medias">
                 <tr>
                     <th>Vehicle</th>
+                    <th>Vehicle No</th>
                     <th>Max Passengers</th>
                     <th>Price per Km</th>
                     <th>Action</th>
                 </tr>
                 @foreach ($travel_medias as $travel_media)
                     <tr data-id="{{ $travel_media->id }}">
-                        <td>{{ $travel_media->vehicle_type }}</td>
+                        <td>{{ $travel_media->name }}</td>
+                        <td>{{ $travel_media->vehicle_No }}</td>
                         <td>{{ $travel_media->max_passengers }}</td>
                         <td>{{ $travel_media->price_per_km }}</td>
                         <td>

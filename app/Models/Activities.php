@@ -24,6 +24,11 @@ class Activities extends Model
         'status',
     ];
 
+    public function location()
+    {
+        return $this->belongsTo(Locations::class, 'location_id');
+    }
+
     public function ActivityCategory()
     {
         return $this->belongsTo(ActivityCategories::class, 'category_id');
@@ -38,4 +43,11 @@ class Activities extends Model
     {
         return $this->belongsTo(ActivityPrices::class, 'pricing_type_id');
     }
+
+    public function routable()
+    {
+        return $this->morphMany(TourRoutes::class, 'routable');
+    }
+
+    
 }//class

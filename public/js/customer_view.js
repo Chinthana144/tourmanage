@@ -26,27 +26,4 @@ $(document).ready(function () {
             }
         });
     });   
-    
-    $("#tbl_customers").on('click', '.btn_add_request', function(){
-        let row = $(this).closest('tr');
-        let id = row.data('id');
-
-        $.ajax({
-            type: "get",
-            url: "/getOneCustomer",
-            data: {
-                customer_id: id,
-            },
-            // dataType: "dataType",
-            success: function (response) {
-                $("#request_add_modal").modal('toggle');
-
-                $("#hide_request_customer_id").val(id);
-
-                var cust_details = "<b>" + response.first_name + " " + response.last_name + "</b><br>" + response.email;
-
-                $("#p_customer_details").html(cust_details);
-            }
-        });
-    });
 });//customer jQuery

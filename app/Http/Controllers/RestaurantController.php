@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cities;
 use App\Models\Districts;
+use App\Models\MealTypes;
 use App\Models\Provinces;
 use App\Models\Restaurants;
 use Illuminate\Http\Request;
@@ -136,4 +137,30 @@ class RestaurantController extends Controller
 
         return redirect()->route('restaurants.index')->with('success', 'Restaurant updated successfully.');
     }//update
+
+    //AJAX methods
+    public function getRestaurants()
+    {
+        $restaurants = Restaurants::where('status', 1)->get();
+
+        return response()->json($restaurants);
+    }//get restaurants
+
+    public function getOneRestaurant(Request $request)
+    {
+        $restaurant_id = $request->input('restaurant_id');
+
+        $restaurant = Restaurants::find($restaurant_id);
+
+        return response()->json($restaurant);
+    }//get one restaurant
+
+    //meal types
+    public function getMealTypes()
+    {
+        $meal_types = MealTypes::all();
+
+        return response()->json($meal_types);
+    }//get meal types
+
 }//class

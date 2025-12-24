@@ -16,11 +16,11 @@ $(document).ready(function () {
             // dataType: "dataType",
             success: function (response) {
                 // console.log(response);
-
                 $("#edit_travel_modal").modal('toggle');
 
                 $("#hide_travel_media_id").val(response.id);
-                $("#edit_vehicle_type").val(response.vehicle_type);
+                $("#edit_name").val(response.name);
+                $("#edit_vehicle_type").val(response.vehicle_no);
                 $("#edit_max_passengers").val(response.max_passengers);
                 $("#edit_price_per_km").val(response.price_per_km);
             }

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('cover_image');
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }

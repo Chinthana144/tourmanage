@@ -8,8 +8,11 @@ class TourRoutes extends Model
 {
     protected $fillable = [
         'tour_id',
-        'routable_id',
+        'order_no',
         'routable_type',
+        'routable_id',
+        'day_no',
+        'quantity',
         'price_adult',
         'price_child',
         'total_price_adult',
@@ -27,4 +30,5 @@ class TourRoutes extends Model
     {
         return $this->belongsTo(Tours::class, 'tour_id');
     }
+
 }//class
