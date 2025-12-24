@@ -47,12 +47,11 @@
                                 <button class="btn btn-success btn-sm btn_show_locations me-1">Locations</button>
                                 <button class="btn btn-warning btn-sm btn_edit_request"><i class="bx bx-edit"></i></button>
 
-                                {{-- <form action{{ route('tour_request.destroy') }} method="post">
+                                <form action="" method="get">
                                     @csrf
-                                    @method('DELETE')
                                     <input type="hidden" name="tour_request_id" value="{{ $request->id }}">
-                                    <button type="submit" class="btn btn-danger btn-sm ms-1"><i class="bx bx-trash"></i></button>
-                                </form> --}}
+                                    <button class="btn btn-primary btn-sm ms-1"><i class="bx bx-plus"></i> Tours</button>
+                                </form>
                             </div>
                         </td>
                     </tr>                    
@@ -62,6 +61,7 @@
     </div>
 
     @include('tour_requests.request_edit_modal')
+    
 
     <script src="{{ asset('js/tour_request.js') }}"></script>
 @endsection
