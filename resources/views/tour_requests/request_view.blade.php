@@ -44,6 +44,7 @@
                                     <button type="submit" class="btn btn-success btn-sm me-1">Rooms</button>
                                 </form>
                                 
+                                <button class="btn btn-success btn-sm btn_show_locations me-1">Locations</button>
                                 <button class="btn btn-warning btn-sm btn_edit_request"><i class="bx bx-edit"></i></button>
 
                                 {{-- <form action{{ route('tour_request.destroy') }} method="post">
@@ -53,7 +54,6 @@
                                     <button type="submit" class="btn btn-danger btn-sm ms-1"><i class="bx bx-trash"></i></button>
                                 </form> --}}
                             </div>
-                            
                         </td>
                     </tr>                    
                 @endforeach

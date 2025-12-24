@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tours extends Model
 {
     protected $fillable = [
+        'tour_request_id',
         'title',
         'description',
         'start_date',
@@ -23,4 +24,9 @@ class Tours extends Model
         'status',
         'note',
     ];
+
+    public function tourRequest()
+    {
+        return $this->belongsTo(TourRequest::class, 'tour_request_id');
+    }
 }//class

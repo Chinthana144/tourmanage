@@ -69,4 +69,22 @@ class TourRequestLocationController extends Controller
             'message' => 'Visit location added successfully!',
         ]);
     }//store
+
+    public function getRequestLocations(Request $request)
+    {
+        $tour_request_id = $request->input('tour_request_id');
+
+        $request_locations = TourRequestLocations::where('tour_request_id', $tour_request_id)->get();
+
+        $locations = [];
+
+        foreach ($request_locations as $location) 
+        {
+            $locations = [
+                'name' => $location->locations->name,
+            ];
+        }//foreach
+
+        return response()->json($locations);
+    }//get request location
 }

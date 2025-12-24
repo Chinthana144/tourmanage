@@ -31,4 +31,23 @@ $(document).ready(function () {
         });        
     });
 
+    //show location
+    $("#tbl_requests").on('click', '.btn_show_locations', function(){
+        let row = $(this).closest('tr');
+        let id = row.data('id');
+
+        $.ajax({
+            type: "get",
+            url: "/getRequestLocations",
+            data: {
+                tour_request_id: id,
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                
+            }
+        });
+    });
+
 });//jQuery

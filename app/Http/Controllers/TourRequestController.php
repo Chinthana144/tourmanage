@@ -44,7 +44,7 @@ class TourRequestController extends Controller
 
         $tour_request->save();
 
-        return redirect()->route('tour_request_rooms.index');
+        return redirect()->route('tour_request_rooms.index', ['tour_request_id' => $tour_request->id]);
 
     }//store
 

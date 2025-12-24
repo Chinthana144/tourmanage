@@ -134,6 +134,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-request-location', [TourRequestLocationController::class, 'index'])->name('tour_request_location.index');
     Route::post('store-tour-request-location', [TourRequestLocationController::class, 'store'])->name('tour_request_location.store');
     Route::post('/storeTourRequestLocation', [TourRequestLocationController::class, 'storeTourRequestLocation']);
+    Route::get('/getRequestLocations', [TourRequestLocationController::class, 'getRequestLocations']);
 
     //travel media
     Route::get('/travel-media', [TravelMediaController::class, 'index'])->name('travel_media.index');

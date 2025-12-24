@@ -29,4 +29,9 @@ class TourRequest extends Model
     {
         return $this->belongsTo(BoardingType::class, 'boarding_type_id');
     }
+
+    public function tours()
+    {
+        return $this->hasMany(Tours::class, 'tour_request_id');
+    }
 }//class
