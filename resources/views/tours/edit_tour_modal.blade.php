@@ -9,6 +9,7 @@
       <form action="{{ route('tours.update') }}" method="post">
         @csrf
         @method('PUT')
+        <input type="hidden" name="tour_request_id" id="tour_request_id">
         <input type="hidden" name="hide_tour_id" id="hide_tour_id">
         <div class="modal-body">
             <div class="row">

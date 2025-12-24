@@ -8,6 +8,7 @@
 
       <form action="{{ route('tours.store') }}" method="post">
         @csrf
+        <input type="hidden" name="tour_request_id" id="tour_request_id">
         <div class="modal-body">
             <div class="row">
               <div class="col-md-12 mb-2">
@@ -20,11 +21,11 @@
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">Start Date</label>
-                  <input type="date" name="start_date" class="form-control">
+                  <input type="date" name="start_date" id="tour_start_date" class="form-control">
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">End Date</label>
-                  <input type="date" name="end_date" class="form-control">
+                  <input type="date" name="end_date" id="tour_end_date" class="form-control">
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">Number of Days</label>
@@ -36,11 +37,11 @@
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">Number of Adults</label>
-                  <input type="number" name="num_adults" class="form-control">
+                  <input type="number" name="num_adults" id="tour_num_adults" class="form-control">
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">Number of Children</label>
-                  <input type="number" name="num_children" class="form-control">
+                  <input type="number" name="num_children" id="tour_num_children" class="form-control">
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">Select Currency Type</label>

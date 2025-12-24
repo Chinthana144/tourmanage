@@ -20,6 +20,7 @@ $(document).ready(function () {
                 $("#edit_tour_modal").modal('toggle');
 
                 $("#hide_tour_id").val(response.id);
+                $("#tour_request_id").val(response.tour_request_id);
                 $("#txt_edit_title").val(response.title);
                 $("#txt_edit_description").val(response.description);
                 $("#edit_start_date").val(response.start_date);

@@ -118,3 +118,4 @@ tour route quotation generator
 
 //= = = = = = = = = =  Pending List =  = = = = = = = = =//
 * tour request foreign key delete on cascade
+* tourRequestLocationController -> store method ->delete if id exists

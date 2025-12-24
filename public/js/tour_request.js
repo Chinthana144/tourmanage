@@ -31,23 +31,27 @@ $(document).ready(function () {
         });        
     });
 
-    //show location
-    $("#tbl_requests").on('click', '.btn_show_locations', function(){
+    $("#tbl_requests").on('click', '.btn_add_tour', function(){
         let row = $(this).closest('tr');
         let id = row.data('id');
 
+        $("#add_tour_modal").modal('toggle');
+
+        $("#tour_request_id").val(id);
+
         $.ajax({
             type: "get",
-            url: "/getRequestLocations",
+            url: "/getOneRequest",
             data: {
                 tour_request_id: id,
             },
             // dataType: "dataType",
             success: function (response) {
-                console.log(response);
-                
+                $("#tour_start_date").val(response.travel_date);
+                $("#tour_end_date").val(response.return_date);
+                $("#tour_num_adults").val(response.adults);
+                $("#tour_num_children").val(response.children);
             }
         });
     });
-
 });//jQuery

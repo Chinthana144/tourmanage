@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BedTypes;
 use App\Models\BoardingType;
+use App\Models\Currency;
 use App\Models\Customers;
 use App\Models\RoomTypes;
 use App\Models\TourRequest;
@@ -14,7 +15,9 @@ class TourRequestController extends Controller
     public function index()
     {
         $all_requests = TourRequest::all();
-        return view('tour_requests.request_view', compact('all_requests'));
+        $currencies = Currency::all();
+
+        return view('tour_requests.request_view', compact('all_requests', 'currencies'));
     }//index
 
     public function create(Request $request)

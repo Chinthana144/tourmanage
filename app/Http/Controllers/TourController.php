@@ -10,6 +10,7 @@ class TourController extends Controller
 {
     public function index()
     {
+        
         $tours = Tours::all();
         $currencies = Currency::all();
 
@@ -19,6 +20,7 @@ class TourController extends Controller
     public function store(Request $request) 
     {   
         Tours::create([
+            'tour_request_id' => $request->input('tour_request_id'),
             'title' => $request->input('txt_title'),
             'description' => $request->input('txt_description'),
             'start_date' => $request->input('start_date'),

@@ -24,7 +24,17 @@ class TourRequestLocationController extends Controller
             ->with('activities')
             ->paginate(5);
 
-        return view('tour_requests.request_locations', compact('tour_request', 'customer', 'locations'));
+        $request_locations = TourRequestLocations::where('tour_request_id', $tour_request_id)->get();
+
+        $selected_locations = [];
+        foreach($request_locations as $location)
+        {
+            $selected_locations[] = $location->location_id;
+        }
+
+        // dd($selected_locations);
+
+        return view('tour_requests.request_locations', compact('tour_request', 'customer', 'locations', 'selected_locations'));
     }//index
 
     public function store(Request $request)
@@ -44,6 +54,7 @@ class TourRequestLocationController extends Controller
             }//has selected
             else
             {
+                //delete if exist
                 continue;
             }
         }
@@ -80,9 +91,13 @@ class TourRequestLocationController extends Controller
 
         foreach ($request_locations as $location) 
         {
-            $locations = [
+            $locations[] = [
+                'id' => $location->id,
+                'tour_request_id' => $location->tour_request_id,
+                'location_id' => $location->location_id,
                 'name' => $location->locations->name,
             ];
+
         }//foreach
 
         return response()->json($locations);

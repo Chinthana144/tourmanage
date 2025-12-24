@@ -5,7 +5,6 @@
         <div class="card-header">
             <h5>
                 Tours
-                <button id="btn_add_tour" class="btn btn-primary btn-sm float-end">Add Tour</button>
             </h5>
         </div>
         <div class="card-body">

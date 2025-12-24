@@ -44,14 +44,15 @@
                                     <button type="submit" class="btn btn-success btn-sm me-1">Rooms</button>
                                 </form>
                                 
-                                <button class="btn btn-success btn-sm btn_show_locations me-1">Locations</button>
-                                <button class="btn btn-warning btn-sm btn_edit_request"><i class="bx bx-edit"></i></button>
-
-                                <form action="" method="get">
+                                <form action="{{ route('tour_request_location.index') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="tour_request_id" value="{{ $request->id }}">
-                                    <button class="btn btn-primary btn-sm ms-1"><i class="bx bx-plus"></i> Tours</button>
+                                    <button type="submit" class="btn btn-success btn-sm btn_show_locations me-1">Locations</button>
                                 </form>
+                            
+                                <button class="btn btn-warning btn-sm btn_edit_request"><i class="bx bx-edit"></i></button>
+
+                                <button class="btn btn-primary btn-sm ms-1 btn_add_tour"><i class="bx bx-plus"></i> Tour</button>
                             </div>
                         </td>
                     </tr>                    
@@ -61,7 +62,7 @@
     </div>
 
     @include('tour_requests.request_edit_modal')
+    @include('tours.add_tour_modal')
     
-
     <script src="{{ asset('js/tour_request.js') }}"></script>
 @endsection
