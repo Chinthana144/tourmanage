@@ -76,15 +76,11 @@
             <div class="border border-primary rounded p-2">
                 <div class="row">
                     <div class="col-md-3">
-                        <label for="">Select Type</label>
-                        <select name="cmb_routeble_type" id="cmb_routeble_type" class="form-select">
-                            <option value="0">--- Select Routable Type ---</option>
-                            <option value="location">Location</option>
-                            <option value="hotel">Hotel</option>
-                            <option value="restaurants">Restaurant</option>
-                            <option value="activities">Activities</option>
-                            <option value="travel">Travel</option>
-                        </select>
+                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_location">Location</button>
+                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_hotel">Hotel</button>
+                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_restaurant">Restaurant</button>
+                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_activities">Activities</button>
+                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_travel">Travel</button>
                     </div>
                     <div class="col-md-9">
                         {{-- div Locations --}}
@@ -110,10 +106,43 @@
 
                         {{-- div Hotels --}}
                         <div id="div_hotels">
-                            <form action="" method="post">
+                            <form action="{{ route('tour_route.hotel_store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                                add hotel room and boarding type
+                                <input type="hidden" name="hot_tour_request_id" id="hot_tour_request_id" value="{{ $tour_request->id }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mt-2">Hotels & Rooms</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Day No</label>
+                                        <input type="number" name="hot_day_no" id="hot_day_no" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Hotels</label>
+                                        <select name="cmb_hotels" id="cmb_hotels" class="form-select"></select>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Boarding type</label>
+                                        <select name="hot_boarding_type" id="hot_boarding_type" class="form-select"></select>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Check in date</label>
+                                        <input type="date" name="hot_checkin_date" id="hot_checkin_date" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Check out date</label>
+                                        <input type="date" name="hot_checkout_date" id="hot_checkout_date" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Number of Nights</label>
+                                        <input type="number" name="hot_num_nights" id="hot_num_nights" class="form-control" required>
+                                    </div>
+                                    
+                                    <div class="col-md-12" id="hot_div_rooms"></div>
+
+                                </div>
+                                <button class="btn btn-primary float-end mt-3">Add Hotel & Rooms</button>
                             </form>
                         </div>
                         {{-- div Hotels --}}
@@ -260,7 +289,7 @@
                                     </div>
 
                                     <div class="col-md-6 mt-2">
-                                        <label for="">Select start type</label>
+                                        <label for="">Select End Type</label>
                                         <select name="tvl_end_type" id="tvl_end_type" class="form-select">
                                             <option value="0">--- Select Start Type ---</option>
                                             <option value="1">Location</option>

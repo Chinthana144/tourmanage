@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BoardingType;
 use App\Models\Cities;
 use App\Models\Districts;
 use App\Models\Facilities;
@@ -229,5 +230,13 @@ class Hotelcontroller extends Controller
         $hotels = Hotels::where('status', 1)->get();
 
         return response()->json($hotels);
+    }
+
+    //get boarding types
+    public function getBoardingTypes()
+    {
+        $boarding_types = BoardingType::all();
+
+        return response()->json($boarding_types);
     }
 }//class

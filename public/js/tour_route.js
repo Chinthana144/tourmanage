@@ -1,142 +1,271 @@
 $(document).ready(function () {
     //initiatives
     $("#div_locations").css('display', 'none');
+    $("#div_hotels").css('display', 'none');
     $("#div_restaurants").css('display', 'none');
     $("#div_activities").css('display', 'none');
     $("#div_travel").css('display', 'none');
 
-    //type change
-    $("#cmb_routeble_type").change(function(){
-        var routable_type = $(this).val();
+    //location div show
+    $("#btn_show_location").click(function(){
+        $("#div_locations").css('display', 'block');
+        $("#div_hotels").css('display', 'none');
+        $("#div_restaurants").css('display', 'none');
+        $("#div_activities").css('display', 'none');
+        $("#div_travel").css('display', 'none');
 
-        switch (routable_type) {
-            case 'location':
-                $("#div_locations").css('display', 'block');
-                $("#div_restaurants").css('display', 'none');
-                $("#div_activities").css('display', 'none');
-                $("#div_travel").css('display', 'none');
-                //get all locations
-                $.ajax({
-                    type: "get",
-                    url: "/getLocations",
-                    // data: "data",
-                    // dataType: "dataType",
-                    success: function (response) {
-                        // console.log(response);
-                        $("#loc_cmb_locations").empty();
-                        $("#loc_cmb_locations").append($('<option>', {value: 0, text: "--- Select Location ---",}));
-                        $.each(response, function (key, val) { 
-                            // console.log("val = " + val.name);
-                            $("#loc_cmb_locations").append($('<option>', {
-                                value: val.id,
-                                text: val.name,
-                            }));
-                        });
-                    }
+        $(this).removeClass('btn-outline-primary').addClass('btn-primary');
+        $("#btn_show_hotel").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_restaurant").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_activities").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_travel").removeClass('btn-primary').addClass('btn-outline-primary');
+
+        //get all locations
+        $.ajax({
+            type: "get",
+            url: "/getLocations",
+            // data: "data",
+            // dataType: "dataType",
+            success: function (response) {
+                // console.log(response);
+                $("#loc_cmb_locations").empty();
+                $("#loc_cmb_locations").append($('<option>', {value: 0, text: "--- Select Location ---",}));
+                $.each(response, function (key, val) { 
+                    // console.log("val = " + val.name);
+                    $("#loc_cmb_locations").append($('<option>', {
+                        value: val.id,
+                        text: val.name,
+                    }));
+                });
+            }
+        });
+    });
+
+    //hotel div show
+    $("#btn_show_hotel").click(function(){
+        $("#div_locations").css('display', 'none');
+        $("#div_hotels").css('display', 'block');
+        $("#div_restaurants").css('display', 'none');
+        $("#div_activities").css('display', 'none');
+        $("#div_travel").css('display', 'none');
+
+        $("#btn_show_location").removeClass('btn-primary').addClass('btn-outline-primary');
+        $(this).removeClass('btn-outline-primary').addClass('btn-primary');
+        $("#btn_show_restaurant").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_activities").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_travel").removeClass('btn-primary').addClass('btn-outline-primary');
+
+        //get all hotels
+        $.ajax({
+            type: "get",
+            url: "/getHotels",
+            // data: "data",
+            // dataType: "dataType",
+            success: function (response) {
+                // console.log(response);
+                $("#cmb_hotels").empty();
+                $("#cmb_hotels").append($('<option>', {value: 0, text: "--- Select Hotel ---",}));
+                $.each(response, function (kay, val) { 
+                    $("#cmb_hotels").append($('<option>', {
+                        value: val.id,
+                        text: val.name,
+                    }));
+                });
+            }
+        });
+
+        //het boarding types
+        $.ajax({
+            type: "get",
+            url: "/getBoardingTypes",
+            // data: "data",
+            // dataType: "dataType",
+            success: function (response) {
+                // console.log(response);
+                $("#hot_boarding_type").empty();
+                $("#hot_boarding_type").append($('<option>', {value: 0, text: "--- Select Boarding Type ---",}));
+                $.each(response, function (kay, val) { 
+                    $("#hot_boarding_type").append($('<option>', {
+                        value: val.id,
+                        text: val.name,
+                    }));
+                });
+            }
+        });
+
+        //get requested room types
+        var tour_request_id = $("#hot_tour_request_id").val();
+
+        $.ajax({
+            type: "get",
+            url: "/getRequestRooms",
+            data: {
+                tour_request_id: tour_request_id,
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                // console.log(response);
+                var html_rooms = "<div class='border border-primary rounded mt-2 p-1' style='max-height:200; over-flow:scroll;'>";
+                $.each(response, function (key, val) { 
+                    html_rooms += "<div class='row'>";
+                    html_rooms += "<input type='hidden' name='hide_room_"+val.id+"' value='"+ val.id +"'>";
+
+                    html_rooms += "<div class='col-md-3'>";
+                    html_rooms += "<p>";
+                    html_rooms += "<b>" + val.room_type_name +"</b><br>";
+                    html_rooms += "<b>" + val.bed_type_name +"</b>";
+                    html_rooms += "</p>";
+                    html_rooms += "</div>";
+
+                    html_rooms += "<div class='col-md-3'>";
+                    html_rooms += "<p>";
+                    html_rooms += "Adults: <b>" + val.adult_count +"</b><br>";
+                    html_rooms += "Children: <b>" + val.children_count +"</b>";
+                    html_rooms += "</p>";
+                    html_rooms += "</div>";
+
+                    html_rooms += "<div class='col-md-3'>";
+                    html_rooms += "<label for=''>Price Per night</label>";
+                    html_rooms += "<input type='number' step='0.01' name='night_price_"+val.id+"' class='form-control' required>";
+                    html_rooms += "</div>";
+
+                    html_rooms += "<div class='col-md-3'>";
+                    html_rooms += "<label for=''>Price extra bed</label>";
+                    html_rooms += "<input type='number' step='0.01' name='extra_bed_"+val.id+"' class='form-control' required>";
+                    html_rooms += "</div>";
+
+                    html_rooms += "</div>";
                 });
 
-            break;
-            case 'hotel':
-                alert('hotel');
-            break;
-            case 'restaurants':
-                $("#div_locations").css('display', 'none');
-                $("#div_restaurants").css('display', 'block');
-                $("#div_activities").css('display', 'none');
-                $("#div_travel").css('display', 'none');
-                //get all restaurants
-                $.ajax({
-                    type: "get",
-                    url: "/getRestaurants",
-                    // data: "data",
-                    // dataType: "dataType",
-                    success: function (response) {
-                        console.log(response);
-                        $("#cmb_restaurants").empty();
-                        $("#cmb_restaurants").append($('<option>', {value: 0, text: "--- Select Restaurant ---",}));
-                        $.each(response, function (kay, val) { 
-                            $("#cmb_restaurants").append($('<option>', {
-                                value: val.id,
-                                text: val.name,
-                            }));
-                        });
-                    }
-                });
+                html_rooms += "</div>";
 
-                //get meals types
-                $.ajax({
-                    type: "get",
-                    url: "/getMealTypes",
-                    // data: "data",
-                    // dataType: "dataType",
-                    success: function (response) {
-                        console.log(response);
-                        $("#res_meal_type").empty();
-                        $("#res_meal_type").append($('<option>', {value: 0, text: "--- Select MealType ---",}));
-                        $.each(response, function (key, val) { 
-                            $("#res_meal_type").append($('<option>', {
-                                value: val.id,
-                                text: val.name,
-                            }));
-                        });
-                    }
-                });
-            break;
-            case 'activities':
-                $("#div_locations").css('display', 'none');
-                $("#div_restaurants").css('display', 'none');
-                $("#div_activities").css('display', 'block');
-                $("#div_travel").css('display', 'none');
-                //get all locations
-                $.ajax({
-                    type: "get",
-                    url: "/getLocations",
-                    // data: "data",
-                    // dataType: "dataType",
-                    success: function (response) {
-                        // console.log(response);
-                        $("#cmb_locations").empty();
-                        $("#cmb_locations").append($('<option>', {value: 0, text: "--- Select Location ---",}));
-                        $.each(response, function (key, val) { 
-                            // console.log("val = " + val.name);
-                            $("#cmb_locations").append($('<option>', {
-                                value: val.id,
-                                text: val.name,
-                            }));
-                            $("#act_routable_type").val('Activities');
-                        });
-                    }
-                });
-            break;
-            case 'travel':
-                $("#div_restaurants").css('display', 'none');
-                $("#div_locations").css('display', 'none');
-                $("#div_activities").css('display', 'none');
-                $("#div_travel").css('display', 'block');
-                
-                //get all tarvel
-                $.ajax({
-                    type: "get",
-                    url: "/getTravelMedia",
-                    // data: "data",
-                    // dataType: "dataType",
-                    success: function (response) {
-                        // console.log(response);
-                        $("#tvl_cmb_media").empty();
-                        $("#tvl_cmb_media").append($('<option>', {value: 0, text: "--- Select Travel Media ---",}));
-                        $.each(response, function (key, val) { 
-                            $("#tvl_cmb_media").append($('<option>', {
-                                value: val.id,
-                                text: val.vehicle_type,
-                            }));
-                        });
-                    }
-                });
-            break;
+                $("#hot_div_rooms").html(html_rooms);
+            }
+        });
         
-            default:
-            break;
-        }
+    });
+
+    //restaurants div show
+    $("#btn_show_restaurant").click(function(){
+        $("#div_locations").css('display', 'none');
+        $("#div_hotels").css('display', 'none');
+        $("#div_restaurants").css('display', 'block');
+        $("#div_activities").css('display', 'none');
+        $("#div_travel").css('display', 'none');
+
+        $("#btn_show_location").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_hotel").removeClass('btn-primary').addClass('btn-outline-primary');
+        $(this).removeClass('btn-outline-primary').addClass('btn-primary');
+        $("#btn_show_activities").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_travel").removeClass('btn-primary').addClass('btn-outline-primary');
+
+        //get all restaurants
+        $.ajax({
+            type: "get",
+            url: "/getRestaurants",
+            // data: "data",
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                $("#cmb_restaurants").empty();
+                $("#cmb_restaurants").append($('<option>', {value: 0, text: "--- Select Restaurant ---",}));
+                $.each(response, function (kay, val) { 
+                    $("#cmb_restaurants").append($('<option>', {
+                        value: val.id,
+                        text: val.name,
+                    }));
+                });
+            }
+        });
+
+        //get meals types
+        $.ajax({
+            type: "get",
+            url: "/getMealTypes",
+            // data: "data",
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                $("#res_meal_type").empty();
+                $("#res_meal_type").append($('<option>', {value: 0, text: "--- Select MealType ---",}));
+                $.each(response, function (key, val) { 
+                    $("#res_meal_type").append($('<option>', {
+                        value: val.id,
+                        text: val.name,
+                    }));
+                });
+            }
+        });
+    });
+
+    //activities div show
+    $("#btn_show_activities").click(function(){
+        $("#div_locations").css('display', 'none');
+        $("#div_hotels").css('display', 'none');
+        $("#div_restaurants").css('display', 'none');
+        $("#div_activities").css('display', 'block');
+        $("#div_travel").css('display', 'none');
+
+        $("#btn_show_location").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_hotel").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_restaurant").removeClass('btn-primary').addClass('btn-outline-primary');
+        $(this).removeClass('btn-outline-primary').addClass('btn-primary');
+        $("#btn_show_travel").removeClass('btn-primary').addClass('btn-outline-primary');
+
+        //get all locations
+        $.ajax({
+            type: "get",
+            url: "/getLocations",
+            // data: "data",
+            // dataType: "dataType",
+            success: function (response) {
+                // console.log(response);
+                $("#cmb_locations").empty();
+                $("#cmb_locations").append($('<option>', {value: 0, text: "--- Select Location ---",}));
+                $.each(response, function (key, val) { 
+                    // console.log("val = " + val.name);
+                    $("#cmb_locations").append($('<option>', {
+                        value: val.id,
+                        text: val.name,
+                    }));
+                    $("#act_routable_type").val('Activities');
+                });
+            }
+        });
+    });
+
+    //travel div show
+    $("#btn_show_travel").click(function(){
+        $("#div_locations").css('display', 'none');
+        $("#div_hotels").css('display', 'none');
+        $("#div_restaurants").css('display', 'none');
+        $("#div_activities").css('display', 'none');
+        $("#div_travel").css('display', 'block');
+
+        $("#btn_show_location").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_hotel").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_restaurant").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_show_activities").removeClass('btn-primary').addClass('btn-outline-primary');
+        $(this).removeClass('btn-outline-primary').addClass('btn-primary');
+        
+        //get all tarvel
+        $.ajax({
+            type: "get",
+            url: "/getTravelMedia",
+            // data: "data",
+            // dataType: "dataType",
+            success: function (response) {
+                // console.log(response);
+                $("#tvl_cmb_media").empty();
+                $("#tvl_cmb_media").append($('<option>', {value: 0, text: "--- Select Travel Media ---",}));
+                $.each(response, function (key, val) { 
+                    $("#tvl_cmb_media").append($('<option>', {
+                        value: val.id,
+                        text: val.vehicle_type,
+                    }));
+                });
+            }
+        });
     });
 
     //=================================== Locations ============================//

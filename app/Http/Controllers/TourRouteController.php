@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activities;
+use App\Models\BoardingType;
 use App\Models\Hotels;
 use App\Models\Locations;
 use App\Models\RestaurantMeals;
 use App\Models\Restaurants;
+use App\Models\TourRequest;
 use App\Models\TourRoutes;
 use App\Models\Tours;
 use App\Models\TourTravel;
@@ -23,8 +25,21 @@ class TourRouteController extends Controller
             ->orderBy('order_no', 'ASC')
             ->get();
 
-        return view('tour_routes.tour_route_create', compact('tour', 'routes'));
+        //tour request
+        $tour_request_id = $tour->tour_request_id;
+        $tour_request = TourRequest::find($tour_request_id);
+
+        return view('tour_routes.tour_route_create', compact('tour', 'routes', 'tour_request'));
     }//index
+
+    //Hotels add 
+    public function hotelStore(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $tour = Tours::find($tour_id);
+
+        //get input from rooms
+    }//hotel store
 
     public function activityStore(Request $request)
     {

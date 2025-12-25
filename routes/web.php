@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/update-hotel', [Hotelcontroller::class, 'update'])->name('hotels.update');
     Route::post('remove', [Hotelcontroller::class, 'remove'])->name('hotel.remove');
     Route::get('/getHotels', [Hotelcontroller::class, 'getHotels']);
+    Route::get('/getBoardingTypes', [Hotelcontroller::class, 'getBoardingTypes']);
 
     //facilities
     Route::post('/store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
@@ -129,6 +130,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-request_rooms', [TourRequestRoomController::class, 'store'])->name('tour_request_rooms.store');
     Route::delete('/delete-request_rooms', [TourRequestRoomController::class, 'destroy'])->name('tour_request_rooms.destroy');
     Route::get('/getOneRequestRoom', [TourRequestRoomController::class, 'getOneRequestRoom']);
+    Route::get('/getRequestRooms', [TourRequestRoomController::class, 'getRequestRooms']);
 
     //tour request location
     Route::get('/tour-request-location', [TourRequestLocationController::class, 'index'])->name('tour_request_location.index');
@@ -170,6 +172,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-routes', [TourRouteController::class, 'index'])->name('tour_route.index');
     Route::post('/activityStore', [TourRouteController::class, 'activityStore'])->name('tour_route.activity_store');
     Route::post('/locationStore', [TourRouteController::class, 'locationStore'])->name('tour_route.location_store');
+    Route::post('/hotelStore', [TourRouteController::class, 'hotelStore'])->name('tour_route.hotel_store');
     Route::post('/restaurantStore', [TourRouteController::class, 'restaurantStore'])->name('tour_route.restaurant_store');
     Route::post('/travelStore', [TourRouteController::class, 'travelStore'])->name('tour_route.travel_store');
     Route::delete('/route-destroy', [TourRouteController::class, 'destroy'])->name('tour_route.destroy');

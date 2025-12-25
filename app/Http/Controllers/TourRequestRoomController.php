@@ -65,4 +65,30 @@ class TourRequestRoomController extends Controller
 
         return response()->json($room);
     }
+
+    public function getRequestRooms(Request $request)
+    {
+        $tour_request_id = $request->input('tour_request_id');
+
+        $tour_rooms = TourRequestRooms::where('tour_request_id', $tour_request_id)->get();
+
+        $rooms = [];
+
+        foreach ($tour_rooms as $room) {
+            $rooms[] = [
+                'id' => $room->id,
+                'tour_request_id' => $room->tour_request_id, 
+                'room_type_id' => $room->room_type_id, 
+                'room_type_name' => $room->roomType->name, 
+                'bed_type_id' => $room->tour_request_id, 
+                'bed_type_name' => $room->bedType->name, 
+                'adult_count' => $room->adult_count, 
+                'children_count' => $room->children_count, 
+                'extra_bed_count' => $room->extra_bed_count, 
+                'room_quantity' => $room->room_quantity, 
+            ];
+        }
+
+        return response()->json($rooms);
+    }//get requested rooms ajax
 }//class
