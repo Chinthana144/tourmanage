@@ -81,6 +81,11 @@
                         <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_restaurant">Restaurant</button>
                         <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_activities">Activities</button>
                         <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_travel">Travel</button>
+
+                        <p>
+                            Arrival: <b>{{ $tour->start_date }}</b><br>
+                            Return: <b>{{ $tour->end_date }}</b>
+                        </p>
                     </div>
                     <div class="col-md-9">
                         {{-- div Locations --}}
@@ -147,8 +152,14 @@
                                         <input type="text" name="hot_note" id="hot_note" class="form-control">
                                     </div>
                                     
+                                    <div class="col-md-12 mt-2">
+                                        <h6>
+                                            Customer Requested Rooms
+                                            <button type="button" class="btn btn-primary float-end btn-sm" id="btn_open_add_room">Add Room</button>
+                                        </h6>
+                                    </div>
                                     {{-- rooms loaded by jQuery,  --}}
-                                    <div class="col-md-12" id="hot_div_rooms"></div>
+                                    <div class="col-md-12 mt-2" id="hot_div_rooms"></div>
 
                                 </div>
                                 <button class="btn btn-primary float-end mt-3">Add Hotel & Rooms</button>
@@ -351,4 +362,7 @@
     </div>
 
     <script src="{{ asset('js/tour_route.js') }}"></script>
+
+    @include('tour_routes.room_add_modal')
+    @include('tour_routes.room_edit_modal')
 @endsection

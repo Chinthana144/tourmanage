@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activities;
+use App\Models\BedTypes;
 use App\Models\BoardingType;
 use App\Models\Hotels;
 use App\Models\Locations;
 use App\Models\RestaurantMeals;
 use App\Models\Restaurants;
+use App\Models\RoomTypes;
 use App\Models\TourHotels;
 use App\Models\TourRequest;
 use App\Models\TourRequestRooms;
@@ -32,7 +34,11 @@ class TourRouteController extends Controller
         $tour_request_id = $tour->tour_request_id;
         $tour_request = TourRequest::find($tour_request_id);
 
-        return view('tour_routes.tour_route_create', compact('tour', 'routes', 'tour_request'));
+        //room
+        $room_types = RoomTypes::all();
+        $bed_types = BedTypes::all();
+
+        return view('tour_routes.tour_route_create', compact('tour', 'routes', 'tour_request', 'room_types','bed_types'));
     }//index
 
      public function locationStore(Request $request)

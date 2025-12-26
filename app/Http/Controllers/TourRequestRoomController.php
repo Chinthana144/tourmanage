@@ -38,7 +38,6 @@ class TourRequestRoomController extends Controller
             'bed_type_id'=> $request->input('cmb_bed_type'),
             'adult_count' => $request->input('adult_count'),
             'children_count' => $request->input('children_count') ?? 0,
-            'extra_bed_type_id' => $request->input('cmb_extra_bed_type'),
             'extra_bed_count' => $request->input('extra_bed_count') ?? 0,
             'room_quantity' => $request->input('room_quantity'),
         ]);
@@ -65,6 +64,66 @@ class TourRequestRoomController extends Controller
 
         return response()->json($room);
     }
+
+    public function deleteRoom(Request $request)
+    {
+        $tour_request_id = $request->input('tour_request_id');
+        $room_id = $request->input('room_id');
+        $room = TourRequestRooms::find($room_id);
+        $room->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'room deleted successfully!',
+            'tour_request_id' => $tour_request_id
+        ]);
+    }
+
+    //add request room using AJAX
+    public function addRequestRoom(Request $request)
+    {
+        $tour_request_id = $request->input('tour_request_id');
+
+        TourRequestRooms::create([
+            'tour_request_id' => $request->input('tour_request_id'),
+            'room_type_id' => $request->input('room_type_id'),
+            'bed_type_id'=> $request->input('bed_type_id'),
+            'adult_count' => $request->input('adult_count'),
+            'children_count' => $request->input('children_count') ?? 0,
+            'extra_bed_count' => $request->input('extra_bed_count') ?? 0,
+            'room_quantity' => $request->input('room_quantity'),
+        ]);
+
+        return response()->json([
+            'success' => true, 
+            'message' => 'room added successfully!',
+            'tour_request_id' => $tour_request_id,
+        ]);
+    }
+
+    //edit request room using AJAX
+    public function editRequestRoom(Request $request)
+    {
+        $room_id = $request->input('room_id');
+
+        $room = TourRequestRooms::find($room_id);
+
+        $room->tour_request_id = $request->input('tour_request_id');
+        $room->room_type_id = $request->input('room_type_id');
+        $room->bed_type_id = $request->input('bed_type_id');
+        $room->adult_count = $request->input('adult_count');
+        $room->children_count = $request->input('children_count');
+        $room->extra_bed_count = $request->input('extra_bed_count');
+        $room->room_quantity = $request->input('room_quantity');
+
+        $room->save();
+
+        return response()->json([
+            'success' => true, 
+            'message' => 'room updated successfully!',
+            'tour_request_id' => $request->input('tour_request_id'),
+        ]);
+    }//add request room using AJAX
 
     public function getRequestRooms(Request $request)
     {

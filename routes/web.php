@@ -131,6 +131,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/delete-request_rooms', [TourRequestRoomController::class, 'destroy'])->name('tour_request_rooms.destroy');
     Route::get('/getOneRequestRoom', [TourRequestRoomController::class, 'getOneRequestRoom']);
     Route::get('/getRequestRooms', [TourRequestRoomController::class, 'getRequestRooms']);
+    Route::post('/deleteRoom', [TourRequestRoomController::class, 'deleteRoom']);
+    Route::post('/addRequestRoom', [TourRequestRoomController::class, 'addRequestRoom']);
+    Route::post('/editRequestRoom', [TourRequestRoomController::class, 'editRequestRoom']);
 
     //tour request location
     Route::get('/tour-request-location', [TourRequestLocationController::class, 'index'])->name('tour_request_location.index');
