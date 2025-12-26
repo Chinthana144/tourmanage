@@ -107,15 +107,15 @@ meal_types
 
 tour_travel
 
-tour request 
-tour request rooms
-tour request locations or activities
+tour request ---------------------------------------- done
+tour request rooms ---------------------------------- done
+tour request locations or activities ---------------- done
 
-tour route -> add hotels and rooms
+tour route -> add hotels and rooms ------------------ done
 
 tour route quotation generator
 
 
 //= = = = = = = = = =  Pending List =  = = = = = = = = =//
 * tour request foreign key delete on cascade
-* tourRequestLocationController -> store method ->delete if id exists
+* tourRequestLocationController -> store method ->delete if id exists ------------ done

@@ -43,9 +43,9 @@
                             @endswitch
                         </td>
                         <td>{{ $route->routable->name }}</td>
-                        <td>{{ $route->price_adult }}</td>
-                        <td>{{ $route->price_adult }}</td>
-                        <td>{{ $route->price_adult }}</td>
+                        <td>{{ $route->total_price_adult }}</td>
+                        <td>{{ $route->total_price_child }}</td>
+                        <td>{{ $route->line_total }}</td>
                         <td>
                             <div class="d-flex gap-2 align-items-center">
                                 <form action="{{ route('tour_route.order_up') }}" method="post">
@@ -98,6 +98,10 @@
                                         <label for="">Select Location</label>
                                         <select name="loc_cmb_locations" id="loc_cmb_locations" class="form-select"></select>
                                     </div>
+                                    <div class="col-md-12">
+                                        <label for="">Select Location</label>
+                                        <textarea name="loc_note" id="loc_note" cols="30" rows="3"></textarea>
+                                    </div>
                                 </div>
                                 <button class="btn btn-primary float-end mt-2">Add Location</button>
                             </form>
@@ -138,7 +142,12 @@
                                         <label for="">Number of Nights</label>
                                         <input type="number" name="hot_num_nights" id="hot_num_nights" class="form-control" required>
                                     </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Notes</label>
+                                        <input type="text" name="hot_note" id="hot_note" class="form-control">
+                                    </div>
                                     
+                                    {{-- rooms loaded by jQuery,  --}}
                                     <div class="col-md-12" id="hot_div_rooms"></div>
 
                                 </div>
@@ -254,6 +263,10 @@
                                     <div class="col-md-6 mt-2">
                                         <label for="">Total Price for Children</label>
                                         <input type="number" step="0.01" name="act_total_price_child" id="act_total_price_child" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <label for="">Note</label>
+                                        <textarea name="act_note" id="act_note" cols="30" rows="3" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary float-end mt-2">Add to Route</button>

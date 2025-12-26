@@ -55,6 +55,16 @@ class TourRequestLocationController extends Controller
             else
             {
                 //delete if exist
+                $remove_location = TourRequestLocations::where('tour_request_id', $tour_request_id)
+                    ->where('location_id', $location->id)
+                    ->orderBy('id', 'desc')
+                    ->first();
+
+                if($remove_location)
+                {
+                    $remove_location->delete();
+                }
+                
                 continue;
             }
         }

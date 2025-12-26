@@ -20,7 +20,10 @@
                 </tr>
                 @foreach ($tours as $tour)
                     <tr data-id = "{{ $tour->id }}">
-                        <td>{{ $tour->title }}</td>
+                        <td>
+                            {{ $tour->tour_number }} <br>
+                            {{ $tour->title }}
+                        </td>
                         <td>
                             Start: <b>{{ $tour->start_date }}</b>
                             <br>

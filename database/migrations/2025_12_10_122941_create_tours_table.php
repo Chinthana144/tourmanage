@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
+            $table->string('tour_number');
             $table->foreignId('tour_request_id');
             $table->string('title');
             $table->text('description')->nullable();

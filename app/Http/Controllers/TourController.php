@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use App\Models\Tours;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TourController extends Controller
@@ -19,7 +20,26 @@ class TourController extends Controller
 
     public function store(Request $request) 
     {   
+        $year = Carbon::now()->year;
+
+        $last_tour = Tours::where("tour_number", 'LIKE', '-%')
+            ->orderBy('tour_number', 'desc')
+            ->first();
+        
+        if($last_tour)
+        {
+            //extract number
+            $lastNumber = intval(substr($last_tour->tour_number, 5));
+            $nextNumber = $lastNumber + 1;
+        }//has tour
+        else{
+            $nextNumber = 1;
+        }
+
+        $tour_number = $year . '-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
         Tours::create([
+            'tour_number' => $tour_number,
             'tour_request_id' => $request->input('tour_request_id'),
             'title' => $request->input('txt_title'),
             'description' => $request->input('txt_description'),

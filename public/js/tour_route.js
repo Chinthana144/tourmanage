@@ -107,29 +107,36 @@ $(document).ready(function () {
                 // console.log(response);
                 var html_rooms = "<div class='border border-primary rounded mt-2 p-1' style='max-height:200; over-flow:scroll;'>";
                 $.each(response, function (key, val) { 
-                    html_rooms += "<div class='row'>";
                     html_rooms += "<input type='hidden' name='hide_room_"+val.id+"' value='"+ val.id +"'>";
-
-                    html_rooms += "<div class='col-md-3'>";
+                    html_rooms += "<div class='row'>";
+                    
+                    html_rooms += "<div class='col-md-2'>";
                     html_rooms += "<p>";
                     html_rooms += "<b>" + val.room_type_name +"</b><br>";
                     html_rooms += "<b>" + val.bed_type_name +"</b>";
                     html_rooms += "</p>";
                     html_rooms += "</div>";
 
-                    html_rooms += "<div class='col-md-3'>";
+                    html_rooms += "<div class='col-md-2'>";
                     html_rooms += "<p>";
                     html_rooms += "Adults: <b>" + val.adult_count +"</b><br>";
                     html_rooms += "Children: <b>" + val.children_count +"</b>";
                     html_rooms += "</p>";
                     html_rooms += "</div>";
 
-                    html_rooms += "<div class='col-md-3'>";
+                    html_rooms += "<div class='col-md-2'>";
+                    html_rooms += "<p>";
+                    html_rooms += "Extra beds: <b>" + val.extra_bed_count +"</b><br>";
+                    html_rooms += "Rooms: <b>" + val.room_quantity +"</b>";
+                    html_rooms += "</p>";
+                    html_rooms += "</div>";
+
+                    html_rooms += "<div class='col-md-2'>";
                     html_rooms += "<label for=''>Price Per night</label>";
                     html_rooms += "<input type='number' step='0.01' name='night_price_"+val.id+"' class='form-control' required>";
                     html_rooms += "</div>";
 
-                    html_rooms += "<div class='col-md-3'>";
+                    html_rooms += "<div class='col-md-2'>";
                     html_rooms += "<label for=''>Price extra bed</label>";
                     html_rooms += "<input type='number' step='0.01' name='extra_bed_"+val.id+"' class='form-control' required>";
                     html_rooms += "</div>";
