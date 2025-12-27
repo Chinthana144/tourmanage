@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label for="">Select Location</label>
-                                        <textarea name="loc_note" id="loc_note" cols="30" rows="3"></textarea>
+                                        <textarea name="loc_note" id="loc_note" cols="30" rows="3" class="form-control"></textarea>
                                     </div>
                                 </div>
                                 <button class="btn btn-primary float-end mt-2">Add Location</button>

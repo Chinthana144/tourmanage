@@ -26,6 +26,8 @@ class TourController extends Controller
             ->orderBy('tour_number', 'desc')
             ->first();
         
+        $nextNumber = 1;
+
         if($last_tour)
         {
             //extract number

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tours extends Model
 {
     protected $fillable = [
+        'tour_number',
         'tour_request_id',
         'title',
         'description',
