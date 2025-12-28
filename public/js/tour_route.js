@@ -12,6 +12,40 @@ $(document).ready(function () {
     $("#div_activities").css('display', 'none');
     $("#div_travel").css('display', 'none');
 
+    //route info show
+    $("#tbl_tour_route").on('click', '.btn_open_info', function(){
+        let row = $(this).closest('tr');
+        let id = row.data('id');
+
+        $.ajax({
+            type: "get",
+            url: "/getOneTourRoute",
+            data: {
+                tour_route_id: id
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                var route_type = response['route_type'];
+                
+                switch (route_type) {
+                    case 'location':
+                        alert('location = ' + response['data']['name']);
+                    break;
+
+                    case 'hotel':
+                        alert('hotel');
+                    break;
+                
+                    default:
+                        break;
+                }
+            }
+        });
+
+        
+    });
+
     //location div show
     $("#btn_show_location").click(function(){
         $("#div_locations").css('display', 'block');
@@ -343,7 +377,7 @@ $(document).ready(function () {
                 $.each(response, function (key, val) { 
                     $("#tvl_cmb_media").append($('<option>', {
                         value: val.id,
-                        text: val.vehicle_type,
+                        text: val.name,
                     }));
                 });
             }

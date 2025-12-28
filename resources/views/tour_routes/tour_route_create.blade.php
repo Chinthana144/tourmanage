@@ -6,7 +6,7 @@
             <h5>Create Tour Route</h5>
         </div>
         <div class="card-body">
-            <table class="table">
+            <table class="table" id="tbl_tour_route">
                 <tr>
                     <th>No</th>
                     <th>Day No</th>
@@ -18,7 +18,7 @@
                     <th>Action</th>
                 </tr>
                 @foreach ($routes as $route)
-                    <tr>
+                    <tr data-id='{{ $route->id }}'>
                         <td>{{ $route->order_no }}</td>
                         <td>Day {{ $route->day_no }}</td>
                         <td>
@@ -48,6 +48,7 @@
                         <td>{{ $route->line_total }}</td>
                         <td>
                             <div class="d-flex gap-2 align-items-center">
+                                <button class="btn btn-info btn-sm btn_open_info"><i class="bx bx-tab"></i></button>
                                 <form action="{{ route('tour_route.order_up') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
@@ -365,4 +366,5 @@
 
     @include('tour_routes.room_add_modal')
     @include('tour_routes.room_edit_modal')
+    @include('tour_routes.route_info_modal')
 @endsection

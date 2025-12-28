@@ -114,8 +114,19 @@ tour request locations or activities ---------------- done
 tour route -> add hotels and rooms ------------------ done
 
 tour route quotation generator
+quatation acceptance
+visualization
+customer request process
+main page design
 
 
 //= = = = = = = = = =  Pending List =  = = = = = = = = =//
 * tour request foreign key delete on cascade
 * tourRequestLocationController -> store method ->delete if id exists ------------ done
+* tour route information button
+* activity delete button
+
+schedule
+* get customer request
+* send email
+* generate quotation

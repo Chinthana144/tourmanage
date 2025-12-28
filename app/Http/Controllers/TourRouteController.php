@@ -211,6 +211,7 @@ class TourRouteController extends Controller
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
     }//restaurant store
 
+    //Activities
     public function activityStore(Request $request)
     {
         $tour_id = $request->input('hide_tour_id');
@@ -387,4 +388,70 @@ class TourRouteController extends Controller
 
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route order changed successfully!');
     }//order down
+
+    //==================== AJAX ===============//
+    public function getOneTourRoute(Request $request)
+    {
+        $tour_route_id = $request->input('tour_route_id');
+        $tour_route = TourRoutes::find($tour_route_id);
+
+        $route_type = $tour_route->routable_type;
+        $data = [];
+
+        switch ($route_type) {
+            //location
+            case 'App\Models\Locations':
+                $location = Locations::find($tour_route->routable_id);
+
+                $data = [
+                    'day_no' => $tour_route->day_no,
+                    'order_no' => $tour_route->order_no,
+                    'name' => $location->name,
+                    'description' => $location->description,
+                    'province' => $location->city->district->province->name_en,
+                    'district' => $location->city->district->name_en,
+                    'city' => $location->city->name_en,
+                    'primary_image' => $location->primary_image,
+                    'notes' => $tour_route->notes,
+                ];
+
+                return response()->json([
+                    'route_type' => 'location',
+                    'data' => $data,
+                ]);
+                  
+            break;
+
+            //hotels
+            case 'App\Models\Hotels': 
+                $hotel = Hotels::find($tour_route->routable_id);
+                $tour_hotel = TourHotels::where('tour_route_id', $tour_route_id)->get();
+
+                $data = [
+                    'day_no' => $tour_route->day_no,
+                    'order_no' => $tour_route->order_no,
+                    'check_in_date' => $tour_hotel->id,
+                    'name' => $hotel->name,
+                    'address' => $hotel->address,
+                    'phone' => $hotel->phone,
+                    'province' => $hotel->province->name_en,
+                    'district' => $hotel->district->name_en,
+                    'city' => $hotel->city->name_en,
+                    'notes' => $tour_route->notes,
+                ]; 
+
+                return response()->json([
+                    'route_type' => 'hotel',
+                    'data' => $data,
+                ]);                
+            break;
+            
+            default:
+                return response()->json([
+                    'route_type'=>'none',
+                ]);    
+            break;
+        }//switch
+
+    }//get one tour route
 }//class

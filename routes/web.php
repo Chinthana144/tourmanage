@@ -181,6 +181,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/route-destroy', [TourRouteController::class, 'destroy'])->name('tour_route.destroy');
     Route::post('/route-orderUp', [TourRouteController::class, 'orderUp'])->name('tour_route.order_up');
     Route::post('/route-orderDown', [TourRouteController::class, 'orderDown'])->name('tour_route.order_down');
+    Route::get('/getOneTourRoute', [TourRouteController::class, 'getOneTourRoute']);
 });
 
 Route::get('/template', function () {
