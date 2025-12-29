@@ -437,13 +437,18 @@ class TourRouteController extends Controller
                         'room_type' => $room->roomType->name,
                         'bed_type' => $room->bedType->name,
                         'room_quantity' => $room->room_quantity,
+                        'price_per_night' => $room->price_per_night,
+                        'extra_bed_price' => $room->extra_bed_price,
+                        'base_adults' => $room->base_adults,
+                        'base_children' => $room->base_children,
                     ];
                 }//foreach
 
                 $data = [
                     'day_no' => $tour_route->day_no,
                     'order_no' => $tour_route->order_no,
-                    'check_in_date' => $tour_hotel->id,
+                    'check_in_date' => $tour_hotel->check_in_date,
+                    'check_out_date' => $tour_hotel->check_out_date,
                     'name' => $hotel->name,
                     'address' => $hotel->address,
                     'phone' => $hotel->phone,
@@ -465,6 +470,7 @@ class TourRouteController extends Controller
                 $restaurant_meal = RestaurantMeals::where('tour_route_id', $tour_route_id)->first();
 
                 $data = [
+                    'day_no' => $tour_route->day_no,
                     'name' => $restaurant->name,
                     'phone' => $restaurant->phone,
                     'province' =>$restaurant->province->name_en,
@@ -473,6 +479,7 @@ class TourRouteController extends Controller
                     'meal_type' => $restaurant_meal->mealType->name,
                     'meal_name' => $restaurant_meal->name,
                     'meal_price' => $restaurant_meal->total_price,
+                    'cover_image' => $restaurant->cover_image,
                 ];
 
                 return response()->json([
@@ -485,11 +492,13 @@ class TourRouteController extends Controller
                 $activity = Activities::find($tour_route->routable_id);
 
                 $data = [
+                    'location' => $activity->location->name,
                     'name' => $activity->name,
                     'description' =>$activity->description,
                     'duration_minutes' => $activity->duration_minutes,
                     'line_total' => $tour_route->line_total,
                     'day_no' => $tour_route->day_no,
+                    'image4' => $activity->location->image4,
                 ];
 
                 return response()->json([
@@ -506,8 +515,8 @@ class TourRouteController extends Controller
                     'day_no' => $tour_route->day_no,
                     'name' => $travel->name,
                     'vehicle_No' => $travel->vehicle_No,
-                    'distance_km' => $travel->distance_km,
-                    'duration_minutes' => $travel->duration_minutes,
+                    'distance_km' => $tour_travel->distance_km,
+                    'duration_minutes' => $tour_travel->duration_minutes,
                     'start' => $tour_travel->startable->name,
                     'end' => $tour_travel->endable->name,
                 ];

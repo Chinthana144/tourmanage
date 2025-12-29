@@ -27,27 +27,104 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 var route_type = response['route_type'];
+
+                $("#route_info_modal").modal('toggle');
+                var details = "<p>";
                 
                 switch (route_type) {
                     case 'location':
-                        alert('location = ' + response['data']['name']);
+                        $("#modal_title").text('Location');
+                        details += "Day No: <b>" + response['data']['day_no'] +"</b><br>";
+                        details += "Location: <b>" + response['data']['name'] +"</b><br>";
+                        details += "Description :" + response['data']['description'] +"<br>";
+                        details += "Province: <b>" + response['data']['province'] +"</b><br>";
+                        details += "District: <b>" + response['data']['district'] +"</b><br>";
+                        details += "City: <b>" + response['data']['city'] +"</b><br>";
+                        details += "</p>";
+
+                        details += "<img src='"+ response['data']['primary_image'] +"' alt='no image' style='width:100%; height:auto; border-radius:10px;'>";
                     break;
 
                     case 'hotel':
-                        alert('hotel');
+                        $("#modal_title").text('Hotel');
+                        details += "Day No: <b>" + response['data']['day_no'] +"</b><br>";
+                        details += "Hotel: <b>" + response['data']['name'] +"</b><br>";
+                        details += "Check-in-date: <b>" + response['data']['check_in_date'] +"</b><br>";
+                        details += "Check-out-date: <b>" + response['data']['check_out_date'] +"</b><br>";
+                        details += "Province: <b>" + response['data']['province'] +"</b><br>";
+                        details += "District: <b>" + response['data']['district'] +"</b><br>";
+                        details += "City: <b>" + response['data']['city'] +"</b><br>";
+                        details += "</p>";
+
+                        details += "<p><b>Rooms</b></p>";
+                        details += "<div style='max-height:200px; over-flow:scroll;'>";
+                        details += "<table class='table'>";
+                        details += "<tr>";
+                        details += "<th>Room</th>";
+                        details += "<th>People</th>";
+                        details += "<th>Price</th>";
+                        details += "<th>Qty</th>";
+                        details += "</tr>";
+                        $.each(response['room'], function (key, val) { 
+                            details += "<tr>";
+                            details += "<td>"+ val['room_type'] +" <br>"+ val['bed_type'] +"</td>";
+                            details += "<td>Adult: "+ val['base_adults'] +"<br>Children: "+ val['base_children'] +"</td>";
+                            details += "<td>Per night: "+ val['price_per_night'] +"<br>Extra bed: "+ val['extra_bed_price'] +"</td>";
+                            details += "<td>"+ val['room_quantity'] +"</td>";
+                            details += "</tr>";
+                        });
+                        details += "</table>";
+                        details += "</div>";
+                        
                     break;
 
                     case 'restaurant':
-                        alert('restaurant');
+                        $("#modal_title").text('Restaurant');
+                        details += "Day No: <b>" + response['data']['day_no'] +"</b><br>";
+                        details += "Restaurant: <b>" + response['data']['name'] +"</b><br>";
+                        details += "Province: <b>" + response['data']['province'] +"</b><br>";
+                        details += "District: <b>" + response['data']['district'] +"</b><br>";
+                        details += "City: <b>" + response['data']['city'] +"</b><br>";
+                        details += "<hr>";
+                        details += "Meal type: <b>"+ response['data']['meal_type'] +"</b><br>";
+                        details += "Meal: <b>"+ response['data']['meal_name'] +"</b><br>";
+                        details += "Price: <b>"+ response['data']['meal_price'] +"</b><br>";
+                        details += "</p>";
+
+                        details += "<img src='images/restaurants/"+ response['data']['cover_image'] +"' alt='no image' style='width:100%; height:auto; border-radius:10px;'>";
                     break;
 
                     case 'activity':
-                        alert('Activity');
+                        $("#modal_title").text('Activity');
+                        details += "Day No: <b>" + response['data']['day_no'] +"</b><br>";
+                        details += "Location: <b>" + response['data']['location'] +"</b><br>";
+                        details += "Activity: <b>" + response['data']['name'] +"</b><br>";
+                        details += "Description: " + response['data']['description'] +"<br>";
+                        details += "Line total: <b>" + response['data']['line_total'] +"</b><br>";
+
+                        details += "</p>";
+
+                        details += "<img src='"+ response['data']['image4'] +"' alt='no image' style='width:100%; height:auto; border-radius:10px;'>";
+                    break;
+
+                    case 'travel':
+                        $("#modal_title").text('Travel');
+                        details += "Day No: <b>" + response['data']['day_no'] +"</b><br>";
+                        details += "Travel with: <b>" + response['data']['name'] +"</b><br>";
+                        details += "Vehical No: <b>" + response['data']['vehicle_No'] +"</b><br><hr>";
+                        details += "From: <b>" + response['data']['start'] +"</b><br>";
+                        details += "To: <b>" + response['data']['end'] +"</b><br><hr>";
+                        details += "Distance: <b>" + response['data']['distance_km'] +" Km</b><br>";
+                        details += "Duration: <b>" + response['data']['duration_minutes'] +" minutes</b><br>";
+                        details += "</p>";
                     break;
                 
                     default:
-                        break;
-                }
+                        alert('No path selected');
+                    break;
+                }//switch case
+
+                $("#div_details").html(details);
             }
         });
 
