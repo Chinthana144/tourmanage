@@ -41,7 +41,8 @@ class TourRouteController extends Controller
         return view('tour_routes.tour_route_create', compact('tour', 'routes', 'tour_request', 'room_types','bed_types'));
     }//index
 
-     public function locationStore(Request $request)
+    //========================== Location store
+    public function locationStore(Request $request)
     {
         $tour_id = $request->input('hide_tour_id');
         $routable_id = $request->input('loc_cmb_locations');
@@ -71,7 +72,7 @@ class TourRouteController extends Controller
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
     }//location store
 
-    //Hotels add 
+    //========================== Hotels add 
     public function hotelStore(Request $request)
     {
         $tour_id = $request->input('hide_tour_id');
@@ -158,7 +159,7 @@ class TourRouteController extends Controller
 
     }//hotel store
 
-    //tour restaurant store
+    //========================== tour restaurant store
     public function restaurantStore(Request $request)
     {
         $tour_id = $request->input('hide_tour_id');
@@ -211,7 +212,7 @@ class TourRouteController extends Controller
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
     }//restaurant store
 
-    //Activities
+    //========================== Activities
     public function activityStore(Request $request)
     {
         $tour_id = $request->input('hide_tour_id');
@@ -242,7 +243,7 @@ class TourRouteController extends Controller
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
     }//activity store
 
-    //tour travel store
+    //========================== tour travel store
     public function travelStore(Request $request)
     {
         $tour_id = $request->input('hide_tour_id');
@@ -297,15 +298,15 @@ class TourRouteController extends Controller
         $endable = "";
         if($endable_type > 0)
         {
-            switch ($endable) {
+            switch ($endable_type) {
                 case '1': //location
-                    $endable =  Locations::class;
+                    $endable = Locations::class;
                 break;
                 case '2': //hotels
-                    $endable =  Hotels::class;
+                    $endable = Hotels::class;
                 break;
                 case '3': //restaurants
-                    $endable =  Restaurants::class;
+                    $endable = Restaurants::class;
                 break;
             }
         }//has value
@@ -425,7 +426,19 @@ class TourRouteController extends Controller
             //hotels
             case 'App\Models\Hotels': 
                 $hotel = Hotels::find($tour_route->routable_id);
-                $tour_hotel = TourHotels::where('tour_route_id', $tour_route_id)->get();
+                $tour_hotel = TourHotels::where('tour_route_id', $tour_route_id)->first();
+                $tour_rooms = TourRooms::where('tour_hotel_id', $tour_hotel->id)->get();
+
+                $rooms = [];
+
+                foreach($tour_rooms as $room)
+                {
+                    $rooms[] = [
+                        'room_type' => $room->roomType->name,
+                        'bed_type' => $room->bedType->name,
+                        'room_quantity' => $room->room_quantity,
+                    ];
+                }//foreach
 
                 $data = [
                     'day_no' => $tour_route->day_no,
@@ -443,7 +456,66 @@ class TourRouteController extends Controller
                 return response()->json([
                     'route_type' => 'hotel',
                     'data' => $data,
+                    'room' => $rooms,
                 ]);                
+            break;
+
+            case 'App\Models\Restaurants':
+                $restaurant = Restaurants::find($tour_route->routable_id);
+                $restaurant_meal = RestaurantMeals::where('tour_route_id', $tour_route_id)->first();
+
+                $data = [
+                    'name' => $restaurant->name,
+                    'phone' => $restaurant->phone,
+                    'province' =>$restaurant->province->name_en,
+                    'district' => $restaurant->district->name_en,
+                    'city' => $restaurant->city->name_en,
+                    'meal_type' => $restaurant_meal->mealType->name,
+                    'meal_name' => $restaurant_meal->name,
+                    'meal_price' => $restaurant_meal->total_price,
+                ];
+
+                return response()->json([
+                    'route_type' => 'restaurant',
+                    'data' => $data,
+                ]);
+            break;
+
+            case 'App\Models\Activities':
+                $activity = Activities::find($tour_route->routable_id);
+
+                $data = [
+                    'name' => $activity->name,
+                    'description' =>$activity->description,
+                    'duration_minutes' => $activity->duration_minutes,
+                    'line_total' => $tour_route->line_total,
+                    'day_no' => $tour_route->day_no,
+                ];
+
+                return response()->json([
+                    'route_type' => 'activity',
+                    'data' => $data,
+                ]);
+            break;
+
+            case 'App\Models\TravelMedia' :
+                $travel = TravelMedia::find($tour_route->routable_id);
+                $tour_travel = TourTravel::where('tour_route_id', $tour_route_id)->first();
+                
+                $data = [
+                    'day_no' => $tour_route->day_no,
+                    'name' => $travel->name,
+                    'vehicle_No' => $travel->vehicle_No,
+                    'distance_km' => $travel->distance_km,
+                    'duration_minutes' => $travel->duration_minutes,
+                    'start' => $tour_travel->startable->name,
+                    'end' => $tour_travel->endable->name,
+                ];
+
+                return response()->json([
+                    'route_type' => 'travel',
+                    'data' => $data,
+                ]);
             break;
             
             default:

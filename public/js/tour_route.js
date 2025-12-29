@@ -36,6 +36,14 @@ $(document).ready(function () {
                     case 'hotel':
                         alert('hotel');
                     break;
+
+                    case 'restaurant':
+                        alert('restaurant');
+                    break;
+
+                    case 'activity':
+                        alert('Activity');
+                    break;
                 
                     default:
                         break;

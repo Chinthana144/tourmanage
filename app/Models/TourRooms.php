@@ -27,7 +27,7 @@ class TourRooms extends Model
         return $this->belongsTo(RoomTypes::class, 'room_type_id');
     }
 
-    public function bedTypes()
+    public function bedType()
     {
         return $this->belongsTo(BedTypes::class, 'bed_type_id');
     }
