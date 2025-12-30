@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tour_request_rooms', function (Blueprint $table) {
+        Schema::create('quotations', function (Blueprint $table) {
             $table->id();
+            $table->string('quotation_no');
             $table->foreignId('tour_request_id');
-            $table->foreignId('room_type_id');
-            $table->foreignId('bed_type_id');
-            $table->integer('adult_count');
-            $table->integer('children_count');
-            $table->integer('extra_bed_count');
-            $table->integer('room_quantity');
+            $table->foreignId('tour_id');
+            $table->date('valid_until');
+            $table->decimal('total_amount', 10, 2);
+            $table->smallInteger('status');
+            $table->foreignId('user_id');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tour_request_rooms');
+        Schema::dropIfExists('quotations');
     }
 };

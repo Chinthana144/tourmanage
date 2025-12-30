@@ -2356,3 +2356,23 @@ INSERT INTO `currencies`(`name`) VALUES
 ('JPY'),
 ('LKR'),
 ('AED');
+
+-- add tour purposes
+INSERT INTO `tour_purposes`(`name`) VALUES
+('Leisure / Holiday'),
+('Honeymoon'),
+('Family Vacation'),
+('Friends Getaway'),
+('Business Travel'),
+('Cultural Tour'),
+('Adventure Tour'),
+('Wildlife / Safari'),
+('Educational Tour'),
+('Custom / Tailor-Made Tour');
+
+-- add group composition
+INSERT INTO `group_compositions`(`name`) VALUES
+('Singles'),
+('Couples'),
+('Families'),
+('Friends');

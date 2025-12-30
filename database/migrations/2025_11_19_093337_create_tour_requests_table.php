@@ -14,13 +14,11 @@ return new class extends Migration
         Schema::create('tour_requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('boarding_type_id');
+            $table->foreignId('tour_purpose_id');
             $table->date('travel_date');
             $table->date('return_date')->nullable();
-            $table->integer('adults');
-            $table->integer('children')->default(0);
-            $table->integer('infants')->default(0);
-            $table->String('tour_pourpose')->nullable();
+            $table->integer('total_adults');
+            $table->integer('total_children')->default(0);
             $table->decimal('budget', 10, 2)->nullable();
             $table->text('special_requests')->nullable();
             $table->tinyInteger('status')->default(1);

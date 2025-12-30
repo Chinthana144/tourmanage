@@ -125,8 +125,14 @@ main page design
 * tourRequestLocationController -> store method ->delete if id exists ------------ done
 * tour route information button
 * activity delete button
+* tour request add plain ticket (optional)
 
 schedule
 * get customer request
 * send email
 * generate quotation
+
+//VVIP = package
+* airport fast pickup
+* all inclusive package
+* mid level package

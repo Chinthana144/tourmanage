@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class TourRequest extends Model
 {
+    protected $table = 'tour_requests';
+
     protected $fillable = [
         'customer_id',
-        'boarding_type_id',
+        'tour_purpose_id',
         'travel_date',
         'return_date',
-        'adults',
-        'children',
-        'infants',
-        'tour_pourpose',
+        'total_adults',
+        'total_children',
         'budget',
         'special_requests',
         'status',
@@ -25,13 +25,13 @@ class TourRequest extends Model
         return $this->belongsTo(Customers::class, 'customer_id');
     }
 
-    public function boardingType()
-    {
-        return $this->belongsTo(BoardingType::class, 'boarding_type_id');
-    }
-
     public function tours()
     {
         return $this->hasMany(Tours::class, 'tour_request_id');
+    }
+
+    public function tourPurpose()
+    {
+        return $this->belongsTo(TourPurposes::class, 'tour_purpose_id');
     }
 }//class

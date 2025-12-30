@@ -7,6 +7,7 @@ use App\Models\BoardingType;
 use App\Models\Currency;
 use App\Models\Customers;
 use App\Models\RoomTypes;
+use App\Models\TourPurposes;
 use App\Models\TourRequest;
 use Illuminate\Http\Request;
 
@@ -16,17 +17,18 @@ class TourRequestController extends Controller
     {
         $all_requests = TourRequest::all();
         $currencies = Currency::all();
+        $tour_purposes = TourPurposes::all();
 
-        return view('tour_requests.request_view', compact('all_requests', 'currencies'));
+        return view('tour_requests.request_view', compact('all_requests', 'currencies', 'tour_purposes'));
     }//index
 
     public function create(Request $request)
     {
         $customer_id = $request->input('hide_customer_id');
         $customer = Customers::find($customer_id);
-        $boarding_types = BoardingType::all();
+        $tour_purposes = TourPurposes::all();
 
-        return view('tour_requests.request_create', compact('customer', 'boarding_types'));
+        return view('tour_requests.request_create', compact('customer', 'tour_purposes'));
     }//create
 
     public function store(Request $request)
@@ -34,20 +36,18 @@ class TourRequestController extends Controller
         $tour_request = new TourRequest();
 
         $tour_request->customer_id = $request->input('hide_customer_id');
-        $tour_request->boarding_type_id = $request->input('cmb_boarding_type');
         $tour_request->travel_date = $request->input('travel_date');
         $tour_request->return_date = $request->input('return_date');
-        $tour_request->adults = $request->input('num_adults');
-        $tour_request->children = $request->input('num_children') ?? 0;
-        $tour_request->infants = $request->input('num_infants') ?? 0;
-        $tour_request->tour_pourpose = $request->input('tour_pourpose');
-        $tour_request->budget = $request->input('budget');
-        $tour_request->special_requests = $request->input('txt_special_requests');
+        $tour_request->total_adults = $request->input('num_total_adults');
+        $tour_request->total_children = $request->input('num_total_children') ?? 0;
+        $tour_request->tour_purpose_id = $request->input('cmb_tour_purpose');
+        $tour_request->budget = $request->input('budget') ?? 0;
+        $tour_request->special_requests = $request->input('txt_special_requests') ?? "";
         $tour_request->status = 1; //pening
 
         $tour_request->save();
 
-        return redirect()->route('tour_request_rooms.index', ['tour_request_id' => $tour_request->id]);
+        return redirect()->route('tour_request_people.index', ['tour_request_id' => $tour_request->id]);
 
     }//store
 

@@ -17,6 +17,7 @@ use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
 use App\Http\Controllers\TourRequestController;
 use App\Http\Controllers\TourRequestLocationController;
+use App\Http\Controllers\TourRequestPeopleController;
 use App\Http\Controllers\TourRequestRoomController;
 use App\Http\Controllers\TourRouteController;
 use App\Http\Controllers\TravelMediaController;
@@ -125,15 +126,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/delete-tour-request', [TourRequestController::class, 'destroy'])->name('tour_request.destroy');
     Route::get('/getOneRequest', [TourRequestController::class, 'getOneRequest']);
 
-    //tour request room
-    Route::get('/tour-request_rooms', [TourRequestRoomController::class, 'index'])->name('tour_request_rooms.index');
-    Route::post('/store-request_rooms', [TourRequestRoomController::class, 'store'])->name('tour_request_rooms.store');
-    Route::delete('/delete-request_rooms', [TourRequestRoomController::class, 'destroy'])->name('tour_request_rooms.destroy');
-    Route::get('/getOneRequestRoom', [TourRequestRoomController::class, 'getOneRequestRoom']);
-    Route::get('/getRequestRooms', [TourRequestRoomController::class, 'getRequestRooms']);
-    Route::post('/deleteRoom', [TourRequestRoomController::class, 'deleteRoom']);
-    Route::post('/addRequestRoom', [TourRequestRoomController::class, 'addRequestRoom']);
-    Route::post('/editRequestRoom', [TourRequestRoomController::class, 'editRequestRoom']);
+    //tour request people
+    Route::get('/tour-request-people', [TourRequestPeopleController::class, 'index'])->name('tour_request_people.index');
+    Route::post('/storeRequestPeople', [TourRequestPeopleController::class, 'storeRequestPeople']);
+    Route::get('/getAllRequestPeople', [TourRequestPeopleController::class, 'getAllRequestPeople']);
 
     //tour request location
     Route::get('/tour-request-location', [TourRequestLocationController::class, 'index'])->name('tour_request_location.index');
@@ -184,9 +180,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/getOneTourRoute', [TourRouteController::class, 'getOneTourRoute']);
 });
 
-Route::get('/template', function () {
-    return view('layouts.template');
-});
-
+// Route::get('/template', function () {
+//     return view('layouts.template');
+// });
 
 require __DIR__.'/auth.php';

@@ -11,10 +11,10 @@
                     <th>Customer</th>
                     <th>Start Date</th>
                     <th>Return Date</th>
+                    <th>Purpose</th>
                     <th>Adults</th>
                     <th>Children</th>
                     <th>Budget</th>
-                    <th>Pourpose</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -23,10 +23,10 @@
                         <td>{{ $request->customer->first_name . " " . $request->customer->last_name}}</td>
                         <td>{{ $request->travel_date }}</td>
                         <td>{{ $request->return_date }}</td>
-                        <td>{{ $request->adults }}</td>
-                        <td>{{ $request->children }}</td>
+                        <td>{{ $request->tourPurpose->name }}</td>
+                        <td>{{ $request->total_adults }}</td>
+                        <td>{{ $request->total_children }}</td>
                         <td>{{ $request->budget }}</td>
-                        <td>{{ $request->tour_pourpose }}</td>
                         <td>
                             @if ($request->status == 1)
                                 <label for="" class="badge bg-primary">Pending</label>
@@ -38,12 +38,11 @@
                         </td>
                         <td>
                             <div class="d-flex">
-                                <form action="{{ route('tour_request_rooms.index') }}" method="get">
+                                <form action="{{ route('tour_request_people.index') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="tour_request_id" value="{{ $request->id }}">
-                                    <button type="submit" class="btn btn-success btn-sm me-1">Rooms</button>
+                                    <button type="submit" class="btn btn-success btn-sm btn_show_locations me-1">People</button>
                                 </form>
-                                
                                 <form action="{{ route('tour_request_location.index') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="tour_request_id" value="{{ $request->id }}">
