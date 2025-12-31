@@ -82,4 +82,19 @@ class TourRequestPeopleController extends Controller
 
         return response()->json($data);
     }
+
+    public function removeRequestPeople(Request $request)
+    {
+        $tour_request_id = $request->input('tour_request_id');
+        $request_people_id = $request->input('request_people_id');
+
+        $request_people = TourRequestPeople::find($request_people_id);
+
+        $request_people->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'composition deleted successfully!',
+        ]);
+    }
 }//class

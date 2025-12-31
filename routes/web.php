@@ -130,6 +130,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-request-people', [TourRequestPeopleController::class, 'index'])->name('tour_request_people.index');
     Route::post('/storeRequestPeople', [TourRequestPeopleController::class, 'storeRequestPeople']);
     Route::get('/getAllRequestPeople', [TourRequestPeopleController::class, 'getAllRequestPeople']);
+    Route::post('/removeRequestPeople', [TourRequestPeopleController::class, 'removeRequestPeople']);
 
     //tour request location
     Route::get('/tour-request-location', [TourRequestLocationController::class, 'index'])->name('tour_request_location.index');

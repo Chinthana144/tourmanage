@@ -45,6 +45,14 @@
 
                 {{-- div table --}}
                 <div id="div_request_people"></div>
+
+                <h5 id="h5_totals"></h5>
+
+                <form action="{{ route('tour_request_location.index') }}" method="get">
+                    @csrf
+                    <input type="hidden" name="tour_request_id" value="{{ $tour_request->id }}">
+                    <button class="btn btn-primary">Continue</button>
+                </form>
             </div>
         </div>
     </div>
