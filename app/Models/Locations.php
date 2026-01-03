@@ -40,6 +40,11 @@ class Locations extends Model
         return $this->morphMany(TourRoutes::class, 'routable');
     }
 
+    public function item()
+    {
+        return $this->morphMany(TourRouteItems::class, 'item');
+    }
+
     public function activities()
     {
         return $this->hasMany(Activities::class, 'location_id');

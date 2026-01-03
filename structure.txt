@@ -127,6 +127,11 @@ main page design
 * activity delete button
 * tour request add plain ticket (optional)
 
+//new design
+tour_route_items
+tour_package_items
+tour_package_hotels
+
 schedule
 * get customer request
 * send email
