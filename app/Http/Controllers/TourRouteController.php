@@ -125,35 +125,35 @@ class TourRouteController extends Controller
         $tour_request_id = $tour->tour_request_id;
 
         //get input from rooms
-        $tour_rooms = TourRequestRooms::where('tour_request_id', $tour_request_id)->get();
+        // $tour_rooms = TourRequestRooms::where('tour_request_id', $tour_request_id)->get();
 
-        $night_price = 0;
-        $extra_bed_price = 0;
+        // $night_price = 0;
+        // $extra_bed_price = 0;
 
-        foreach($tour_rooms as $room)
-        {
-            TourRooms::create([
-                'tour_hotel_id' => $tour_hotel->id,
-                'room_type_id' => $room->room_type_id,
-                'bed_type_id' => $room->bed_type_id,
-                'base_adults' => $room->adult_count,
-                'base_children' => $room->children_count,
-                'room_quantity' => $room->room_quantity,
-                'price_per_night' => $request->input('night_price_'.$room->id),
-                'extra_bed_price' => $request->input('extra_bed_'.$room->id),
-            ]);
+        // foreach($tour_rooms as $room)
+        // {
+        //     TourRooms::create([
+        //         'tour_hotel_id' => $tour_hotel->id,
+        //         'room_type_id' => $room->room_type_id,
+        //         'bed_type_id' => $room->bed_type_id,
+        //         'base_adults' => $room->adult_count,
+        //         'base_children' => $room->children_count,
+        //         'room_quantity' => $room->room_quantity,
+        //         'price_per_night' => $request->input('night_price_'.$room->id),
+        //         'extra_bed_price' => $request->input('extra_bed_'.$room->id),
+        //     ]);
 
-            $night_price += floatval($request->input('night_price_'.$room->id)) * floatval($room->room_quantity) * $tour_hotel->nights;
-            $extra_bed_price += floatval($request->input('extra_bed_'.$room->id)) * floatval($room->extra_bed_count) * $tour_hotel->nights;
-        }//foreach
+        //     $night_price += floatval($request->input('night_price_'.$room->id)) * floatval($room->room_quantity) * $tour_hotel->nights;
+        //     $extra_bed_price += floatval($request->input('extra_bed_'.$room->id)) * floatval($room->extra_bed_count) * $tour_hotel->nights;
+        // }//foreach
 
-        //update tour hotel
-        $tour_hotel->hotel_total_price = $night_price + $extra_bed_price;
-        $tour_hotel->save();
+        // //update tour hotel
+        // $tour_hotel->hotel_total_price = $night_price + $extra_bed_price;
+        // $tour_hotel->save();
 
-        //update tour route
-        $tour_route->line_total = $night_price + $extra_bed_price;
-        $tour_route->save();
+        // //update tour route
+        // $tour_route->line_total = $night_price + $extra_bed_price;
+        // $tour_route->save();
 
         return redirect()->route('tour_route.index', ['hide_tour_id' => $tour_id])->with('success', 'Tour route added successfully!');
 

@@ -54,4 +54,23 @@ $(document).ready(function () {
             }
         });
     });
+
+    //add date
+    $("#tour_start_date").change(function(){
+        var startDate = new Date($(this).val());
+
+        var currentDate = new Date();
+
+        if(currentDate > startDate)
+        {
+            $("#tour_start_date").css('border-color', 'red');
+            $(this).val(currentDate);
+        }
+        else
+        {
+            $("#tour_start_date").css('border-color', 'green');
+        }
+        
+        $("#tour_end_date").val($(this).val());
+    });
 });//jQuery

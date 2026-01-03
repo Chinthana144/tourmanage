@@ -9,6 +9,7 @@ use App\Models\Customers;
 use App\Models\RoomTypes;
 use App\Models\TourPurposes;
 use App\Models\TourRequest;
+use App\Models\TourRequestPeople;
 use Illuminate\Http\Request;
 
 class TourRequestController extends Controller
@@ -84,12 +85,24 @@ class TourRequestController extends Controller
     public function getOneRequest(Request $request)
     {
         $tour_request_id = $request->input('tour_request_id');
-
         $tour_request = TourRequest::find($tour_request_id);
 
         $customer_id = $tour_request->customer_id;
-
         $customer = Customers::find($customer_id);
+
+        $request_peoples = TourRequestPeople::where('tour_request_id', $tour_request_id)->get();
+
+        $total_adults = 0;
+        $total_children = 0;
+
+        foreach ($request_peoples as $people) {
+            $total_adults += intval($people->adults);
+            $total_children += intval($people->children);
+        }
+
+        $tour_request->total_adults = $total_adults;
+        $tour_request->total_children = $total_children;
+        $tour_request->save();
 
         return response()->json([
             'id' => $tour_request->id,
@@ -99,8 +112,8 @@ class TourRequestController extends Controller
             'email' => $customer->email,
             'travel_date' => $tour_request->travel_date,
             'return_date' => $tour_request->return_date,
-            'adults' => $tour_request->adults,
-            'children' => $tour_request->children,
+            'adults' => $total_adults,
+            'children' => $total_children,
             'tour_pourpose' => $tour_request->tour_pourpose,
             'budget' => $tour_request->budget,
             'special_requests' => $tour_request->special_requests,

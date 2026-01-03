@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="{{ route('tour_request_rooms.store') }}" method="post">
+      <form action="" method="post">
         @csrf
         <div class="modal-body">
             <input type="hidden" name="tour_request_id" id="tour_request_id" value="{{ $tour_request->id }}">

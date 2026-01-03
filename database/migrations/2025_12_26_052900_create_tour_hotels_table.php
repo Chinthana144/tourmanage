@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tour_hotels', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tour_route_id');
+            $table->foreignId('tour_package_id');
             $table->foreignId('hotel_id');
             $table->foreignId('boarding_type_id');
             $table->date('check_in_date');

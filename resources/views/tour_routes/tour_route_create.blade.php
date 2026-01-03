@@ -75,20 +75,20 @@
             </table>
 
             <div class="border border-primary rounded p-2">
-                <div class="row">
-                    <div class="col-md-3">
-                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_location">Location</button>
-                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_hotel">Hotel</button>
-                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_restaurant">Restaurant</button>
-                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_activities">Activities</button>
-                        <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_travel">Travel</button>
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_location">Location</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_hotel">Hotel</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_restaurant">Restaurant</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_activities">Activities</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_travel">Travel</button>
+                </div>  
+                <p>
+                    Arrival: <b>{{ $tour->start_date }}</b> 
+                    Return: <b>{{ $tour->end_date }}</b>
+                </p>
 
-                        <p>
-                            Arrival: <b>{{ $tour->start_date }}</b><br>
-                            Return: <b>{{ $tour->end_date }}</b>
-                        </p>
-                    </div>
-                    <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
                         {{-- div Locations --}}
                         <div id="div_locations">
                             <h5 class="mt-2">Locations</h5>
@@ -155,12 +155,12 @@
                                     
                                     <div class="col-md-12 mt-2">
                                         <h6>
-                                            Customer Requested Rooms
+                                            Customer Requested Group Composition
                                             <button type="button" class="btn btn-primary float-end btn-sm" id="btn_open_add_room">Add Room</button>
                                         </h6>
                                     </div>
                                     {{-- rooms loaded by jQuery,  --}}
-                                    <div class="col-md-12 mt-2" id="hot_div_rooms"></div>
+                                    <div class="col-md-12 mt-2" id="hot_div_people"></div>
 
                                 </div>
                                 <button class="btn btn-primary float-end mt-3">Add Hotel & Rooms</button>

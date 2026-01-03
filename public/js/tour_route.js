@@ -222,12 +222,12 @@ $(document).ready(function () {
         var tour_request_id = $("#hot_tour_request_id").val();
 
         //load form
-        loadRequestRooms(tour_request_id);
+        loadRequestPeople(tour_request_id);
 
     });
 
     //edit click
-    $("#hot_div_rooms").on('click', '.btn_edit_room', function(){
+    $("#hot_div_people").on('click', '.btn_edit_room', function(){
         let id = $(this).data('room-id');
         let tourRequestID = $(this).data('request-id');
 
@@ -249,7 +249,7 @@ $(document).ready(function () {
                 $("#extra_bed_count").val(response.extra_bed_count);
                 $("#room_quantity").val(response.room_quantity);
 
-                loadRequestRooms(tourRequestID);
+                loadRequestPeople(tourRequestID);
             }
         });
     });
@@ -283,7 +283,7 @@ $(document).ready(function () {
                 // console.log(response);
                 $("#room_edit_modal").modal('hide');
 
-                loadRequestRooms(response.tour_request_id);
+                loadRequestPeople(response.tour_request_id);
             }
         });
     });
@@ -320,13 +320,13 @@ $(document).ready(function () {
                 console.log(response);
 
                 $("#room_add_modal").modal('hide');
-                loadRequestRooms(response.tour_request_id);
+                loadRequestPeople(response.tour_request_id);
             }
         });
     });
 
     //delete click
-    $("#hot_div_rooms").on('click', '.btn_delete_room', function(){
+    $("#hot_div_people").on('click', '.btn_delete_room', function(){
         let id = $(this).data('room-id');
         let tourRequestID = $(this).data('request-id');
 
@@ -341,7 +341,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response);
                 
-                loadRequestRooms(response.tour_request_id);
+                loadRequestPeople(response.tour_request_id);
             }   
         });
     });
@@ -499,66 +499,65 @@ $(document).ready(function () {
 
     //===================================== Hotels =============================//
     //load requested rooms
-    function loadRequestRooms(tourRequestID)
+    function loadRequestPeople(tourRequestID)
     {   
         $.ajax({
             type: "get",
-            url: "/getRequestRooms",
+            url: "/getAllRequestPeople",
             data: {
                 tour_request_id: tourRequestID,
             },
             // dataType: "dataType",
             success: function (response) {
                 // console.log(response);
-                var html_rooms = "<div class='border border-primary rounded mt-2 p-1' style='max-height:200; over-flow:scroll;'>";
+                var html_people = "<div class='border border-primary rounded mt-2 p-1' style='max-height:200; over-flow:scroll;'>";
                 $.each(response, function (key, val) { 
-                    html_rooms += "<input type='hidden' name='hide_room_"+val.id+"' value='"+ val.id +"'>";
-                    html_rooms += "<div class='row'>";
+                    html_people += "<input type='hidden' name='hide_room_"+val.id+"' value='"+ val.id +"'>";
+                    html_people += "<div class='row'>";
                     
-                    html_rooms += "<div class='col-md-2'>";
-                    html_rooms += "<p>";
-                    html_rooms += "<b>" + val.room_type_name +"</b><br>";
-                    html_rooms += "<b>" + val.bed_type_name +"</b>";
-                    html_rooms += "</p>";
-                    html_rooms += "</div>";
+                    html_people += "<div class='col-md-2'>";
+                    html_people += "<p>";
+                    html_people += "<b>" + val.composition +"</b>";
+                    html_people += "</p>";
+                    html_people += "</div>";
 
-                    html_rooms += "<div class='col-md-2'>";
-                    html_rooms += "<p>";
-                    html_rooms += "Adults: <b>" + val.adult_count +"</b><br>";
-                    html_rooms += "Children: <b>" + val.children_count +"</b>";
-                    html_rooms += "</p>";
-                    html_rooms += "</div>";
+                    html_people += "<div class='col-md-2'>";
+                    html_people += "<p>";
+                    html_people += "Adults: <b>" + val.adults +"</b><br>";
+                    html_people += "Children: <b>" + val.children +"</b>";
+                    html_people += "</p>";
+                    html_people += "</div>";
 
-                    html_rooms += "<div class='col-md-2'>";
-                    html_rooms += "<p>";
-                    html_rooms += "Extra beds: <b>" + val.extra_bed_count +"</b><br>";
-                    html_rooms += "Rooms: <b>" + val.room_quantity +"</b>";
-                    html_rooms += "</p>";
-                    html_rooms += "</div>";
+                    html_people += "<div class='col-md-2'>";
+                    html_people += "<p>";
+                    html_people += "Extra beds: <b>" + val.extra_bed +"</b><br>";
+                    html_people += "Rooms: <b>" + val.quantity +"</b>";
+                    html_people += "</p>";
+                    html_people += "</div>";
 
-                    html_rooms += "<div class='col-md-2'>";
-                    html_rooms += "<label for=''>Price Per night</label>";
-                    html_rooms += "<input type='number' step='0.01' name='night_price_"+val.id+"' class='form-control' required>";
-                    html_rooms += "</div>";
+                    html_people += "<div class='col-md-2'>";
+                    html_people += "<label for=''>Price Per night</label>";
+                    html_people += "<input type='number' step='0.01' name='night_price_"+val.id+"' class='form-control' required>";
+                    html_people += "</div>";
 
-                    html_rooms += "<div class='col-md-2'>";
-                    html_rooms += "<label for=''>Price extra bed</label>";
-                    html_rooms += "<input type='number' step='0.01' name='extra_bed_"+val.id+"' class='form-control' required>";
-                    html_rooms += "</div>";
+                    html_people += "<div class='col-md-2'>";
+                    html_people += "<label for=''>Price extra bed</label>";
+                    html_people += "<input type='number' step='0.01' name='extra_bed_"+val.id+"' class='form-control' required>";
+                    html_people += "</div>";
 
-                    html_rooms += "<div class='col-md-2'>";
-                    html_rooms += "<div class='d-flex'>";
-                    html_rooms += "<button data-room-id='"+ val.id +"' data-request-id='"+tourRequestID+"' type='button' class='btn btn-warning btn-sm mt-3 btn_edit_room'><i class='bx bx-edit'></i></button>";
-                    html_rooms += "<button data-room-id='"+ val.id +"' data-request-id='"+tourRequestID+"' type='button' class='btn btn-danger btn-sm mt-3 ms-1 btn_delete_room'><i class='bx bx-trash'></i></button>";
-                    html_rooms += "</div>";
-                    html_rooms += "</div>";
+                    html_people += "<div class='col-md-2'>";
+                    html_people += "<div class='d-flex'>";
+                    html_people += "<button data-room-id='"+ val.id +"' data-request-id='"+tourRequestID+"' type='button' class='btn btn-warning btn-sm mt-3 btn_edit_room'><i class='bx bx-edit'></i></button>";
+                    html_people += "<button data-room-id='"+ val.id +"' data-request-id='"+tourRequestID+"' type='button' class='btn btn-danger btn-sm mt-3 ms-1 btn_delete_room'><i class='bx bx-trash'></i></button>";
+                    html_people += "</div>";
+                    html_people += "</div>";
 
-                    html_rooms += "</div>";
+                    html_people += "</div>";
                 });
 
-                html_rooms += "</div>";
+                html_people += "</div>";
 
-                $("#hot_div_rooms").html(html_rooms);
+                $("#hot_div_people").html(html_people);
             }
         });
     }//load requested rooms

@@ -8,6 +8,7 @@ class TourHotels extends Model
 {
     protected $fillable = [
         'tour_route_id',
+        'tour_package_id',
         'hotel_id',
         'boarding_type_id',
         'check_in_date',
@@ -29,5 +30,10 @@ class TourHotels extends Model
     public function boardingType()
     {
         return $this->belongsTo(BoardingType::class, 'boarding_type_id');
+    }
+
+    public function tourPackage()
+    {
+        return $this->belongsTo(TourPackages::class, 'tour_package_id');
     }
 }//class

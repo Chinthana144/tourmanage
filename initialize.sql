@@ -2376,3 +2376,9 @@ INSERT INTO `group_compositions`(`name`) VALUES
 ('Couples'),
 ('Families'),
 ('Friends');
+
+-- add tour packages
+INSERT INTO `tour_packages`(`name`) VALUES
+('Standard'),
+('Comfort'),
+('Premium');

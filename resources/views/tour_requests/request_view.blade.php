@@ -51,7 +51,7 @@
                             
                                 <button class="btn btn-warning btn-sm btn_edit_request"><i class="bx bx-edit"></i></button>
 
-                                <button class="btn btn-primary btn-sm ms-1 btn_add_tour"><i class="bx bx-plus"></i> Tour</button>
+                                <button class="btn btn-primary btn-sm ms-1 btn_add_tour"><i class="bx bx-plus"></i> New Tour</button>
                             </div>
                         </td>
                     </tr>                    
