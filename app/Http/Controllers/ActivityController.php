@@ -12,26 +12,19 @@ use Illuminate\Http\Request;
 class ActivityController extends Controller
 {
     public function index(Request $request)
-    {   
-        $location_id = $request->input('hide_location_id');
-
-        $location = Locations::find($location_id);
-
+    {  
         $categories = ActivityCategories::all();
         $times = ActivityTimes::all();
         $price_types = ActivityPrices::all();
 
-        $activities = Activities::where('location_id', $location_id)->get();
+        $activities = Activities::all();
 
-        return view('activities.activities_view', compact('location', 'activities', 'categories', 'times', 'price_types'));
+        return view('activities.activities_view', compact('activities', 'categories', 'times', 'price_types'));
     }//index
 
     public function store(Request $request)
     {
-        $location_id = $request->input('hide_location_id');
-
         Activities::create([
-            'location_id' => $request->input('hide_location_id'),
             'name' => $request->input('txt_name'),
             'category_id' => $request->input('cmb_category'),
             'description' => $request->input('txt_description'),
@@ -48,13 +41,12 @@ class ActivityController extends Controller
             'status' => $request->has('chk_status') ? 1 : 0,
         ]);
 
-        return redirect()->route('activities.index', ['hide_location_id' => $location_id])->with('success', 'Activity added successfullt!');
+        return redirect()->route('activities.index')->with('success', 'Activity added successfullt!');
 
     }//store
 
     public function update(Request $request)
     {
-        $location_id = $request->input('hide_location_id');
         $activity_id = $request->input('hide_activity_id');
 
         $activity = Activities::find($activity_id);
@@ -76,7 +68,7 @@ class ActivityController extends Controller
 
         $activity->save();
 
-        return redirect()->route('activities.index', ['hide_location_id' => $location_id])->with('success', 'Activity updated successfullt!');
+        return redirect()->route('activities.index')->with('success', 'Activity updated successfullt!');
 
     }//update
 

@@ -9,7 +9,6 @@
       <form action="{{ route('activities.update') }}" method="post">
         @csrf
         @method('PUT')
-        <input type="hidden" name="hide_location_id" id="hide_location_id" value="{{ $location->id }}">
         <input type="hidden" name="hide_activity_id" id="hide_activity_id">
         <div class="modal-body">
           <div class="row">

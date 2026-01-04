@@ -8,7 +8,6 @@
 
       <form action="{{ route('activities.store') }}" method="post">
         @csrf
-        <input type="hidden" name="hide_location_id" value="{{ $location->id }}">
         <div class="modal-body">
           <div class="row">
             <div class="col-md-6">

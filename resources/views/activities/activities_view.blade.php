@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h5>
-                Activities of {{$location->name}}
+                Activities
                 <button id="btn_add_activity" class="btn btn-primary btn-sm float-end">Add Activity</button>
             </h5>
         </div>
