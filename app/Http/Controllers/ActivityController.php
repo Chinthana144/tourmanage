@@ -81,6 +81,13 @@ class ActivityController extends Controller
         return response()->json($activities);
     }//getOneActivity   
 
+    public function getActivities()
+    {
+        $activities = Activities::all();
+
+        return response()->json($activities);
+    }//getActivities
+
     public function getActivitybyLocation(Request $request)
     {
         $location_id = $request->input('location_id');

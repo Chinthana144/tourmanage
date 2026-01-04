@@ -25,14 +25,20 @@
                                     <span class="badge bg-primary">Location</span>    
                                 @break
                                 @case('App\Models\Hotels')
-                                    <span class="badge bg-primary">Hotel</span> 
+                                    <span class="badge bg-success">Hotel</span> 
                                 @break
                                 @case('App\Models\Restaurants')
-                                    <span class="badge bg-primary">Restaurant</span> 
+                                    <span class="badge bg-warning">Restaurant</span> 
+                                @break
+                                @case('App\Models\Activities')
+                                    <span class="badge bg-info">Activity</span> 
+                                @break
+                                @case('App\Models\TravelMedia')
+                                    <span class="badge bg-secondary">Travel</span>
                                 @break
                                 @default
                                     <span class="badge bg-secondary">Unidentified</span>
-                                    
+                                
                             @endswitch
                         </td>
                         <td>{{ $item->item->name }}</td>
@@ -129,6 +135,54 @@
                             </div>
                         </div>
                         <button class="btn btn-primary float-end mt-2">Add Hotel</button>
+                    </form>
+                </div>
+
+                {{-- Activities --}}
+                <div id="div_activities">
+                    <form action="{{ route('route_items.activity_store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                        <div class="row mt-2">
+                            <h5>Activities</h5>
+                            <div class="col-md-6">
+                                <label for="">Day No</label>
+                                <input type="number" name="act_day_no" id="act_day_no" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Select Activity</label>
+                                <select name="act_cmb_activities" id="act_cmb_activities" class="form-select"></select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="">Note</label>
+                                <textarea name="act_note" id="act_note" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary float-end mt-2">Add Activity</button>
+                    </form>
+                </div>
+
+                {{-- Travel --}}
+                <div id="div_travel">
+                    <form action="{{ route('route_items.travel_store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                        <div class="row mt-2">
+                            <h5>Travel Media</h5>
+                            <div class="col-md-6">
+                                <label for="">Day No</label>
+                                <input type="number" name="tvl_day_no" id="tvl_day_no" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Select Travel Media</label>
+                                <select name="tvl_cmb_travel" id="tvl_cmb_travel" class="form-select"></select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="">Note</label>
+                                <textarea name="tvl_note" id="tvl_note" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary float-end mt-2">Add Travel Media</button>
                     </form>
                 </div>
 

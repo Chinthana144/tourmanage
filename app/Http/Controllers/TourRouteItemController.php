@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activities;
 use App\Models\Hotels;
 use App\Models\Locations;
 use App\Models\Restaurants;
 use App\Models\TourRouteItems;
 use App\Models\Tours;
+use App\Models\TravelMedia;
 use Illuminate\Http\Request;
 
 class TourRouteItemController extends Controller
@@ -81,6 +83,45 @@ class TourRouteItemController extends Controller
 
         return redirect()->route('tour_route_items.index', ['hide_tour_id' => $tour_id]);
     }//restaurant store
+
+    public function activityStore(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $item_id = $request->input('act_cmb_activities');
+
+        $order_no = TourRouteItems::where('tour_id', $tour_id)->count();
+
+        TourRouteItems::create([
+            'tour_id' => $tour_id, 
+            'day_no' => $request->input('act_day_no'),
+            'order_no' => $order_no + 1,
+            'item_type' => Activities::class,
+            'item_id' => $request->input('act_cmb_activities'),
+            'notes' => $request->input('act_note'),
+            'is_optional' => 0,
+        ]);
+
+        return redirect()->route('tour_route_items.index', ['hide_tour_id' => $tour_id]);
+    }//activity store
+
+    public function travelStore(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+
+        $order_no = TourRouteItems::where('tour_id', $tour_id)->count();
+
+        TourRouteItems::create([
+            'tour_id' => $tour_id, 
+            'day_no' => $request->input('tvl_day_no'),
+            'order_no' => $order_no + 1,
+            'item_type' => TravelMedia::class,
+            'item_id' => $request->input('tvl_cmb_travel'),
+            'notes' => $request->input('tvl_note'),
+            'is_optional' => 0,
+        ]);
+
+        return redirect()->route('tour_route_items.index', ['hide_tour_id' => $tour_id]);
+    }//travel store
 
     //remove tour route item
     public function destroy(Request $request)

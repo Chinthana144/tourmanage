@@ -162,6 +162,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/update-activities', [ActivityController::class, 'update'])->name('activities.update');
     Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
     Route::get('/getActivitybyLocation', [ActivityController::class, 'getActivitybyLocation']);
+    Route::get('/getActivities', [ActivityController::class, 'getActivities']);
     
     //tours
     Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
@@ -171,11 +172,11 @@ Route::middleware('auth')->group(function () {
 
     //tour route
     Route::get('/tour-routes', [TourRouteController::class, 'index'])->name('tour_route.index');
-    Route::post('/activityStore', [TourRouteController::class, 'activityStore'])->name('tour_route.activity_store');
+    // Route::post('/activityStore', [TourRouteController::class, 'activityStore'])->name('tour_route.activity_store');
     // Route::post('/locationStore', [TourRouteController::class, 'locationStore'])->name('tour_route.location_store');
     // Route::post('/hotelStore', [TourRouteController::class, 'hotelStore'])->name('tour_route.hotel_store');
-    Route::post('/restaurantStore', [TourRouteController::class, 'restaurantStore'])->name('tour_route.restaurant_store');
-    Route::post('/travelStore', [TourRouteController::class, 'travelStore'])->name('tour_route.travel_store');
+    // Route::post('/restaurantStore', [TourRouteController::class, 'restaurantStore'])->name('tour_route.restaurant_store');
+    // Route::post('/travelStore', [TourRouteController::class, 'travelStore'])->name('tour_route.travel_store');
     Route::delete('/route-destroy', [TourRouteController::class, 'destroy'])->name('tour_route.destroy');
     Route::post('/route-orderUp', [TourRouteController::class, 'orderUp'])->name('tour_route.order_up');
     Route::post('/route-orderDown', [TourRouteController::class, 'orderDown'])->name('tour_route.order_down');
@@ -186,6 +187,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/locationStore', [TourRouteItemController::class, 'locationStore'])->name('route_items.location_store');
     Route::post('/hotelStore', [TourRouteItemController::class, 'hotelStore'])->name('route_items.hotel_store');
     Route::post('/restaurantStore', [TourRouteItemController::class, 'restaurantStore'])->name('route_items.restaurant_store');
+    Route::post('/activityStore', [TourRouteItemController::class, 'activityStore'])->name('route_items.activity_store');
+    Route::post('/travelStore', [TourRouteItemController::class, 'travelStore'])->name('route_items.travel_store');
     Route::post('route-item-delete', [TourRouteItemController::class, 'destroy'])->name('route_items.destroy');
 });
 
