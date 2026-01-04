@@ -31,16 +31,25 @@ class TourRouteItemController extends Controller
 
         $order_no = TourRouteItems::where('tour_id', $tour_id)->count();
 
-        TourRouteItems::create([
-            'tour_id' => $tour_id, 
-            'day_no' => $request->input('loc_day_no'),
-            'order_no' => $order_no + 1,
-            'item_type' => Locations::class,
-            'item_id' => $request->input('loc_cmb_locations'),
-            'notes' => $request->input('loc_note'),
-            'is_optional' => 0,
-        ]);
-
+        //validate location ID
+        if($item_id > 0)
+        {
+            TourRouteItems::create([
+                'tour_id' => $tour_id, 
+                'day_no' => $request->input('loc_day_no'),
+                'order_no' => $order_no + 1,
+                'item_type' => Locations::class,
+                'item_id' => $request->input('loc_cmb_locations'),
+                'notes' => $request->input('loc_note') ?? "no note",
+                'is_optional' => 0,
+            ]);
+        }//has location
+        else
+        {
+            //redirect back with error message
+            return redirect()->route('tour_route_items.index', ['hide_tour_id' => $tour_id])->with('error', 'Please select a valid location.');
+        }
+    
         return redirect()->route('tour_route_items.index', ['hide_tour_id' => $tour_id]);
     }//location store
 

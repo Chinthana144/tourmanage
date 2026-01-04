@@ -38,7 +38,7 @@
                                 @break
                                 @default
                                     <span class="badge bg-secondary">Unidentified</span>
-                                
+
                             @endswitch
                         </td>
                         <td>{{ $item->item->name }}</td>
@@ -65,28 +65,30 @@
                 </div>
 
                 {{-- Location --}}
-                <div id="div_locations" class="container container-md">
+                <div id="div_locations">
                     <form action="{{ route('route_items.location_store') }}" method="post">
                         @csrf
                         <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                         
                         <div class="row mt-2">
                             <h5>Locations</h5>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Day No</label>
-                                <input type="number" name="loc_day_no" id="loc_day_no" class="form-control">
+                                <input type="number" name="loc_day_no" id="loc_day_no" class="form-control" required>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Select Location</label>
                                 <select name="loc_cmb_locations" id="loc_cmb_locations" class="form-select"></select>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <label for="">Note</label>
-                                <textarea name="loc_note" id="loc_note" cols="30" rows="3" class="form-control"></textarea>
+                                {{-- <textarea name="loc_note" id="loc_note" cols="30" rows="3" class="form-control"></textarea> --}}
+                                <input type="text" name="loc_note" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary float-end mt-4 w-100">Add Location</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary float-end mt-2">Add Location</button>
-                        
                     </form>
                 </div>
 
@@ -97,20 +99,24 @@
                         <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                         <div class="row mt-2">
                             <h5>Hotels</h5>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Day No</label>
                                 <input type="number" name="hot_day_no" id="hot_day_no" class="form-control">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Select Location</label>
                                 <select name="hot_cmb_hotels" id="hot_cmb_hotels" class="form-select"></select>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <label for="">Note</label>
-                                <textarea name="hot_note" id="hot_note" cols="30" rows="3" class="form-control"></textarea>
+                                {{-- <textarea name="hot_note" id="hot_note" cols="30" rows="3" class="form-control"></textarea> --}}
+                                <input type="text" name="hot_note" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary float-end mt-4 w-100">Add Hotel</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary float-end mt-2">Add Hotel</button>
+                        
                     </form>
                 </div>
 
@@ -121,20 +127,23 @@
                         <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                         <div class="row mt-2">
                             <h5>Restaurants</h5>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Day No</label>
                                 <input type="number" name="res_day_no" id="res_day_no" class="form-control">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Select Location</label>
                                 <select name="res_cmb_restaurants" id="res_cmb_restaurants" class="form-select"></select>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <label for="">Note</label>
-                                <textarea name="res_note" id="res_note" cols="30" rows="3" class="form-control"></textarea>
+                                {{-- <textarea name="res_note" id="res_note" cols="30" rows="3" class="form-control"></textarea> --}}
+                                <input type="text" name="res_note" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary float-end mt-2 w-100">Add Restaurant</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary float-end mt-2">Add Hotel</button>
                     </form>
                 </div>
 
@@ -145,20 +154,24 @@
                         <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                         <div class="row mt-2">
                             <h5>Activities</h5>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Day No</label>
                                 <input type="number" name="act_day_no" id="act_day_no" class="form-control">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Select Activity</label>
                                 <select name="act_cmb_activities" id="act_cmb_activities" class="form-select"></select>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <label for="">Note</label>
-                                <textarea name="act_note" id="act_note" cols="30" rows="3" class="form-control"></textarea>
+                                {{-- <textarea name="act_note" id="act_note" cols="30" rows="3" class="form-control"></textarea> --}}
+                                <input type="text" name="act_note" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary float-end mt-2 w-100">Add Activity</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary float-end mt-2">Add Activity</button>
+                        
                     </form>
                 </div>
 
@@ -169,24 +182,34 @@
                         <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                         <div class="row mt-2">
                             <h5>Travel Media</h5>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Day No</label>
                                 <input type="number" name="tvl_day_no" id="tvl_day_no" class="form-control">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <label for="">Select Travel Media</label>
                                 <select name="tvl_cmb_travel" id="tvl_cmb_travel" class="form-select"></select>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-3">
                                 <label for="">Note</label>
-                                <textarea name="tvl_note" id="tvl_note" cols="30" rows="3" class="form-control"></textarea>
+                                <input type="text" name="tvl_note" class="form-control">
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary float-end mt-2 w-100">Add Travel Media</button>
                             </div>
                         </div>
-                        <button class="btn btn-primary float-end mt-2">Add Travel Media</button>
                     </form>
                 </div>
-
             </div>
+
+            <div class="mt-2">
+                <form action="" method="get">
+                    @csrf
+                    <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                    <button class="btn btn-primary float-end">Continue</button>
+                </form>
+            </div>
+
         </div>
     </div>
 

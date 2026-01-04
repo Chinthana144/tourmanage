@@ -2382,3 +2382,10 @@ INSERT INTO `tour_packages`(`name`) VALUES
 ('Standard'),
 ('Comfort'),
 ('Premium');
+
+-- add price modes
+INSERT INTO `price_modes`(`name`) VALUES
+('Per Person'),
+('Per Group'),
+('Per Day'),
+('Flat');
