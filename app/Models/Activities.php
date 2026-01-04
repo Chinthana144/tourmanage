@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Activities extends Model
 {
     protected $fillable = [
-        'location_id',
         'name',
         'category_id', //adventure, cultural, wildlife, leisure
         'description',

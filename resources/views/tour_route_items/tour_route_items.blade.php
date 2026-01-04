@@ -24,8 +24,11 @@
                                 @case('App\Models\Locations')
                                     <span class="badge bg-primary">Location</span>    
                                 @break
-                                @case(2)
-                                    
+                                @case('App\Models\Hotels')
+                                    <span class="badge bg-primary">Hotel</span> 
+                                @break
+                                @case('App\Models\Restaurants')
+                                    <span class="badge bg-primary">Restaurant</span> 
                                 @break
                                 @default
                                     <span class="badge bg-secondary">Unidentified</span>
@@ -55,6 +58,7 @@
                     <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_travel">Travel</button>
                 </div>
 
+                {{-- Location --}}
                 <div id="div_locations" class="container container-md">
                     <form action="{{ route('route_items.location_store') }}" method="post">
                         @csrf
@@ -76,8 +80,58 @@
                             </div>
                         </div>
                         <button class="btn btn-primary float-end mt-2">Add Location</button>
+                        
                     </form>
                 </div>
+
+                {{-- Hotels --}}
+                <div id="div_hotels">
+                    <form action="{{ route('route_items.hotel_store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                        <div class="row mt-2">
+                            <h5>Hotels</h5>
+                            <div class="col-md-6">
+                                <label for="">Day No</label>
+                                <input type="number" name="hot_day_no" id="hot_day_no" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Select Location</label>
+                                <select name="hot_cmb_hotels" id="hot_cmb_hotels" class="form-select"></select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="">Note</label>
+                                <textarea name="hot_note" id="hot_note" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary float-end mt-2">Add Hotel</button>
+                    </form>
+                </div>
+
+                {{-- Restaurants --}}
+                <div id="div_restaurants">
+                    <form action="{{ route('route_items.restaurant_store') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
+                        <div class="row mt-2">
+                            <h5>Restaurants</h5>
+                            <div class="col-md-6">
+                                <label for="">Day No</label>
+                                <input type="number" name="res_day_no" id="res_day_no" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Select Location</label>
+                                <select name="res_cmb_restaurants" id="res_cmb_restaurants" class="form-select"></select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="">Note</label>
+                                <textarea name="res_note" id="res_note" cols="30" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary float-end mt-2">Add Hotel</button>
+                    </form>
+                </div>
+
             </div>
         </div>
     </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hotels;
 use App\Models\Locations;
+use App\Models\Restaurants;
 use App\Models\TourRouteItems;
 use App\Models\Tours;
 use Illuminate\Http\Request;
@@ -39,6 +41,46 @@ class TourRouteItemController extends Controller
 
         return redirect()->route('tour_route_items.index', ['hide_tour_id' => $tour_id]);
     }//location store
+
+    public function hotelStore(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $item_id = $request->input('hot_cmb_hotels');
+
+        $order_no = TourRouteItems::where('tour_id', $tour_id)->count();
+
+        TourRouteItems::create([
+            'tour_id' => $tour_id, 
+            'day_no' => $request->input('hot_day_no'),
+            'order_no' => $order_no + 1,
+            'item_type' => Hotels::class,
+            'item_id' => $request->input('hot_cmb_hotels'),
+            'notes' => $request->input('hot_note'),
+            'is_optional' => 0,
+        ]);
+
+        return redirect()->route('tour_route_items.index', ['hide_tour_id' => $tour_id]);
+    }//hotel store
+
+    public function restaurantStore(Request $request)
+    {
+        $tour_id = $request->input('hide_tour_id');
+        $item_id = $request->input('res_cmb_restaurants');
+
+        $order_no = TourRouteItems::where('tour_id', $tour_id)->count();
+
+        TourRouteItems::create([
+            'tour_id' => $tour_id, 
+            'day_no' => $request->input('res_day_no'),
+            'order_no' => $order_no + 1,
+            'item_type' => Restaurants::class,
+            'item_id' => $request->input('res_cmb_restaurants'),
+            'notes' => $request->input('res_note'),
+            'is_optional' => 0,
+        ]);
+
+        return redirect()->route('tour_route_items.index', ['hide_tour_id' => $tour_id]);
+    }//restaurant store
 
     //remove tour route item
     public function destroy(Request $request)
