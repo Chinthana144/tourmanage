@@ -30,6 +30,11 @@ class TourRequest extends Model
         return $this->hasMany(Tours::class, 'tour_request_id');
     }
 
+    public function tourRequestPeople()
+    {
+        return $this->hasMany(TourRequestPeople::class, 'tour_request_id');
+    }
+
     public function tourPurpose()
     {
         return $this->belongsTo(TourPurposes::class, 'tour_purpose_id');

@@ -83,6 +83,15 @@ class TourRequestPeopleController extends Controller
         return response()->json($data);
     }
 
+    //get one tour people
+    public function getOneRequestPeople(Request $request)
+    {
+        $request_people_id = $request->input('request_people_id');
+        $request_people = TourRequestPeople::find($request_people_id);
+
+        return response()->json($request_people);
+    }//get one request people
+
     public function removeRequestPeople(Request $request)
     {
         $tour_request_id = $request->input('tour_request_id');

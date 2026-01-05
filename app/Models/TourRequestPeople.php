@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TourRequestPeople extends Model
 {
     protected $fillable = [
+        'tour_request_id',
         'group_composition_id',
         'adults',
         'children',
@@ -17,5 +18,10 @@ class TourRequestPeople extends Model
     public function groupComposition()
     {
         return $this->belongsTo(GroupComposition::class, 'group_composition_id');
+    }
+
+    public function tourRequest()
+    {
+        return $this->belongsTo(TourRequest::class, 'tour_request_id');
     }
 }//class

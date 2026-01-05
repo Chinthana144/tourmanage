@@ -203,7 +203,7 @@
             </div>
 
             <div class="mt-2">
-                <form action="" method="get">
+                <form action="{{ route('tour_package_items.index') }}" method="get">
                     @csrf
                     <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                     <button class="btn btn-primary float-end">Continue</button>

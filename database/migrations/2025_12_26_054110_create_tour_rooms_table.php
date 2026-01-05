@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('tour_rooms', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('tour_route_item_id')->constrained('tour_route_items')->onDelete('cascade');
             $table->foreignId('tour_hotel_id');
+            $table->foreignId('tour_package_id');
             $table->foreignId('room_type_id');
             $table->foreignId('bed_type_id');
             $table->integer('base_adults');

@@ -53,4 +53,9 @@ class Hotels extends Model
     {
         return $this->morphMany(PackageRoutes::class, 'stoppable');
     }
+
+    public function tourRooms()
+    {
+        return $this->hasMany(TourRooms::class, 'tour_hotel_id');
+    }
 }

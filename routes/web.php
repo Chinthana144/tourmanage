@@ -15,10 +15,12 @@ use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
+use App\Http\Controllers\TourPackageItemController;
 use App\Http\Controllers\TourRequestController;
 use App\Http\Controllers\TourRequestLocationController;
 use App\Http\Controllers\TourRequestPeopleController;
 use App\Http\Controllers\TourRequestRoomController;
+use App\Http\Controllers\TourRoomController;
 use App\Http\Controllers\TourRouteController;
 use App\Http\Controllers\TourRouteItemController;
 use App\Http\Controllers\TravelMediaController;
@@ -131,6 +133,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-request-people', [TourRequestPeopleController::class, 'index'])->name('tour_request_people.index');
     Route::post('/storeRequestPeople', [TourRequestPeopleController::class, 'storeRequestPeople']);
     Route::get('/getAllRequestPeople', [TourRequestPeopleController::class, 'getAllRequestPeople']);
+    Route::get('/getOneRequestPeople', [TourRequestPeopleController::class, 'getOneRequestPeople']);
     Route::post('/removeRequestPeople', [TourRequestPeopleController::class, 'removeRequestPeople']);
 
     //tour request location
@@ -190,6 +193,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/activityStore', [TourRouteItemController::class, 'activityStore'])->name('route_items.activity_store');
     Route::post('/travelStore', [TourRouteItemController::class, 'travelStore'])->name('route_items.travel_store');
     Route::post('route-item-delete', [TourRouteItemController::class, 'destroy'])->name('route_items.destroy');
+
+    //tour package items
+    Route::get('/tour-package-items', [TourPackageItemController::class, 'index'])->name('tour_package_items.index');
+
+    //tour rooms
+    Route::post('/store-tour-room', [TourRoomController::class, 'store'])->name('tour_request_room.store');
 });
 
 // Route::get('/template', function () {
