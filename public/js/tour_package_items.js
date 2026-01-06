@@ -6,14 +6,57 @@ $(document).ready(function () {
     });
 
 
-    $("#div_main").on('click', '.btn_add_room', function () {
+    $("#div_main").on('click', '.btn_add_hotel_price', function () {
         var routeID = $(this).data('route-id');
         var packageID = $(this).data('package-id');
+        var hotelID = $(this).data('hotel-id');
 
-        $("#room_add_modal").modal('toggle');
+        $("#hotel_add_modal").modal('toggle');
 
-        $("#tour_route_item_id").val(routeID);
-        $("#tour_package_id").val(packageID);
+        $("$hot_package_id").val(packageID);
+
+        switch (packageID) {
+            case  1:
+                $("#hotel_add_modal .modal-title").text("Standard Hotel Package");
+            break;
+            case 2:
+                $("#hotel_add_modal .modal-title").text("Comfort Hotel Package");
+            break;
+            case 3:
+                $("#hotel_add_modal .modal-title").text("Premium Hotel Package");
+            break;
+        
+            default:
+                $("#hotel_add_modal .modal-title").text("Hotel Package");
+            break;
+        }//switch
+        
+        //get hotel facilities
+        $.ajax({
+            type: "get",
+            url: "/getHotelFacilities",
+            data: {
+                hotel_id: hotelID
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                var htmlfacilities = "<div class='row mt-2'>";
+
+                $.each(response, function (key, val) { 
+                    htmlfacilities +="<div class='col-md-4'>";
+                    htmlfacilities +="<div class='form-check form-switch'>";
+                    htmlfacilities +="<input class='form-check-input' type='checkbox' role='switch' id='chk_facility_"+val.facility_id+"'>";
+                    htmlfacilities +="<label class='form-check-label' for='chk_facility_"+val.facility_id+"'>"+val.name+"</label>";
+                    htmlfacilities +="</div>";
+                    htmlfacilities +="</div>";
+                });
+
+                htmlfacilities +="</div>";
+
+                $("#div_hotel_facilities").html(htmlfacilities);
+            }
+        });
     });
 
     $("#div_main").on('click', '.btn_add_room_price', function(){
@@ -77,6 +120,9 @@ $(document).ready(function () {
         });
     });
 
-    //=========================== Functions ===========================//
-    
+    $("#div_main").on('click', '.btn_open', function(){
+        var routeID = $(this).data('route-id');
+
+        $("#div_room_packages_" + routeID).toggleClass('d-none');
+    });
 });//jQuery

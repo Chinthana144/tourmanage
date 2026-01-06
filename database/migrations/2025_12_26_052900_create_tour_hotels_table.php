@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('check_out_date');
             $table->integer('nights');
             $table->decimal('hotel_total_price', 10,2);
+            $table->json('facilities')->nullable();
             $table->timestamps();
         });
     }

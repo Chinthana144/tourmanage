@@ -6,7 +6,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="" method="post">
+      <form action="{{ route('tour_request_room.store') }}" method="post">
         @csrf
         <div class="modal-body">
             <input type="hidden" name="tour_package_id" id="tour_package_id">
@@ -48,7 +48,7 @@
 
         <div class="modal-footer">
             {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-            <button type="button" class="btn btn-primary" id="btn_add_room">Add Room</button>
+            <button type="submit" class="btn btn-primary" id="btn_add_room">Add Room</button>
         </div>
       </form>
 

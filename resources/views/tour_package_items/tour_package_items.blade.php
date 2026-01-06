@@ -32,9 +32,268 @@
                                         </div>
                                     </div>
                                 @break
+                                {{-- --------------------------------------- HOTELS ----------------------------------- --}}
                                 @case('App\Models\Hotels')
-                                    
+
+                                {{-- Hotels --}}
+                                <h5>
+                                    Hotel Packages
+                                    <button type="button" class="btn btn-success btn-sm float-end btn_open_hotel" data-route-id="{{ $item->id }}">Toggle</button>
+                                </h5>
+                                <div id="div_hotel_packaged_{{$item->id}}" class="mb-2">
                                     <div class="row">
+                                        <div class="col-md-4 p-1">
+                                            <button class="btn btn-success btn_add_hotel_price" data-route-id="{{ $item->id }}" data-package-id="1" data-hotel-id="{{ $item->item->id }}">Add Hotel Price</button>
+                                            
+                                        </div>
+                                        <div class="col-md-4">
+                                            comfort
+                                        </div>
+                                        <div class="col-md-4">
+                                            premium
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- ROOMS --}}
+                                <h5>
+                                    Room Packages
+                                    <button type="button" class="btn btn-success btn-sm float-end btn_open" data-route-id="{{ $item->id }}">Open</button>
+                                </h5>
+                                    <div id="div_room_packages_{{ $item->id }}" class="mb-3 fadein">
+                                        <ul class="nav nav-tabs" id="packageTabs" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active"
+                                                        id="standard-tab"
+                                                        data-bs-toggle="tab"
+                                                        data-bs-target="#room_standard_{{ $item->id }}"
+                                                        type="button"
+                                                        role="tab">
+                                                    Standard
+                                                </button>
+                                            </li>
+
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link"
+                                                        id="comfort-tab"
+                                                        data-bs-toggle="tab"
+                                                        data-bs-target="#room_comfort_{{ $item->id }}"
+                                                        type="button"
+                                                        role="tab">
+                                                    Comfort
+                                                </button>
+                                            </li>
+
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link"
+                                                        id="premium-tab"
+                                                        data-bs-toggle="tab"
+                                                        data-bs-target="#room_premium_{{ $item->id }}"
+                                                        type="button"
+                                                        role="tab">
+                                                    Premium
+                                                </button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content mt-3" id="packageTabsContent">
+                                            <!-- Standard -->
+                                            <div class="tab-pane fade show active" id="room_standard_{{ $item->id }}" role="tabpanel">
+                                                <h6>Requested Room Composition</h6>
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>Composition</th>
+                                                        <th>Adults</th>
+                                                        <th>Children</th>
+                                                        <th>Extra bed price</th>
+                                                        <th>Room Qty</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    @foreach ($tour_request->tourRequestPeople as $people)
+                                                    <tr>   
+                                                        <td>{{ $people->groupComposition->name }}</td>
+                                                        <td>{{ $people->adults }}</td>
+                                                        <td>{{ $people->children }}</td>
+                                                        <td>{{ $people->extra_bed ? "Yes" : "No" }}</td>
+                                                        <td>{{ $people->quantity }}</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-success btn-sm btn_add_room_price" data-route-id="{{ $item->id }}" data-package-id="1" data-tour-people-id="{{ $people->id }}">Add Price</button>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </table>
+                                                @php
+                                                    $cmt_rooms = \App\Models\TourRooms::where('tour_route_item_id', $item->id)
+                                                        ->where('tour_hotel_id', $item->item->id)
+                                                        ->where('tour_package_id', 1)
+                                                        ->get();
+                                                @endphp
+                                                <h6>
+                                                    Added Rooms - {{ $cmt_rooms->count() }}
+                                                </h6>
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>Room type</th>
+                                                        <th>Bed type</th>
+                                                        <th>Adults</th>
+                                                        <th>Children</th>
+                                                        <th>Extra bed price</th>
+                                                        <th>Price per night</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    @foreach ($cmt_rooms as $room)
+                                                        <tr>
+                                                            <td>{{ $room->roomType->name }}</td>
+                                                            <td>{{ $room->bedType->name }}</td>
+                                                            <td>{{ $room->base_adults }}</td>
+                                                            <td>{{ $room->base_children }}</td>
+                                                            <td>{{ $room->extra_bed_price }}</td>
+                                                            <td>{{ $room->price_per_night }}</td>
+                                                            <td>
+                                                                {{-- <button type="button" class="btn btn-danger btn-sm btn_remove_room_price" data-room-id="{{ $room->id }}">Remove</button> --}}
+                                                                <form action="" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="hide_room_id" value="{{ $room->id }}">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bx bx-trash"></i></button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                            </div>
+
+                                            <!-- Comfort -->
+                                            <div class="tab-pane fade" id="room_comfort_{{ $item->id }}" role="tabpanel">
+                                                <h5>Comfort Rooms Package</h5>
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>Composition</th>
+                                                        <th>Adults</th>
+                                                        <th>Children</th>
+                                                        <th>Extra bed price</th>
+                                                        <th>Room Qty</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    @foreach ($tour_request->tourRequestPeople as $people)
+                                                    <tr>   
+                                                        <td>{{ $people->groupComposition->name }}</td>
+                                                        <td>{{ $people->adults }}</td>
+                                                        <td>{{ $people->children }}</td>
+                                                        <td>{{ $people->extra_bed ? "Yes" : "No" }}</td>
+                                                        <td>{{ $people->quantity }}</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-success btn-sm btn_add_room_price" data-route-id="{{ $item->id }}" data-package-id="2" data-tour-people-id="{{ $people->id }}">Add Price</button>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </table>
+                                                @php
+                                                    $cmt_rooms = \App\Models\TourRooms::where('tour_route_item_id', $item->id)
+                                                        ->where('tour_hotel_id', $item->item->id)
+                                                        ->where('tour_package_id', 2)
+                                                        ->get();
+                                                @endphp
+                                                <h6>
+                                                    Added Rooms - {{ $cmt_rooms->count() }}
+                                                </h6>
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>Room type</th>
+                                                        <th>Bed type</th>
+                                                        <th>Adults</th>
+                                                        <th>Children</th>
+                                                        <th>Extra bed price</th>
+                                                        <th>Price per night</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    @foreach ($cmt_rooms as $room)
+                                                        <tr>
+                                                            <td>{{ $room->roomType->name }}</td>
+                                                            <td>{{ $room->bedType->name }}</td>
+                                                            <td>{{ $room->base_adults }}</td>
+                                                            <td>{{ $room->base_children }}</td>
+                                                            <td>{{ $room->extra_bed_price }}</td>
+                                                            <td>{{ $room->price_per_night }}</td>
+                                                            <td>
+                                                                {{-- <button type="button" class="btn btn-danger btn-sm btn_remove_room_price" data-room-id="{{ $room->id }}">Remove</button> --}}
+                                                                <form action="" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="hide_room_id" value="{{ $room->id }}">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bx bx-trash"></i></button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                            </div>
+
+                                            <!-- Premium -->
+                                            <div class="tab-pane fade" id="room_premium_{{ $item->id }}" role="tabpanel">
+                                                <h5>Premium Package</h5>
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>Composition</th>
+                                                        <th>Adults</th>
+                                                        <th>Children</th>
+                                                        <th>Extra bed price</th>
+                                                        <th>Room Qty</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    @foreach ($tour_request->tourRequestPeople as $people)
+                                                    <tr>   
+                                                        <td>{{ $people->groupComposition->name }}</td>
+                                                        <td>{{ $people->adults }}</td>
+                                                        <td>{{ $people->children }}</td>
+                                                        <td>{{ $people->extra_bed ? "Yes" : "No" }}</td>
+                                                        <td>{{ $people->quantity }}</td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-success btn-sm btn_add_room_price" data-route-id="{{ $item->id }}" data-package-id="3" data-tour-people-id="{{ $people->id }}">Add Price</button>
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </table>
+                                                @php
+                                                    $cmt_rooms = \App\Models\TourRooms::where('tour_route_item_id', $item->id)
+                                                        ->where('tour_hotel_id', $item->item->id)
+                                                        ->where('tour_package_id', 3)
+                                                        ->get();
+                                                @endphp
+                                                <h6>
+                                                    Added Rooms - {{ $cmt_rooms->count() }}
+                                                </h6>
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>Room type</th>
+                                                        <th>Bed type</th>
+                                                        <th>Adults</th>
+                                                        <th>Children</th>
+                                                        <th>Extra bed price</th>
+                                                        <th>Price per night</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                    @foreach ($cmt_rooms as $room)
+                                                        <tr>
+                                                            <td>{{ $room->roomType->name }}</td>
+                                                            <td>{{ $room->bedType->name }}</td>
+                                                            <td>{{ $room->base_adults }}</td>
+                                                            <td>{{ $room->base_children }}</td>
+                                                            <td>{{ $room->extra_bed_price }}</td>
+                                                            <td>{{ $room->price_per_night }}</td>
+                                                            <td>
+                                                                {{-- <button type="button" class="btn btn-danger btn-sm btn_remove_room_price" data-room-id="{{ $room->id }}">Remove</button> --}}
+                                                                <form action="" method="post">
+                                                                    @csrf
+                                                                    <input type="hidden" name="hide_room_id" value="{{ $room->id }}">
+                                                                    <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bx bx-trash"></i></button>
+                                                                </form>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {{-- <div class="row">
                                         <div class="col-md-4 p-1">
                                             <div class="border border-success rounded p-1">
                                                 <h5>Hotel</h5>
@@ -50,22 +309,7 @@
                                                 <h5>
                                                     Rooms
                                                 </h5>
-                                                <div>
-                                                    @foreach ($tour_request->tourRequestPeople as $people)
-                                                    <div class="d-flex justify-content-between">
-                                                        <p>
-                                                            {{ $people->groupComposition->name }} <br>
-                                                            Adults: {{ $people->adults }} <br>
-                                                            Children: {{ $people->children }}
-                                                        </p>
-                                                        <p>
-                                                            Extra Bed: {{ $people->extra_bed ? "Yes": "No" }} <br>
-                                                            Rooms: {{ $people->quantity }}
-                                                        </p>
-                                                        <button type="button" class="btn btn-success btn-sm btn_add_room_price" data-route-id="{{ $item->id }}" data-package-id="1" data-tour-people-id="{{ $people->id }}">Add Price</button>
-                                                    </div>
-                                                    @endforeach
-                                                </div>
+                                                
                                                 <div class="col-md-6">
                                                     {{ $item->item->tourRooms->count() }} Rooms Added
                                                     @foreach ($item->item->tourRooms as $room)
@@ -80,7 +324,6 @@
                                                     @endforeach
                                                 </div>
                                             </div>
-
                                         </div>
                                         <div class="col-md-4 p-1">
                                             <div class="border border-success rounded p-1">
@@ -92,7 +335,7 @@
                                                 Premium
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 @break
                                 @case('App\Models\Restaurants')
                                     <span class="badge bg-warning">Restaurant</span>
@@ -176,6 +419,7 @@
     </div>
 
     @include('tour_package_items.room_add_modal')
+    @include('tour_package_items.hotel_add_modal')
 
     <script src="{{ asset('js/tour_package_items.js') }}"></script>
 @endsection

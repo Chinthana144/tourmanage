@@ -181,4 +181,28 @@ class FacilitiesController extends Controller
 
     }//update
 
+    //ajax methods
+
+    public function getHotelFacilities(Request $request)
+    {
+        $hotel_id = $request->input('hotel_id');
+
+        $hotel_facilities = HotelFacilities::where('hotel_id', $hotel_id)
+            ->with('facility')
+            ->get();
+
+        $facilities = [];
+
+        foreach($hotel_facilities as $facility)
+        {
+            $facilities[] = [
+                'id' => $facility->id,
+                'facility_id' => $facility->facility_id,
+                'name' => $facility->facility->name,
+            ];
+        }
+
+        return response()->json($facilities);
+    }
+
 }//class

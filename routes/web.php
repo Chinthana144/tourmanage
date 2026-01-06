@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-facilities', [FacilitiesController::class, 'store'])->name('facilities.store');
     Route::get('/edit-facilities', [FacilitiesController::class, 'edit'])->name('facilities.edit');
     Route::put('/update-facilities', [FacilitiesController::class, 'update'])->name('facilities.update');
+    Route::get('/getHotelFacilities', [FacilitiesController::class, 'getHotelFacilities']);
 
     //hotel rooms
     Route::get('/hotel-rooms', [HotelRoomController::class, 'index'])->name('hotelrooms.index');

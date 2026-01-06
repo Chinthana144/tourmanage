@@ -8,16 +8,16 @@ class HotelFacilities extends Model
 {
     protected $fillable = [
         'hotel_id',
-        'facilities_id',
+        'facility_id',
     ];
 
     public function hotel()
     {
-        return $this->belongsTo(Hotels::class);
+        return $this->belongsTo(Hotels::class, 'hotel_id');
     }
 
     public function facility()
     {
-        return $this->belongsTo(Facilities::class, 'facilities_id');
+        return $this->belongsTo(Facilities::class, 'facility_id');
     }
 }

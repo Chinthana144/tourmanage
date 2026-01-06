@@ -15,11 +15,12 @@ class TourHotels extends Model
         'check_out_date',
         'nights',
         'hotel_total_price',
+        'facilities',
     ];
 
     public function tourRoute()
     {
-        return $this->belongsTo(TourRoutes::class, 'tour_route_id');
+        return $this->belongsTo(TourRouteItems::class, 'tour_route_id');
     }
 
     public function hotel()

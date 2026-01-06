@@ -16,9 +16,9 @@ class Facilities extends Model
         return $this->belongsTo(FacilitiesType::class, 'facilities_type_id');
     }
 
-    public function hotels()
+    public function hotelFacilities()
     {
-        return $this->hasMany(HotelFacilities::class, 'facilities_id');
+        return $this->hasMany(HotelFacilities::class, 'facility_id');
     }
 }
 
