@@ -13,7 +13,9 @@ $(document).ready(function () {
 
         $("#hotel_add_modal").modal('toggle');
 
-        $("$hot_package_id").val(packageID);
+        $("#hot_tour_route_id").val(routeID);
+        $("#hot_package_id").val(packageID);
+        $("#hot_hotel_id").val(hotelID);
 
         switch (packageID) {
             case  1:
@@ -46,7 +48,7 @@ $(document).ready(function () {
                 $.each(response, function (key, val) { 
                     htmlfacilities +="<div class='col-md-4'>";
                     htmlfacilities +="<div class='form-check form-switch'>";
-                    htmlfacilities +="<input class='form-check-input' type='checkbox' role='switch' id='chk_facility_"+val.facility_id+"'>";
+                    htmlfacilities +="<input class='form-check-input' type='checkbox' role='switch' id='chk_facility_"+val.facility_id+"' name='chk_facility_"+val.facility_id+"'>";
                     htmlfacilities +="<label class='form-check-label' for='chk_facility_"+val.facility_id+"'>"+val.name+"</label>";
                     htmlfacilities +="</div>";
                     htmlfacilities +="</div>";

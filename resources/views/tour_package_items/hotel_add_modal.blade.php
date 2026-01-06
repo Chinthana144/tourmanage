@@ -6,11 +6,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="" method="post">
+      <form action="{{ route('tour_hotel.store') }}" method="post">
         @csrf
-        <input type="hidden" name="hot_tour_route_id" id="hot_tour_route_id" value="{{ $item->id }}">
+        <input type="hidden" name="hot_tour_route_id" id="hot_tour_route_id">
         <input type="hidden" name="hot_package_id" id="hot_package_id">
-        <input type="hidden" name="hot_hotel_id" id="hot_hotel_id" value="{{ $item->item->id }}">
+        <input type="hidden" name="hot_hotel_id" id="hot_hotel_id">
         <div class="modal-body">
             <div class="row">
                 <div class="col-md-6">
@@ -40,7 +40,7 @@
 
         <div class="modal-footer">
             {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary">Add Tour Hotel</button>
         </div>
       </form>
 

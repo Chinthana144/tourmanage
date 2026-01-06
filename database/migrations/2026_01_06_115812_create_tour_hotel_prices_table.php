@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tour_hotels', function (Blueprint $table) {
+        Schema::create('tour_hotel_prices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tour_route_item_id');
-            $table->foreignId('tour_package_id');
             $table->foreignId('hotel_id');
-            $table->foreignId('boarding_type_id');
-            $table->date('check_in_date');
-            $table->date('check_out_date');
-            $table->integer('nights');
-            $table->json('facilities')->nullable();
+            $table->foreignId('price_mode_id');
+            $table->string('price_description');
+            $table->decimal('price', 10, 2);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tour_hotels');
+        Schema::dropIfExists('tour_hotel_prices');
     }
 };

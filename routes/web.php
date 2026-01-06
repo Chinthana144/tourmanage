@@ -13,6 +13,7 @@ use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TourController;
+use App\Http\Controllers\TourHotelController;
 use App\Http\Controllers\TouristController;
 use App\Http\Controllers\TouristHealthController;
 use App\Http\Controllers\TourPackageItemController;
@@ -197,6 +198,9 @@ Route::middleware('auth')->group(function () {
 
     //tour package items
     Route::get('/tour-package-items', [TourPackageItemController::class, 'index'])->name('tour_package_items.index');
+
+    //tour hotels
+    Route::post('/store-tour-hotel', [TourHotelController::class, 'store'])->name('tour_hotel.store');
 
     //tour rooms
     Route::post('/store-tour-room', [TourRoomController::class, 'store'])->name('tour_request_room.store');

@@ -2389,3 +2389,29 @@ INSERT INTO `price_modes`(`name`) VALUES
 ('Per Group'),
 ('Per Day'),
 ('Flat');
+
+-- add hotel price modes
+INSERT INTO `hotel_price_modes`(`name`) VALUES
+('Extra Bed – Adult'),
+('Extra Bed – Child'),
+('Baby Cot / Crib'),
+('Room Upgrade (Higher Category)'),
+('Sea / City / Landmark View Upgrade'),
+('Early Check-in'),
+('Late Check-out'),
+('Breakfast Supplement (BB)'),
+('Half Board Supplement (HB)'),
+('Full Board Supplement (FB)'),
+('All Inclusive Supplement (AI)'),
+('Tourism / City Tax'),
+('Municipality / Local Fee'),
+('Service Charge'),
+('VAT / GST'),
+('Resort Fee'),
+('Spa / Wellness Access'),
+('Pool / Beach Access'),
+('Executive Lounge Access'),
+('Complimentary Upgrade (Subject to Availability)'),
+('Welcome Amenities (Fruits / Drinks)'),
+('Express Check-in / Concierge Service'),
+('Other');

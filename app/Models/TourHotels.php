@@ -7,14 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class TourHotels extends Model
 {
     protected $fillable = [
-        'tour_route_id',
+        'tour_route_item_id',
         'tour_package_id',
         'hotel_id',
         'boarding_type_id',
         'check_in_date',
         'check_out_date',
         'nights',
-        'hotel_total_price',
         'facilities',
     ];
 

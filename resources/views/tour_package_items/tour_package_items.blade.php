@@ -36,6 +36,12 @@
                                 @case('App\Models\Hotels')
 
                                 {{-- Hotels --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label for="">Check-in Date</label>
+                                        <input type="date" name="check_in_date" class="form-control" placeholder="Check-in Date">
+                                    </div>
+                                </div>
                                 <h5>
                                     Hotel Packages
                                     <button type="button" class="btn btn-success btn-sm float-end btn_open_hotel" data-route-id="{{ $item->id }}">Toggle</button>
