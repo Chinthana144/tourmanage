@@ -206,6 +206,7 @@ Route::middleware('auth')->group(function () {
 
     //tour rooms
     Route::post('/store-tour-room', [TourRoomController::class, 'store'])->name('tour_request_room.store');
+    Route::delete('/destroy-tour-room', [TourRoomController::class, 'destroy'])->name('tour_request_room.destroy');
 });
 
 // Route::get('/template', function () {

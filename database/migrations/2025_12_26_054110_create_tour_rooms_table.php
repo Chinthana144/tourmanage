@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('room_quantity');
             $table->decimal('price_per_night', 10, 2);
             $table->decimal('extra_bed_price', 10, 2);
+            $table->decimal('total_price', 10, 2);
             $table->timestamps();
         });
     }

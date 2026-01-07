@@ -17,6 +17,7 @@ class TourRooms extends Model
         'room_quantity',
         'price_per_night',
         'extra_bed_price',
+        'total_price',
     ];
 
     public function tourHotel()

@@ -261,8 +261,10 @@
                                                         <td>{{ $room->price_per_night }}</td>
                                                         <td>
                                                             {{-- <button type="button" class="btn btn-danger btn-sm btn_remove_room_price" data-room-id="{{ $room->id }}">Remove</button> --}}
-                                                            <form action="" method="post">
+                                                            <form action="{{ route('tour_request_room.destroy') }}" method="post">
                                                                 @csrf
+                                                                @method('DELETE')
+                                                                <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
                                                                 <input type="hidden" name="hide_room_id" value="{{ $room->id }}">
                                                                 <button type="submit" class="btn btn-outline-danger btn-sm"><i class="bx bx-trash"></i></button>
                                                             </form>
