@@ -11,7 +11,6 @@ class TourPackageItems extends Model
         'tour_route_item_id',
         'component_type',
         'component_id',
-        'price_mode_id',
         'base_price',        
     ];
 

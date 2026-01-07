@@ -29,7 +29,7 @@
                     <label for="">Check-out Date</label>
                     <input type="date" name="check_out_date" class="form-control" placeholder="Check-out Date">
 
-                    <label for="">Check-out Date</label>
+                    <label for="">Nights</label>
                     <input type="number" name="nights" class="form-control" placeholder="Number of Nights">
                 </div>
 

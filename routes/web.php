@@ -198,9 +198,11 @@ Route::middleware('auth')->group(function () {
 
     //tour package items
     Route::get('/tour-package-items', [TourPackageItemController::class, 'index'])->name('tour_package_items.index');
+    Route::post('/store-tour-package-item', [TourPackageItemController::class, 'store'])->name('tour_package_items.store');
 
     //tour hotels
     Route::post('/store-tour-hotel', [TourHotelController::class, 'store'])->name('tour_hotel.store');
+    Route::post('/update-tour-hotel', [TourHotelController::class, 'update'])->name('tour_hotel.update');
 
     //tour rooms
     Route::post('/store-tour-room', [TourRoomController::class, 'store'])->name('tour_request_room.store');

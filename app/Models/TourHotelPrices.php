@@ -29,4 +29,9 @@ class TourHotelPrices extends Model
     {
         return $this->belongsTo(Hotels::class, "hotel_id");
     }
+
+    public function priceMode()
+    {
+        return $this->belongsTo(PriceModes::class, 'price_mode_id');
+    }
 }//class    

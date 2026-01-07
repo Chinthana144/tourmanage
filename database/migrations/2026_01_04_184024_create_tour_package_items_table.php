@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId("tour_package_id");
             $table->foreignId('tour_route_item_id');
             $table->morphs('component');
-            $table->foreignId('price_mode_id');
             $table->decimal('base_price', 10, 2);
             $table->timestamps();
         });

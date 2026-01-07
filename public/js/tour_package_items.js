@@ -127,4 +127,10 @@ $(document).ready(function () {
 
         $("#div_room_packages_" + routeID).toggleClass('d-none');
     });
+
+    $("#div_main").on('click', '.btn_open_hotel', function(){
+        var routeID = $(this).data('route-id');
+
+        $("#div_hotel_packages_" + routeID).toggleClass('d-none');
+    });
 });//jQuery
