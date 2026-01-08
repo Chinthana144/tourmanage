@@ -21,16 +21,18 @@
                         @endforeach
                     </select>
 
-                    <label for="">Check-in Date</label>
-                    <input type="date" name="check_in_date" class="form-control" placeholder="Check-in Date">
+                    <label for="">Nights</label>
+                    <input type="number" name="nights" class="form-control" placeholder="Number of Nights" required>                    
 
                 </div>
                 <div class="col-md-6">
-                    <label for="">Check-out Date</label>
-                    <input type="date" name="check_out_date" class="form-control" placeholder="Check-out Date">
 
-                    <label for="">Nights</label>
-                    <input type="number" name="nights" class="form-control" placeholder="Number of Nights">
+                  <label for="">Check-in Date</label>
+                  <input type="date" name="check_in_date" class="form-control" placeholder="Check-in Date" required>
+
+                  <label for="">Check-out Date</label>
+                  <input type="date" name="check_out_date" class="form-control" placeholder="Check-out Date" required>
+                  
                 </div>
 
                 <div id="div_hotel_facilities"></div>

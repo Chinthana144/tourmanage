@@ -28,8 +28,7 @@ class TourController extends Controller
         
         $nextNumber = 1;
 
-        if($last_tour)
-        {
+        if($last_tour){
             //extract number
             $lastNumber = intval(substr($last_tour->tour_number, 5));
             $nextNumber = $lastNumber + 1;
