@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('quotation_id');
             $table->foreignId('tour_package_id');
-            $table->morphs('item');
+            $table->string('item_type');
             $table->decimal('amount');
             $table->timestamps();
         });

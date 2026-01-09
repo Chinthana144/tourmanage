@@ -10,7 +10,6 @@ class QuotationItems extends Model
         'quotation_id',
         'tour_package_id',
         'item_type',
-        'item_id',
         'amount',
     ];  
 

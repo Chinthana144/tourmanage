@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TourRooms extends Model
 {
     protected $fillable = [
+        'tour_id',
         'tour_route_item_id',
         'tour_package_id',
         'tour_hotel_id',
@@ -19,6 +20,21 @@ class TourRooms extends Model
         'extra_bed_price',
         'total_price',
     ];
+
+    public function tour()
+    {
+        return $this->belongsTo(Tours::class, 'tour_id');
+    }
+
+    public function tourRouteItem()
+    {
+        return $this->belongsTo(TourRouteItems::class, 'tour_route_item_id');
+    }
+
+    public function tourPackage()
+    {
+        return $this->belongsTo(TourPackages::class, 'tour_package_id');
+    }
 
     public function tourHotel()
     {

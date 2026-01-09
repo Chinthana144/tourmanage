@@ -19,6 +19,7 @@ class TourRoomController extends Controller
 
         //create tour room
         TourRooms::create([
+            'tour_id' => $tour_id,
             'tour_route_item_id' => $tour_route_item_id,
             'tour_hotel_id' => $hotel_id,
             'tour_package_id' => $request->input('tour_package_id'),

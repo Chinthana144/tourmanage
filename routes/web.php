@@ -11,6 +11,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\TourController;
 use App\Http\Controllers\TourHotelController;
@@ -207,6 +208,9 @@ Route::middleware('auth')->group(function () {
     //tour rooms
     Route::post('/store-tour-room', [TourRoomController::class, 'store'])->name('tour_request_room.store');
     Route::delete('/destroy-tour-room', [TourRoomController::class, 'destroy'])->name('tour_request_room.destroy');
+
+    //quotations
+    Route::get('/quotations', [QuotationController::class, 'index'])->name('quotation.index');
 });
 
 // Route::get('/template', function () {

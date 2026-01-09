@@ -11,7 +11,7 @@ class Quotations extends Model
         'tour_request_id',
         'tour_id',
         'valid_until',
-        'total_amount',
+        'package_prices',
         'status',
         'user_id',
     ];
@@ -24,6 +24,11 @@ class Quotations extends Model
     public function tour()
     {
         return $this->belongsTo(Tours::class, 'tour_id');
+    }
+
+    public function quotationItem()
+    {
+        return $this->hasMany(QuotationItems::class, 'quotation_id');
     }
 
 }//class

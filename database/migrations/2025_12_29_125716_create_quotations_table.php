@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('tour_request_id');
             $table->foreignId('tour_id');
             $table->date('valid_until');
-            $table->decimal('total_amount', 10, 2);
+            $table->json('package_prices')->nullable();
             $table->smallInteger('status');
             $table->foreignId('user_id');
             $table->timestamps();
