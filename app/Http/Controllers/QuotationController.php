@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Quotations;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class QuotationController extends Controller
@@ -13,4 +14,17 @@ class QuotationController extends Controller
 
         return view('quotations.quotation_view', compact('quotations'));
     }
+
+    public function generatePdf(Request $request)
+    {
+        $quotation_id = $request->input('hide_quotation_id');
+        $quotation = Quotations::find($quotation_id);
+
+        $tour_request_id = $quotation->tour_request_id;
+        $tour_id = $quotation->tour_id;
+
+        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation'));
+
+        return $pdf->stream('Quotation-' . $quotation->quotation_no);
+    }//generate pdf
 }//class

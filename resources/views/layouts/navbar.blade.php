@@ -59,7 +59,7 @@
             <ul class="js-sub-menu sub-menu">
               <li><a href="/customers">Customers</a></li>
               <li><a href="/tour-requests">Tour Requests</a></li>
-              <li><a href="#">Tour Quotation</a></li>
+              <li><a href="{{ route('quotation.index') }}">Tour Quotation</a></li>
               <li><a href="#">Tour Pricing</a></li>
             </ul>
           </li>

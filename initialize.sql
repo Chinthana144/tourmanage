@@ -2379,9 +2379,9 @@ INSERT INTO `group_compositions`(`name`) VALUES
 
 -- add tour packages
 INSERT INTO `tour_packages`(`name`) VALUES
-('Standard'),
-('Comfort'),
-('Premium');
+('Akagi Essential'),
+('Akagi Classic'),
+('Akagi Signature');
 
 -- add price modes
 INSERT INTO `price_modes`(`name`) VALUES
