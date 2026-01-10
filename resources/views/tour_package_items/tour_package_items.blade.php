@@ -105,7 +105,7 @@
                                         
                                             <form action="{{ route('tour_hotel.update') }}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="tour_hotel_id" value="{{ $tour_hote_id }}">
+                                                <input type="hidden" name="tour_hotel_id" value="{{ $item->item->id }}">
                                                 <input type="hidden" name="hot_tour_route_id" value="{{ $item->id }}">
                                                 <input type="hidden" name="hot_package_id" value="1">
                                                 <input type="hidden" name="hot_hotel_id" value="{{ $item->item->id  }}">

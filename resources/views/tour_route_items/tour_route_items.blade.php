@@ -6,7 +6,8 @@
             <h5>Tour Route</h5>
         </div>
         <div class="card-body">
-            <table class="table">
+            <input type="hidden" name="hide_tour_id" id="hide_tour_id" value="{{ $tour->id }}">
+            <table class="table table-bordered" id="tbl_route_items">
                 <tr>
                     <th>No</th>
                     <th>Day</th>
@@ -16,7 +17,7 @@
                     <th>Actions</th>
                 </tr>
                 @foreach ($route_items as $item)
-                    <tr>
+                    <tr data-id="{{ $item->id }}">
                         <td>{{ $item->order_no }}</td>
                         <td>{{ "Day " . $item->day_no }}</td>
                         <td>
@@ -44,12 +45,11 @@
                         <td>{{ $item->item->name }}</td>
                         <td>{{ $item->notes }}</td>
                         <td>
-                            <form action="{{ route('route_items.destroy') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                                <input type="hidden" name="route_item_id" value="{{ $item->id }}">
-                                <button class="btn btn-outline-danger btn-sm"><i class="bx bx-trash"></i></button>
-                            </form>
+                            <div class="d-flex">
+                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_up"><i class="bx bx-caret-up"></i></button>
+                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_down"><i class="bx bx-caret-down"></i></button>
+                                <button class="btn btn-outline-danger btn-sm ms-1 btn_delete_item"><i class="bx bx-trash"></i></button>
+                            </div>
                         </td>
                     </tr>
                 @endforeach
@@ -206,7 +206,7 @@
                 <form action="{{ route('tour_package_items.index') }}" method="get">
                     @csrf
                     <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                    <button class="btn btn-primary float-end">Continue</button>
+                    <button class="btn btn-primary float-end">Continue <i class="bx bx-"></i></button>
                 </form>
             </div>
 
