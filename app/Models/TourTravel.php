@@ -37,6 +37,6 @@ class TourTravel extends Model
 
     public function route()
     {
-        return $this->belongsTo(TourRoutes::class, 'tour_route_id');
+        return $this->belongsTo(TourRouteItems::class, 'tour_route_id');
     }
 }//class

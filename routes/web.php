@@ -8,6 +8,7 @@ use App\Http\Controllers\Hotelcontroller;
 use App\Http\Controllers\HotelPriceController;
 use App\Http\Controllers\HotelRoomController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\ProfileController;
@@ -46,6 +47,9 @@ Route::middleware('auth')->group(function () {
 
     //logout
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    //main page -> move this to open after development
+    Route::get('/main', [MainController::class, 'index'])->name('main.index'); 
 
     //users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
