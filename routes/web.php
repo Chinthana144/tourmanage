@@ -32,9 +32,11 @@ use App\Models\TouristHealth;
 use App\Models\TourRequestRooms;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('main');
-});
+// Route::get('/', function () {
+//     return view('main');
+// });
+
+Route::get('/', [MainController::class, 'index'])->name('main.index'); 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -49,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     //main page -> move this to open after development
-    Route::get('/main', [MainController::class, 'index'])->name('main.index'); 
+    // Route::get('/main', [MainController::class, 'index'])->name('main.index'); 
 
     //users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

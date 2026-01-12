@@ -103,47 +103,50 @@
 
                                             <button class="btn btn-success btn_add_hotel_price" data-route-id="{{ $item->id }}" data-package-id="1" data-hotel-id="{{ $item->item->id }}" {{ $tour_hotel ? 'disabled' : '' }}>Add Tour Hotel</button>
                                         
-                                            <form action="{{ route('tour_hotel.update') }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="tour_hotel_id" value="{{ $item->item->id }}">
-                                                <input type="hidden" name="hot_tour_route_id" value="{{ $item->id }}">
-                                                <input type="hidden" name="hot_package_id" value="1">
-                                                <input type="hidden" name="hot_hotel_id" value="{{ $item->item->id  }}">
+                                            @if ($tour_hotel && !empty($tour_hotel->facilities))
+                                                <form action="{{ route('tour_hotel.update') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="tour_hotel_id" value="{{ $item->item->id }}">
+                                                    <input type="hidden" name="hot_tour_route_id" value="{{ $item->id }}">
+                                                    <input type="hidden" name="hot_package_id" value="1">
+                                                    <input type="hidden" name="hot_hotel_id" value="{{ $item->item->id  }}">
 
-                                                <div class="row mt-2">
-                                                    <div class="col-md-6">
-                                                        <label for="">Boarding Type</label>
-                                                        <select name="cmb_boarding_type" id="cmb_boarding_type" class="form-select">
-                                                            @foreach ($boarding_types as $boarding_type)
-                                                                <option value="{{ $boarding_type->id }}" @selected($boarding_type->id == $boarding_type_id)>{{ $boarding_type->name }}</option>
-                                                            @endforeach
-                                                        </select>
+                                                    <div class="row mt-2">
+                                                        <div class="col-md-6">
+                                                            <label for="">Boarding Type</label>
+                                                            <select name="cmb_boarding_type" id="cmb_boarding_type" class="form-select">
+                                                                @foreach ($boarding_types as $boarding_type)
+                                                                    <option value="{{ $boarding_type->id }}" @selected($boarding_type->id == $boarding_type_id)>{{ $boarding_type->name }}</option>
+                                                                @endforeach
+                                                            </select>
 
-                                                        <label for="">Nights</label>
-                                                        <input type="number" name="nights" class="form-control" placeholder="Number of Nights" value="{{ $nights }}">
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="">Check-in Date</label>
-                                                        <input type="date" name="check_in_date" class="form-control" placeholder="Check-in Date" value="{{ $check_in_date }}">
-                                                        
-                                                        <label for="">Check-out Date</label>
-                                                        <input type="date" name="check_out_date" class="form-control" placeholder="Check-out Date" value="{{ $check_out_date }}">                                
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mt-2 mb-2">
-                                                    @foreach ($hotel_facilities as $facility)
-                                                        <div class="col-md-4">
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" id="chk_hotel_facility_{{$facility['facility_id']}}" name="chk_hotel_facility_{{$facility['facility_id']}}" @checked($facility['status'] == 1)>
-                                                                <label class="form-check-label" for="chk_hotel_facility_{{$facility['facility_id']}}">{{ $facility['facility_name'] }}</label>
-                                                            </div>
+                                                            <label for="">Nights</label>
+                                                            <input type="number" name="nights" class="form-control" placeholder="Number of Nights" value="{{ $nights }}">
                                                         </div>
-                                                    @endforeach
-                                                </div>
+                                                        <div class="col-md-6">
+                                                            <label for="">Check-in Date</label>
+                                                            <input type="date" name="check_in_date" class="form-control" placeholder="Check-in Date">
+                                                            
+                                                            <label for="">Check-out Date</label>
+                                                            <input type="date" name="check_out_date" class="form-control" placeholder="Check-out Date">                                
+                                                        </div>
+                                                    </div>
 
-                                                <button type="submit" class="btn btn-warning">Update</button>
-                                            </form>
+                                                    <div class="row mt-2 mb-2">
+                                                        @foreach ($hotel_facilities as $facility)
+                                                            <div class="col-md-4">
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="chk_hotel_facility_{{$facility['facility_id']}}" name="chk_hotel_facility_{{$facility['facility_id']}}" @checked($facility['status'] == 1)>
+                                                                    <label class="form-check-label" for="chk_hotel_facility_{{$facility['facility_id']}}">{{ $facility['facility_name'] }}</label>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-warning">Update</button>
+                                                </form>
+                                            @endif
+                                            
                                         </div>
 
                                         <!-- Comfort Akagi classics -->
@@ -172,48 +175,51 @@
 
                                             <button class="btn btn-success btn_add_hotel_price" data-route-id="{{ $item->id }}" data-package-id="2" data-hotel-id="{{ $item->item->id }}" {{ $tour_hotel ? 'disabled' : '' }}>Add Tour Hotel</button>
                                         
-                                            <form action="{{ route('tour_hotel.update') }}" method="post">
-                                                @csrf
-                                                <input type="hidden" name="tour_hotel_id" value="{{ $tour_hote_id }}">
-                                                <input type="hidden" name="hot_tour_route_id" value="{{ $item->id }}">
-                                                <input type="hidden" name="hot_package_id" value="1">
-                                                <input type="hidden" name="hot_hotel_id" value="{{ $item->item->id  }}">
+                                            @if ($tour_hotel && !empty($tour_hotel->facilities))
+                                                <form action="{{ route('tour_hotel.update') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="tour_hotel_id" value="{{ $tour_hote_id }}">
+                                                    <input type="hidden" name="hot_tour_route_id" value="{{ $item->id }}">
+                                                    <input type="hidden" name="hot_package_id" value="1">
+                                                    <input type="hidden" name="hot_hotel_id" value="{{ $item->item->id  }}">
 
-                                                <div class="row mt-2">
-                                                    <div class="col-md-6">
-                                                        <label for="">Boarding Type</label>
-                                                        <select name="cmb_boarding_type" id="cmb_boarding_type" class="form-select">
-                                                            @foreach ($boarding_types as $boarding_type)
-                                                                <option value="{{ $boarding_type->id }}" @selected($boarding_type->id == $boarding_type_id)>{{ $boarding_type->name }}</option>
-                                                            @endforeach
-                                                        </select>
+                                                    <div class="row mt-2">
+                                                        <div class="col-md-6">
+                                                            <label for="">Boarding Type</label>
+                                                            <select name="cmb_boarding_type" id="cmb_boarding_type" class="form-select">
+                                                                @foreach ($boarding_types as $boarding_type)
+                                                                    <option value="{{ $boarding_type->id }}" @selected($boarding_type->id == $boarding_type_id)>{{ $boarding_type->name }}</option>
+                                                                @endforeach
+                                                            </select>
 
-                                                        <label for="">Nights</label>
-                                                        <input type="number" name="nights" class="form-control" placeholder="Number of Nights" value="{{ $nights }}" required>
+                                                            <label for="">Nights</label>
+                                                            <input type="number" name="nights" class="form-control" placeholder="Number of Nights" value="{{ $nights }}" required>
 
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <label for="">Check-in Date</label>
-                                                        <input type="date" name="check_in_date" class="form-control" placeholder="Check-in Date" value="{{ $check_in_date }}" required>
-                                                        
-                                                        <label for="">Check-out Date</label>
-                                                        <input type="date" name="check_out_date" class="form-control" placeholder="Check-out Date" value="{{ $check_out_date }}" required>                                
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mt-2 mb-2">
-                                                    @foreach ($hotel_facilities as $facility)
-                                                        <div class="col-md-4">
-                                                            <div class="form-check form-switch">
-                                                                <input class="form-check-input" type="checkbox" id="chk_hotel_facility_{{$facility['facility_id']}}" name="chk_hotel_facility_{{$facility['facility_id']}}" @checked($facility['status'] == 1)>
-                                                                <label class="form-check-label" for="chk_hotel_facility_{{$facility['facility_id']}}">{{ $facility['facility_name'] }}</label>
-                                                            </div>
                                                         </div>
-                                                    @endforeach
-                                                </div>
+                                                        <div class="col-md-6">
+                                                            <label for="">Check-in Date</label>
+                                                            <input type="date" name="check_in_date" class="form-control" placeholder="Check-in Date" value="{{ $check_in_date }}" required>
+                                                            
+                                                            <label for="">Check-out Date</label>
+                                                            <input type="date" name="check_out_date" class="form-control" placeholder="Check-out Date" value="{{ $check_out_date }}" required>                                
+                                                        </div>
+                                                    </div>
 
-                                                <button type="submit" class="btn btn-warning">Update</button>
-                                            </form>
+                                                    <div class="row mt-2 mb-2">
+                                                        @foreach ($hotel_facilities as $facility)
+                                                            <div class="col-md-4">
+                                                                <div class="form-check form-switch">
+                                                                    <input class="form-check-input" type="checkbox" id="chk_hotel_facility_{{$facility['facility_id']}}" name="chk_hotel_facility_{{$facility['facility_id']}}" @checked($facility['status'] == 1)>
+                                                                    <label class="form-check-label" for="chk_hotel_facility_{{$facility['facility_id']}}">{{ $facility['facility_name'] }}</label>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <button type="submit" class="btn btn-warning">Update</button>
+                                                </form>
+                                            @endif
+                                            
                                         </div>
 
                                         <!-- Premium Akagi Signature -->
