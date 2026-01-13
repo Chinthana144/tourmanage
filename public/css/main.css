@@ -1383,6 +1383,80 @@ section,
   }
 }
 
+/* -----------------------------------------------------------
+Travel Packages section
+------------------------------------------------------------*/
+.price-packages{
+  position: relative;
+}
+
+.price-packages #img_package_background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  opacity: 0.1;
+}
+
+.price-packages .container{
+  position: relative;
+  z-index: 1;
+}
+
+.price-packages .package-card{
+  background: var(--surface-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+  opacity: 0.9;
+}
+
+.price-packages .package-card:hover{
+  border: 1px solid;
+  border-color: var(--accent-color);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.price-packages .package-card .package-box{
+  width: 80%;
+  margin-left: 10%;
+}
+
+.price-packages .package-card .package-box h4{
+  margin-top: 10px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--heading-color);
+}
+
+.price-packages .package-card .package-box p{
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--default-color), transparent 25%);
+  margin: 5px;
+}
+
+.price-packages .package-card .package-box .itemlist{
+  font-size: 1rem;
+  line-height: 1.6;
+  margin:10px 0 10px 20%;
+  color: var(--accent-color);
+  text-align: left;
+}
+
+.price-packages .package-card .btn{
+  background-color: var(--accent-color);
+  color: var(--default-color);
+  margin: 10px;
+}
+
 /*--------------------------------------------------------------
 # Featured Destinations Section
 --------------------------------------------------------------*/
