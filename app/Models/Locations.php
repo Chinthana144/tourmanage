@@ -23,6 +23,7 @@ class Locations extends Model
         'image3',
         'image4',
         'status',
+        'display',
     ];
 
     public function city()
@@ -33,11 +34,6 @@ class Locations extends Model
     public function stoppable()
     {
         return $this->morphMany(PackageRoutes::class, 'stoppable');
-    }
-
-    public function routable()
-    {
-        return $this->morphMany(TourRoutes::class, 'routable');
     }
 
     public function item()

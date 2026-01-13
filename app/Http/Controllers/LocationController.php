@@ -56,6 +56,8 @@ class LocationController extends Controller
         $location->latitude = $request->input('txt_latitude');
         $location->longitude = $request->input('txt_longitude');
 
+        $location->display = $request->has('chk_display') ? 1 : 0;
+
         if($request->hasFile('primary_image')) {
             $file = $request->file('primary_image');
             $filename = 'L_' . time() . '.' . $file->getClientOriginalExtension();
@@ -153,6 +155,8 @@ class LocationController extends Controller
 
         $location->latitude = $request->input('txt_latitude');
         $location->longitude = $request->input('txt_longitude');
+
+        $location->display = $request->has('chk_display') ? 1 : 0;
 
         if($request->hasFile('primary_image')){
             $oldImagePath = public_path('images/locations/'. $location->primary_image);

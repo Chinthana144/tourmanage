@@ -59,6 +59,12 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
+                                @if ($location->display)
+                                    <span class="badge bg-primary mb-1">Display in website</span>     
+                                @else
+                                    <span class="badge bg-secondary mb-1">Not displayed in website</span>  
+                                @endif
+
                                 <form action="{{ route('location.edit') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="hide_location_id" value="{{ $location->id }}">

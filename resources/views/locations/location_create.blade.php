@@ -53,6 +53,11 @@
                     </div>
                 </div>
 
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="chk_display" name="chk_display">
+                    <label class="form-check-label" for="chk_display">Display this location in website</label>
+                </div>
+
                 <hr>
 
                 <div>
