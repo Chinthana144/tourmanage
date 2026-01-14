@@ -37,6 +37,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [MainController::class, 'index'])->name('main.index'); 
+Route::get('/destination', [MainController::class, 'destinationView'])->name('main.destination');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

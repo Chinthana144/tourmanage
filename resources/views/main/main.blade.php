@@ -1,86 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Akagi Exprience</title>
+@extends('main.layout')
+    
+    {{-- header with navigation --}}
+    @include('main.navigation')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    {{-- vendor CSS files --}}
-    <link rel="stylesheet" href="{{ asset('bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/swiper-bundle.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/glightbox.min.css') }}">
-
-    {{-- main CSS file --}}
-    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-</head>
-<body>
-    {{-- header --}}
-    <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container position-relative d-flex align-items-center justify-content-between">
-
-        <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-            <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.webp" alt=""> -->
-            <h1 class="sitename">Akagi eXperience</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-            <ul>
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="destinations.html">Destinations</a></li>
-            <li><a href="tours.html">Tours</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li class="dropdown"><a href="#"><span>More Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                <li><a href="destination-details.html">Destination Details</a></li>
-                <li><a href="tour-details.html">Tour Details</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="testimonials">Testimonials</a></li>
-                <li><a href="faq.html">Frequently Asked Questions</a></li>
-                <li><a href="blog-details.html">Blog Details</a></li>
-                <li><a href="terms.html">Terms</a></li>
-                <li><a href="privacy.html">Privacy</a></li>
-                <li><a href="404.html">404</a></li>
-                </ul>
-            </li>
-            {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                    <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-                </ul>
-            </li> --}}
-            <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
-        {{-- <a class="btn-getstarted" href="index.html#about">Get Started</a> --}}
-        <a class="btn-getstarted" href="/login">Login</a>
-
-        </div>
-    </header>
-
-    {{-- main --}}
+  @section('content')
+          {{-- main --}}
     <main class="main">
       <!-- Travel Hero Section -->
       <section id="travel-hero" class="travel-hero section dark-background">
@@ -99,36 +23,32 @@
                   </div>
                   <div class="col-lg-6 mt-5 mt-lg-0">
                       <div class="booking-form">
+                        <h4>Register and request for Quotation</h4>
                           <form action="" method="post">
                               <div class="row gy-3">
                               <div class="col-md-6">
-                                  <label for="check-in">Travel Date</label>
-                                  <input type="date" name="checkin" id="check-in" class="form-control" required="">
+                                  <label for="check-in">First Name</label>
+                                  <input type="text" name="first_name" id="first_name" class="form-control" required placeholder="firstname">
                               </div>
                               <div class="col-md-6">
-                                  <label for="check-out">Return Date</label>
-                                  <input type="date" name="checkout" id="check-out" class="form-control" required="">
+                                  <label for="check-in">Last Name</label>
+                                  <input type="text" name="last_name" id="last_name" class="form-control" required placeholder="lastname">
                               </div>
                               <div class="col-md-6">
-                                  <label for="adults">Adults</label>
-                                  <input type="number" name="adults" id="adults" class="form-control" min="1" max="20" value="2" required="">
+                                  <label for="check-in">Email</label>
+                                  <input type="text" name="email" id="email" class="form-control" required placeholder="youremail@gmail.com">
                               </div>
                               <div class="col-md-6">
-                                  <label for="children">Children</label>
-                                  <input type="number" name="children" id="children" class="form-control" min="0" max="20" value="0">
+                                  <label for="check-in">Phone</label>
+                                  <input type="text" name="phone" id="phone" class="form-control" required placeholder="+947#########">
                               </div>
                               <div class="col-md-6">
-                                  <label for="children">Tour Pourpose</label>
+                                  <label for="children">Country</label>
                                   <select name="cmb_pourpose" id="cmb_pourpose" class="form-control">
-                                    @foreach ($tour_pourposes as $pourpose)
-                                        <option value="{{ $pourpose->id }}" style="background-color: #0d0d0d; color:white;">{{ $pourpose->name }}</option>
+                                    @foreach ($countries as $country)
+                                        <option value="{{ $country->id }}" style="background-color: #0d0d0d; color:white;">{{ $country->name }}</option>
                                     @endforeach
                                   </select>
-                              </div>
-
-                              <div class="col-md-12">
-                                  <label for="destination">Requests</label>
-                                  <input type="text" name="requests" id="requests" class="form-control" placeholder="Special requests" required="">
                               </div>
                               <div class="col-md-12 text-center">
                                   <button type="submit" class="btn btn-accent w-100 mt-3">Request Quotation</button>
@@ -419,143 +339,7 @@
 
     </main>
 
-    <footer id="footer" class="footer position-relative dark-background">
+    @include('main.footer')
 
-      <div class="container">
-        <div class="row gy-5">
+  @endsection
 
-          <div class="col-lg-4">
-            <div class="footer-content">
-              <a href="index.html" class="logo d-flex align-items-center mb-4">
-                <span class="sitename">Akagi eXperience</span>
-              </a>
-              <p class="mb-4">Akagi eXperience creates thoughtfully curated journeys that blend authentic experiences, comfort, and personalized service—so every trip goes beyond the ordinary.</p>
-
-              <div class="newsletter-form">
-                <h5>Stay Updated</h5>
-                <form action="forms/newsletter.php" method="post" class="php-email-form">
-                  <div class="input-group">
-                    <input type="email" name="email" class="form-control" placeholder="Enter your email" required="">
-                    <button type="submit" class="btn-subscribe">
-                      <i class="bi bi-send"></i>
-                    </button>
-                  </div>
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Thank you for subscribing!</div>
-                </form>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-6">
-            <div class="footer-links">
-              <h4>Company</h4>
-              <ul>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> About</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> Careers</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> Press</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> Blog</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> Contact</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-6">
-            <div class="footer-links">
-              <h4>Solutions</h4>
-              <ul>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> Digital Strategy</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> Cloud Computing</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> Data Analytics</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> AI Solutions</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i> Cybersecurity</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="footer-contact">
-              <h4>Get in Touch</h4>
-              <div class="contact-item">
-                <div class="contact-icon">
-                  <i class="bi bi-geo-alt"></i>
-                </div>
-                <div class="contact-info">
-                  <p>2847 Maple Avenue<br>Los Angeles, CA 90210<br>United States</p>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <div class="contact-icon">
-                  <i class="bi bi-telephone"></i>
-                </div>
-                <div class="contact-info">
-                  <p>+1 (555) 987-6543</p>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <div class="contact-icon">
-                  <i class="bi bi-envelope"></i>
-                </div>
-                <div class="contact-info">
-                  <p>info@akagiexp.com</p>
-                </div>
-              </div>
-
-              <div class="social-links">
-                <a href="#"><i class="bi bi-facebook"></i></a>
-                <a href="#"><i class="bi bi-twitter-x"></i></a>
-                <a href="#"><i class="bi bi-linkedin"></i></a>
-                <a href="#"><i class="bi bi-youtube"></i></a>
-                <a href="#"><i class="bi bi-github"></i></a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6">
-              <div class="copyright">
-                <p>© <span>Copyright</span> <strong class="px-1 sitename">Akagi eXperience</strong> <span>All Rights Reserved</span></p>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
-              </div>
-              <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you've purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-                {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </footer>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
-
-    {{-- main js --}}
-    <script src="{{ asset('js/main.js') }}"></script>
-</body>
-</html>
