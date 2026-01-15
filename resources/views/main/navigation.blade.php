@@ -4,19 +4,19 @@
 
         <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
-            <!-- <img src="assets/img/logo.webp" alt=""> -->
-            <h1 class="sitename">Akagi eXperience</h1>
+            {{-- <img src="{{ asset('') }}" alt=""> --}}
+            <h1 class="sitename">Akagi eXperiences</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
             <ul>
             <li><a href="{{ route('main.index') }}" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="#">About</a></li>
             <li><a href="{{ route('main.destination') }}">Destinations</a></li>
-            <li><a href="tours.html">Tours</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li class="dropdown"><a href="#"><span>More Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <li><a href="#">Tours</a></li>
+            {{-- <li><a href="gallery.html">Gallery</a></li> --}}
+            {{-- <li><a href="blog.html">Blog</a></li> --}}
+            {{-- <li class="dropdown"><a href="#"><span>More Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                 <li><a href="destination-details.html">Destination Details</a></li>
                 <li><a href="tour-details.html">Tour Details</a></li>
@@ -28,7 +28,7 @@
                 <li><a href="privacy.html">Privacy</a></li>
                 <li><a href="404.html">404</a></li>
                 </ul>
-            </li>
+            </li> --}}
             {{-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul>
                 <li><a href="#">Dropdown 1</a></li>

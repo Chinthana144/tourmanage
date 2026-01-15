@@ -141,3 +141,15 @@ schedule
 * airport fast pickup
 * all inclusive package
 * mid level package
+
+
+//changes
+* language button 2 languages
+* about us picture - 
+* title logo 
+* navbar login remove
+* border radius ------------- done
+* about us image 
+
+//partners logos
+image slider animation

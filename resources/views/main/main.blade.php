@@ -6,22 +6,28 @@
   @section('content')
           {{-- main --}}
     <main class="main">
+      
       <!-- Travel Hero Section -->
       <section id="travel-hero" class="travel-hero section dark-background">
-          <div class="container">
-
+        <div class="container">
               <div class="row align-items-center">
-                  <div class="col-lg-6">
+                  <div class="col-lg-12">
+                    <div class="video-wrapper">
+                      <video autoplay muted loop playsinline class="bg-video">
+                        <source src="{{ asset('videos/vid_sunset.mp4') }}" type="video/mp4">
+                      </video>
+                    </div>
                       <div class="content">
                           <h1>Travel Beyond The Ordinary.</h1>
                           <p class="lead">Curated journeys combining culture, comfort, and unforgettable experiences across remarkable destinations.</p>
                           <div class="d-flex flex-wrap gap-3 mt-4">
-                              <a href="destinations.html" class="btn btn-primary">Start Exploring</a>
-                              <a href="tours.html" class="btn btn-outline-light">View Tours</a>
+                              <a href="#" class="btn btn-primary">Design Custom Tour</a>
+                              <a href="#" class="btn btn-outline-light">View Our Pre-arranged Tours</a>
                           </div>
                       </div>
                   </div>
-                  <div class="col-lg-6 mt-5 mt-lg-0">
+
+                  {{-- <div class="col-lg-6 mt-5 mt-lg-0">
                       <div class="booking-form">
                         <h4>Register and request for Quotation</h4>
                           <form action="" method="post">
@@ -56,10 +62,11 @@
                               </div>
                           </form>
                       </div>
-                  </div>
-              </div>
+                  </div> --}}
 
+              </div>
           </div>
+          
       </section><!-- /Travel Hero Section -->
 
       <!-- Why Us Section -->
@@ -79,21 +86,29 @@
                     <h3>Travel Beyond The Ordinary.</h3>
                   </div>
                   <div class="about-content">
-                    <p>At Akagi eXperience, we believe travel should be more than destinations. We design carefully curated journeys that combine authentic experiences, comfort, and personal attention—so every trip feels meaningful and unforgettable.</p>
-                    <p>We don't just organize trips—we craft experiences. Akagi eXperience combines local insight, careful planning, and personalized service to create journeys that truly stand out.</p>
+                    <p>
+                      <b>The Architecture of Travel</b><br>
+                      Akagi eXperiences is a luxury travel architectural firm bridging the gap between Japanese precision and Indian Ocean soul. Operating from our dual hubs in Japan and the World Trade Center (WTC) Colombo, we design journeys, not just itineraries.
+                      <b>Japanese Standards, Local Heart</b><br>
+                      Our foundation is Omotenashi—the Japanese art of selfless hospitality. We believe true luxury is the absence of friction. By merging Japanese discipline with deep Sri Lankan and Maldivian expertise, we ensure every journey is seamless, secure, and soulful.
+                    </p>
+                    <p>
+                      <b>The "Frictionless" Guarantee</b><br>
+                      We handle the complexity so you don't have to. From securing VIP "Pre-Paid" status at exclusive resorts to managing private logistics and domestic manifests, Akagi ensures you are never just a guest—you are a priority.
+                    </p>
 
                     <div class="feature-list">
                       <div class="feature-item">
                         <i class="bi bi-check-circle-fill"></i>
-                        <span>Expert local guides in every destination</span>
+                        <span>Dual-Hub Accountability: Offices in Japan and Sri Lanka (WTC) for 24/7 global support.</span>
                       </div>
                       <div class="feature-item">
                         <i class="bi bi-check-circle-fill"></i>
-                        <span>Customized itineraries for every traveler</span>
+                        <span>Curated Excellence: A portfolio limited to properties that meet our rigorous standards.</span>
                       </div>
                       <div class="feature-item">
                         <i class="bi bi-check-circle-fill"></i>
-                        <span>24/7 customer support throughout your journey</span>
+                        <span>VIP Logistics: Specializing in privacy, speed, and exclusivity for high-net-worth travel.</span>
                       </div>
                     </div>
                   </div>
@@ -104,7 +119,7 @@
               <div class="col-lg-6">
                 <div class="image-showcase">
                   <div class="main-image">
-                    <img src=" {{ asset('images/main/travel/showcase-12.webp') }}" alt="Travel Adventure" class="img-fluid rounded-3">
+                    <img src=" {{ asset('images/main/travel/showcase-12.webp') }}" alt="Travel Adventure" class="img-fluid">
                     <div class="overlay-badge">
                       <div class="badge-content">
                         <i class="bi bi-award-fill"></i>
@@ -140,7 +155,7 @@
             <div class="section-header text-center">
               <span class="section-badge">Why Choose Us</span>
               <h3>What Makes Us Different</h3>
-              <p>We focus on authenticity, comfort, and carefully crafted experiences that truly stand apart.</p>
+              <p>"Our Indian Ocean Footprint: From the cultural heart of Sri Lanka to the private atolls of the Maldives, we collaborate with the region’s most prestigious resorts to architect your perfect escape."</p>
             </div>
 
             <div class="features-container">
@@ -323,7 +338,7 @@
                 <h3>Can't Decide Where to Go?</h3>
                 <p>Our travel experts are here to help you find the perfect destination based on your preferences, budget, and travel style.</p>
                 <div class="cta-buttons">
-                  <a href="destinations.html" class="btn btn-primary">View All Destinations</a>
+                  <a href="/main.destination" class="btn btn-primary">View All Destinations</a>
                   <a href="contact.html" class="btn btn-outline">Talk to Expert</a>
                 </div>
               </div>
@@ -340,6 +355,16 @@
     </main>
 
     @include('main.footer')
+
+    <script>
+      // video
+      document.addEventListener('DOMContentLoaded', function () {
+        const video = document.querySelector('.bg-video');
+        if (video) {
+            video.playbackRate = 0.8; // half speed
+        }
+      });
+    </script>
 
   @endsection
 
