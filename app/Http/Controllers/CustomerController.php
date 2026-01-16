@@ -7,6 +7,7 @@ use App\Models\Countries;
 use App\Models\Customers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -34,12 +35,12 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+        $token = Str::uuid();
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|unique:customers,email',
             'phone_number' => 'required|string|max:20',
-            'country_id' => 'required|exists:countries,id',
         ]);
 
         Customers::create([
@@ -47,7 +48,7 @@ class CustomerController extends Controller
             'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
             'phone_number' => $request->input('phone_number'),
-            'country_id' => $request->input('country_id'),
+            'invite_token' => $token,
         ]);
 
         return redirect()->route('customers.index')->with('success', 'Customer added successfully.');
@@ -55,16 +56,24 @@ class CustomerController extends Controller
 
     public function register(Request $request)
     {
-        // Customers::create([
-        //     'first_name' => $request->input('first_name'),
-        //     'last_name' => $request->input('last_name'),
-        //     'email' => $request->input('email'),
-        //     'phone_number' => $request->input('phone_number'),
-        //     'country_id' => $request->input('country_id'),
-        // ]);
+        $token = Str::uuid();
+        /*
+        * if the email is already exist ? update : create;
+        */
+        $customer = Customers::updateOrCreate(
+            [
+                'email' => $request->input('email'),
+            ],
+            [
+                'first_name' => $request->input('first_name'),
+                'last_name' => $request->input('last_name'),
+                'phone_number' => $request->input('phone'),
+                'invite_token' => $token,
+            ],
+        );
 
         Mail::to($request->input('email'))->send(
-            new CustomerInviteMail()
+            new CustomerInviteMail($customer)
         );
 
         return redirect()->route('main.show_customer_register')->with('success', 'Email sent successfully, please check your Email!');

@@ -13,12 +13,14 @@ class CustomerInviteMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $customer;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($customer)
     {
-        //
+        $this->customer = $customer;
     }
 
     /**
@@ -27,7 +29,7 @@ class CustomerInviteMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Customer Invite Mail',
+            subject: 'Akagi eXperiences - custom tour request',
         );
     }
 
@@ -38,6 +40,9 @@ class CustomerInviteMail extends Mailable
     {
         return new Content(
             view: 'emails.CustomerInviteMail',
+            with: [
+                'customer' => $this->customer,
+            ],
         );
     }
 

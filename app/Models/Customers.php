@@ -11,13 +11,8 @@ class Customers extends Model
         'last_name',
         'email',
         'phone_number',
-        'country_id',
+        'invite_token',
     ];
-
-    public function country()
-    {
-        return $this->belongsTo(Countries::class, 'country_id');
-    }
 
     public function tourRequests()
     {

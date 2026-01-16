@@ -146,9 +146,9 @@ schedule
 //changes
 * language button 2 languages
 * about us picture - 
-* title logo 
-* navbar login remove ----done
-* border radius ------------- done
+* title logo
+* navbar login remove -------- done
+* border radius -------------- done
 * about us image -- done
 
 about us remove

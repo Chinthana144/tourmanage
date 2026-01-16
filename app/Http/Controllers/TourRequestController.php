@@ -32,6 +32,13 @@ class TourRequestController extends Controller
         return view('tour_requests.request_create', compact('customer', 'tour_purposes'));
     }//create
 
+    public function createRequest(Request $request)
+    {
+        $customer = $request->attributes->get('customer');
+
+        return view('main.tour_request', compact('customer'));
+    }//create request
+
     public function store(Request $request)
     {
         $tour_request = new TourRequest();

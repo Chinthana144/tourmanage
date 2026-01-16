@@ -24,7 +24,6 @@ use App\Http\Controllers\TourRequestLocationController;
 use App\Http\Controllers\TourRequestPeopleController;
 use App\Http\Controllers\TourRequestRoomController;
 use App\Http\Controllers\TourRoomController;
-use App\Http\Controllers\TourRouteController;
 use App\Http\Controllers\TourRouteItemController;
 use App\Http\Controllers\TravelMediaController;
 use App\Http\Controllers\UserController;
@@ -186,18 +185,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/update-tours', [TourController::class, 'update'])->name('tours.update');
     Route::get('/getOneTour', [TourController::class, 'getOneTour']);
 
-    //tour route
-    Route::get('/tour-routes', [TourRouteController::class, 'index'])->name('tour_route.index');
-    // Route::post('/activityStore', [TourRouteController::class, 'activityStore'])->name('tour_route.activity_store');
-    // Route::post('/locationStore', [TourRouteController::class, 'locationStore'])->name('tour_route.location_store');
-    // Route::post('/hotelStore', [TourRouteController::class, 'hotelStore'])->name('tour_route.hotel_store');
-    // Route::post('/restaurantStore', [TourRouteController::class, 'restaurantStore'])->name('tour_route.restaurant_store');
-    // Route::post('/travelStore', [TourRouteController::class, 'travelStore'])->name('tour_route.travel_store');
-    Route::delete('/route-destroy', [TourRouteController::class, 'destroy'])->name('tour_route.destroy');
-    Route::post('/route-orderUp', [TourRouteController::class, 'orderUp'])->name('tour_route.order_up');
-    Route::post('/route-orderDown', [TourRouteController::class, 'orderDown'])->name('tour_route.order_down');
-    Route::get('/getOneTourRoute', [TourRouteController::class, 'getOneTourRoute']);
-
     //tour route items
     Route::get('/tour-route-items', [TourRouteItemController::class, 'index'])->name('tour_route_items.index');
     Route::post('/locationStore', [TourRouteItemController::class, 'locationStore'])->name('route_items.location_store');
@@ -225,6 +212,11 @@ Route::middleware('auth')->group(function () {
     //quotations
     Route::get('/quotations', [QuotationController::class, 'index'])->name('quotation.index');
     Route::post('/generatePdf', [QuotationController::class, 'generatePdf'])->name('quotation.generate');
+});
+
+//customer invite middleware
+Route::middleware('customer.invite')->group(function(){
+    Route::get('/tour-request/{token}', [TourRequestController::class, 'createRequest']);
 });
 
 // Route::get('/template', function () {
