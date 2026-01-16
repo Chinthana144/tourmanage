@@ -89,7 +89,6 @@
 
           <div class="col-lg-4 col-md-4">
             <div class="footer-contact">
-              <h4>Get in Touch</h4>
               <div class="contact-item">
                 <div class="contact-icon">
                   <i class="bi bi-geo-alt"></i>
@@ -123,7 +122,6 @@
 
           <div class="col-lg-4 col-md-4">
             <div class="footer-contact">
-              <h4>Get in Touch</h4>
               <div class="contact-item">
                 <div class="contact-icon">
                   <i class="bi bi-geo-alt"></i>

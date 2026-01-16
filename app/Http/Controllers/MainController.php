@@ -17,6 +17,14 @@ class MainController extends Controller
         return view('main.main', compact('destinations', 'countries'));
     }//index
 
+    public function tempMain()
+    {
+        $countries = Countries::all();
+        $destinations = Locations::where('display', 1)->limit(6)->get();
+
+        return view('main.temp_main', compact('destinations', 'countries'));
+    }
+
     public function destinationView()
     {
         $destinations = Locations::where('status', 1)->get();

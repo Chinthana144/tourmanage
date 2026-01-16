@@ -123,14 +123,14 @@
                     <div class="overlay-badge">
                       <div class="badge-content">
                         <i class="bi bi-award-fill"></i>
-                        <div class="badge-text">
+                        {{-- <div class="badge-text">
                           <strong>Award Winner</strong>
                           <span>Best Travel Agency 2024</span>
-                        </div>
+                        </div> --}}
                       </div>
                     </div>
                   </div>
-                  <div class="floating-card">
+                  {{-- <div class="floating-card">
                     <img src="{{ asset('images/main/travel/misc-8.webp') }}" alt="Happy Travelers" class="img-fluid rounded-2">
                     <div class="card-content">
                       <div class="rating">
@@ -143,7 +143,7 @@
                       </div>
                       <p>"Amazing experience!"</p>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
 
@@ -308,9 +308,9 @@
                   <div class="destination-card">
                     <div class="image-wrapper">
                       <img src="{{ asset($destination->primary_image) }}" alt="Destination" class="img-fluid">
-                      <div class="overlay">
+                      {{-- <div class="overlay">
                         <div class="badge">Popular</div>
-                      </div>
+                      </div> --}}
                     </div>
                     <div class="content">
                       <h4>{{ $destination->name }}</h4>

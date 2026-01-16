@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('main');
 // });
 
-Route::get('/', [MainController::class, 'index'])->name('main.index'); 
+Route::get('/', [MainController::class, 'tempMain'])->name('main.temp_main'); 
 Route::get('/destination', [MainController::class, 'destinationView'])->name('main.destination');
 
 Route::get('/dashboard', function () {
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     //main page -> move this to open after development
-    // Route::get('/main', [MainController::class, 'index'])->name('main.index'); 
+    Route::get('/main', [MainController::class, 'index'])->name('main.index'); 
 
     //users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');

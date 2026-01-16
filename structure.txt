@@ -147,9 +147,13 @@ schedule
 * language button 2 languages
 * about us picture - 
 * title logo 
-* navbar login remove
+* navbar login remove ----done
 * border radius ------------- done
-* about us image 
+* about us image -- done
+
+about us remove
+Sri lanka & moldives
+pages - aboutus, tours, gallery
 
 //partners logos
 image slider animation

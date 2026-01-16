@@ -80,6 +80,10 @@ h6 {
 /* ------------------------------------------------------------------
 * Header section style
 ---------------------------------------------------------------------*/
+.header-section{
+  position: relative;
+}
+
 .header-section .container{
     text-align: center;
     position: relative;
@@ -92,12 +96,12 @@ h6 {
     color: var(--default-color);
 }
 
-.header-section .container #img_background{
+.header-section #img_background{
     width: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -1;
+    /* z-index: -1; */
     opacity: 0.3;
 }
 
@@ -110,10 +114,27 @@ h6 {
     transition: all 0.3s ease;
 }
 
-
+.data-section .container .destination-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
 
 .data-section .container .destination-card .image-wrapper img{
     overflow: hidden;
     width: 100%;
     border-radius: 10px;
+}
+
+.data-section .container .destination-card .image-wrapper{
+    position: relative;
+}
+
+.data-section .container .destination-card .image-wrapper .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
 }

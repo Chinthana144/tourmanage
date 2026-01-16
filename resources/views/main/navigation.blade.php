@@ -10,7 +10,7 @@
 
         <nav id="navmenu" class="navmenu">
             <ul>
-            <li><a href="{{ route('main.index') }}" class="active">Home</a></li>
+            <li><a href="{{ route('main.temp_main') }}" class="active">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="{{ route('main.destination') }}">Destinations</a></li>
             <li><a href="#">Tours</a></li>
@@ -52,7 +52,7 @@
         </nav>
 
         {{-- <a class="btn-getstarted" href="index.html#about">Get Started</a> --}}
-        <a class="btn-getstarted" href="/login">Login</a>
+        <a class="btn-getstarted" href="/login"><i class="bi bi-person"></i></a>
 
         </div>
     </header>

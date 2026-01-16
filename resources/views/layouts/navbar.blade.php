@@ -31,6 +31,14 @@
           </li>
 
           <li>
+            <a href="#">Main Page</a>
+            <i class='bx bxs-chevron-down js-arrow arrow'></i>
+            <ul class="js-sub-menu sub-menu">
+              <li><a href="{{ route('main.index') }}">Main</a></li>
+            </ul>
+          </li>
+
+          <li>
             <a href="#">ROUTES</a>
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
