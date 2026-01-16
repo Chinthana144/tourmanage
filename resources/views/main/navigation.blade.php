@@ -13,7 +13,7 @@
             <li><a href="{{ route('main.temp_main') }}" class="active">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="{{ route('main.destination') }}">Destinations</a></li>
-            <li><a href="#">Tours</a></li>
+            <li><a href="{{ route('main.tour_packages') }}">Tours</a></li>
             {{-- <li><a href="gallery.html">Gallery</a></li> --}}
             {{-- <li><a href="blog.html">Blog</a></li> --}}
             {{-- <li class="dropdown"><a href="#"><span>More Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>

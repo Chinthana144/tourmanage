@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Countries;
 use App\Models\Locations;
+use App\Models\Packages;
 use App\Models\TourPurposes;
 use Illuminate\Http\Request;
 
@@ -30,5 +31,12 @@ class MainController extends Controller
         $destinations = Locations::where('status', 1)->get();
 
         return view('main.destination', compact('destinations'));
+    }
+
+    public function tourPackageView()
+    {   
+        $packages = Packages::where('status', 1)->paginate(6);
+
+        return view('main.tour_packages', compact('packages'));
     }
 }//class

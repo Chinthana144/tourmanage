@@ -22,7 +22,7 @@
                           <p class="lead">Curated journeys combining culture, comfort, and unforgettable experiences across remarkable destinations.</p>
                           <div class="d-flex flex-wrap gap-3 mt-4">
                               <a href="#" class="btn btn-primary">Design Custom Tour</a>
-                              <a href="#" class="btn btn-outline-light">View Our Pre-arranged Tours</a>
+                              <a href="{{ route('main.tour_packages') }}" class="btn btn-outline-light">View Our Pre-arranged Tours</a>
                           </div>
                       </div>
                   </div>
