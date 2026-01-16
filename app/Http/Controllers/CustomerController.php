@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CustomerInviteMail;
 use App\Models\Countries;
 use App\Models\Customers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CustomerController extends Controller
 {
@@ -49,6 +51,23 @@ class CustomerController extends Controller
         ]);
 
         return redirect()->route('customers.index')->with('success', 'Customer added successfully.');
+    }
+
+    public function register(Request $request)
+    {
+        // Customers::create([
+        //     'first_name' => $request->input('first_name'),
+        //     'last_name' => $request->input('last_name'),
+        //     'email' => $request->input('email'),
+        //     'phone_number' => $request->input('phone_number'),
+        //     'country_id' => $request->input('country_id'),
+        // ]);
+
+        Mail::to($request->input('email'))->send(
+            new CustomerInviteMail()
+        );
+
+        return redirect()->route('main.show_customer_register')->with('success', 'Email sent successfully, please check your Email!');
     }
 
     /**

@@ -39,4 +39,11 @@ class MainController extends Controller
 
         return view('main.tour_packages', compact('packages'));
     }
+
+    public function showCustomerRegister()
+    {
+        $countries = Countries::all();
+
+        return view('main.customer_register', compact('countries'));
+    }
 }//class

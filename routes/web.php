@@ -55,7 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/main', [MainController::class, 'index'])->name('main.index'); 
     Route::get('/destination', [MainController::class, 'destinationView'])->name('main.destination');
     Route::get('/tourpackages', [MainController::class, 'tourPackageView'])->name('main.tour_packages');
-
+    Route::get('/showCustomerRegister', [MainController::class, 'showCustomerRegister'])->name('main.show_customer_register');
+    Route::post('/registerCustomer', [CustomerController::class, 'register'])->name('customer.register');
     //users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/user-store', [UserController::class, 'store'])->name('user.store');

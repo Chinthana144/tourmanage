@@ -154,6 +154,8 @@ schedule
 about us remove
 Sri lanka & moldives
 pages - aboutus, tours, gallery
+tour package display toggler
+customer token store
 
 //partners logos
 image slider animation

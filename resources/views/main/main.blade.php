@@ -21,7 +21,7 @@
                           <h1>Travel Beyond The Ordinary.</h1>
                           <p class="lead">Curated journeys combining culture, comfort, and unforgettable experiences across remarkable destinations.</p>
                           <div class="d-flex flex-wrap gap-3 mt-4">
-                              <a href="#" class="btn btn-primary">Design Custom Tour</a>
+                              <a href="{{ route('main.show_customer_register') }}" class="btn btn-primary">Design Custom Tour</a>
                               <a href="{{ route('main.tour_packages') }}" class="btn btn-outline-light">View Our Pre-arranged Tours</a>
                           </div>
                       </div>
