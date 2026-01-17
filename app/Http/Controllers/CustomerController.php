@@ -68,15 +68,16 @@ class CustomerController extends Controller
                 'first_name' => $request->input('first_name'),
                 'last_name' => $request->input('last_name'),
                 'phone_number' => $request->input('phone'),
+                'country_id' => $request->input('country_id'),
                 'invite_token' => $token,
             ],
         );
 
-        Mail::to($request->input('email'))->send(
-            new CustomerInviteMail($customer)
-        );
-
-        return redirect()->route('main.show_customer_register')->with('success', 'Email sent successfully, please check your Email!');
+        return response()->json([
+            'success' => true,
+            'message' => 'customer registered successfully!',
+            'customer' => $customer,
+        ]);
     }
 
     /**

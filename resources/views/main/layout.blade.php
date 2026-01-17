@@ -19,6 +19,7 @@
 
     {{-- main CSS file --}}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
 </head>
 <body>
     {{-- header with navigation --}}
@@ -38,5 +39,6 @@
 
     {{-- main js --}}
     <script src="{{ asset('js/main.js') }}"></script>
+
 </body>
 </html>

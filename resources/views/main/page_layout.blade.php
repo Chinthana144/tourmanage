@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Akagi Exprience</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -19,6 +21,9 @@
 
     {{-- main CSS file --}}
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
+     {{-- jQuery --}}
+    <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>
 </head>
 <body>
     {{-- header with navigation --}}

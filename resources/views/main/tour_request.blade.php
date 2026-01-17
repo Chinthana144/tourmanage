@@ -14,7 +14,12 @@
 
         <section class="section data-section">
             <div class="container">
-                <h4>Tour request form here</h4>
+                <h4>Welcome {{ $customer->first_name ." ". $customer->last_name }}</h4>
+                <p>Please proceed with tour request submission.</p>
+            </div>
+
+            <div id="div_progress">
+                <div class="div_progress_item"></div>
             </div>
         </section>
     </main>
