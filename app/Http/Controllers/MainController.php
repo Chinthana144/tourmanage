@@ -43,7 +43,8 @@ class MainController extends Controller
     public function showCustomerRegister()
     {
         $countries = Countries::all();
+        $pourposes = TourPurposes::all();
 
-        return view('main.customer_register', compact('countries'));
+        return view('main.customer_register', compact('countries', 'pourposes'));
     }
 }//class
