@@ -74,22 +74,22 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="tour_return">Return Date</label>    
-                            <input type="date" name="tour_return " id="tour_return " class="form-control mb-2" required>
+                            <label for="tour_return">Return Date</label>
+                            <input type="date" name="tour_return" id="tour_return" class="form-control mb-2" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="number_of_adults">Number of Adults</label>   
+                            <label for="number_of_adults">Number of Adults</label>
                             <input type="number" name="number_of_adults" id="number_of_adults" class="form-control mb-2" required>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="number_of_children">Number of Children (optional)</label>   
+                            <label for="number_of_children">Number of Children (optional)</label>
                             <input type="number" name="number_of_children" id="number_of_children" class="form-control mb-2">
                         </div>
 
                         <div class="col-md-6">
-                            <label for="budget">Budget(optional)</label>   
+                            <label for="budget">Budget(optional)</label>
                             <input type="number" name="budget" id="budget" class="form-control mb-2">
                         </div>
 
@@ -97,7 +97,7 @@
                             <label for="">Tour Pourpose</label>
                             <select name="cmb_pourpose" id="cmb_pourpose" class="form-select mb-2">
                                 @foreach ($pourposes as $pourpose)
-                                    <option value="{{ $pourpose->id }}">{{ $pourpose->name }}</option>                                   
+                                    <option value="{{ $pourpose->id }}">{{ $pourpose->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -110,7 +110,7 @@
                         <div class="col-md-6">
                             <button class="btn btn-submit w-100 mt-4" id="btn_create_request">Save & Continue <i class="bi bi-caret-right-fill"></i></button>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -118,62 +118,57 @@
                 <div id="form_composition" class="form-step">
                     <button id="btn_back_tour" class="btn_arrow"><i class="bi bi-arrow-left-circle"></i></button>
                     <h4>Who is going with you?</h4>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <h5>Singles</h5>
-                            <p>Singles who stay in one room</p>
-                            <label for="">Room Count</label>
-                            <input type="number" step="1" name="single_count" class="form-control">
-
+                    <input type="hidden" name="tour_request_id" id="tour_request_id" value="1">
+                    <div class="col-md-4">
+                        <label for="">Select Group Compisition</label>
+                        <select name="cmb_compisition" id="cmb_compisition" class="form-select">
+                            <option value="0">--- Select Composition ---</option>
+                            <option value="1">Singles</option>
+                            <option value="2">Couples</option>
+                            <option value="3">Family</option>
+                            <option value="4">Friends</option>
+                        </select>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-2" id="div_adults">
+                            <label for="">Adults</label>
+                            <input type="number" class="form-control" id="adult_count">
                         </div>
-                        <div class="col-md-3">
-                            <h5>Couples</h5>
-                            <p>Couples who stay in one room</p>
-                            <label for="">Room Count</label>
-                            <input type="number" step="1" name="couples_count" class="form-control">
+                        <div class="col-md-2" id="div_children">
+                            <label for="">Children</label>
+                            <input type="number" class="form-control" id="children_count">
                         </div>
-                        <div class="col-md-3">
-                            <h5>Family</h5>
-                            <p>Family </p>
-                            <label for="">Adult Count</label>
-                            <input type="number" step="1" name="couples_count" class="form-control">
-                            <label for="">Children Count</label>
-                            <input type="number" step="1" name="couples_count" class="form-control">
-                            <label for="">Room Count</label>
-                            <input type="number" step="1" name="couples_count" class="form-control">
+                        <div class="col-md-2" id="div_extra_bed">
+                            <label for="">Extra Bed</label>
+                           <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="chk_extra_bed">
+                                <label class="form-check-label" for="chk_extra_bed">Extra Bed</label>
+                            </div>
                         </div>
-                        <div class="col-md-3">
-                            <h5>Friends</h5>
-                            <p>Friends Staying together</p>
-                            <label for="">Number of Friend(Adults)</label>
-                            <input type="number" step="1" name="friends_count" class="form-control">
-
-                            <label for="">Room Count</label>
-                            <input type="number" step="1" name="friend_room_count" class="form-control">
+                        <div class="col-md-2" id="div_rooms">
+                            <label for="">Rooms</label>
+                            <input type="number" class="form-control" id="room_count">
+                        </div>
+                        <div class="col-md-2" id="div_submit_button">
+                            <button class="btn btn-submit mt-4 w-100" id="btn_add_composition"><i class="bi bi-plus"></i> Add</button>
                         </div>
                     </div>
+
+                    <div id="div_request_people"></div>
+                    <h5 id="h5_totals"></h5>
+                    <form action="" method="get">
+                        <input type="hidden" name="hide_tour_request_id" id="hide_tour_request_id">
+                        <button class="btn btn-submit float-end mt-2" id="btn_submit_composition">Submit & Continue</button>
+                    </form>
+
                 </div>
             </div>
         </section>
-       
-
-        {{-- <section class="section data-section">
-           <div class="col-md-6">
-                        
-                    </div>
-
-            <div class="container">
-                <div class="tour_form active" id="div_tour_form">
-                    tour form asdasdw  asasdwas asadw asa
-                </div>
-            </div>
-            <button id="btn_check">Check</button>
-        </section> --}}
 
     </main>
 
     <script src="{{ asset('js/main_request.js') }}"></script>
 
     @include('main.footer')
-    
+
 @endsection

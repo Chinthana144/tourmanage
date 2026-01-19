@@ -35,7 +35,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('main');
 // });
 
-Route::get('/', [MainController::class, 'tempMain'])->name('main.temp_main'); 
+Route::get('/', [MainController::class, 'tempMain'])->name('main.temp_main');
 Route::get('/destination', [MainController::class, 'destinationView'])->name('main.destination');
 
 Route::get('/dashboard', function () {
@@ -51,11 +51,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     //main page -> move this to open after development
-    Route::get('/main', [MainController::class, 'index'])->name('main.index'); 
+    Route::get('/main', [MainController::class, 'index'])->name('main.index');
     Route::get('/destination', [MainController::class, 'destinationView'])->name('main.destination');
     Route::get('/tourpackages', [MainController::class, 'tourPackageView'])->name('main.tour_packages');
     Route::get('/showCustomerRegister', [MainController::class, 'showCustomerRegister'])->name('main.show_customer_register');
     Route::post('/registerCustomer', [CustomerController::class, 'register']);
+    Route::post('/requestStore', [TourRequestController::class, 'requestStore']);
+    Route::post('/addGroupComposition', [TourRequestPeopleController::class, 'storeRequestPeople']);
+    // Route::get('/tourDestination', [MainCon]);
+
+
     //users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::post('/user-store', [UserController::class, 'store'])->name('user.store');
@@ -178,7 +183,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
     Route::get('/getActivitybyLocation', [ActivityController::class, 'getActivitybyLocation']);
     Route::get('/getActivities', [ActivityController::class, 'getActivities']);
-    
+
     //tours
     Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
     Route::post('/store-tours', [TourController::class, 'store'])->name('tours.store');

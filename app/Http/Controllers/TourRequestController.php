@@ -51,7 +51,7 @@ class TourRequestController extends Controller
         $tour_request->tour_purpose_id = $request->input('cmb_tour_purpose');
         $tour_request->budget = $request->input('budget') ?? 0;
         $tour_request->special_requests = $request->input('txt_special_requests') ?? "";
-        $tour_request->status = 1; //pening
+        $tour_request->status = 1; //pending
 
         $tour_request->save();
 
@@ -59,12 +59,35 @@ class TourRequestController extends Controller
 
     }//store
 
+    public function requestStore(Request $request)
+    {
+        $tour_request = new TourRequest();
+
+        $tour_request->customer_id = $request->input('hide_customer_id');
+        $tour_request->travel_date = $request->input('start_date');
+        $tour_request->return_date = $request->input('return_date');
+        $tour_request->total_adults = $request->input('number_of_adults');
+        $tour_request->total_children = $request->input('number_of_children') ?? 0;
+        $tour_request->tour_purpose_id = $request->input('cmb_tour_purpose');
+        $tour_request->budget = $request->input('budget') ?? 0;
+        $tour_request->special_requests = $request->input('sepcial_request') ?? "";
+        $tour_request->status = 1; //pending
+
+        $tour_request->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'tour request added successfully!',
+            'tour_request' => $tour_request,
+        ]);
+    }//request store by ajax
+
     public function update(Request $request)
     {
         $tour_request_id = $request->input('hide_request_id');
 
         $tour_request = TourRequest::find($tour_request_id);
-        
+
         $tour_request->travel_date = $request->input('travel_date');
         $tour_request->return_date = $request->input('return_date');
         $tour_request->adults = $request->input('number_of_adults');

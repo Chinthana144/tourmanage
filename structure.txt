@@ -126,6 +126,7 @@ main page design
 * tour route information button
 * activity delete button
 * tour request add plain ticket (optional)
+* in admin side request people check ajax
 
 //new design
 tour_route_items
@@ -145,7 +146,7 @@ schedule
 
 //changes
 * language button 2 languages
-* about us picture - 
+* about us picture -
 * title logo
 * navbar login remove -------- done
 * border radius -------------- done

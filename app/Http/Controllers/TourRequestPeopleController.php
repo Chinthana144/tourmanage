@@ -35,6 +35,9 @@ class TourRequestPeopleController extends Controller
             case '2':
                 $adults = $quantity * 2;
             break;
+            case '4':
+                $adults = $quantity * $adults;
+            break;
         }//switch
 
         $request_people = new TourRequestPeople();
@@ -57,7 +60,11 @@ class TourRequestPeopleController extends Controller
         //     'quantity' => $tour_request_id,
         // ]);
 
-        return response()->json($request_people);
+        return response()->json([
+            'success' => true,
+            'message' => 'people added successfully!',
+            'tour_people' => $request_people,
+        ]);
     }//store using ajax
 
     public function getAllRequestPeople(Request $request)
