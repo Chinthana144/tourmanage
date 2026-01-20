@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Countries;
 use App\Models\Locations;
 use App\Models\Packages;
+use App\Models\TourPackages;
 use App\Models\TourPurposes;
 use App\Models\TourRequest;
 use Illuminate\Http\Request;
@@ -39,9 +40,10 @@ class MainController extends Controller
         $tour_request_id = $request->input('hide_tour_request_id');
 
         $tour_request =  TourRequest::find($tour_request_id);
-        $destinations = Locations::where('status', 1)->get();
+        $destinations = Locations::where('status', 1)->paginate(6);
+        $tour_packages = Packages::all();
 
-        return view('msin.tour_destinations', compact('tour_request', 'destinations'));
+        return view('main.tour_destinations', compact('tour_request', 'destinations', 'tour_packages'));
     }
 
     public function tourPackageView()

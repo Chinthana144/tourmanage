@@ -26,11 +26,13 @@
                 {{-- form register --}}
                 <div id="form_register" class="form-step active">
                     <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="float-end">Register and Continue</h4>
+                        </div>
                         <div class="col-md-6">
                             <img src="{{ asset('images/main/view_1.jpg') }}" alt="register image" id="img_customer_register">
                         </div>
                         <div class="col-md-6">
-                            <h4>Register and Continue</h4>
                             <div class="col-md-12">
                                 <label for="check-in">First Name</label>
                                 <input type="text" name="first_name" id="first_name" class="form-control" required placeholder="firstname">
@@ -41,7 +43,7 @@
                             </div>
                             <div class="col-md-12">
                                 <label for="check-in">Email</label>
-                                <input type="text" name="email" id="email" class="form-control" required placeholder="youremail@gmail.com">
+                                <input type="email" name="email" id="email" class="form-control" required placeholder="youremail@gmail.com">
                             </div>
                             <div class="col-md-12">
                                 <label for="check-in">Phone</label>
@@ -64,53 +66,41 @@
 
                 {{-- form tour --}}
                 <div class="form-step" id="form_tour">
-                    <button id="btn_back_register" class="btn_arrow"><i class="bi bi-arrow-left-circle"></i></button>
                     <input type="hidden" name="hide_tour_customer_id" id="hide_tour_customer_id">
-                    <h4>Tour Details</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button id="btn_back_register" class="btn_arrow"><i class="bi bi-arrow-left-circle"></i></button>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="float-end">Tour Details</h4>
+                        </div>
+                    </div>
                     <div class="row mt-1">
+                        <div class="col-md-6">
+                            <img src="{{ asset('images/main/view_1.jpg') }}" alt="register image" id="img_customer_register">
+                        </div>
                         <div class="col-md-6">
                             <label for="tour_start">Start Date</label>
                             <input type="date" name="tour_start" id="tour_start" class="form-control mb-2" required>
-                        </div>
 
-                        <div class="col-md-6">
                             <label for="tour_return">Return Date</label>
                             <input type="date" name="tour_return" id="tour_return" class="form-control mb-2" required>
-                        </div>
 
-                        <div class="col-md-6">
-                            <label for="number_of_adults">Number of Adults</label>
-                            <input type="number" name="number_of_adults" id="number_of_adults" class="form-control mb-2" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <label for="number_of_children">Number of Children (optional)</label>
-                            <input type="number" name="number_of_children" id="number_of_children" class="form-control mb-2">
-                        </div>
-
-                        <div class="col-md-6">
                             <label for="budget">Budget(optional)</label>
                             <input type="number" name="budget" id="budget" class="form-control mb-2">
-                        </div>
 
-                        <div class="col-md-6">
                             <label for="">Tour Pourpose</label>
                             <select name="cmb_pourpose" id="cmb_pourpose" class="form-select mb-2">
                                 @foreach ($pourposes as $pourpose)
                                     <option value="{{ $pourpose->id }}">{{ $pourpose->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
 
-                        <div class="col-md-6">
                             <label for="">Special Requests (optional)</label>
                             <input type="text" name="sepcial_request" id="sepcial_request" class="form-control mb-2">
-                        </div>
 
-                        <div class="col-md-6">
-                            <button class="btn btn-submit w-100 mt-4" id="btn_create_request">Save & Continue <i class="bi bi-caret-right-fill"></i></button>
+                            <button class="btn btn-submit w-100 mt-2" id="btn_create_request">Save & Continue <i class="bi bi-caret-right-fill"></i></button>
                         </div>
-
                     </div>
                 </div>
 
@@ -156,7 +146,8 @@
 
                     <div id="div_request_people"></div>
                     <h5 id="h5_totals"></h5>
-                    <form action="" method="get">
+                    <form action="{{ route('main.tour_destination') }}" method="post">
+                        @csrf
                         <input type="hidden" name="hide_tour_request_id" id="hide_tour_request_id">
                         <button class="btn btn-submit float-end mt-2" id="btn_submit_composition">Submit & Continue</button>
                     </form>

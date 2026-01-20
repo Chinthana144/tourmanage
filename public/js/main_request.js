@@ -18,45 +18,43 @@ $(document).ready(function () {
     //add customer by ajax
     $("#btn_register_customer").click(function (e) {
         // e.preventDefault();
-        // $.ajax({
-        //     type: "post",
-        //     url: "/registerCustomer",
-        //     data: {
-        //         first_name: $("#first_name").val(),
-        //         last_name: $("#last_name").val(),
-        //         email: $("#email").val(),
-        //         phone: $("#phone").val(),
-        //         country_id: $("#cmb_country").val(),
-        //     },
-        //     // dataType: "dataType",
-        //     success: function (response) {
-        //         // console.log(response);
+        var email = $("#email").val();
+        if(!validateEmail(email)){
+            alert("Please enter valid email");
+        }
+        else{
+            $.ajax({
+                type: "post",
+                url: "/registerCustomer",
+                data: {
+                    first_name: $("#first_name").val(),
+                    last_name: $("#last_name").val(),
+                    email: $("#email").val(),
+                    phone: $("#phone").val(),
+                    country_id: $("#cmb_country").val(),
+                },
+                // dataType: "dataType",
+                success: function (response) {
+                    // console.log(response);
 
-        //         if(response['success'])
-        //         {
-        //             $("#hide_tour_customer_id").val(response['customer']['id']);
-        //             //transition register
-        //             $("#form_register").removeClass('active').addClass('left-side');
-        //             $("#form_tour").removeClass('right-side').addClass('active');
+                    if(response['success'])
+                    {
+                        $("#hide_tour_customer_id").val(response['customer']['id']);
+                        //transition register
+                        $("#form_register").removeClass('active').addClass('left-side');
+                        $("#form_tour").removeClass('right-side').addClass('active');
 
-        //             //ball register
-        //             $("#ball_register").removeClass('bar').addClass('ball');
-        //             $("#ball_tour").removeClass('ball').addClass('bar');
-        //         }
-        //         else
-        //         {
-        //             alert('please enter valid email');
-        //         }
-        //     }//success
-        // });
-
-        //transition register
-        $("#form_register").removeClass('active').addClass('left-side');
-        $("#form_tour").removeClass('right-side').addClass('active');
-
-        //ball register
-        $("#ball_register").removeClass('bar').addClass('ball');
-        $("#ball_tour").removeClass('ball').addClass('bar');
+                        //ball register
+                        $("#ball_register").removeClass('bar').addClass('ball');
+                        $("#ball_tour").removeClass('ball').addClass('bar');
+                    }
+                    else
+                    {
+                        alert('please enter valid email');
+                    }
+                }//success
+            });
+        }//valid email
     });
 
     $("#btn_back_register").click(function(){
@@ -70,46 +68,39 @@ $(document).ready(function () {
     });
 
     $("#btn_create_request").click(function () {
-        // $.ajax({
-        //     type: "post",
-        //     url: "/requestStore",
-        //     data: {
-        //         hide_customer_id: $("#hide_tour_customer_id").val(),
-        //         start_date: $("#tour_start").val(),
-        //         return_date: $("#tour_return").val(),
-        //         number_of_adults: $("#number_of_adults").val(),
-        //         number_of_children: $("#number_of_children").val(),
-        //         cmb_tour_purpose: $("#cmb_pourpose").val(),
-        //         budget: $("#budget").val(),
-        //         sepcial_request: $("#sepcial_request").val(),
-        //     },
-        //     // dataType: "dataType",
-        //     success: function (response) {
-        //         console.log(response);
-        //         if(response['success'])
-        //         {
-        //             //transition composition
-        //             $("#form_tour").removeClass('active').addClass('left-side');
-        //             $("#form_composition").removeClass('right-side').addClass('active');
+        $.ajax({
+            type: "post",
+            url: "/requestStore",
+            data: {
+                hide_customer_id: $("#hide_tour_customer_id").val(),
+                start_date: $("#tour_start").val(),
+                return_date: $("#tour_return").val(),
+                cmb_tour_purpose: $("#cmb_pourpose").val(),
+                budget: $("#budget").val(),
+                sepcial_request: $("#sepcial_request").val(),
+            },
+            // dataType: "dataType",
+            success: function (response) {
+                console.log(response);
+                if(response['success'])
+                {
+                    $('#tour_request_id').val(response['tour_request']['id']);
+                    $('#hide_tour_request_id').val(response['tour_request']['id']);
 
-        //             //ball composition
-        //             $("#ball_tour").removeClass('bar').addClass('ball');
-        //             $("#ball_composition").removeClass('ball').addClass('bar');
-        //         }
-        //         else
-        //         {
-        //             alert('something wen wrong. please contact dev');
-        //         }
-        //     }//success
-        // });
+                    //transition composition
+                    $("#form_tour").removeClass('active').addClass('left-side');
+                    $("#form_composition").removeClass('right-side').addClass('active');
 
-        //transition composition
-        $("#form_tour").removeClass('active').addClass('left-side');
-        $("#form_composition").removeClass('right-side').addClass('active');
-
-        //ball composition
-        $("#ball_tour").removeClass('bar').addClass('ball');
-        $("#ball_composition").removeClass('ball').addClass('bar');
+                    //ball composition
+                    $("#ball_tour").removeClass('bar').addClass('ball');
+                    $("#ball_composition").removeClass('ball').addClass('bar');
+                }
+                else
+                {
+                    alert('something wen wrong. please contact dev');
+                }
+            }//success
+        });
     });
 
     $("#btn_back_tour").click(function (e) {
@@ -164,7 +155,7 @@ $(document).ready(function () {
 
             default:
             break;
-        }
+        }//switch
     });
 
     $("#btn_add_composition").click(function(){
@@ -200,7 +191,7 @@ $(document).ready(function () {
                 $("#room_count").val(1);
                 $("#adult_count").val('');
                 $("#children_count").val('');
-            }
+            }//success
         });
     });
 
@@ -278,4 +269,10 @@ $(document).ready(function () {
             }
         });
     }//load request people
+
+    //validate email
+    function validateEmail(email) {
+    const emailReg = /^([a-zA-Z0-9_.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    return emailReg.test(email);
+}
 });//main page request forms

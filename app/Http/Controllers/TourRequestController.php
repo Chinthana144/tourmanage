@@ -66,8 +66,8 @@ class TourRequestController extends Controller
         $tour_request->customer_id = $request->input('hide_customer_id');
         $tour_request->travel_date = $request->input('start_date');
         $tour_request->return_date = $request->input('return_date');
-        $tour_request->total_adults = $request->input('number_of_adults');
-        $tour_request->total_children = $request->input('number_of_children') ?? 0;
+        $tour_request->total_adults = 0;
+        $tour_request->total_children = 0;
         $tour_request->tour_purpose_id = $request->input('cmb_tour_purpose');
         $tour_request->budget = $request->input('budget') ?? 0;
         $tour_request->special_requests = $request->input('sepcial_request') ?? "";
