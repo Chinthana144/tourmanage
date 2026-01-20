@@ -11,14 +11,14 @@ use Illuminate\Http\Request;
 class TourRequestLocationController extends Controller
 {
     public function index(Request $request)
-    {   
+    {
         $tour_request_id = $request->input('tour_request_id');
         $tour_request = TourRequest::find($tour_request_id);
 
         //customer
         $customer_id = $tour_request->customer_id;
         $customer = Customers::find($customer_id);
-        
+
         //locations
         $locations = Locations::where('status', 1)
             ->with('activities')
@@ -64,7 +64,7 @@ class TourRequestLocationController extends Controller
                 {
                     $remove_location->delete();
                 }
-                
+
                 continue;
             }
         }
@@ -80,16 +80,40 @@ class TourRequestLocationController extends Controller
         $tour_request_id = $request->input('tour_request_id');
         $location_id = $request->input('location_id');
 
-        TourRequestLocations::create([
+        TourRequestLocations::firstOrCreate([
             'tour_request_id' => $tour_request_id,
             'location_id' => $location_id,
         ]);
 
         return response()->json([
             'success' => true,
-            'message' => 'Visit location added successfully!',
+            'message' => 'Visit destination added successfully!',
         ]);
     }//store
+
+    public function toggleTourDestinations(Request $request)
+    {
+        $tour_request_id = $request->input('tour_request_id');
+        $location_id = $request->input('location_id');
+        $value = $request->input('value');
+        if($value)
+        {
+            TourRequestLocations::firstOrCreate([
+                'tour_request_id' => $tour_request_id,
+                'location_id' => $location_id,
+            ]);
+        }//create
+        else
+        {
+            $tour_location = TourRequestLocations::where('tour_request_id', $tour_request_id)
+                ->where('location_id', $location_id)
+                ->first();
+            if($tour_location)
+            {
+                $tour_location->delete();
+            }
+        }//delete
+    }
 
     public function getRequestLocations(Request $request)
     {
@@ -99,7 +123,7 @@ class TourRequestLocationController extends Controller
 
         $locations = [];
 
-        foreach ($request_locations as $location) 
+        foreach ($request_locations as $location)
         {
             $locations[] = [
                 'id' => $location->id,
