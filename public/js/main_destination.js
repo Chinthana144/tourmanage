@@ -5,16 +5,19 @@ $(document).ready(function () {
         }
     });
 
+    //hide success
+    $("#sec_success").css('display', 'none');
+
     $("#div_destination").on('change', '.chk-destination', function(){
         var destinationID = $(this).data('destination-id');
         var tourRequestID = $(this).data('request-id');
         // alert('changers' + destinationID);
         var value = $(this).prop('checked');
-        alert('value = ' + value);
+        // alert('value = ' + value);
 
         $.ajax({
             type: "post",
-            url: "/addTourDestinations",
+            url: "/toggleTourDestinations",
             data: {
                 location_id: destinationID,
                 tour_request_id: tourRequestID,
@@ -31,6 +34,13 @@ $(document).ready(function () {
                 }
             }
         });
+    });
+
+    $("#btn_destination_submit").click(function (e) {
+        // e.preventDefault();
+        $("#sec_destination").fadeOut(300);
+        $("#sec_success").css('display', 'block');
+        $("#sec_success").fadeIn(300);
     });
 
     function showMessage(message, type='success')

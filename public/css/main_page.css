@@ -157,6 +157,9 @@ h6 {
     background: #fee2e2;
     color: #991b1b;
 }
+.data-section .btn-submit{
+    background-color: var(--accent-color);
+}
 
 /*-------------------------------------------------------------
 div Search

@@ -14,7 +14,18 @@
             </div>
         </section>
 
-        <section class="section">
+        <section id="sec_success">
+            <div class="container">
+                <h5>
+                    You have successfully completed the form, Please wait one of our team member will contact you soon!
+                    <br>
+                    Thank You.
+                </h5>
+            </div>
+
+        </section>
+
+        <section class="section data-section" id="sec_destination">
             <div id="flash_message" style="display:none;"></div>
             <div class="container">
                 <div class="row">
@@ -60,6 +71,7 @@
                         @endforeach
                     </div>
                 </div>
+                <button class="btn btn-submit float-end" id="btn_destination_submit">Submit</button>
             </div>
         </section>
     </main>

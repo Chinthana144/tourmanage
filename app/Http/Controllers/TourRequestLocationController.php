@@ -113,7 +113,13 @@ class TourRequestLocationController extends Controller
                 $tour_location->delete();
             }
         }//delete
-    }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Visit destination added successfully!',
+            'value' => $value,
+        ]);
+    }//toggle tour destination
 
     public function getRequestLocations(Request $request)
     {

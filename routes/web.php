@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/requestStore', [TourRequestController::class, 'requestStore']);
     Route::post('/addGroupComposition', [TourRequestPeopleController::class, 'storeRequestPeople']);
     Route::post('/tourDestination', [MainController::class, 'tourDestination'])->name('main.tour_destination');
-    Route::post('/addTourDestinations', [TourRequestLocationController::class, 'storeTourRequestLocation']);
+    Route::post('/toggleTourDestinations', [TourRequestLocationController::class, 'toggleTourDestinations']);
 
     //users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
