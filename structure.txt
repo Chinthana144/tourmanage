@@ -160,3 +160,6 @@ customer token store
 
 //partners logos
 image slider animation
+
+tour destination -> Sri Lanka, Moldives
+Budget radio buttons

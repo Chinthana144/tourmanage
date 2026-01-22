@@ -1,12 +1,12 @@
 @extends('main.layout')
-    
+
     {{-- header with navigation --}}
     @include('main.navigation')
 
   @section('content')
           {{-- main --}}
     <main class="main">
-      
+
       <!-- Travel Hero Section -->
       <section id="travel-hero" class="travel-hero section dark-background">
         <div class="container">
@@ -66,7 +66,7 @@
 
               </div>
           </div>
-          
+
       </section><!-- /Travel Hero Section -->
 
       <!-- Why Us Section -->
@@ -236,8 +236,8 @@
                   <div class="package-box">
                     <h4>Akagi Essential</h4>
                     <span>"Smart travel, made simple"</span>
-                    <p>Ideal for budget-conscious travelers seeking comfortable accommodation, essential services, and well-planned itineraries without unnecessary extras.</p>   
-                
+                    <p>Ideal for budget-conscious travelers seeking comfortable accommodation, essential services, and well-planned itineraries without unnecessary extras.</p>
+
                     <div class="itemlist">
                       <i class="bi bi-check-circle-fill"></i><span> 3★ Hotels</span><br>
                       <i class="bi bi-check-circle-fill"></i><span> BB or HB Meal Plan</span><br>
@@ -254,8 +254,8 @@
                   <div class="package-box">
                     <h4>Akagi Classic (Recommended)</h4>
                     <span>"Comfort meets experience"</span>
-                    <p>A well-balanced package offering enhanced comfort, better hotels, full-board meals, and upgraded travel for a richer experience.</p>   
-                
+                    <p>A well-balanced package offering enhanced comfort, better hotels, full-board meals, and upgraded travel for a richer experience.</p>
+
                     <div class="itemlist">
                       <i class="bi bi-check-circle-fill"></i><span> 4★ Hotels</span><br>
                       <i class="bi bi-check-circle-fill"></i><span> Full Board Meals</span><br>
@@ -272,8 +272,8 @@
                   <div class="package-box">
                     <h4>Akagi Signature</h4>
                     <span>"Travel without limits"</span>
-                    <p>Our most exclusive package, designed for VIP travelers who expect exceptional comfort, personalized service, and seamless all-inclusive travel..</p>   
-                
+                    <p>Our most exclusive package, designed for VIP travelers who expect exceptional comfort, personalized service, and seamless all-inclusive travel..</p>
+
                     <div class="itemlist">
                       <i class="bi bi-check-circle-fill"></i><span> Luxury Hotels</span><br>
                       <i class="bi bi-check-circle-fill"></i><span> All-Inclusive Meals</span><br>

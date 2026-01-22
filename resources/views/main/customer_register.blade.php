@@ -14,17 +14,17 @@
             </div>
         </section>
 
-        <div id="div_navigator">
+        {{-- <div id="div_navigator">
             <div class="ball" id="ball_register"></div>
             <div class="ball" id="ball_tour"></div>
             <div class="ball" id="ball_composition"></div>
             <div class="ball" id="ball_destinations"></div>
-        </div>
+        </div> --}}
 
         <section class="section">
             <div class="form-wrapper">
                 {{-- form register --}}
-                <div id="form_register" class="form-step active">
+                {{-- <div id="form_register" class="form-step active">
                     <div class="row">
                         <div class="col-md-12">
                             <h4 class="float-end">Register and Continue</h4>
@@ -62,10 +62,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- form tour --}}
-                <div class="form-step" id="form_tour">
+                {{-- <div class="form-step" id="form_tour">
                     <input type="hidden" name="hide_tour_customer_id" id="hide_tour_customer_id">
                     <div class="row">
                         <div class="col-md-6">
@@ -102,10 +102,10 @@
                             <button class="btn btn-submit w-100 mt-2" id="btn_create_request">Save & Continue <i class="bi bi-caret-right-fill"></i></button>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
                 {{-- Group Composition --}}
-                <div id="form_composition" class="form-step">
+                {{-- <div id="form_composition" class="form-step">
                     <button id="btn_back_tour" class="btn_arrow"><i class="bi bi-arrow-left-circle"></i></button>
                     <h4>Who is going with you?</h4>
                     <input type="hidden" name="tour_request_id" id="tour_request_id" value="1">
@@ -152,6 +152,28 @@
                         <button class="btn btn-submit float-end mt-2" id="btn_submit_composition">Submit & Continue</button>
                     </form>
 
+                </div> --}}
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h4>Submit your tour request here...</h4>
+                <div class="row">
+                    <div class="col-md-8" class="div_form">
+                        <form action="" method="post" class="form-submit">
+                            @csrf
+                            <div class="col-md-12">
+                                <label for="">Where do you want to go?</label>
+                                <select name="cmb_tour_country" id="cmb_tour_country" class="form-select">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        right columns
+                    </div>
                 </div>
             </div>
         </section>

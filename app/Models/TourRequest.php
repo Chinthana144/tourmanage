@@ -9,14 +9,25 @@ class TourRequest extends Model
     protected $table = 'tour_requests';
 
     protected $fillable = [
-        'customer_id',
+        'travel_country_id',
         'tour_purpose_id',
+        'tour_budget_id',
+
+        'customer_name',
+        'customer_email',
+        'customer_phone',
+
         'travel_date',
         'return_date',
-        'total_adults',
-        'total_children',
-        'budget',
-        'special_requests',
+
+        //people
+        'adults',
+        'children',
+        'infants',
+
+        'rooms_count',
+
+        'description',
         'status',
     ];
 

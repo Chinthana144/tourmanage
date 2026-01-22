@@ -2416,3 +2416,15 @@ INSERT INTO `hotel_price_modes`(`name`) VALUES
 ('Welcome Amenities (Fruits / Drinks)'),
 ('Express Check-in / Concierge Service'),
 ('Other');
+
+-- add travel countries
+INSERT INTO `travel_countries`(`name`) VALUES
+('Sri Lanka'),
+('Maldives');
+
+-- add tour budgets table
+INSERT INTO `tour_budgets`(`range`) VALUES
+('1000$ - 5000$'),
+('5000$ - 10000$'),
+('10000$ - 20000$'),
+('20000$ +');

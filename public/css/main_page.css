@@ -102,7 +102,6 @@ h6 {
     position: absolute;
     top: 0;
     left: 0;
-    /* z-index: -1; */
     opacity: 0.3;
 }
 
@@ -214,77 +213,17 @@ Destination Card
     padding: 5px 10px;
 }
 
-/*-------------------------------------------------------------
-Customer Register
---------------------------------------------------------------*/
-.form-wrapper{
-  position: relative;
-  overflow: hidden;
-  min-height: 600px;
-  width: 80%;
-  margin-left: 10%;
+/*-------------------------------------------------------
+inputs
+--------------------------------------------------------*/
+.div_form{
+    background-color: var(--accent-color);
+    padding: 10px;
+    border-radius: 10px;
 }
-
-.form-step{
-  position: absolute;
-  top: 0;
-  width: 100%;
-  left: 100%;
-  transition: all 0.4s ease;
-  background-color: #3b3a3a;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-.active{
-  left: 0;
-}
-
-.left-side{
-  left: -100%;
-}
-
-.right-side{
-  left: 100%;
-}
-
-.form-step input{
-  background-color: var(--surface-color);
-  color: var(--default-color);
-  border-color: var(--border-color);
-}
-
-.form-step .form-select{
-  background-color: var(--surface-color);
-  border-color: var(--border-color);
-  color: var(--default-color);
-}
-
-.form-step .form-select option{
-  background-color: var(--surface-color);
-  color: var(--default-color);
-}
-
-.form-step .btn-submit{
-  background-color: var(--accent-color);
-}
-.form-step .btn_arrow{
-  background-color: inherit;
-  color: var(--default-color);
-  border: none;
-  font-size: 30px;
-}
-
-.form-step img{
-  width: 100%;
-  object-fit: cover;
-  overflow: hidden;
-  border-radius: 10px;
-  height: 100%;
-}
-
-.form-step table{
-    color: var(--default-color);
+.form-submit .form-select{
+    background-color: var(--surface-color);
+    border-color: var(--border-color);
 }
 
 /*-------------------------------------------------------
