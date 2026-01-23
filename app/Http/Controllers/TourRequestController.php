@@ -61,25 +61,37 @@ class TourRequestController extends Controller
 
     public function requestStore(Request $request)
     {
-        $tour_request = new TourRequest();
-
-        $tour_request->customer_id = $request->input('hide_customer_id');
-        $tour_request->travel_date = $request->input('start_date');
-        $tour_request->return_date = $request->input('return_date');
-        $tour_request->total_adults = 0;
-        $tour_request->total_children = 0;
-        $tour_request->tour_purpose_id = $request->input('cmb_tour_purpose');
-        $tour_request->budget = $request->input('budget') ?? 0;
-        $tour_request->special_requests = $request->input('sepcial_request') ?? "";
-        $tour_request->status = 1; //pending
-
-        $tour_request->save();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'tour request added successfully!',
-            'tour_request' => $tour_request,
+        $tour_request = TourRequest::create([
+            'travel_country_id' => $request->input('cmb_tour_country'),
+            'tour_purpose_id' => $request->input('cmb_pourpose'),
+            'tour_budget_id' => $request->input('cmb_budget'),
+            'customer_name' => $request->input('customer_name'),
+            'customer_email' => $request->input('customer_email'),
+            'customer_phone' => $request->input('customer_phone'),
+            'country_id' => $request->input('cmb_customer_country'),
+            'travel_date' => $request->input('travel_date'),
+            'return_date' => $request->input('return_date'),
+            'adults' => $request->input('adults'),
+            'children' => $request->input('children') ?? 0,
+            'infants' => $request->input('infants') ?? 0,
+            'rooms_count' => $request->input('rooms_count') ?? 1,
+            'description' => $request->input('text_description') ?? '',
+            'status' => 1, //pendingWW
         ]);
+
+        if($tour_request){
+            return response()->json([
+                'success' => true,
+                'message' => 'tour request added successfully!',
+                'tour_request' => $tour_request,
+            ]);
+        }
+        else{
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry something went wrong!',
+            ]);
+        }
     }//request store by ajax
 
     public function update(Request $request)

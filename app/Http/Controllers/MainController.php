@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Countries;
 use App\Models\Locations;
 use App\Models\Packages;
+use App\Models\TourBudget;
 use App\Models\TourPackages;
 use App\Models\TourPurposes;
 use App\Models\TourRequest;
+use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -56,8 +58,10 @@ class MainController extends Controller
     public function showCustomerRegister()
     {
         $countries = Countries::all();
+        $travel_countries = TravelCountries::all();
         $pourposes = TourPurposes::all();
+        $budget_ranges = TourBudget::all();
 
-        return view('main.customer_register', compact('countries', 'pourposes'));
+        return view('main.customer_register', compact('countries', 'travel_countries', 'pourposes', 'budget_ranges'));
     }
 }//class

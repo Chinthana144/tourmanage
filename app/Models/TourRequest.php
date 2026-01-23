@@ -16,6 +16,7 @@ class TourRequest extends Model
         'customer_name',
         'customer_email',
         'customer_phone',
+        'country_id',
 
         'travel_date',
         'return_date',
@@ -41,13 +42,19 @@ class TourRequest extends Model
         return $this->hasMany(Tours::class, 'tour_request_id');
     }
 
-    public function tourRequestPeople()
+    public function country()
     {
-        return $this->hasMany(TourRequestPeople::class, 'tour_request_id');
+        return $this->belongsTo(Countries::class, 'country_id');
     }
 
-    public function tourPurpose()
+    public function travelCountry()
+    {
+        return $this->belongsTo(TravelCountries::class, 'travel_country_id');
+    }
+
+    public function pourpose()
     {
         return $this->belongsTo(TourPurposes::class, 'tour_purpose_id');
     }
+
 }//class

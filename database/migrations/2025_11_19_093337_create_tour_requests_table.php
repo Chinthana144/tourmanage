@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('customer_name');
             $table->string('customer_email');
             $table->string('customer_phone');
+            $table->foreignId('country_id');
 
             $table->date('travel_date');
             $table->date('return_date')->nullable();

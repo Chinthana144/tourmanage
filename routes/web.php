@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tourpackages', [MainController::class, 'tourPackageView'])->name('main.tour_packages');
     Route::get('/showCustomerRegister', [MainController::class, 'showCustomerRegister'])->name('main.show_customer_register');
     Route::post('/registerCustomer', [CustomerController::class, 'register']);
-    Route::post('/requestStore', [TourRequestController::class, 'requestStore']);
+    Route::post('/requestStore', [TourRequestController::class, 'requestStore'])->name('main.store_request');
     Route::post('/addGroupComposition', [TourRequestPeopleController::class, 'storeRequestPeople']);
     Route::post('/tourDestination', [MainController::class, 'tourDestination'])->name('main.tour_destination');
     Route::post('/toggleTourDestinations', [TourRequestLocationController::class, 'toggleTourDestinations']);
