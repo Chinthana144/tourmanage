@@ -26,60 +26,19 @@
                           </div>
                       </div>
                   </div>
-
-                  {{-- <div class="col-lg-6 mt-5 mt-lg-0">
-                      <div class="booking-form">
-                        <h4>Register and request for Quotation</h4>
-                          <form action="" method="post">
-                              <div class="row gy-3">
-                              <div class="col-md-6">
-                                  <label for="check-in">First Name</label>
-                                  <input type="text" name="first_name" id="first_name" class="form-control" required placeholder="firstname">
-                              </div>
-                              <div class="col-md-6">
-                                  <label for="check-in">Last Name</label>
-                                  <input type="text" name="last_name" id="last_name" class="form-control" required placeholder="lastname">
-                              </div>
-                              <div class="col-md-6">
-                                  <label for="check-in">Email</label>
-                                  <input type="text" name="email" id="email" class="form-control" required placeholder="youremail@gmail.com">
-                              </div>
-                              <div class="col-md-6">
-                                  <label for="check-in">Phone</label>
-                                  <input type="text" name="phone" id="phone" class="form-control" required placeholder="+947#########">
-                              </div>
-                              <div class="col-md-6">
-                                  <label for="children">Country</label>
-                                  <select name="cmb_pourpose" id="cmb_pourpose" class="form-control">
-                                    @foreach ($countries as $country)
-                                        <option value="{{ $country->id }}" style="background-color: #0d0d0d; color:white;">{{ $country->name }}</option>
-                                    @endforeach
-                                  </select>
-                              </div>
-                              <div class="col-md-12 text-center">
-                                  <button type="submit" class="btn btn-accent w-100 mt-3">Request Quotation</button>
-                              </div>
-                              </div>
-                          </form>
-                      </div>
-                  </div> --}}
-
               </div>
           </div>
-
       </section><!-- /Travel Hero Section -->
 
       <!-- Why Us Section -->
       <section id="why-us" class="why-us section">
-
         <div class="container">
-
           <!-- Main Content Grid -->
           <div class="content-grid">
             <div class="row g-4 align-items-stretch">
 
               <!-- About Section -->
-              <div class="col-lg-6">
+              <div class="col-lg-12 col-md-12">
                 <div class="about-block">
                   <div class="about-header">
                     <span class="section-badge">About Us</span>
@@ -112,38 +71,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              <!-- Image Showcase -->
-              <div class="col-lg-6">
-                <div class="image-showcase">
-                  <div class="main-image">
-                    <img src=" {{ asset('images/main/travel/showcase-12.webp') }}" alt="Travel Adventure" class="img-fluid">
-                    <div class="overlay-badge">
-                      <div class="badge-content">
-                        <i class="bi bi-award-fill"></i>
-                        {{-- <div class="badge-text">
-                          <strong>Award Winner</strong>
-                          <span>Best Travel Agency 2024</span>
-                        </div> --}}
-                      </div>
-                    </div>
-                  </div>
-                  {{-- <div class="floating-card">
-                    <img src="{{ asset('images/main/travel/misc-8.webp') }}" alt="Happy Travelers" class="img-fluid rounded-2">
-                    <div class="card-content">
-                      <div class="rating">
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <i class="bi bi-star-fill"></i>
-                        <span>4.9/5</span>
-                      </div>
-                      <p>"Amazing experience!"</p>
-                    </div>
-                  </div> --}}
                 </div>
               </div>
 

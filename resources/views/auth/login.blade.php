@@ -11,7 +11,7 @@
     <div id="div_login">
         <div id="div_logo">
             <div>
-                <img src="{{ asset('images/company/akagi_logo_6.png') }}" alt="" id="img_logo">
+                <img src="{{ asset('images/company/logo.png') }}" alt="" id="img_logo">
             </div>
             <div>
                 <p id="p_title">Akagi eXperience</p>

@@ -64,4 +64,9 @@ class MainController extends Controller
 
         return view('main.customer_register', compact('countries', 'travel_countries', 'pourposes', 'budget_ranges'));
     }
+
+    public function aboutView()
+    {
+        return view('main.about');
+    }
 }//class

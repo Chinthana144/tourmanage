@@ -76,21 +76,14 @@ class TourRequestController extends Controller
             'infants' => $request->input('infants') ?? 0,
             'rooms_count' => $request->input('rooms_count') ?? 1,
             'description' => $request->input('text_description') ?? '',
-            'status' => 1, //pendingWW
+            'status' => 1, //pending
         ]);
 
         if($tour_request){
-            return response()->json([
-                'success' => true,
-                'message' => 'tour request added successfully!',
-                'tour_request' => $tour_request,
-            ]);
+            return redirect()->route('main.show_customer_register')->with('success', 'Tour request added successfully!');
         }
         else{
-            return response()->json([
-                'success' => false,
-                'message' => 'Sorry something went wrong!',
-            ]);
+            return redirect()->route('main.show_customer_register')->with('error', 'Sorry, something went wrong!');
         }
     }//request store by ajax
 

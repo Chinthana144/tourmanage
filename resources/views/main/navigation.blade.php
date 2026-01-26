@@ -11,7 +11,7 @@
         <nav id="navmenu" class="navmenu">
             <ul>
             <li><a href="{{ route('main.temp_main') }}" class="active">Home</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="/about">About</a></li>
             <li><a href="{{ route('main.destination') }}">Destinations</a></li>
             <li><a href="{{ route('main.tour_packages') }}">Tours</a></li>
             {{-- <li><a href="gallery.html">Gallery</a></li> --}}
