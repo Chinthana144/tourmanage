@@ -30,6 +30,34 @@
           </div>
       </section><!-- /Travel Hero Section -->
 
+      {{-- main destinatons --}}
+      <section id="main_destinations" class="section main_destinations">
+        <div class="container">
+            <h4>Destinations</h4>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="image_wrapper">
+                        <img src="{{ asset('images/main/srilanka_destination.jpg') }}" alt="">
+                        <div class="content">
+                            <h5>Sri Lanka</h5>
+                            <p>A land of rich culture, lush landscapes, and timeless heritage. From golden beaches and misty hills to ancient temples and wildlife, Sri Lanka offers diverse experiences in one unforgettable journey.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="image_wrapper">
+                        <img src="{{ asset('images/main/maldives_destination.jpg') }}" alt="">
+                        <div class="content">
+                            <h5>Maldives</h5>
+                            <p>An island paradise known for crystal-clear waters, luxury resorts, and ultimate relaxation. The Maldives is perfect for romantic escapes, private retreats, and truly indulgent experiences.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
       <!-- Why Us Section -->
       <section id="why-us" class="why-us section">
         <div class="container">

@@ -122,9 +122,8 @@
                             </div>
                             <h5>1. Akagi Serendib</h5>
                             <p>
-                                Location - Sri Lanka
-                                Services - Importation of automobiles and
-                                spare parts from Japan
+                                Location - Sri Lanka <br>
+                                Services - Importation of automobiles and spare parts from Japan<br>
                                 Clientele - Sri Lankan automotive industry
                             </p>
                         </div>
@@ -136,8 +135,8 @@
                             </div>
                             <h5>2. Akagi eXperiences</h5>
                             <p>
-                                Services-Tourism and tourism facility management
-                                Offerings - Guided tours, transportation services
+                                Services-Tourism and tourism facility management <br>
+                                Offerings - Guided tours, transportation services<br>
                                 Market - Tourists visiting Maldives and Sri Lanka
                             </p>
                         </div>

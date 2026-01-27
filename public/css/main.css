@@ -8146,8 +8146,46 @@ Travel Packages section
 }
 
 /*--------------------------------------------------------------
-# Starter Section Section
+# main destination
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+.main_destinations .image_wrapper{
+    overflow: hidden;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.main_destinations .image_wrapper img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.main_destinations .image_wrapper .content{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    opacity: 0;
+    transition: 0.6s;
+}
+.main_destinations .image_wrapper .content:hover{
+    opacity: 1;
+}
+
+.main_destinations .image_wrapper .content > *{
+    transform: translateY(25px);
+    transition: transform 0.6s;
+}
+.main_destinations .image_wrapper .content:hover > *{
+    transform: translateY(0px);
 }
