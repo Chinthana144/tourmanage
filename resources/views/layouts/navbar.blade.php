@@ -77,7 +77,7 @@
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
               <li><a href="/users">Users</a></li>
-              <li><a href="#">Form Validation</a></li>
+              <li><a href="/partners">Partners</a></li>
               <li><a href="#">Card Slider</a></li>
               <li><a href="#">Complete Website</a></li>
             </ul>

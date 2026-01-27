@@ -11,6 +11,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
+use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\RestaurantController;
@@ -68,6 +69,13 @@ Route::middleware('auth')->group(function () {
     Route::put('/user-update', [UserController::class, 'update'])->name('user.update');
     Route::post('/remove-user', [UserController::class, 'removeUser'])->name('user.remove');
     Route::get('/getOneUser', [UserController::class, 'getOneUser']);
+
+    //partners
+    Route::get('/partners', [PartnersController::class, 'index'])->name('partners.index');
+    Route::post('/store-partners', [PartnersController::class, 'store'])->name('partners.store');
+    Route::post('/update-partners', [PartnersController::class, 'update'])->name('partners.update');
+    Route::post('/destroy-partners', [PartnersController::class, 'destroy'])->name('partners.destroy');
+    Route::get('/getOnePartner', [PartnersController::class, 'getOnePartner']);
 
     //locations
     Route::get('/locations', [LocationController::class, 'index'])->name('locations.index');

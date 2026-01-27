@@ -120,7 +120,7 @@
                   <div class="feature-box">
                     <div class="feature-icon-wrapper">
                       <div class="feature-icon">
-                        <i class="bi bi-compass"></i>
+                        <i class="bi bi-map"></i>
                       </div>
                     </div>
                     <h4>Curated Experiences</h4>
@@ -144,7 +144,7 @@
                   <div class="feature-box">
                     <div class="feature-icon-wrapper">
                       <div class="feature-icon">
-                        <i class="bi bi-lightning-charge-fill"></i>
+                        <i class="bi bi-compass"></i>
                       </div>
                     </div>
                     <h4>Local Expertise</h4>
@@ -156,7 +156,7 @@
                   <div class="feature-box">
                     <div class="feature-icon-wrapper">
                       <div class="feature-icon">
-                        <i class="bi bi-globe-americas"></i>
+                        <i class="bi bi-check-all"></i>
                       </div>
                     </div>
                     <h4>Quality & Reliability</h4>
