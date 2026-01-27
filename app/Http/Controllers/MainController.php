@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Countries;
 use App\Models\Locations;
 use App\Models\Packages;
+use App\Models\Partners;
 use App\Models\TourBudget;
 use App\Models\TourPackages;
 use App\Models\TourPurposes;
@@ -18,8 +19,9 @@ class MainController extends Controller
     {
         $countries = Countries::all();
         $destinations = Locations::where('display', 1)->limit(6)->get();
+        $partners = Partners::where('status', 1)->get();
 
-        return view('main.main', compact('destinations', 'countries'));
+        return view('main.main', compact('destinations', 'countries', 'partners'));
     }//index
 
     public function tempMain()

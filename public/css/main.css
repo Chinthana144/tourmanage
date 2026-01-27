@@ -8189,3 +8189,46 @@ Travel Packages section
 .main_destinations .image_wrapper .content:hover > *{
     transform: translateY(0px);
 }
+
+/*-------------------------------------------------------
+partners section
+-------------------------------------------------------*/
+.partners-section {
+    background: #fff;
+    padding: 40px 0;
+    overflow: hidden;
+}
+.partners-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+.partners-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 30s linear infinite;
+}
+.partner-logo {
+    flex: 0 0 auto;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+}
+.partner-logo img {
+    max-height: 80px;
+    /* filter: grayscale(100%); */
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+.partner-logo img:hover {
+    filter: grayscale(0);
+    opacity: 1;
+    transform: scale(1.1);
+}
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}

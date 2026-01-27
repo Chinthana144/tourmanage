@@ -306,6 +306,29 @@
       <!-- /Featured Destinations Section -->
 
       {{-- add partners here --}}
+      <section class="partners-section">
+            <div class="container">
+                <h5 class="text-dark">Our Partners</h5>
+                <div class="partners-wrapper">
+                    <div class="partners-track">
+                        @foreach ($partners as $partner)
+                            <div class="partner-logo">
+                                <img src="{{ asset('images/main/partners/' . $partner->logo) }}"
+                                    alt="{{ $partner->name }}">
+                            </div>
+                        @endforeach
+
+                        {{-- duplicate for seamless loop --}}
+                        @foreach ($partners as $partner)
+                            <div class="partner-logo">
+                                <img src="{{ asset('images/main/partners/' . $partner->logo) }}"
+                                    alt="{{ $partner->name }}">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
 
