@@ -4,23 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\BedTypes;
 use App\Models\BoardingType;
+use App\Models\Countries;
 use App\Models\Currency;
 use App\Models\Customers;
 use App\Models\RoomTypes;
+use App\Models\TourBudget;
 use App\Models\TourPurposes;
 use App\Models\TourRequest;
 use App\Models\TourRequestPeople;
+use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
 class TourRequestController extends Controller
 {
     public function index()
     {
-        $all_requests = TourRequest::all();
-        $currencies = Currency::all();
+        $all_requests = TourRequest::orderBy('id', 'DESC')->paginate(10);
         $tour_purposes = TourPurposes::all();
+        $countries = Countries::all();
+        $travel_countries = TravelCountries::all();
+        $tour_budget = TourBudget::all();
 
-        return view('tour_requests.request_view', compact('all_requests', 'currencies', 'tour_purposes'));
+        return view('tour_requests.request_view', compact('all_requests', 'tour_purposes', 'countries', 'travel_countries', 'tour_budget'));
     }//index
 
     public function create(Request $request)
@@ -93,14 +98,20 @@ class TourRequestController extends Controller
 
         $tour_request = TourRequest::find($tour_request_id);
 
+        $tour_request->travel_country_id = $request->input('cmb_travel_country');
+        $tour_request->tour_purpose_id = $request->input('cmb_tour_purpose');
+        $tour_request->tour_budget_id = $request->input('cmb_tour_budget');
+        $tour_request->customer_name = $request->input('customer_name');
+        $tour_request->customer_email = $request->input('customer_email');
+        $tour_request->customer_phone = $request->input('customer_phone');
+        $tour_request->country_id = $request->input('cmb_country');
         $tour_request->travel_date = $request->input('travel_date');
         $tour_request->return_date = $request->input('return_date');
         $tour_request->adults = $request->input('number_of_adults');
         $tour_request->children = $request->input('number_of_children');
-        $tour_request->tour_pourpose = $request->input('tour_pourpose');
-        $tour_request->budget = $request->input('budget');
-        $tour_request->special_requests = $request->input('special_requests');
-        // $tour_request->status = $request->input('budget');
+        $tour_request->infants = $request->input('number_of_infants');
+        $tour_request->rooms_count = $request->input('rooms_count');
+        $tour_request->description = $request->input('txt_description');
 
         $tour_request->save();
 
@@ -122,36 +133,25 @@ class TourRequestController extends Controller
         $tour_request_id = $request->input('tour_request_id');
         $tour_request = TourRequest::find($tour_request_id);
 
-        $customer_id = $tour_request->customer_id;
-        $customer = Customers::find($customer_id);
-
-        $request_peoples = TourRequestPeople::where('tour_request_id', $tour_request_id)->get();
-
-        $total_adults = 0;
-        $total_children = 0;
-
-        foreach ($request_peoples as $people) {
-            $total_adults += intval($people->adults);
-            $total_children += intval($people->children);
-        }
-
-        $tour_request->total_adults = $total_adults;
-        $tour_request->total_children = $total_children;
-        $tour_request->save();
-
         return response()->json([
             'id' => $tour_request->id,
-            'customer_id' => $tour_request->customer_id,
-            'first_name' => $customer->first_name,
-            'last_name' => $customer->last_name,
-            'email' => $customer->email,
+            'country_id' => $tour_request->country_id,
+            'customer_country' => $tour_request->country->name,
+            'customer_name' => $tour_request->customer_name,
+            'customer_email' => $tour_request->customer_email,
+            'customer_phone' => $tour_request->customer_phone,
+            'travel_country_id' => $tour_request->travel_country_id,
+            'travel_country' => $tour_request->travelCountry->name,
             'travel_date' => $tour_request->travel_date,
             'return_date' => $tour_request->return_date,
-            'adults' => $total_adults,
-            'children' => $total_children,
-            'tour_pourpose' => $tour_request->tour_pourpose,
-            'budget' => $tour_request->budget,
-            'special_requests' => $tour_request->special_requests,
+            'adults' => $tour_request->adults,
+            'children' => $tour_request->children,
+            'infants' => $tour_request->infants,
+            'tour_pourpose_id' => $tour_request->tour_purpose_id,
+            'tour_pourpose' => $tour_request->pourpose->name,
+            'travel_budget_id'=> $tour_request->tour_budget_id,
+            'rooms_count' => $tour_request->rooms_count,
+            'description' => $tour_request->description,
             'status' => $tour_request->status,
         ]);
     }//get one request

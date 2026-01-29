@@ -6,62 +6,71 @@
             <h5>Tour Requests</h5>
         </div>
         <div class="card-body">
-            <table class="table" id="tbl_requests">
+            <table class="table" id="tbl_tour_requests">
                 <tr>
                     <th>Customer</th>
-                    <th>Start Date</th>
-                    <th>Return Date</th>
-                    <th>Purpose</th>
-                    <th>Adults</th>
-                    <th>Children</th>
-                    <th>Budget</th>
+                    <th>Contact</th>
+                    <th>Pourpose</th>
+                    <th>Destination</th>
+                    <th>Days</th>
+                    <th>People</th>
+                    <th>Rooms</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
                 @foreach ($all_requests as $request)
-                    <tr data-id="{{ $request->id }}">
-                        <td>{{ $request->customer->first_name . " " . $request->customer->last_name}}</td>
-                        <td>{{ $request->travel_date }}</td>
-                        <td>{{ $request->return_date }}</td>
-                        <td>{{ $request->tourPurpose->name }}</td>
-                        <td>{{ $request->total_adults }}</td>
-                        <td>{{ $request->total_children }}</td>
-                        <td>{{ $request->budget }}</td>
+                    <tr>
+                        <td>{{$request->customer_name}} <br>{{$request->country->name}}</td>
+                        <td>{{$request->customer_email}} <br>{{$request->customer_phone}}</td>
+                        <td>{{$request->pourpose->name}} <br>{{$request->tourBudget->range}}</td>
+                        <td>{{$request->travelCountry->name}}</td>
                         <td>
-                            @if ($request->status == 1)
-                                <label for="" class="badge bg-primary">Pending</label>
-                            @elseif ($request->status == 2)
-                                <label for="" class="badge bg-success">Approved</label>
-                            @elseif ($request->status == 3)
-                                <label for="" class="badge bg-danger">Rejected</label>
-                            @endif
+                            Start: {{$request->travel_date}}
+                            <br>
+                            Return: {{$request->return_date}}
+                        </td>
+                        <td>
+                            Adults: {{$request->adults}}
+                            <br>
+                            Children: {{$request->children}}
+                            <br>
+                            Infants: {{$request->infants}}
+                        </td>
+                        <td>{{$request->rooms_count}}</td>
+                        <td>
+                            @switch($request->status)
+                                @case(1)
+                                    <span class="badge bg-primary">Pending</span>
+                                @break
+                                @case(2)
+                                    <span class="badge bg-warning">Qouted</span>
+                                @break
+                                @case(3)
+                                    <span class="badge bg-success">Accepted</span>
+                                @break
+                                @case(4)
+                                    <span class="badge bg-danger">Rejected</span>
+                                @break
+                                @default
+                            @endswitch
                         </td>
                         <td>
                             <div class="d-flex">
-                                <form action="{{ route('tour_request_people.index') }}" method="get">
-                                    @csrf
-                                    <input type="hidden" name="tour_request_id" value="{{ $request->id }}">
-                                    <button type="submit" class="btn btn-success btn-sm btn_show_locations me-1">People</button>
-                                </form>
-                                <form action="{{ route('tour_request_location.index') }}" method="get">
-                                    @csrf
-                                    <input type="hidden" name="tour_request_id" value="{{ $request->id }}">
-                                    <button type="submit" class="btn btn-success btn-sm btn_show_locations me-1">Locations</button>
-                                </form>
-                            
-                                <button class="btn btn-warning btn-sm btn_edit_request"><i class="bx bx-edit"></i></button>
-
-                                <button class="btn btn-primary btn-sm ms-1 btn_add_tour"><i class="bx bx-plus"></i> New Tour</button>
+                                <button class="btn btn-warning btn_edit_request" data-id="{{$request->id}}"><i class="bx bx-edit"></i></button>
+                                <button class="btn btn-success ms-1 btn_add_tour" data-id="{{$request->id}}"><i class="bx bx-plus"></i>Quotation</button>
                             </div>
+
                         </td>
-                    </tr>                    
+                    </tr>
                 @endforeach
             </table>
+            <div>
+                {{ $all_requests->links() }}
+            </div>
         </div>
     </div>
 
     @include('tour_requests.request_edit_modal')
-    @include('tours.add_tour_modal')
-    
+
     <script src="{{ asset('js/tour_request.js') }}"></script>
 @endsection

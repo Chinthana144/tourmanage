@@ -57,4 +57,9 @@ class TourRequest extends Model
         return $this->belongsTo(TourPurposes::class, 'tour_purpose_id');
     }
 
+    public function tourBudget()
+    {
+        return $this->belongsTo(TourBudget::class, 'tour_budget_id');
+    }
+
 }//class

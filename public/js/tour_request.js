@@ -1,8 +1,7 @@
 $(document).ready(function () {
-    
-    $("#tbl_requests").on('click', '.btn_edit_request', function(){
-        let row = $(this).closest('tr');
-        let id = row.data('id');
+
+    $("#tbl_tour_requests").on('click', '.btn_edit_request', function(){
+        let id = $(this).data('id');
 
         $.ajax({
             type: "get",
@@ -12,23 +11,29 @@ $(document).ready(function () {
             },
             // dataType: "dataType",
             success: function (response) {
-                // console.log(response);
+                console.log(response);
                 $("#request_edit_modal").modal('toggle');
 
-                var p_customer_details = "<b>" + response.first_name + " " + response.last_name + "</b><br>" + response.email;
-                $("#p_customer_details").html(p_customer_details);
+                $("#hide_request_id").val(response['id']);
+                $("#customer_name").val(response['customer_name']);
+                $("#customer_phone").val(response['customer_phone']);
+                $("#customer_email").val(response['customer_email']);
+                $("#cmb_country").val(response['country_id']);
 
-                $("#hide_request_id").val(response.id);
-                $("#hide_request_customer_id").val(response.customer_id);
-                $("#travel_date").val(response.travel_date);
-                $("#return_date").val(response.return_date);
-                $("#number_of_adults").val(response.adults);
-                $("#number_of_children").val(response.children);
-                $("#tour_pourpose").val(response.tour_pourpose);
-                $("#budget").val(response.budget);
-                $("#special_requests").val(response.special_requests);
+                $("#travel_date").val(response['travel_date']);
+                $("#return_date").val(response['return_date']);
+
+                $("#number_of_adults").val(response['adults']);
+                $("#number_of_children").val(response['children']);
+                $("#number_of_infants").val(response['infants']);
+
+                $("#cmb_tour_purpose").val(response['tour_pourpose_id']);
+                $("#cmb_travel_country").val(response['travel_country_id']);
+                $("#cmb_tour_budget").val(response['travel_budget_id']);
+                $("#rooms_count").val(response['rooms_count']);
+                $("#txt_description").val(response['description']);
             }
-        });        
+        });
     });
 
     $("#tbl_requests").on('click', '.btn_add_tour', function(){
@@ -70,7 +75,7 @@ $(document).ready(function () {
         {
             $("#tour_start_date").css('border-color', 'green');
         }
-        
+
         $("#tour_end_date").val($(this).val());
     });
 });//jQuery

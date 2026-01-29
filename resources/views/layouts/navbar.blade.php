@@ -1,11 +1,11 @@
   <nav>
     <div class="navbar">
       <i class='bx bx-menu'></i>
-      <div><img src="{{ asset('images/company/akagi_logo_6.png') }}" alt="" style="width: 50px; height:auto;"></div>
-      <div class="logo"><a href="#">Akagi eXperience</a></div>
+      <div><img src="{{ asset('images/company/logo_2.png') }}" alt="" style="width: 50px; height:auto;"></div>
+      <div class="logo"><a href="#">Akagi eXperiences</a></div>
       <div class="nav-links">
         <div class="sidebar-logo">
-          <span class="logo-name">Akagi eXperience</span>
+          <span class="logo-name">Akagi eXperiences</span>
           <i class='bx bx-x'></i>
         </div>
         <ul class="links">
@@ -14,10 +14,11 @@
             <a href="#">Packages</a>
             <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
             <ul class="htmlCss-sub-menu sub-menu">
-              <li><a href="/packages">Packages</a></li>
-              <li><a href="#">Package Routes</a></li>
-              <li><a href="#">Package Settings</a></li>
-              <li class="more">
+                <li><a href="{{ route('main.index') }}">Main Page</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="#">Package Routes</a></li>
+                <li><a href="#">Package Settings</a></li>
+                <li class="more">
                 <span><a href="#">More</a>
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
@@ -27,14 +28,6 @@
                   <li><a href="#">Glassmorphism</a></li>
                 </ul>
               </li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#">Main Page</a>
-            <i class='bx bxs-chevron-down js-arrow arrow'></i>
-            <ul class="js-sub-menu sub-menu">
-              <li><a href="{{ route('main.index') }}">Main</a></li>
             </ul>
           </li>
 
