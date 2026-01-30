@@ -57,7 +57,7 @@
                         <td>
                             <div class="d-flex">
                                 <button class="btn btn-warning btn_edit_request" data-id="{{$request->id}}"><i class="bx bx-edit"></i></button>
-                                <button class="btn btn-success ms-1 btn_add_tour" data-id="{{$request->id}}"><i class="bx bx-plus"></i>Quotation</button>
+                                <button class="btn btn-success ms-1 btn_add_tour" data-id="{{$request->id}}"><i class="bx bx-plus"></i>Tour</button>
                             </div>
 
                         </td>
@@ -71,6 +71,7 @@
     </div>
 
     @include('tour_requests.request_edit_modal')
+    @include('tours.add_tour_modal')
 
     <script src="{{ asset('js/tour_request.js') }}"></script>
 @endsection

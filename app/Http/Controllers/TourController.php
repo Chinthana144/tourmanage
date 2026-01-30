@@ -11,21 +11,21 @@ class TourController extends Controller
 {
     public function index()
     {
-        
+
         $tours = Tours::all();
         $currencies = Currency::all();
 
         return view('tours.tour_view', compact('tours', 'currencies'));
     }//index
 
-    public function store(Request $request) 
-    {   
+    public function store(Request $request)
+    {
         $year = Carbon::now()->year;
 
         $last_tour = Tours::where("tour_number", 'LIKE', '-%')
             ->orderBy('tour_number', 'desc')
             ->first();
-        
+
         $nextNumber = 1;
 
         if($last_tour){
@@ -49,8 +49,8 @@ class TourController extends Controller
             'total_days' => $request->input('num_days'),
             'total_nights' => $request->input('num_nights'),
             'adults' => $request->input('num_adults'),
-            'children' => $request->input('num_children'),
-            'currency_id' => $request->input('cmb_currencies'),
+            'children' => $request->input('num_children') ?? 0,
+            'infants' => $request->input('num_infants') ?? 0,
             'sub_total' => 0,
             'discount_amount' => 0,
             'tax_amount' => 0,

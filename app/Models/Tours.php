@@ -17,7 +17,7 @@ class Tours extends Model
         'total_nights',
         'adults',
         'children',
-        'currency_id',
+        'infants',
         'sub_total',
         'discount_amount',
         'tax_amount',

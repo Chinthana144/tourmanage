@@ -36,9 +36,9 @@ $(document).ready(function () {
         });
     });
 
-    $("#tbl_requests").on('click', '.btn_add_tour', function(){
-        let row = $(this).closest('tr');
-        let id = row.data('id');
+    $("#tbl_tour_requests").on('click', '.btn_add_tour', function(){
+        // let row = $(this).closest('tr');
+        let id = $(this).data('id');
 
         $("#add_tour_modal").modal('toggle');
 
@@ -52,13 +52,17 @@ $(document).ready(function () {
             },
             // dataType: "dataType",
             success: function (response) {
+                $("#txt_title").val(response.customer_name + " - " + response.tour_pourpose);
                 $("#tour_start_date").val(response.travel_date);
                 $("#tour_end_date").val(response.return_date);
                 $("#tour_num_adults").val(response.adults);
                 $("#tour_num_children").val(response.children);
+                $("#tour_num_infants").val(response.infants);
             }
         });
     });
+
+
 
     //add date
     $("#tour_start_date").change(function(){
