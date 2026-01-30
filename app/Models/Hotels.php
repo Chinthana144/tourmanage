@@ -7,41 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Hotels extends Model
 {
     protected $fillables = [
+        'travel_country_id',
         'name',
         'address',
         'email',
         'phone',
-        'province_id',
-        'district_id',
-        'city_id',
         'website',
         'star_rating',
-        'latitude',
-        'longitude',
         'cover_image',
         'image1',
         'image2',
+        'popularity',
         'status',
     ];
 
     public function hotelRoomType()
     {
         return $this->hasMany(HotelRoomTypes::class, 'hotel_id');
-    }
-
-    public function province()
-    {
-        return $this->belongsTo(Provinces::class, 'province_id');
-    }
-
-    public function district()
-    {
-        return $this->belongsTo(Districts::class, 'district_id');
-    }
-
-    public function city()
-    {
-        return $this->belongsTo(Cities::class, 'city_id');
     }
 
     public function facilities()
@@ -57,5 +39,10 @@ class Hotels extends Model
     public function tourRooms()
     {
         return $this->hasMany(TourRooms::class, 'tour_hotel_id');
+    }
+
+    public function travelCountry()
+    {
+        return $this->belongsTo(TravelCountries::class, 'travel_country_id');
     }
 }

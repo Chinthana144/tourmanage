@@ -17,16 +17,12 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('website')->nullable();
-            $table->unsignedBigInteger('province_id');
-            $table->unsignedBigInteger('district_id');
-            $table->unsignedBigInteger('city_id');
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
             $table->time('opening_time')->nullable();
             $table->time('closing_time')->nullable();
             $table->string('cover_image');
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
+            $table->smallInteger('popularity');
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

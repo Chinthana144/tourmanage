@@ -17,16 +17,12 @@ return new class extends Migration
             $table->string('address');
             $table->string('email');
             $table->string('phone');
-            $table->unsignedBigInteger('province_id');
-            $table->unsignedBigInteger('district_id');
-            $table->unsignedBigInteger('city_id');
             $table->string('website')->nullable();
             $table->integer('star_rating')->nullable();
-            $table->decimal('latitude', 10, 7)->nullable();
-            $table->decimal('longitude', 10, 7)->nullable();
             $table->string('cover_image');
             $table->string('image1')->nullable();
             $table->string('image2')->nullable();
+            $table->smallInteger('popularity');
             $table->tinyInteger('status')->default(1); // 1 for active, 0 for inactive
             $table->timestamps();
         });
