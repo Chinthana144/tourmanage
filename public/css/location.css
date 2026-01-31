@@ -1,5 +1,6 @@
 #img_main{
     width: 430px;
+    overflow: hidden;
 }
 #div_gallary{
     display: flex;
@@ -13,4 +14,51 @@
     height: auto;
     object-fit: cover;
     border-radius: 5px;
+}
+
+/*----------------------------------------------
+image slide show
+-----------------------------------------------*/
+.div_image_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.img_slide{
+    width: 80%;
+    max-height: 400px;
+    padding: 5px;
+    overflow: hidden;
+}
+.img_slide img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.div_image_gallery{
+    width: 20%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.div_gallery_items{
+    width: 100%;
+    max-height: 60px;
+    border-radius: 5px;
+    margin: 5px 0;
+    justify-content: space-evenly;
+    overflow: hidden;
+    opacity: 0.8;
+    transition: all 0.3s;
+}
+.div_gallery_items:hover{
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.div_gallery_items img{
+    width: 100%;
+    border-radius: 5px;
+    object-fit: contain;
 }

@@ -1,0 +1,44 @@
+/*--------------------------------------------
+popularity Stars
+---------------------------------------------*/
+#div_populatiry{
+    display: flex;
+    flex-direction: row;
+}
+#div_populatiry i{
+    font-size: 24px;
+    transition: all 0.4s;
+    color: rgb(234, 234, 21);
+}
+
+#div_populatiry i:hover{
+    transform: scale(1.1);
+}
+
+/*--------------------------------------------
+Location images
+---------------------------------------------*/
+.loc_img_wrapper{
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.loc_img_wrapper:hover{
+    transform: scale(1.05);
+}
+.loc_img_wrapper img{
+    border-radius: 10px;
+    object-fit: contain;
+}
+
+
+/*--------------------------------------------
+Container
+---------------------------------------------*/
+@media (max-width: 768px){
+    .container{
+        width: 100%;
+        margin: 0;
+    }
+}
