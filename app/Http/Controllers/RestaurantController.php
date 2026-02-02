@@ -7,39 +7,37 @@ use App\Models\Districts;
 use App\Models\MealTypes;
 use App\Models\Provinces;
 use App\Models\Restaurants;
+use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
 class RestaurantController extends Controller
 {
     public function index()
     {
-        $restaurants = Restaurants::all();
+        $restaurants = Restaurants::where('status', 1)->paginate(5);
 
         return view('restaurants.restaurant_view', compact('restaurants'));
     }//index
 
     public function create()
     {
-        $provinces = Provinces::all();
-
-        return view('restaurants.restaurant_create', compact('provinces'));
+        $travel_countries = TravelCountries::all();
+        return view('restaurants.restaurant_create', compact('travel_countries'));
     }//create
 
     public function store(Request $request)
     {
         $restaurant = new Restaurants();
 
+        $restaurant->travel_country_id = $request->input('cmb_travel_country');
         $restaurant->name = $request->input('txt_restaurant_name');
         $restaurant->address = $request->input('txt_restaurant_address');
         $restaurant->phone = $request->input('txt_restaurant_phone');
         $restaurant->website = $request->input('txt_restaurant_website');
-        $restaurant->province_id = $request->input('cmb_province');
-        $restaurant->district_id = $request->input('cmb_district');
-        $restaurant->city_id = $request->input('cmb_city');
-        $restaurant->latitude = $request->input('txt_restaurant_latitude');
-        $restaurant->longitude = $request->input('txt_restaurant_longitude');
         $restaurant->opening_time = $request->input('txt_opening_time');
         $restaurant->closing_time = $request->input('txt_closing_time');
+        $restaurant->popularity = $request->input('popularity');
+        $restaurant->status = 1; //active
 
         // Handle file uploads
         if ($request->hasFile('cover_image')) {
@@ -67,19 +65,11 @@ class RestaurantController extends Controller
     }//store
 
     public function edit(Request $request)
-    {   
+    {
         $restaurant_id = $request->input('hdie_restaurant_id');
         $restaurant = Restaurants::find($restaurant_id);
 
-        $province_id = $restaurant->province_id;
-        $district_id = $restaurant->district_id;
-        $city_id = $restaurant->city_id;
-
-        $provinces = Provinces::all();
-        $districts = Districts::where('province_id', $province_id)->get();
-        $cities = Cities::where('district_id', $district_id)->get();
-
-        return view('restaurants.restaurant_edit', compact('provinces', 'districts', 'cities', 'restaurant'));
+        return view('restaurants.restaurant_edit', compact('restaurant'));
     }//edit
 
     public function update(Request $request)
@@ -87,17 +77,15 @@ class RestaurantController extends Controller
         $restaurant_id = $request->input('hide_restaurant_id');
         $restaurant = Restaurants::find($restaurant_id);
 
+        $restaurant->travel_country_id = $request->input('cmb_travel_country');
         $restaurant->name = $request->input('txt_restaurant_name');
         $restaurant->address = $request->input('txt_restaurant_address');
         $restaurant->phone = $request->input('txt_restaurant_phone');
         $restaurant->website = $request->input('txt_restaurant_website');
-        $restaurant->province_id = $request->input('cmb_province');
-        $restaurant->district_id = $request->input('cmb_district');
-        $restaurant->city_id = $request->input('cmb_city');
-        $restaurant->latitude = $request->input('txt_restaurant_latitude');
-        $restaurant->longitude = $request->input('txt_restaurant_longitude');
         $restaurant->opening_time = $request->input('txt_opening_time');
         $restaurant->closing_time = $request->input('txt_closing_time');
+        $restaurant->popularity = $request->input('popularity');
+        $restaurant->status = 1; //active
 
         // Handle file uploads
         if ($request->hasFile('cover_image')) {
@@ -137,6 +125,18 @@ class RestaurantController extends Controller
 
         return redirect()->route('restaurants.index')->with('success', 'Restaurant updated successfully.');
     }//update
+
+    public function remove(Request $request)
+    {
+        $restaurant_id = $request->input('hide_restaurant_id');
+        $restaurant = Restaurants::find($restaurant_id);
+
+        $restaurant->status = 0;
+
+        $restaurant->save();
+
+        return redirect()->route('restaurants.index')->with('success', 'Restaurant removed successfully.');
+    }
 
     //AJAX methods
     public function getRestaurants()

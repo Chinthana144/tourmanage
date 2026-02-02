@@ -1,5 +1,6 @@
 //todo list
 * remove facilities
+* hotel.js, location.js, restaurants.js-> remove AJAX for province, district and cities
 
 //main page
 top video ---------- done

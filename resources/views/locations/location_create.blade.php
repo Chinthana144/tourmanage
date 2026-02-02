@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="">Populatiry</label>
-                            <div id="div_populatiry">
+                            <div class="div_populatiry">
                                 <i class="bx bx-star icon_star star_one" data-value="1"></i>
                                 <i class="bx bx-star icon_star star_two" data-value="2"></i>
                                 <i class="bx bx-star icon_star star_three" data-value="3"></i>
