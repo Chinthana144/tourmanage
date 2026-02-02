@@ -1,3 +1,6 @@
+//todo list
+* remove facilities
+
 //main page
 top video ---------- done
 gallery - after sometime

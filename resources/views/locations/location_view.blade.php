@@ -25,7 +25,7 @@
                                 </p>
 
                                 <label for="">Populatiry</label>
-                                <div id="div_populatiry">
+                                <div class="div_populatiry">
                                     <i class="icon_star star_one {{$location->popularity >= 1 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="1"></i>
                                     <i class="icon_star star_two {{$location->popularity >= 2 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="2"></i>
                                     <i class="icon_star star_three {{$location->popularity >= 3 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="3"></i>

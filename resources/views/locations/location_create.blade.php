@@ -8,7 +8,7 @@
         <div class="card-body">
             <form action="{{ route('locations.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="container comtainer-md">
+                <div class="container container-md">
                     <div class="row">
                         <div class="col-md-6">
                             <label for="">Select Country</label>
