@@ -28,6 +28,19 @@ popularity Stars
     transform: scale(1.1);
 }
 
+.div_edit_populatiry{
+    display: flex;
+    flex-direction: row; 
+}
+.div_edit_populatiry i{
+    font-size: 24px;
+    transition: all 0.4s;
+    color: rgb(234, 234, 21);
+}
+.div_edit_populatiry i:hover{
+    transform: scale(1.1);
+}
+
 /*--------------------------------------------
 Location images
 ---------------------------------------------*/

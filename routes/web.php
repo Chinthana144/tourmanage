@@ -166,6 +166,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/travel-media', [TravelMediaController::class, 'index'])->name('travel_media.index');
     Route::post('/store-travel-media', [TravelMediaController::class, 'store'])->name('travel_media.store');
     Route::put('/update-travel-media', [TravelMediaController::class, 'update'])->name('travel_media.update');
+    Route::post('/remove-travel-media', [TravelMediaController::class, 'remove'])->name('travel_media.remove');
     Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
     Route::get('/getTravelMedia', [TravelMediaController::class, 'getTravelMedia']);
 
