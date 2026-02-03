@@ -66,10 +66,12 @@ class RestaurantController extends Controller
 
     public function edit(Request $request)
     {
-        $restaurant_id = $request->input('hdie_restaurant_id');
+        $restaurant_id = $request->input('hide_restaurant_id');
         $restaurant = Restaurants::find($restaurant_id);
 
-        return view('restaurants.restaurant_edit', compact('restaurant'));
+        $travel_countries = TravelCountries::all();
+
+        return view('restaurants.restaurant_edit', compact('restaurant', 'travel_countries'));
     }//edit
 
     public function update(Request $request)

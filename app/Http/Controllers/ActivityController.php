@@ -7,6 +7,7 @@ use App\Models\ActivityCategories;
 use App\Models\ActivityPrices;
 use App\Models\ActivityTimes;
 use App\Models\Locations;
+use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
 class ActivityController extends Controller
@@ -15,35 +16,76 @@ class ActivityController extends Controller
     {  
         $categories = ActivityCategories::all();
         $times = ActivityTimes::all();
-        $price_types = ActivityPrices::all();
 
-        $activities = Activities::all();
+        $activities = Activities::where('status', 1)
+            ->orderBy('id', 'DESC')
+            ->paginate(5);
 
-        return view('activities.activities_view', compact('activities', 'categories', 'times', 'price_types'));
+        return view('activities.activities_view', compact('activities', 'categories', 'times'));
     }//index
+
+    public function create(Request $request)
+    {
+        $travel_countries = TravelCountries::all();
+        $categories = ActivityCategories::all();
+        $activity_times = ActivityTimes::all();
+
+        return view('activities.activity_create', compact('travel_countries', 'categories', 'activity_times'));
+    }
 
     public function store(Request $request)
     {
-        Activities::create([
-            'name' => $request->input('txt_name'),
-            'category_id' => $request->input('cmb_category'),
-            'description' => $request->input('txt_description'),
-            'is_paid' => $request->has('chk_paid_activity') ? 1 : 0,
-            'pricing_type_id' => $request->input('cmb_pricing_type'),
-            'price_adult' => $request->input('num_adult_price'),
-            'price_child' => $request->input('num_child_price'),
-            'group_price' => $request->input('num_group_price'),
-            'duration_minutes' => $request->input('num_duration'),
-            'best_time_id' => $request->input('cmb_best_time'),
-            'is_optional' => $request->has('chk_optional') ? 1 : 0,
-            'requires_guide' => $request->has('chk_requires_guide') ? 1 : 0,
-            'notes' => $request->input('txt_note'),
-            'status' => $request->has('chk_status') ? 1 : 0,
-        ]);
+        $activity = new Activities();
+
+        $activity->travel_country_id = $request->input('cmb_travel_country');
+        $activity->name = $request->input('activity_name');
+        $activity->category_id = $request->input('cmb_category');
+        $activity->description = $request->input('txt_description');
+        $activity->is_paid = $request->has('chk_paid') ? 1 : 0;
+        $activity->duration_minutes = $request->input('duration_minutes');
+        $activity->best_time_id = $request->input('cmb_best_time');
+        $activity->is_optional = $request->has('chk_optional_activity') ? 1 : 0;
+        $activity->requires_guide = $request->has('chk_require_guide') ? 1 : 0;
+        $activity->popularity = $request->input('popularity');
+        $activity->status = 1; //active
+
+        // Handle file uploads
+        if ($request->hasFile('cover_image')) {
+            $file = $request->file('cover_image');
+            $filename = 'A_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/activities'), $filename);
+            $activity->cover_image = $filename;
+        }
+        if ($request->hasFile('image_1')) {
+            $file = $request->file('image_1');
+            $filename = 'A1_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/activities'), $filename);
+            $activity->image1 = $filename;
+        }
+        if ($request->hasFile('image_2')) {
+            $file = $request->file('image_2');
+            $filename = 'A2_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/activities'), $filename);
+            $activity->image2 = $filename;
+        }
+
+        $activity->save();
 
         return redirect()->route('activities.index')->with('success', 'Activity added successfullt!');
 
     }//store
+
+    public function edit(Request $request)
+    {
+        $travel_countries = TravelCountries::all();
+        $categories = ActivityCategories::all();
+        $activity_times = ActivityTimes::all();
+
+        $activity_id = $request->input('hide_activity_id');
+        $activity = Activities::find($activity_id);
+
+        return view('activities.activity_edit', compact('activity', 'travel_countries', 'categories', 'activity_times'));
+    }
 
     public function update(Request $request)
     {
@@ -51,26 +93,69 @@ class ActivityController extends Controller
 
         $activity = Activities::find($activity_id);
 
-        $activity->name = $request->input('txt_edit_name');
-        $activity->category_id = $request->input('cmb_edit_category');
-        $activity->description = $request->input('txt_edit_description');
-        $activity->is_paid = $request->has('chk_edit_paid_activity') ? 1 : 0;
-        $activity->pricing_type_id = $request->input('cmb_edit_pricing_type');
-        $activity->price_adult = $request->input('num_edit_adult_price');
-        $activity->price_child = $request->input('num_edit_child_price');
-        $activity->group_price = $request->input('num_edit_group_price');
-        $activity->duration_minutes = $request->input('num_edit_duration');
-        $activity->best_time_id = $request->input('cmb_edit_best_time');
-        $activity->is_optional = $request->has('chk_edit_optional') ? 1 : 0;
-        $activity->requires_guide = $request->has('chk_edit_requires_guide') ? 1 : 0;
-        $activity->notes = $request->input('txt_edit_note');
-        $activity->status = $request->has('chk_edit_status') ? 1 : 0;
+        $activity->travel_country_id = $request->input('cmb_travel_country');
+        $activity->name = $request->input('activity_name');
+        $activity->category_id = $request->input('cmb_category');
+        $activity->description = $request->input('txt_description');
+        $activity->is_paid = $request->has('chk_paid') ? 1 : 0;
+        $activity->duration_minutes = $request->input('duration_minutes');
+        $activity->best_time_id = $request->input('cmb_best_time');
+        $activity->is_optional = $request->has('chk_optional_activity') ? 1 : 0;
+        $activity->requires_guide = $request->has('chk_require_guide') ? 1 : 0;
+        $activity->popularity = $request->input('popularity');
+        $activity->status = 1; //active
+
+        // Handle file uploads
+        if ($request->hasFile('cover_image')) {
+            $oldImagePath = public_path('images/activities/'. $activity->cover_image);
+            if (file_exists($oldImagePath) && !is_null($activity->cover_image)) {
+                unlink($oldImagePath);  // Delete the old image file
+            }
+            $file = $request->file('cover_image');
+            $filename = 'A_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/activities'), $filename);
+            $activity->cover_image = $filename;
+        }
+
+        if ($request->hasFile('image_1')) {
+            $oldImagePath = public_path('images/activities/'. $activity->image1);
+            if (file_exists($oldImagePath) && !is_null($activity->image1)) {
+                unlink($oldImagePath);  // Delete the old image file
+            }
+            $file = $request->file('image_1');
+            $filename = 'A1_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/activities'), $filename);
+            $activity->image1 = $filename;
+        }
+
+        if ($request->hasFile('image_2')) {
+            $oldImagePath = public_path('images/activities/'. $activity->image2);
+            if (file_exists($oldImagePath) && !is_null($activity->image2)) {
+                unlink($oldImagePath);  // Delete the old image file
+            }
+            $file = $request->file('image_1');
+            $filename = 'A2_' . time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/activities'), $filename);
+            $activity->image2 = $filename;
+        }
 
         $activity->save();
 
-        return redirect()->route('activities.index')->with('success', 'Activity updated successfullt!');
+        return redirect()->route('activities.index')->with('success', 'Activity updated successfully!');
 
     }//update
+
+    public function remove(Request $request)
+    {
+        $activity_id = $request->input('hide_activity_id');
+        $activity = Activities::find($activity_id);
+
+        $activity->status = 0;
+
+        $activity->save();
+
+        return redirect()->route('activities.index')->with('success', 'Activity removed successfully!');
+    }//remove
 
     //AJAX methods
     public function getOneActivity(Request $request)

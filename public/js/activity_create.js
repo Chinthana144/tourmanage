@@ -3,7 +3,6 @@ $(document).ready(function () {
     $("#image_1_error").css('display','none');
     $("#image_2_error").css('display','none');
 
-
     $("#cover_image").change(function(){
         var size=this.files[0].size;
         if(size>5242880){
@@ -51,4 +50,4 @@ $(document).ready(function () {
             $("#image_2_preview").attr("src", url);
         }
     });
-});//jQuery end
+});//activity create jQuery

@@ -16,22 +16,19 @@ class Activities extends Model
         'best_time_id', //morning, evening, fullday
         'is_optional',
         'requires_guide',
-        'notes',
+        'cover_image',
+        'image1',
+        'image2',
         'popularity',
         'status',
     ];
 
-    public function location()
-    {
-        return $this->belongsTo(Locations::class, 'location_id');
-    }
-
-    public function ActivityCategory()
+    public function activityCategory()
     {
         return $this->belongsTo(ActivityCategories::class, 'category_id');
     }
 
-    public function ActivitytTime()
+    public function activitytTime()
     {
         return $this->belongsTo(ActivityTimes::class, 'best_time_id');
     }

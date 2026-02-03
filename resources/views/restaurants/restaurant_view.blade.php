@@ -39,18 +39,18 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 mt-3">
                                 <form action="{{ route('restaurants.edit') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="hide_restaurant_id" value="{{ $restaurant->id }}">
                                     <button type="submit" class="btn btn-outline-warning">Edit Restaurant</button>
                                 </form>
                             </div>
-                            <div class="col-md-4">
-                                <form action="" method="post">
+                            <div class="col-md-4 mt-3">
+                                <form action="{{ route('restaurant.remove') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="hide_restaurant_id" value="{{ $restaurant->id }}">
-                                    <button type="submit" class="btn btn-outline-warning">Remove</button>
+                                    <button type="submit" class="btn btn-outline-danger">Remove</button>
                                 </form>
                             </div>
                         </div>

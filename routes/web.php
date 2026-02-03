@@ -175,14 +175,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
     Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
     Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
+    Route::post('/remove-restaurant', [RestaurantController::class, 'remove'])->name('restaurant.remove');
     Route::get('/getRestaurants', [RestaurantController::class, 'getRestaurants']);
     Route::get('/getOneRestaurant', [RestaurantController::class, 'getOneRestaurant']);
     Route::get('/getMealTypes', [RestaurantController::class, 'getMealTypes']);
 
     //activities
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
+    Route::get('/create-activities', [ActivityController::class, 'create'])->name('activities.create');
     Route::post('/store-activities', [ActivityController::class, 'store'])->name('activities.store');
+    Route::post('/edit-activities', [ActivityController::class, 'edit'])->name('activities.edit');
     Route::put('/update-activities', [ActivityController::class, 'update'])->name('activities.update');
+    Route::post('/remove-activities', [ActivityController::class, 'remove'])->name('activities.remove');
     Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
     Route::get('/getActivitybyLocation', [ActivityController::class, 'getActivitybyLocation']);
     Route::get('/getActivities', [ActivityController::class, 'getActivities']);

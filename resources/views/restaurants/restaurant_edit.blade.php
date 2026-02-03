@@ -41,11 +41,11 @@
                             <div class="col-md-6">
                                 <label for="">Populatiry</label>
                                 <div class="div_populatiry">
-                                    <i class="icon_star star_one {{ $restaurant->popularity <= 1 ? bx bxs-star : bx bx-star }}" data-value="1"></i>
-                                    <i class="icon_star star_two {{ $restaurant->popularity <= 2 ? bx bxs-star : bx bx-star }}" data-value="2"></i>
-                                    <i class="icon_star star_three {{ $restaurant->popularity <= 3 ? bx bxs-star : bx bx-star }}" data-value="3"></i>
-                                    <i class="icon_star star_four {{ $restaurant->popularity <= 4 ? bx bxs-star : bx bx-star }}" data-value="4"></i>
-                                    <i class="icon_star star_five {{ $restaurant->popularity <= 5 ? bx bxs-star : bx bx-star }}" data-value="5"></i>
+                                    <i class="icon_star star_one {{ $restaurant->popularity >= 1 ? 'bx bxs-star' : 'bx bx-star' }}" data-value="1"></i>
+                                    <i class="icon_star star_two {{ $restaurant->popularity >= 2 ? 'bx bxs-star' : 'bx bx-star' }}" data-value="2"></i>
+                                    <i class="icon_star star_three {{ $restaurant->popularity >= 3 ? 'bx bxs-star' : 'bx bx-star' }}" data-value="3"></i>
+                                    <i class="icon_star star_four {{ $restaurant->popularity >= 4 ? 'bx bxs-star' : 'bx bx-star' }}" data-value="4"></i>
+                                    <i class="icon_star star_five {{ $restaurant->popularity >= 5 ? 'bx bxs-star' : 'bx bx-star' }}" data-value="5"></i>
                                     <input type="hidden" name="popularity" id="popularity" value="{{ $restaurant->popularity }}">
                                 </div>
                             </div>
@@ -92,4 +92,5 @@
     </div>
 
     <script src="{{ asset('js/restaurant_create.js') }}"></script>
+    <script src="{{ asset('js/common_script.js') }}"></script>
 @endsection
