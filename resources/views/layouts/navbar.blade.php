@@ -58,7 +58,6 @@
             <a href="#">Quotations</a>
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
-              <li><a href="/customers">Customers</a></li>
               <li><a href="/tour-requests">Tour Requests</a></li>
               <li><a href="{{ route('quotation.index') }}">Tour Quotation</a></li>
               <li><a href="#">Tour Pricing</a></li>

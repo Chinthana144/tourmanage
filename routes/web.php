@@ -56,7 +56,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/destination', [MainController::class, 'destinationView'])->name('main.destination');
     Route::get('/tourpackages', [MainController::class, 'tourPackageView'])->name('main.tour_packages');
     Route::get('/showCustomerRegister', [MainController::class, 'showCustomerRegister'])->name('main.show_customer_register');
-    Route::post('/registerCustomer', [CustomerController::class, 'register']);
     Route::post('/requestStore', [TourRequestController::class, 'requestStore'])->name('main.store_request');
     Route::post('/addGroupComposition', [TourRequestPeopleController::class, 'storeRequestPeople']);
     Route::post('/tourDestination', [MainController::class, 'tourDestination'])->name('main.tour_destination');
@@ -134,12 +133,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-tourist-health', [TouristHealthController::class, 'store'])->name('tourist_health.store');
     Route::put('/update-tourist-health', [TouristHealthController::class, 'update'])->name('tourist_health.update');
     Route::get('/get-tourist-health', [TouristHealthController::class, 'getTouristHealth']);
-
-    //customers
-    Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
-    Route::post('/store-customer', [CustomerController::class, 'store'])->name('customers.store');
-    Route::put('/update-customer', [CustomerController::class, 'update'])->name('customers.update');
-    Route::get('/getOneCustomer', [CustomerController::class, 'getOneCustomer']);
 
     //tour request
     Route::get('/tour-requests', [TourRequestController::class, 'index'])->name('tour_requests.index');
@@ -225,11 +218,6 @@ Route::middleware('auth')->group(function () {
     //quotations
     Route::get('/quotations', [QuotationController::class, 'index'])->name('quotation.index');
     Route::post('/generatePdf', [QuotationController::class, 'generatePdf'])->name('quotation.generate');
-});
-
-//customer invite middleware
-Route::middleware('customer.invite')->group(function(){
-    Route::get('/tour-request/{token}', [TourRequestController::class, 'createRequest']);
 });
 
 // Route::get('/template', function () {
