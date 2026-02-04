@@ -203,6 +203,7 @@ class TourRouteItemController extends Controller
 
         return response()->json([
             'success' => true,
+            'tour_id' => $tour_id,
             'message' => 'route item deleted successfully!',
         ]);
     }//delete rroute item

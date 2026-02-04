@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
 use App\Http\Controllers\HotelPriceController;
@@ -39,10 +40,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'tempMain'])->name('main.temp_main');
 Route::get('/destination', [MainController::class, 'destinationView'])->name('main.destination');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -50,6 +47,9 @@ Route::middleware('auth')->group(function () {
 
     //logout
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    //dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     //main page -> move this to open after development
     Route::get('/main', [MainController::class, 'index'])->name('main.index');

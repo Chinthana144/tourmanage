@@ -173,7 +173,8 @@ $(document).ready(function () {
             // dataType: "dataType",
             success: function (response) {
                 console.log(response);
-                
+                var tour_id = response.tour_id;
+                loadRouteItem(tour_id);
             }
         });
     });
