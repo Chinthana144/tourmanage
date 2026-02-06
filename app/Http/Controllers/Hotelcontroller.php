@@ -225,6 +225,45 @@ class Hotelcontroller extends Controller
         
     }//store hotel price
 
+    public function updateHotelPrice(Request $request)
+    {
+        $price_id = $request->input('hide_price_id');
+        $hotel_price = HotelPrices::find($price_id);
+
+        $hotel_id = $hotel_price->hotel_id;
+
+        $hotel_price->season_id = $request->input('cmb_edit_season');
+        $hotel_price->package_id = $request->input('cmb_edit_package');
+        $hotel_price->price_mode_id = $request->input('cmb_edit_price_mode');
+        $hotel_price->bording_type_id = $request->input('cmb_edit_boarding_type');
+        $hotel_price->description = $request->input('edit_description');
+        $hotel_price->price = $request->input('edit_price');
+        $hotel_price->status = $request->has('chk_edit_compulsory') ? 1 : 0 ;
+
+        $hotel_price->save();
+
+        return redirect()->route('hotel_price.view', ['hide_hotel_id' => $hotel_id])
+                ->with('success', 'Hotel Price added successfully!');        
+    }//update hotel price
+
+    public function getOneHotelPrice(Request $request)
+    {
+        $price_id = $request->input('price_id');
+        $hotel_price = HotelPrices::find($price_id);
+
+        return response()->json([
+            'id' => $hotel_price->id,
+            'season_id' => $hotel_price->season_id,
+            'package_id' =>$hotel_price->package_id,
+            'price_mode_id' => $hotel_price->price_mode_id,
+            'bording_type_id' => $hotel_price->bording_type_id,
+            'description' => $hotel_price->description,
+            'price' => $hotel_price->price,
+            'status' => $hotel_price->status,
+        ]);
+
+    }//get one hotel price
+
     //get boarding types
     public function getBoardingTypes()
     {

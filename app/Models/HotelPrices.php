@@ -39,7 +39,7 @@ class HotelPrices extends Model
 
     public function boardingType()
     {
-        return $this->belongsTo(BoardingType::class, 'boarding_type_id');
+        return $this->belongsTo(BoardingType::class, 'bording_type_id');
     }
     
 }//class

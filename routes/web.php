@@ -40,6 +40,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'tempMain'])->name('main.temp_main');
 Route::get('/destination', [MainController::class, 'destinationView'])->name('main.destination');
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth', 'verified')->name('dashboard');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -49,7 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
     //dashboard
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     //main page -> move this to open after development
     Route::get('/main', [MainController::class, 'index'])->name('main.index');
@@ -100,8 +102,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/getBoardingTypes', [Hotelcontroller::class, 'getBoardingTypes']);
 
     //hotel prices
-    Route::get('show-hotel-price', [Hotelcontroller::class, 'showHotelPrices'])->name('hotel_price.view');
-    Route::post('store-hotel-price', [Hotelcontroller::class, 'storeHotelPrice'])->name('hotel_price.store');
+    Route::get('/show-hotel-price', [Hotelcontroller::class, 'showHotelPrices'])->name('hotel_price.view');
+    Route::post('/store-hotel-price', [Hotelcontroller::class, 'storeHotelPrice'])->name('hotel_price.store');
+    Route::post('/update-hotel-price', [Hotelcontroller::class, 'updateHotelPrice'])->name('hotel_price.update');
+    Route::get('/getOneHotelPrice', [Hotelcontroller::class, 'getOneHotelPrice']);
 
     //hotel rooms
     Route::get('/hotel-rooms', [HotelRoomController::class, 'index'])->name('hotelrooms.index');
