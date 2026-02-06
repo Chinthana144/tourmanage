@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cities;
 use App\Models\Districts;
+use App\Models\LocationPrices;
 use App\Models\Locations;
+use App\Models\Packages;
+use App\Models\PriceModes;
 use App\Models\Provinces;
+use App\Models\Seasons;
+use App\Models\TourPackages;
 use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
@@ -214,6 +219,82 @@ class LocationController extends Controller
     {
         //
     }
+
+//===================================== Price ==================================//
+    public function showLocationPrices(Request $request)
+    {
+        $location_id = $request->input('hide_location_id');
+        $location = Locations::find($location_id);
+
+        $location_prices = LocationPrices::where('location_id', $location_id)->paginate(10);
+        
+        //get necessary data
+        $seasons = Seasons::all();
+        $packages = TourPackages::all();
+        $price_modes = PriceModes::all();
+
+        return view('locations.location_price_view', compact('location', 'location_prices', 'seasons', 'packages', 'price_modes'));
+    }
+
+    public function storeLocationPrice(Request $request)
+    {
+        $location_id = $request->input('hide_location_id');
+        LocationPrices::create([
+            'location_id' => $location_id,
+            'season_id' => $request->input('cmb_season'),
+            'package_id' => $request->input('cmb_package'),
+            'price_mode_id' => $request->input('cmb_price_mode'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'status' => $request->has('chk_compulsory') ? 1 : 0,
+        ]);
+
+        return redirect()
+            ->route('location_prices.view', ['hide_location_id' => $location_id])
+            ->with('success', 'Price added successfully!');
+    }//store location price
+
+    public function updateLocationPrice(Request $request)
+    {
+        $price_id = $request->input('hide_price_id');
+
+        $location_price = LocationPrices::find($price_id);
+        $location_id = $location_price->location_id;
+
+        $location_price->season_id = $request->input('cmb_edit_season');
+        $location_price->package_id = $request->input('cmb_edit_package');
+        $location_price->price_mode_id = $request->input('cmb_edit_price_mode');
+        $location_price->description = $request->input('edit_description');
+        $location_price->price = $request->input('edit_price');
+        $location_price->status = $request->has('chk_edit_compulsory') ? 1 : 0;
+
+        $location_price->save();
+
+        return redirect()
+            ->route('location_prices.view', ['hide_location_id' => $location_id])
+            ->with('success', 'Price added successfully!');
+
+    }//update location price
+
+    public function getOneLocationPrice(Request $request)
+    {
+        $price_id = $request->input('price_id');
+        $location_price = LocationPrices::find($price_id);
+
+        return response()->json([
+            'id' => $price_id,
+            'season_id' => $location_price->season_id,
+            'season' => $location_price->season->name,
+            'package_id' => $location_price->package_id,
+            'package' => $location_price->package->name,
+            'price_mode_id' => $location_price->price_mode_id,
+            'price_mode' => $location_price->priceMode->name,
+            'description' => $location_price->description,
+            'price' => $location_price->price,
+            'status' => $location_price->status,
+        ]);
+
+    }//get one location price ajax
 
     /*
     * location ajax methods

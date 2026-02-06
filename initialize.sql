@@ -419,6 +419,11 @@ INSERT INTO `price_modes`(`name`) VALUES
 ('Per Day'),
 ('Flat');
 
+-- add seasons 
+INSERT INTO `seasons`(`name`) VALUES
+('Season'),
+('Off Season');
+
 -- add hotel price modes
 INSERT INTO `hotel_price_modes`(`name`) VALUES
 ('Extra Bed – Adult'),

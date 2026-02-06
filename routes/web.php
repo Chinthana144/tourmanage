@@ -83,10 +83,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/edit-location', [LocationController::class, 'edit'])->name('location.edit');
     Route::put('/update-location', [LocationController::class, 'update'])->name('location.update');
     Route::put('/deactivate-location', [LocationController::class, 'deactivate'])->name('location.deactivate');
-    Route::get('/get-districts-by-province', [LocationController::class, 'getDistrictByProvince']);
-    Route::get('/get-cities-by-district', [LocationController::class, 'getCityByDistrict']);
-    Route::get('/get-one-city-by-id', [LocationController::class, 'getOneCityById']);
     Route::get('/getLocations', [LocationController::class, 'getLocations']);
+    Route::get('/show-location-price', [LocationController::class, 'showLocationPrices'])->name('location_prices.view');
+    Route::post('/store-location-price', [LocationController::class, 'storeLocationPrice'])->name('location_prices.store');
+    Route::post('/update-location-price', [LocationController::class, 'updateLocationPrice'])->name('location_prices.update');
+    Route::get('/getOneLocationPrice', [LocationController::class, 'getOneLocationPrice']);
 
     //hotels
     Route::get('/hotels', [Hotelcontroller::class, 'index'])->name('hotels.index');

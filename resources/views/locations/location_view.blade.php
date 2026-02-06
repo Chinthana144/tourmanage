@@ -51,14 +51,21 @@
                                 </p>
 
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <form action="{{ route('location_prices.view') }}" method="get">
+                                            @csrf
+                                            <input type="hidden" name="hide_location_id" value="{{ $location->id }}">
+                                            <button type="submit" class="btn btn-outline-primary w-100"><i class="bx bx-dollar"></i> Price</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4">
                                         <form action="{{ route('location.edit') }}" method="post">
                                             @csrf
                                             <input type="hidden" name="hide_location_id" value="{{ $location->id }}">
                                             <button type="submit" class="btn btn-outline-warning w-100"><i class="bx bx-edit"></i> Edit</button>
                                         </form>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <form action="{{ route('location.deactivate') }}" method="post">
                                             @csrf
                                             @method('PUT')
