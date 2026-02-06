@@ -99,17 +99,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/getHotels', [Hotelcontroller::class, 'getHotels']);
     Route::get('/getBoardingTypes', [Hotelcontroller::class, 'getBoardingTypes']);
 
+    //hotel prices
+    Route::get('show-hotel-price', [Hotelcontroller::class, 'showHotelPrices'])->name('hotel_price.view');
+    Route::post('store-hotel-price', [Hotelcontroller::class, 'storeHotelPrice'])->name('hotel_price.store');
+
     //hotel rooms
     Route::get('/hotel-rooms', [HotelRoomController::class, 'index'])->name('hotelrooms.index');
     Route::post('/store-hotel-room', [HotelRoomController::class, 'store'])->name('hotelrooms.store');
     Route::put('/update-hotel-room', [HotelRoomController::class, 'update'])->name('hotelrooms.update');
     Route::post('/destroy-hotel-room', [HotelRoomController::class, 'destroy'])->name('hotelrooms.destroy');
     Route::get('/getOneRoom', [HotelRoomController::class, 'getOneRoom']);
-
-    //hotel prices
-    Route::get('/hotel-prices', [HotelPriceController::class, 'index'])->name('hotelprices.index');
-    Route::post('/store-hotel-price', [HotelPriceController::class, 'store'])->name('hotelprices.store');
-    Route::get('/getOneHotelPrice', [HotelPriceController::class, 'getOneHotelPrice']);
 
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');

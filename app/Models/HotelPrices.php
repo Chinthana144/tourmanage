@@ -8,12 +8,13 @@ class HotelPrices extends Model
 {
     protected $fillable = [
         'hotel_id',
-        'boarding_type_id',
-        'hotel_room_type_id',
-        'season_name',
-        'season_start_date',
-        'season_end_date',
-        'price_per_night',
+        'season_id',
+        'package_id',
+        'price_mode_id',
+        'bording_type_id',
+        'description',
+        'price',
+        'status',
     ];
 
     public function hotel()
@@ -21,9 +22,19 @@ class HotelPrices extends Model
         return $this->belongsTo(Hotels::class, 'hotel_id');
     }
 
-    public function hotelRoom()
+    public function season()
     {
-        return $this->belongsTo(HotelRoomTypes::class, 'hotel_room_type_id');
+        return $this->belongsTo(Seasons::class, 'season_id');
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(TourPackages::class, 'package_id');
+    }
+
+    public function priceMode()
+    {
+        return $this->belongsTo(PriceModes::class, 'price_mode_id');
     }
 
     public function boardingType()

@@ -73,6 +73,14 @@
 
                         <div class="row mt-2">
                             <div class="col-md-2">
+                                <form action="{{ route('hotel_price.view') }}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">
+                                    <button type="submit" class="btn btn-outline-primary"><i class="bx bx-dollar"></i>Hotel Prices</button>
+                                </form>
+                            </div>
+
+                            <div class="col-md-2">
                                 <form action="{{ route('hotels.edit') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">

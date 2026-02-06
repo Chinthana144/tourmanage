@@ -7,8 +7,12 @@ use App\Models\Cities;
 use App\Models\Districts;
 use App\Models\Facilities;
 use App\Models\HotelFacilities;
+use App\Models\HotelPrices;
 use App\Models\Hotels;
+use App\Models\PriceModes;
 use App\Models\Provinces;
+use App\Models\Seasons;
+use App\Models\TourPackages;
 use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
@@ -177,6 +181,49 @@ class Hotelcontroller extends Controller
 
         return response()->json($hotels);
     }
+
+//======================================== Hotel Prices =======================================//
+    public function showHotelPrices(Request $request)
+    {
+        $hotel_id = $request->input('hide_hotel_id');
+        $hotel = Hotels::find($hotel_id);
+
+        $hotel_prices = HotelPrices::where('hotel_id', $hotel_id)->paginate(10);
+
+        //get necessary data
+        $seasons = Seasons::all();
+        $packages = TourPackages::all();
+        $price_modes = PriceModes::all();
+        $boarding_types = BoardingType::all();
+
+        return view('hotels.hotel_price_view', compact('hotel', 'hotel_prices', 'seasons', 'packages', 'price_modes', 'boarding_types'));
+    }//show hotel prices
+
+    public function storeHotelPrice(Request $request)
+    {
+        $hotel_id = $request->input('hide_hotel_id');
+
+        $hotel_price = HotelPrices::create([
+            'hotel_id' => $hotel_id,
+            'season_id' => $request->input('cmb_season'),
+            'package_id' => $request->input('cmb_package'),
+            'price_mode_id' => $request->input('cmb_price_mode'),
+            'bording_type_id' => $request->input('cmb_boarding_type'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'status' =>$request->has('chk_compulsory'),
+        ]);
+
+        if($hotel_price){
+            return redirect()->route('hotel_price.view', ['hide_hotel_id' => $hotel_id])
+                ->with('success', 'Hotel Price added successfully!');
+        }//ok
+        else{
+            return redirect()->route('hotel_price.view', ['hide_hotel_id' => $hotel_id])
+                ->with('error', 'Hotel Price added failed!');
+        }
+        
+    }//store hotel price
 
     //get boarding types
     public function getBoardingTypes()
