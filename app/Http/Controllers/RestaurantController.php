@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Cities;
 use App\Models\Districts;
 use App\Models\MealTypes;
+use App\Models\PriceModes;
 use App\Models\Provinces;
 use App\Models\Restaurants;
+use App\Models\Seasons;
+use App\Models\TourPackages;
 use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
@@ -156,6 +159,23 @@ class RestaurantController extends Controller
 
         return response()->json($restaurant);
     }//get one restaurant
+
+//============================================ Restaurants Prices ========================================//
+    public function showRestaurantPrices(Request $request)
+    {
+        $restaurant_id = $request->input('restaurant_id');
+        $restaurant = Restaurants::find($restaurant_id);
+
+        //get necessary data
+        $seasons = Seasons::all();
+        $packages = TourPackages::all();
+        $price_modes = PriceModes::all();
+        $meal_types = MealTypes::all();
+
+        return view('restaurants.restaurant_price_view', compact('restaurant', 'meal_types', 'seasons', 'packages', 'price_modes'));
+    }//show restaurant price
+
+    
 
     //meal types
     public function getMealTypes()

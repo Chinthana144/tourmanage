@@ -114,6 +114,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/destroy-hotel-room', [HotelRoomController::class, 'destroy'])->name('hotelrooms.destroy');
     Route::get('/getOneRoom', [HotelRoomController::class, 'getOneRoom']);
 
+    //restaurants
+    Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
+    Route::get('/create-restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
+    Route::post('/store-restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
+    Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
+    Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
+    Route::post('/remove-restaurant', [RestaurantController::class, 'remove'])->name('restaurant.remove');
+    Route::get('/getRestaurants', [RestaurantController::class, 'getRestaurants']);
+    Route::get('/getOneRestaurant', [RestaurantController::class, 'getOneRestaurant']);
+    Route::get('/getMealTypes', [RestaurantController::class, 'getMealTypes']);
+
+    //restaurants prices
+    Route::post('/show-restaurant-price', [RestaurantController::class, 'showRestaurantPrices'])->name('restaurant_price.view');
+
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
@@ -166,17 +180,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/remove-travel-media', [TravelMediaController::class, 'remove'])->name('travel_media.remove');
     Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
     Route::get('/getTravelMedia', [TravelMediaController::class, 'getTravelMedia']);
-
-    //restaurants
-    Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
-    Route::get('/create-restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
-    Route::post('/store-restaurants', [RestaurantController::class, 'store'])->name('restaurants.store');
-    Route::post('/edit-restaurants', [RestaurantController::class, 'edit'])->name('restaurants.edit');
-    Route::put('/update-restaurant', [RestaurantController::class, 'update'])->name('restaurants.update');
-    Route::post('/remove-restaurant', [RestaurantController::class, 'remove'])->name('restaurant.remove');
-    Route::get('/getRestaurants', [RestaurantController::class, 'getRestaurants']);
-    Route::get('/getOneRestaurant', [RestaurantController::class, 'getOneRestaurant']);
-    Route::get('/getMealTypes', [RestaurantController::class, 'getMealTypes']);
 
     //activities
     Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');

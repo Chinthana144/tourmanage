@@ -39,6 +39,13 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-md-2">
+                                <form action="{{ route('restaurant_price.view') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
+                                    <button type="submit" class="btn btn-outline-primary">Restaurant Price</button>
+                                </form>
+                            </div>
                             <div class="col-md-4 mt-3">
                                 <form action="{{ route('restaurants.edit') }}" method="post">
                                     @csrf
