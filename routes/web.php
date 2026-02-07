@@ -126,7 +126,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/getMealTypes', [RestaurantController::class, 'getMealTypes']);
 
     //restaurants prices
-    Route::post('/show-restaurant-price', [RestaurantController::class, 'showRestaurantPrices'])->name('restaurant_price.view');
+    Route::get('/show-restaurant-price', [RestaurantController::class, 'showRestaurantPrices'])->name('restaurant_price.view');
+    Route::post('/store-restaurant-price', [RestaurantController::class, 'storeRestaurantPrice'])->name('restaurant_price.store');
+    Route::post('/update-restaurant-price', [RestaurantController::class, 'updateRestaurantPrice'])->name('restaurant_price.update');
+    Route::get('/getOneRestaurantPrice', [RestaurantController::class, 'getOneRestaurantPrice']);
 
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');

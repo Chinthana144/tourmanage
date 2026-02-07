@@ -40,7 +40,7 @@
 
                         <div class="row">
                             <div class="col-md-2">
-                                <form action="{{ route('restaurant_price.view') }}" method="post">
+                                <form action="{{ route('restaurant_price.view') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
                                     <button type="submit" class="btn btn-outline-primary">Restaurant Price</button>

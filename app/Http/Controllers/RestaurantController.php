@@ -7,6 +7,7 @@ use App\Models\Districts;
 use App\Models\MealTypes;
 use App\Models\PriceModes;
 use App\Models\Provinces;
+use App\Models\RestaurantPrices;
 use App\Models\Restaurants;
 use App\Models\Seasons;
 use App\Models\TourPackages;
@@ -166,16 +167,82 @@ class RestaurantController extends Controller
         $restaurant_id = $request->input('restaurant_id');
         $restaurant = Restaurants::find($restaurant_id);
 
+        $restaurant_prices = RestaurantPrices::where('restaurant_id', $restaurant_id)->paginate(10);
+
         //get necessary data
         $seasons = Seasons::all();
         $packages = TourPackages::all();
         $price_modes = PriceModes::all();
         $meal_types = MealTypes::all();
 
-        return view('restaurants.restaurant_price_view', compact('restaurant', 'meal_types', 'seasons', 'packages', 'price_modes'));
+        return view('restaurants.restaurant_price_view', compact('restaurant', 'restaurant_prices', 'meal_types', 'seasons', 'packages', 'price_modes'));
     }//show restaurant price
 
-    
+    public function storeRestaurantPrice(Request $request)
+    {
+        $restaurant_id = $request->input('hide_restaurant_id');
+
+        $restaurant_price = RestaurantPrices::create([
+            'restaurant_id' => $restaurant_id,
+            'season_id' => $request->input('cmb_season'),
+            'package_id' => $request->input('cmb_package'),
+            'price_mode_id' => $request->input('cmb_price_mode'),
+            'meal_type_id' => $request->input('cmb_meal_type'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'), 
+            'is_compulsory' => $request->has('chk_compulsory') ? 1 : 0, 
+            'status' => 1, //active status
+        ]);
+
+        if($restaurant_price)
+        {
+            return redirect()->route('restaurant_price.view', ['restaurant_id' => $restaurant_id])
+                ->with('success', 'Restaurant price added successfully!');
+        }
+        else{
+            return redirect()->route('restaurant_price.view', ['restaurant_id' => $restaurant_id])
+                ->with('error', 'Restaurant price add failed!');
+        }
+    }//store restaurant price
+
+    public function updateRestaurantPrice(Request $request)
+    {
+        $price_id = $request->input('hide_price_id');
+        $restaurant_price = RestaurantPrices::find($price_id);
+        $restaurant_id = $restaurant_price->restaurant_id;
+
+        $restaurant_price->season_id = $request->input('cmb_edit_season');
+        $restaurant_price->package_id = $request->input('cmb_edit_package');
+        $restaurant_price->price_mode_id = $request->input('cmb_edit_price_mode');
+        $restaurant_price->meal_type_id = $request->input('cmb_edit_meal_type');
+        $restaurant_price->description = $request->input('edit_description');
+        $restaurant_price->price = $request->input('edit_price');
+        $restaurant_price->is_compulsory = $request->has('chk_edit_compulsory') ? 1 : 0;
+
+        $restaurant_price->save();
+
+        return redirect()->route('restaurant_price.view', ['restaurant_id'=> $restaurant_id])
+            ->with('success', 'Restaurant price updated successfully!');
+
+    }//update restaurant price
+
+    public function getOneRestaurantPrice(Request $request)
+    {
+        $price_id = $request->input('price_id');
+        $restaurant_price = RestaurantPrices::find($price_id);
+
+        return response()->json([
+            'id' => $price_id,
+            'season_id' => $restaurant_price->season_id,
+            'package_id' => $restaurant_price->package_id,
+            'price_mode_id' => $restaurant_price->price_mode_id,
+            'meal_type_id' => $restaurant_price->meal_type_id,
+            'description' => $restaurant_price->description,
+            'price' => $restaurant_price->price,
+            'is_compulsory' => $restaurant_price->is_compulsory,
+            'status' => $restaurant_price->status,
+        ]);
+    }
 
     //meal types
     public function getMealTypes()
