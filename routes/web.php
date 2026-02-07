@@ -131,6 +131,23 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-restaurant-price', [RestaurantController::class, 'updateRestaurantPrice'])->name('restaurant_price.update');
     Route::get('/getOneRestaurantPrice', [RestaurantController::class, 'getOneRestaurantPrice']);
 
+    //activities
+    Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
+    Route::get('/create-activities', [ActivityController::class, 'create'])->name('activities.create');
+    Route::post('/store-activities', [ActivityController::class, 'store'])->name('activities.store');
+    Route::post('/edit-activities', [ActivityController::class, 'edit'])->name('activities.edit');
+    Route::put('/update-activities', [ActivityController::class, 'update'])->name('activities.update');
+    Route::post('/remove-activities', [ActivityController::class, 'remove'])->name('activities.remove');
+    Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
+    Route::get('/getActivitybyLocation', [ActivityController::class, 'getActivitybyLocation']);
+    Route::get('/getActivities', [ActivityController::class, 'getActivities']);
+
+    //activity price
+    Route::get('/show-activity-price', [ActivityController::class, 'showActivityPrice'])->name('activity_price.view');
+    Route::post('/store-activity-price', [ActivityController::class, 'storeActivityPrice'])->name('activity_price.store');
+    Route::post('/update-activity-price', [ActivityController::class, 'updateActivityPrice'])->name('activity_price.update');
+    Route::get('/getOneActivityPrice', [ActivityController::class, 'getOneActivityPrice']);
+
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
@@ -183,17 +200,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/remove-travel-media', [TravelMediaController::class, 'remove'])->name('travel_media.remove');
     Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
     Route::get('/getTravelMedia', [TravelMediaController::class, 'getTravelMedia']);
-
-    //activities
-    Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
-    Route::get('/create-activities', [ActivityController::class, 'create'])->name('activities.create');
-    Route::post('/store-activities', [ActivityController::class, 'store'])->name('activities.store');
-    Route::post('/edit-activities', [ActivityController::class, 'edit'])->name('activities.edit');
-    Route::put('/update-activities', [ActivityController::class, 'update'])->name('activities.update');
-    Route::post('/remove-activities', [ActivityController::class, 'remove'])->name('activities.remove');
-    Route::get('/getOneActivity', [ActivityController::class, 'getOneActivity']);
-    Route::get('/getActivitybyLocation', [ActivityController::class, 'getActivitybyLocation']);
-    Route::get('/getActivities', [ActivityController::class, 'getActivities']);
 
     //tours
     Route::get('/tours', [TourController::class, 'index'])->name('tours.index');

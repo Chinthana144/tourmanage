@@ -7,6 +7,9 @@ use App\Models\ActivityCategories;
 use App\Models\ActivityPrices;
 use App\Models\ActivityTimes;
 use App\Models\Locations;
+use App\Models\PriceModes;
+use App\Models\Seasons;
+use App\Models\TourPackages;
 use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
@@ -156,6 +159,83 @@ class ActivityController extends Controller
 
         return redirect()->route('activities.index')->with('success', 'Activity removed successfully!');
     }//remove
+
+//================================ Activity Price ====================================//
+    public function showActivityPrice(Request $request)
+    {
+        $activity_id = $request->input('activity_id');
+        $activity = Activities::find($activity_id);
+
+        $activity_prices = ActivityPrices::where('activity_id', $activity_id)->paginate(10);
+
+        //get necessary data
+        $seasons = Seasons::all();
+        $packages = TourPackages::all();
+        $price_modes = PriceModes::all();
+
+        return view('activities.activity_price_view', compact('activity', 'activity_prices', 'seasons', 'packages', 'price_modes'));
+    }//show activity Price
+
+    public function storeActivityPrice(Request $request)
+    {
+        $activity_id = $request->input('hide_activity_id');
+
+        $activity_price = ActivityPrices::create([
+            'activity_id' => $activity_id,
+            'season_id' => $request->input('cmb_season'),
+            'package_id' => $request->input('cmb_package'), 
+            'price_mode_id' => $request->input('cmb_price_mode'), 
+            'description' => $request->input('description'), 
+            'price' => $request->input('price'), 
+            'is_compulsory' => $request->has('chk_compulsory') ? 1 : 0,
+            'status' => 1, //active
+        ]);
+
+        if($activity_price){
+            return redirect()->route('activity_price.view', ['activity_id' => $activity_id])
+                ->with('success', 'Activity price added successfully!');
+        }
+        else{
+            return redirect()->route('activity_price.view', ['activity_id' => $activity_id])
+                ->with('error', 'Activity price add failed!');
+        }
+    }//store activity price
+
+    public function updateActivityPrice(Request $request)
+    {
+        $price_id = $request->input('hide_price_id');
+        $activity_price = ActivityPrices::find($price_id);
+        $activity_id = $activity_price->activity_id;
+
+        $activity_price->season_id = $request->input('cmb_edit_season');
+        $activity_price->package_id = $request->input('cmb_edit_package');
+        $activity_price->price_mode_id = $request->input('cmb_edit_price_mode');
+        $activity_price->description = $request->input('edit_description');
+        $activity_price->price = $request->input('edit_price');
+        $activity_price->is_compulsory = $request->has('chk_edit_compulsory') ? 1 : 0;
+
+        $activity_price->save();
+
+        return redirect()->route('activity_price.view', ['activity_id' => $activity_id])
+                ->with('success', 'Activity price added successfully!');
+    }
+
+    public function getOneActivityPrice(Request $request)
+    {
+        $price_id = $request->input('price_id');
+        $activity_price = ActivityPrices::find($price_id);
+
+        return response()->json([
+            'id' => $activity_price->id,
+            'season_id' => $activity_price->season_id,
+            'package_id' => $activity_price->package_id,
+            'price_mode_id' => $activity_price->price_mode_id,
+            'description' => $activity_price->description,
+            'price' => $activity_price->price,
+            'is_compulsory' => $activity_price->is_compulsory,
+            'status' => $activity_price->status,
+        ]);
+    }//get one activity price
 
     //AJAX methods
     public function getOneActivity(Request $request)

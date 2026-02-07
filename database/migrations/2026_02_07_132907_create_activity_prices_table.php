@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('activity_prices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('activity_id');
+            $table->foreignId('season_id');
+            $table->foreignId('package_id');
+            $table->foreignId('price_mode_id');
+            $table->string('description');
+            $table->decimal('price', 10, 2);
+            $table->tinyInteger('is_compulsory');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

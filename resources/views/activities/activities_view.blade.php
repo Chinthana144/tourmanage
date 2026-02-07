@@ -73,7 +73,15 @@
                                 <img src="{{ asset('images/activities/' . $activity->image2) }}" alt="con" style="width: 100%; height:auto; border-radius: 8px;">
                             </div>
 
-                            <div class="col-md-4 mt-3">
+                            <div class="col-md-2 mt-3">
+                                <form action="{{ route('activity_price.view') }}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="activity_id" value="{{ $activity->id }}">
+                                    <button type="submit" class="btn btn-outline-primary">Activity Prices</button>
+                                </form>
+                            </div>
+
+                            <div class="col-md-2 mt-3">
                                 <form action="{{ route('activities.edit') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="hide_activity_id" value="{{ $activity->id }}">
@@ -81,7 +89,7 @@
                                 </form>
                             </div>
 
-                            <div class="col-md-4 mt-3">
+                            <div class="col-md-2 mt-3">
                                 <form action="{{ route('activities.remove') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="hide_activity_id" value="{{ $activity->id }}">

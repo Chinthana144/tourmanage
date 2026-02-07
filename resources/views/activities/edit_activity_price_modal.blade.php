@@ -2,11 +2,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Edit {{ $location->name }} Price</h5>
+        <h5 class="modal-title">Edit {{ $activity->name }} Price</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="{{ route('location_prices.update') }}" method="post">
+      <form action="{{ route('activity_price.update') }}" method="post">
         @csrf
         <input type="hidden" name="hide_price_id" id="hide_price_id">
         <div class="modal-body">
@@ -47,7 +47,7 @@
         </div>
 
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Edit Price</button>
+            <button type="submit" class="btn btn-primary">Update Activity Price</button>
         </div>
       </form>
 
