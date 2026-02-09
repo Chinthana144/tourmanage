@@ -86,6 +86,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/update-location', [LocationController::class, 'update'])->name('location.update');
     Route::put('/deactivate-location', [LocationController::class, 'deactivate'])->name('location.deactivate');
     Route::get('/getLocations', [LocationController::class, 'getLocations']);
+
+    //Location prices
     Route::get('/show-location-price', [LocationController::class, 'showLocationPrices'])->name('location_prices.view');
     Route::post('/store-location-price', [LocationController::class, 'storeLocationPrice'])->name('location_prices.store');
     Route::post('/update-location-price', [LocationController::class, 'updateLocationPrice'])->name('location_prices.update');

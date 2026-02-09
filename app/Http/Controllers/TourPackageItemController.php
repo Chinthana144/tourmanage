@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\BedTypes;
 use App\Models\BoardingType;
 use App\Models\Hotels;
+use App\Models\LocationPrices;
 use App\Models\QuotationItems;
 use App\Models\Quotations;
 use App\Models\RoomTypes;
+use App\Models\Seasons;
 use App\Models\TourHotels;
 use App\Models\TourPackageItems;
 use App\Models\TourPackages;
@@ -34,15 +36,96 @@ class TourPackageItemController extends Controller
         $tour_request_id = $tour->tour_request_id;
         $tour_request = TourRequest::find($tour_request_id);
 
-        //room types
-        $room_types = RoomTypes::all();
-
-        //bed types
-        $bed_types = BedTypes::all();
+        //necessary data
+        $seasons = Seasons::all();
 
         $route_items = TourRouteItems::where('tour_id', $tour_id)->get();
 
-        return view('tour_package_items.tour_package_items', compact('route_items', 'tour', 'tour_request', 'boarding_types', 'room_types', 'bed_types'));
+        $data = [];
+
+        foreach($route_items as $item)
+        {
+            $item_type = $item->item_type;
+            $essential_price = [];
+            $classic_price = [];
+            $signature_price = [];
+
+            switch ($item_type) {
+                case 'App\Models\Locations':
+                    # get location price
+                    $standard_price = LocationPrices::where('location_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+                    foreach ($standard_price as $price) {
+                        $essential_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                        ];
+                    }//foreach
+                                        
+                    $comfort_price = LocationPrices::where('location_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+                    foreach($comfort_price as $price){
+                        $classic_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                        ];
+                    }//foreach
+                    
+                    $premium_price = LocationPrices::where('location_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+                    foreach($premium_price as $price){
+                        $signature_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                        ];
+                    }//foreach
+                break;
+                case 'App\Models\Hotels':
+                    # get hotel price
+                break;
+                case 'App\Models\Restaurants':
+                    # get restautant price
+                break;
+                case 'App\Models\Activities':
+                    # get activity price
+                break;
+                case 'App\Models\TravelMedia':
+                    # get travel price
+                break;
+            }
+
+            $data[] = [
+                'id' => $item->id,
+                'item_id' => $item->item_id,
+                'item_type' => $item->item_type,
+                'name' => $item->item->name,
+                'day_no' => $item->day_no,
+                'notes' => $item->notes,
+                'essential_price' => $essential_price,
+                'classic_price' => $classic_price,
+                'signature_price' => $signature_price,
+            ];
+        }//foreach
+
+        return view('tour_package_items.tour_package_items', compact('route_items', 'data', 'tour', 'tour_request', 'boarding_types', 'seasons'));
     }//index
 
     public function store(Request $request)

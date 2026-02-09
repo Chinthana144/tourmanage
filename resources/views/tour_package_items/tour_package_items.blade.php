@@ -6,23 +6,21 @@
             <h5>Tour Package Items</h5>
         </div>
         <div class="card-body">
-            <p>Route Items</p>
-            <div class="container container-sm" id="div_main">
-                @foreach ($route_items as $item)
+            <div class="container container-md" id="div_main">
+                @foreach ($data as $item)
                     <div class="card mb-2">
                         <div class="card-header">
                             <h6>
-                                {{ $item->item->name }}
-                                <span class="badge bg-primary float-end">Day {{ $item->day_no }}</span>
+                                {{ $item['name'] }}
+                                <span class="badge bg-primary float-end">Day {{ $item['day_no'] }}</span>
                             </h6>
                         </div>
-                        <div class="card-body">
-                            <p>{{ $item->notes }}</p>
-                            @switch($item->item_type)
+                        <div class="card-body" id="card_route_items">
+                            <p>{{ $item['notes'] }}</p>
+                            @switch($item['item_type'])
                                 @case('App\Models\Locations')
                                     @include('tour_package_items.location_package')
                                 @break
-                                {{-- --------------------------------------- HOTELS ----------------------------------- --}}
                                 @case('App\Models\Hotels')
                                     @include('tour_package_items.hotel_package')
                                 @break
@@ -59,16 +57,12 @@
                             <button type="submit" class="btn btn-primary mt-4 w-100">Generate</button>
                         </div>
                         
-                        
                     </div>
                     
                 </form>
             </div>
         </div>
     </div>
-
-    @include('tour_package_items.room_add_modal')
-    @include('tour_package_items.hotel_add_modal')
 
     <script src="{{ asset('js/tour_package_items.js') }}"></script>
 @endsection
