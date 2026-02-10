@@ -7,11 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class TourPackageItems extends Model
 {
     protected $fillable = [
-        'tour_package_id',
-        'tour_route_item_id',
+        'tour_id',
+        'season_id',
+        'package_id',
+        'price_mode_id',
         'component_type',
         'component_id',
-        'base_price',        
+        'description',
+        'price',
+        'status',      
     ];
 
     public function component()
@@ -19,14 +23,19 @@ class TourPackageItems extends Model
         return $this->morphTo();
     }
 
-    public function tourPackage()
+    public function tour()
     {
-        return $this->belongsTo(TourPackages::class, 'tour_package_id');
+        return $this->belongsTo(Tours::class, 'tour_id');
     }
 
-    public function tourRouteItem()
+    public function season()
     {
-        return $this->belongsTo(TourRouteItems::class, 'tour_route_item_id');
+        return $this->belongsTo(Seasons::class, 'season_id');
+    }
+
+    public function tourPackage()
+    {
+        return $this->belongsTo(TourPackages::class, 'package_id');
     }
 
     public function priceMode()

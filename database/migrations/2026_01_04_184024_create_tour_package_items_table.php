@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('tour_package_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("tour_package_id");
-            $table->foreignId('tour_route_item_id');
+            $table->foreignId("tour_id");
+            $table->foreignId('season_id');
+            $table->foreignId('package_id');
+            $table->foreignId('price_mode_id');
             $table->morphs('component');
-            $table->decimal('base_price', 10, 2);
+            $table->string('description');
+            $table->decimal('price', 10, 2);
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-header">
             <h5>
-                Hotel Prices
+                {{ $hotel->name }} Prices
                 <button class="btn btn-primary btn-sm float-end" id="btn_add_hotel_price">Add Prices</button>
             </h5>
         </div>

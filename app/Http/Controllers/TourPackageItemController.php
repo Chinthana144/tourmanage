@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityPrices;
 use App\Models\BedTypes;
 use App\Models\BoardingType;
+use App\Models\HotelPrices;
 use App\Models\Hotels;
 use App\Models\LocationPrices;
+use App\Models\Locations;
 use App\Models\QuotationItems;
 use App\Models\Quotations;
+use App\Models\RestaurantPrices;
+use App\Models\Restaurants;
 use App\Models\RoomTypes;
 use App\Models\Seasons;
 use App\Models\TourHotels;
@@ -51,6 +56,7 @@ class TourPackageItemController extends Controller
             $signature_price = [];
 
             switch ($item_type) {
+                //============================= Location ================================//
                 case 'App\Models\Locations':
                     # get location price
                     $standard_price = LocationPrices::where('location_id', $item->item_id)
@@ -65,6 +71,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
                         ];
                     }//foreach
                                         
@@ -80,6 +87,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
                         ];
                     }//foreach
                     
@@ -95,22 +103,165 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
                         ];
                     }//foreach
                 break;
+                //============================= Hotels ================================//
                 case 'App\Models\Hotels':
                     # get hotel price
+                    $standard_price = HotelPrices::where('hotel_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+                    foreach ($standard_price as $price) {
+                        $essential_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
+                    $comfort_price = HotelPrices::where('hotel_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+                    foreach($comfort_price as $price){
+                        $classic_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
+                    
+                    $premium_price = HotelPrices::where('hotel_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+                    foreach($premium_price as $price){
+                        $signature_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
                 break;
+                //============================= Restaurants ================================//
                 case 'App\Models\Restaurants':
-                    # get restautant price
+                    # restaurant price
+                    $standard_price = RestaurantPrices::where('restaurant_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+                    foreach ($standard_price as $price) {
+                        $essential_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
+                    $comfort_price = RestaurantPrices::where('restaurant_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+                    foreach($comfort_price as $price){
+                        $classic_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
+                    
+                    $premium_price = RestaurantPrices::where('restaurant_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+                    foreach($premium_price as $price){
+                        $signature_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
                 break;
+                //============================= Activities ================================//
                 case 'App\Models\Activities':
                     # get activity price
+                    $standard_price = ActivityPrices::where('activity_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+                    foreach ($standard_price as $price) {
+                        $essential_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
+                    $comfort_price = ActivityPrices::where('activity_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+                    foreach($comfort_price as $price){
+                        $classic_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach                
+                    $premium_price = ActivityPrices::where('activity_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+                    foreach($premium_price as $price){
+                        $signature_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
                 break;
+                //============================= Travel Media ================================//
                 case 'App\Models\TravelMedia':
                     # get travel price
+
                 break;
-            }
+            }//switch
 
             $data[] = [
                 'id' => $item->id,
@@ -127,156 +278,62 @@ class TourPackageItemController extends Controller
 
         return view('tour_package_items.tour_package_items', compact('route_items', 'data', 'tour', 'tour_request', 'boarding_types', 'seasons'));
     }//index
-
-    public function store(Request $request)
+   
+    public function storePackageItems(Request $request)
     {
-        $tour_request_id = $request->input('tour_request_id');
         $tour_id = $request->input('tour_id');
+        $tour = Tours::find($tour_id);
 
         $route_items = TourRouteItems::where('tour_id', $tour_id)->get();
 
-        //create quotation
-        $year = Carbon::now()->year;
-        $last_quotation = Quotations::where('quotation_no', 'LIKE', '-%')
-            ->orderBy('quotation_no', 'DESC')
-            ->first();
-
-        $nextNumber = 1;
-        if($last_quotation){
-            //extract number
-            $lastNumber = intval(substr($last_quotation->quotation_no, 5));
-            $nextNumber = $lastNumber + 1;
-        }//has tour
-        else{
-            $nextNumber = 1;
-        }
-        $quotation_no = $year . '-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
-
-        //create quotation
-        $quotation = Quotations::updateOrCreate(
-            [
-                'quotation_no' => $quotation_no,
-                'tour_request_id' => $request->input('tour_request_id'),
-            ],
-            [
-                'tour_id' => $tour_id,
-                'valid_until' => $request->input('valid_date'),
-                'package_prices' => json_encode([]),
-                'status' => 1,
-                'user_id' => Auth::user()->id,
-            ],
-        );
-
         foreach($route_items as $item)
         {
-            switch ($item->item_type) {
+            $item_type = $item->item_type;
+            switch ($item_type){
                 case 'App\Models\Locations':
-                    # code...
-                break;
+                    $standard_price = LocationPrices::where('location_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
 
+                    foreach($standard_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id)){
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $price->price, 1);
+                        }
+                    }//foreach
+                break;
                 case 'App\Models\Hotels':
-                    //tour hotels
-                    $tour_hotel = TourHotels::where('tour_route_item_id', $item->id)
-                        ->where('hotel_id', $item->item->id)
-                        ->first();
-
-                    // dd($tour_hotel->nights);
-                    if($tour_hotel && !empty($tour_hotel->nights))
-                    {
-                        $nights = floatval($tour_hotel->nights);
-                    }
-
-                    // room price
-                    //Akagi Essential
-                    $std_price = TourRooms::where('tour_hotel_id', $item->item->id)
-                        ->where('tour_package_id', 1)
-                        ->sum('total_price');
-                    $total_std_price = $std_price * $nights;
-                    createTourPackageItem(1, $item->id, Hotels::class, $item->item->id, $total_std_price);
-
-                    //Akagi Classic
-                    $cmt_price = TourRooms::where('tour_hotel_id', $item->item->id)
-                        ->where('tour_package_id', 2)
-                        ->sum('total_price');
-                    $total_cmt_price = $cmt_price * $nights;
-                    createTourPackageItem(2, $item->id, Hotels::class, $item->item->id, $total_cmt_price);
-
-                    //Akagi Signature
-                    $prm_price = TourRooms::where('tour_hotel_id', $item->item->id)
-                        ->where('tour_package_id', 3)
-                        ->sum('total_price');
-                    $total_prm_price = $prm_price * $nights;
-                    createTourPackageItem(3, $item->id, Hotels::class, $item->item->id, $total_prm_price);
-
+                    # get location price
                 break;
-
                 case 'App\Models\Restaurants':
-                    # code...
+                    # get restautant price
                 break;
-
                 case 'App\Models\Activities':
-                    # code...
+                    # get activity price
                 break;
-
                 case 'App\Models\TravelMedia':
-                    # code...
-                break;
-                
-                default:
-                    # code...
+                    # get location price
                 break;
             }//switch
-        }//foreach
+        }//foreach 
+        
+    }//store Items
 
-        $packages = TourPackages::all();
-
-        $package_total = [];
-
-        foreach($packages as $package)
-        {   
-            $package_total[] = [
-                'id' => $package->id,
-                'name' => $package->name,
-                'amount' => QuotationItems::where('item_type', 'hotel')
-                    ->where('quotation_id', $quotation->id)
-                    ->where('tour_package_id', $package->id)
-                    ->sum('amount'),
-            ];    
-        }//foreach
-
-        $quotation->package_prices = json_encode($package_total);
-
-        // dd($package_total);
-        $quotation->save();
-
-        //add Quotation items
-        //hotels
-        $hot_essential_total = $total_std_price;
-        $hot_classic_total = $total_cmt_price;
-        $hot_signature_total = $total_prm_price;
-
-        createQuotationItem($quotation->id, 1, "hotel", $hot_essential_total);
-        createQuotationItem($quotation->id, 2, "hotel", $hot_classic_total);
-        createQuotationItem($quotation->id, 3, "hotel", $hot_signature_total);
-
-        //redirect to quotation
-        return redirect()->route('quotation.index'); 
-    }//store
-   
 }//class
 
 //===================== Functions =====================//
-function createTourPackageItem($tour_package_id, $tour_route_item_id, $component_type, $component_id, $base_price)
+function createTourPackageItem($tour_id, $season_id, $package_id, $price_mode_id, $component_type, $component_id, $description, $price, $status)
 {
-    $tour_package_item = TourPackageItems::updateOrCreate(
+    $tour_package_item = TourPackageItems::create(
         [
-            'tour_package_id'=> $tour_package_id,
-            'tour_route_item_id' => $tour_route_item_id,
-        ],
-        [
+            'tour_id'=> $tour_id,
+            'season_id' => $season_id,
+            'package_id' => $package_id,
+            'price_mode_id' => $price_mode_id,
             'component_type' => $component_type,
             'component_id' => $component_id,
-            'base_price' => $base_price,
+            'description' => $description,
+            'price' => $price,
+            'status' => $status,
         ]
     );
 

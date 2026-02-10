@@ -7,6 +7,9 @@
         </div>
         <div class="card-body">
             <div class="container container-md" id="div_main">
+                <form action="{{ route('package_items.store') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="tour_id" value="{{ $tour->id }}">
                 @foreach ($data as $item)
                     <div class="card mb-2">
                         <div class="card-header">
@@ -15,7 +18,7 @@
                                 <span class="badge bg-primary float-end">Day {{ $item['day_no'] }}</span>
                             </h6>
                         </div>
-                        <div class="card-body" id="card_route_items">
+                        <div class="card-body">
                             <p>{{ $item['notes'] }}</p>
                             @switch($item['item_type'])
                                 @case('App\Models\Locations')
@@ -41,6 +44,8 @@
                     </div>
                 @endforeach
 
+                <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
                 <h5>
                     Quotation Generate
                 </h5>

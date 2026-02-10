@@ -44,9 +44,24 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
-                    <td>{{$price['price']}}</td>
                     <td>
-                        <input type="checkbox" style="width:1.5rem; height:1.5rem;">
+                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
+                    </td>
+                    <td>
+                        @if ($price['is_complusory'] == 1)
+                            <span class="badge bg-primary">Complusory</span>
+                        @else
+                            <span class="badge bg-secondary">optional</span>
+                        @endif
+                    </td>
+                    <td>
+                        <input
+                            type="checkbox"
+                            name="chk_price_{{$item['id']}}_{{$price['id']}}"
+                            class="chk_price"
+                            data-item-id ="{{ $item['id'] }}"
+                            style="width:1.5rem; height:1.5rem;"
+                        >
                     </td>
                 </tr>
             @endforeach
@@ -56,16 +71,66 @@
     <!-- Comfort -->
     <div class="tab-pane fade" id="location_comfort_{{$item['id']}}" role="tabpanel">
         <h5>Location Classic Package</h5>
-        <p>3 to 4 star hotels, private transport, upgraded meals.</p>
-
-        {{-- @include('tour.packages.comfort') --}}
+        <table class="table">
+            @foreach ($item['classic_price'] as $price)
+                <tr>
+                    <td>{{$price['season']}}</td>
+                    <td>{{$price['price_mode']}}</td>
+                    <td>{{$price['description']}}</td>
+                    <td>
+                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
+                    </td>
+                    <td>
+                        @if ($price['is_complusory'] == 1)
+                            <span class="badge bg-primary">Complusory</span>
+                        @else
+                            <span class="badge bg-secondary">optional</span>
+                        @endif
+                    </td>
+                    <td>
+                        <input
+                            type="checkbox"
+                            name="chk_price_{{$item['id']}}_{{$price['id']}}"
+                            class="chk_price"
+                            data-item-id ="{{ $item['id'] }}"
+                            style="width:1.5rem; height:1.5rem;"
+                        >
+                    </td>
+                </tr>
+            @endforeach
+        </table>
     </div>
 
     <!-- Premium -->
     <div class="tab-pane fade" id="location_premium_{{$item['id']}}" role="tabpanel">
         <h5>Location Signature Package</h5>
-        <p>Luxury hotels, private guide, premium experiences.</p>
-
-        {{-- @include('tour.packages.premium') --}}
+        <table class="table">
+            @foreach ($item['signature_price'] as $price)
+                <tr>
+                    <td>{{$price['season']}}</td>
+                    <td>{{$price['price_mode']}}</td>
+                    <td>{{$price['description']}}</td>
+                    <td>
+                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
+                    </td>
+                    <td>
+                        @if ($price['is_complusory'] == 1)
+                            <span class="badge bg-primary">Complusory</span>
+                        @else
+                            <span class="badge bg-secondary">optional</span>
+                        @endif
+                    </td>
+                    <td>
+                        <input
+                            type="checkbox"
+                            name="chk_price_{{$item['id']}}_{{$price['id']}}"
+                            class="chk_price"
+                            data-item-id ="{{ $item['id'] }}"
+                            style="width:1.5rem; height:1.5rem;"
+                        >
+                    </td>
+                </tr>
+            @endforeach
+        </table>
     </div>
 </div>

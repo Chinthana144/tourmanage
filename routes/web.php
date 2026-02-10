@@ -216,14 +216,16 @@ Route::middleware('auth')->group(function () {
     Route::post('/restaurantStore', [TourRouteItemController::class, 'restaurantStore'])->name('route_items.restaurant_store');
     Route::post('/activityStore', [TourRouteItemController::class, 'activityStore'])->name('route_items.activity_store');
     Route::post('/travelStore', [TourRouteItemController::class, 'travelStore'])->name('route_items.travel_store');
-
-    //tour package items
-    Route::get('/tour-package-items', [TourPackageItemController::class, 'index'])->name('tour_package_items.index');
-    Route::post('/store-tour-package-item', [TourPackageItemController::class, 'store'])->name('tour_package_items.store');
     Route::post('/deleteRouteItem', [TourRouteItemController::class, 'deleteRouteItem']);
     Route::get('/routeMoveUp', [TourRouteItemController::class, 'routeMoveUp']);
     Route::get('/routeMoveDown', [TourRouteItemController::class, 'routeMoveDown']);
     Route::get('/getRouteItemsByTourID', [TourRouteItemController::class, 'getRouteItemsByTourID']);
+
+
+    //tour package items
+    Route::get('/tour-package-items', [TourPackageItemController::class, 'index'])->name('tour_package_items.index');
+    Route::post('/store-tour-package-item', [TourPackageItemController::class, 'store'])->name('tour_package_items.store');
+    Route::post('/store-package-items', [TourPackageItemController::class, 'storePackageItems'])->name('package_items.store');
 
     //tour hotels
     Route::post('/store-tour-hotel', [TourHotelController::class, 'store'])->name('tour_hotel.store');

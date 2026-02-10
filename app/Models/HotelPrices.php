@@ -14,7 +14,7 @@ class HotelPrices extends Model
         'bording_type_id',
         'description',
         'price',
-        'is_compulsory',
+        'is_complusory',
         'status',
     ];
 

@@ -13,7 +13,7 @@ class LocationPrices extends Model
         'price_mode_id',
         'description',
         'price',
-        'is_compulsory',
+        'is_complusory',
         'status',
     ];
 
