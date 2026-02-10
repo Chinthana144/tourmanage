@@ -25,7 +25,7 @@ $(document).ready(function () {
                 $("#cmb_edit_price_mode").val(response.price_mode_id);
                 $("#edit_description").val(response.description);
                 $("#edit_price").val(response.price);
-                response.status == 1 ? $("#chk_edit_compulsory").attr('checked', true) : $("#chk_edit_compulsory").attr('checked', false);
+                response.is_compulsory == 1 ? $("#chk_edit_compulsory").attr('checked', true) : $("#chk_edit_compulsory").attr('checked', false);
             }
         });
     });

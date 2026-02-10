@@ -211,7 +211,8 @@ class Hotelcontroller extends Controller
             'bording_type_id' => $request->input('cmb_boarding_type'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-            'status' =>$request->has('chk_compulsory'),
+            'is_compulsory' =>$request->has('chk_compulsory'),
+            'status' => 1,
         ]);
 
         if($hotel_price){
@@ -238,7 +239,7 @@ class Hotelcontroller extends Controller
         $hotel_price->bording_type_id = $request->input('cmb_edit_boarding_type');
         $hotel_price->description = $request->input('edit_description');
         $hotel_price->price = $request->input('edit_price');
-        $hotel_price->status = $request->has('chk_edit_compulsory') ? 1 : 0 ;
+        $hotel_price->is_compulsory = $request->has('chk_edit_compulsory') ? 1 : 0 ;
 
         $hotel_price->save();
 
@@ -259,6 +260,7 @@ class Hotelcontroller extends Controller
             'bording_type_id' => $hotel_price->bording_type_id,
             'description' => $hotel_price->description,
             'price' => $hotel_price->price,
+            'is_compulsory' => $hotel_price->is_compulsory,
             'status' => $hotel_price->status,
         ]);
 

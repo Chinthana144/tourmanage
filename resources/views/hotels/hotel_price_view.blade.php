@@ -29,7 +29,7 @@
                             <td>{{ $price->boardingType->name }}</td>
                             <td>{{ $price->description }}</td>
                             <td>
-                                @if ($price->status == 1)
+                                @if ($price->is_compulsory == 1)
                                     <span class="badge bg-primary">Compulsory</span>
                                 @else
                                     <span class="badge bg-secondary">Optional</span>

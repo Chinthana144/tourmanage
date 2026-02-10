@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('price_mode_id');
             $table->string('price_description');
             $table->decimal('price', 10, 2);
+            $table->tinyInteger('is_compulsory');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

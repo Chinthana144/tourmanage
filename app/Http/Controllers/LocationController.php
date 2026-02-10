@@ -246,7 +246,8 @@ class LocationController extends Controller
             'price_mode_id' => $request->input('cmb_price_mode'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-            'status' => $request->has('chk_compulsory') ? 1 : 0,
+            'is_compulsory' => $request->has('chk_compulsory') ? 1 : 0,
+            'status' => 1,
         ]);
 
         return redirect()
@@ -266,7 +267,7 @@ class LocationController extends Controller
         $location_price->price_mode_id = $request->input('cmb_edit_price_mode');
         $location_price->description = $request->input('edit_description');
         $location_price->price = $request->input('edit_price');
-        $location_price->status = $request->has('chk_edit_compulsory') ? 1 : 0;
+        $location_price->is_compulsory = $request->has('chk_edit_compulsory') ? 1 : 0;
 
         $location_price->save();
 
@@ -291,6 +292,7 @@ class LocationController extends Controller
             'price_mode' => $location_price->priceMode->name,
             'description' => $location_price->description,
             'price' => $location_price->price,
+            'is_compulsory' => $location_price->is_compulsory,
             'status' => $location_price->status,
         ]);
 
