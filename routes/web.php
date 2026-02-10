@@ -150,6 +150,18 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-activity-price', [ActivityController::class, 'updateActivityPrice'])->name('activity_price.update');
     Route::get('/getOneActivityPrice', [ActivityController::class, 'getOneActivityPrice']);
 
+    //travel media
+    Route::get('/travel-media', [TravelMediaController::class, 'index'])->name('travel_media.index');
+    Route::post('/store-travel-media', [TravelMediaController::class, 'store'])->name('travel_media.store');
+    Route::put('/update-travel-media', [TravelMediaController::class, 'update'])->name('travel_media.update');
+    Route::post('/remove-travel-media', [TravelMediaController::class, 'remove'])->name('travel_media.remove');
+    Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
+    Route::get('/getTravelMedia', [TravelMediaController::class, 'getTravelMedia']);
+
+    //travel prices
+    Route::get('/show-travel-price', [TravelMediaController::class, 'showTravelPrice'])->name('travel_price.view');
+    Route::post('/store-travel-price', [TravelMediaController::class, 'storeTravelPrice'])->name('travel_price.store');
+
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');
@@ -195,14 +207,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/storeTourRequestLocation', [TourRequestLocationController::class, 'storeTourRequestLocation']);
     Route::get('/getRequestLocations', [TourRequestLocationController::class, 'getRequestLocations']);
 
-    //travel media
-    Route::get('/travel-media', [TravelMediaController::class, 'index'])->name('travel_media.index');
-    Route::post('/store-travel-media', [TravelMediaController::class, 'store'])->name('travel_media.store');
-    Route::put('/update-travel-media', [TravelMediaController::class, 'update'])->name('travel_media.update');
-    Route::post('/remove-travel-media', [TravelMediaController::class, 'remove'])->name('travel_media.remove');
-    Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
-    Route::get('/getTravelMedia', [TravelMediaController::class, 'getTravelMedia']);
-
     //tours
     Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
     Route::post('/store-tours', [TourController::class, 'store'])->name('tours.store');
@@ -220,7 +224,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/routeMoveUp', [TourRouteItemController::class, 'routeMoveUp']);
     Route::get('/routeMoveDown', [TourRouteItemController::class, 'routeMoveDown']);
     Route::get('/getRouteItemsByTourID', [TourRouteItemController::class, 'getRouteItemsByTourID']);
-
 
     //tour package items
     Route::get('/tour-package-items', [TourPackageItemController::class, 'index'])->name('tour_package_items.index');

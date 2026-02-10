@@ -37,7 +37,15 @@
                             </div>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-outline-warning btn_edit_travel_media">Edit</button>
+                            <div class="d-flex">
+                                <button class="btn btn-sm btn-outline-warning me-2 btn_edit_travel_media"><i class="bx bx-edit"></i></button>
+                                <form action="{{ route('travel_price.view') }}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="travel_media_id" value="{{ $travel_media->id }}">
+                                    <button type="submit" class="btn btn-outline-primary btn-sm"><i class="bx bx-dollar"></i></button>
+                                </form>
+                            </div>
+                            
                         </td>
                         <td>
                             <form action="{{ route('travel_media.remove') }}" method="post">

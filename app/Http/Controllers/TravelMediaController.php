@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PriceModes;
+use App\Models\Seasons;
+use App\Models\TourPackages;
 use App\Models\TravelCountries;
 use App\Models\TravelMedia;
+use App\Models\TravelPrices;
 use Illuminate\Http\Request;
 
 class TravelMediaController extends Controller
@@ -12,7 +16,7 @@ class TravelMediaController extends Controller
     {
         $travel_countries = TravelCountries::all();
         $travel_medias = TravelMedia::where('status', 1)
-            ->paginate(10);
+            ->paginate(10);        
 
         return view('travel_media.travel_view', compact('travel_medias', 'travel_countries'));
     }//index
@@ -76,4 +80,40 @@ class TravelMediaController extends Controller
 
         return response()->json($travel_media);
     }
+
+    //============================= Travel Price ================================//
+    public function showTravelPrice(Request $request)
+    {
+        $travel_media_id = $request->input('travel_media_id');
+        $travel_media = TravelMedia::find($travel_media_id);
+
+        $travel_prices = TravelPrices::where('travel_media_id', $travel_media_id)->paginate(10);
+
+        //get necessary data
+        $seasons = Seasons::all();
+        $packages = TourPackages::all();
+        $price_modes = PriceModes::all();
+
+        return view('travel_media.travel_price_view', compact('travel_media', 'travel_prices', 'seasons', 'packages', 'price_modes'));
+    }//show travel price
+
+    public function storeTravelPrice(Request $request)
+    {
+        $travel_media_id = $request->input('travel_media_id');
+
+        $travel_price = TravelPrices::create([
+            'travel_media_id'=> $request->input('travel_media_id'),
+            'season_id'=> $request->input('cmb_season'),
+            'package_id'=> $request->input('cmb_package'),
+            'price_mode_id'=> $request->input('cmb_price_mode'),
+            'description'=> $request->input('description'),
+            'price'=> $request->input('price'),
+            'is_complusory'=> $request->has('chk_compulsory') ? 1 : 0,
+            'status'=> 1, //active
+        ]);
+
+        return redirect()->route('travel_price.view', ['travel_media_id' => $travel_media_id])
+            ->with('success', 'Travel Price added successfully!');
+
+    }//store travel price
 }//class

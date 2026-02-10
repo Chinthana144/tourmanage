@@ -4,13 +4,13 @@
     <div class="card">
         <div class="card-header">
             <h5>
-                {{ $location->name}} Prices
-                <button class="btn btn-primary btn-sm float-end" id="add_location_price">Add Price</button>
+                {{$travel_media->name}} Prices
+                <button class="btn btn-primary btn-sm float-end" id="btn_add_price">Add Price</button>
             </h5>
         </div>
         <div class="card-body">
             <div class="container container-md">
-                <table class="table" id="tbl_location_prices">
+                <table class="table" id="tbl_travel_prices">
                     <tr>
                         <th>Season</th>
                         <th>Package</th>
@@ -20,7 +20,7 @@
                         <th>Price</th>
                         <th>Actions</th>
                     </tr>
-                    @foreach ($location_prices as $price)
+                    @foreach ($travel_prices as $price)
                         <tr>
                             <td>{{ $price->season->name }}</td>
                             <td>{{ $price->package->name }}</td>
@@ -40,16 +40,11 @@
                         </tr>                        
                     @endforeach
                 </table>
-
-                <div>
-                    {{ $location_prices->links() }}
-                </div>
             </div>
         </div>
     </div>
 
-    @include('locations.add_location_price_modal')
-    @include('locations.edit_location_price_modal')
+    @include('travel_media.add_travel_price_modal')
 
-    <script src="{{ asset('js/location_price.js') }}"></script>
+    <script src="{{ asset('js/travel_price.js') }}"></script>
 @endsection
