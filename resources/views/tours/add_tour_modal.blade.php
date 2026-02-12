@@ -27,13 +27,17 @@
                   <label for="">End Date</label>
                   <input type="date" name="end_date" id="tour_end_date" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
                   <label for="">Number of Days</label>
                   <input type="number" name="num_days" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
                   <label for="">Number of Nights</label>
                   <input type="number" name="num_nights" class="form-control">
+              </div>
+              <div class="col-md-4 mb-2">
+                  <label for="">Rooms per Hotel</label>
+                  <input type="number" name="rooms_per_hotel" id="rooms_per_hotel" class="form-control">
               </div>
               <div class="col-md-4 mb-2">
                   <label for="">Adults</label>

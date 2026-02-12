@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('adults');
             $table->integer('children');
             $table->integer('infants');
+            $table->integer('rooms_per_hotel');
             $table->decimal('sub_total', 10, 2);
             $table->decimal('discount_amount', 10, 2);
             $table->decimal('tax_amount', 10, 2);

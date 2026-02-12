@@ -29,29 +29,33 @@
                   <label for="">End Date</label>
                   <input type="date" name="edit_end_date" id="edit_end_date" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
                   <label for="">Number of Days</label>
                   <input type="number" name="edit_num_days" id="edit_num_days" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
                   <label for="">Number of Nights</label>
                   <input type="number" name="edit_num_nights" id="edit_num_nights" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
+                  <label for="">Rooms per Hotel</label>
+                  <input type="number" name="edit_rooms_per_hotel" id="edit_rooms_per_hotel" class="form-control">
+              </div>
+              <div class="col-md-4 mb-2">
                   <label for="">Number of Adults</label>
                   <input type="number" name="edit_num_adults" id="edit_num_adults" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
                   <label for="">Number of Children</label>
                   <input type="number" name="edit_num_children" id="edit_num_children" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
-                  <label for="">Select Currency Type</label>
-                  <select name="edit_cmb_currencies" id="edit_cmb_currencies" class="form-select">
-                    @foreach ($currencies as $currency)
-                      <option value="{{ $currency->id }}">{{ $currency->name }}</option>                       
-                    @endforeach
-                  </select>
+              <div class="col-md-4 mb-2">
+                  <label for="">Infants</label>
+                  <input type="number" name="edit_num_infants" id="edit_num_infants" class="form-control">
+              </div>
+              <div class="col-md-12 mb-2">
+                  <label for="">Notes</label>
+                  <input type="text" name="txt_edit_notes" id="txt_edit_notes" class="form-control">
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">Notes</label>

@@ -44,6 +44,7 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
+                    <td>people count</td>
                     <td>
                         <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
                     </td>

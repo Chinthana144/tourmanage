@@ -51,6 +51,7 @@ class TourController extends Controller
             'adults' => $request->input('num_adults'),
             'children' => $request->input('num_children') ?? 0,
             'infants' => $request->input('num_infants') ?? 0,
+            'rooms_per_hotel' => $request->input('rooms_per_hotel'),
             'sub_total' => 0,
             'discount_amount' => 0,
             'tax_amount' => 0,
@@ -75,7 +76,8 @@ class TourController extends Controller
         $tour->total_nights = $request->input('edit_num_nights');
         $tour->adults = $request->input('edit_num_adults');
         $tour->children = $request->input('edit_num_children');
-        $tour->currency_id = $request->input('edit_cmb_currencies');
+        $tour->infants = $request->input('edit_num_infants');
+        $tour->rooms_per_hotel = $request->input('edit_rooms_per_hotel');
         $tour->note = $request->input('txt_edit_notes');
 
         $tour->save();

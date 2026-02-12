@@ -58,6 +58,7 @@ $(document).ready(function () {
                 $("#tour_num_adults").val(response.adults);
                 $("#tour_num_children").val(response.children);
                 $("#tour_num_infants").val(response.infants);
+                $("#rooms_per_hotel").val(response.rooms_count);
             }
         });
     });

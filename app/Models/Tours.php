@@ -18,6 +18,7 @@ class Tours extends Model
         'adults',
         'children',
         'infants',
+        'rooms_per_hotel',
         'sub_total',
         'discount_amount',
         'tax_amount',

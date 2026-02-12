@@ -417,6 +417,8 @@ INSERT INTO `price_modes`(`name`) VALUES
 ('Per Person'),
 ('Per Group'),
 ('Per Day'),
+('Per Room'),
+('Per Km'),
 ('Flat');
 
 -- add seasons 

@@ -27,9 +27,10 @@ $(document).ready(function () {
                 $("#edit_end_date").val(response.end_date);
                 $("#edit_num_days").val(response.total_days);
                 $("#edit_num_nights").val(response.total_nights);
+                $("#edit_rooms_per_hotel").val(response.rooms_per_hotel);
                 $("#edit_num_adults").val(response.adults);
                 $("#edit_num_children").val(response.children);
-                $("#edit_cmb_currencies").val(response.currency_id);
+                $("#edit_num_infants").val(response.infants);
                 $("#txt_edit_notes").val(response.note);
 
                 let price_details = "Sub Total: <b>" + response.sub_total + "</b><br>";

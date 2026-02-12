@@ -14,6 +14,7 @@
                     <th>Date</th>
                     <th>Days</th>
                     <th>People</th>
+                    <th>Room(s)</th>
                     <th>Price</th>
                     <th>Grand Total</th>
                     <th>Action</th>
@@ -39,6 +40,7 @@
                             <br>
                             Children: <b>{{ $tour->children }}</b>
                         </td>
+                        <th>{{$tour->rooms_per_hotel}}</th>
                         <td>
                             Sub Total: <b>{{ $tour->sub_total }}</b>
                             <br>

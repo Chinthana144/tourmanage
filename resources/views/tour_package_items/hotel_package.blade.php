@@ -3,7 +3,7 @@
         <button class="nav-link active"
                 id="standard-tab"
                 data-bs-toggle="tab"
-                data-bs-target="#standard"
+                data-bs-target="#hotel_standard_{{$item['id']}}"
                 type="button"
                 role="tab">
             Akagi Essential
@@ -14,7 +14,7 @@
         <button class="nav-link"
                 id="comfort-tab"
                 data-bs-toggle="tab"
-                data-bs-target="#comfort"
+                data-bs-target="#hotel_comfort_{{$item['id']}}"
                 type="button"
                 role="tab">
             Akagi Classic
@@ -25,7 +25,7 @@
         <button class="nav-link"
                 id="premium-tab"
                 data-bs-toggle="tab"
-                data-bs-target="#premium"
+                data-bs-target="#hotel_premium_{{$item['id']}}"
                 type="button"
                 role="tab">
             Akagi Signature
@@ -35,7 +35,7 @@
 
 <div class="tab-content mt-3" id="packageTabsContent">
     <!-- Standard -->
-    <div class="tab-pane fade show active" id="standard" role="tabpanel">
+    <div class="tab-pane fade show active" id="hotel_standard_{{$item['id']}}" role="tabpanel">
         <h5>Hotel Essential Package</h5>
         <table class="table">
             @foreach ($item['essential_price'] as $price)
@@ -68,7 +68,7 @@
     </div>
 
     <!-- Comfort -->
-    <div class="tab-pane fade" id="comfort" role="tabpanel">
+    <div class="tab-pane fade" id="hotel_comfort_{{$item['id']}}" role="tabpanel">
         <h5>Hotel Classic Package</h5>
         <table class="table">
             @foreach ($item['classic_price'] as $price)
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Premium -->
-    <div class="tab-pane fade" id="premium" role="tabpanel">
+    <div class="tab-pane fade" id="hotel_premium_{{$item['id']}}" role="tabpanel">
         <h5>Hotel Signature Package</h5>
         <table class="table">
             @foreach ($item['signature_price'] as $price)
