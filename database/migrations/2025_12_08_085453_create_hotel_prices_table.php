@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('bording_type_id');
             $table->String('description');
             $table->decimal('price', 10, 2);
+            $table->tinyInteger('is_compulsory');
             $table->tinyInteger('status');
             $table->timestamps();
         });
