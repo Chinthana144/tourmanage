@@ -44,9 +44,18 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
-                    <td>people count</td>
+                    @if ($price['price_mode_id'] == 1)
+                        <td>
+                            People: {{$item['adults'] + $item['children']}}
+                        </td>    
+                    @endif
+                    <td>Price: {{ $price['price'] }}</td>
                     <td>
-                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
+                        <input type="number" step="0.01" 
+                            name="price_{{$item['id']}}_{{$price['id']}}" 
+                            class="form-control txt_price" 
+                            value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                        >
                     </td>
                     <td>
                         @if ($price['is_complusory'] == 1)
@@ -78,8 +87,28 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
+                    
+                    @if ($price['price_mode_id'] == 1)
+                        <td>
+                            People: {{$item['adults'] + $item['children']}}
+                        </td>
+                    @endif
+                    
+                    <td>Price: {{ $price['price'] }}</td>
                     <td>
-                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
+                        @if ($price['price_mode_id'] == 1)
+                            <input type="number" step="0.01" 
+                                name="price_{{$item['id']}}_{{$price['id']}}" 
+                                class="form-control txt_price" 
+                                value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                            >
+                        @else
+                            <input type="number" step="0.01" 
+                                name="price_{{$item['id']}}_{{$price['id']}}" 
+                                class="form-control txt_price" 
+                                value="{{ $price['price'] }}"
+                            >
+                        @endif
                     </td>
                     <td>
                         @if ($price['is_complusory'] == 1)
@@ -111,8 +140,29 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
+
+                    @if ($price['price_mode_id'] == 1)
+                        <td>
+                            People: {{$item['adults'] + $item['children']}}
+                        </td>
+                    @endif
+                    
+                    <td>Price: {{ $price['price'] }}</td>
+                    
                     <td>
-                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
+                        @if ($price['price_mode_id'] == 1)
+                            <input type="number" step="0.01" 
+                                name="price_{{$item['id']}}_{{$price['id']}}" 
+                                class="form-control txt_price" 
+                                value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                            >
+                        @else
+                            <input type="number" step="0.01" 
+                                name="price_{{$item['id']}}_{{$price['id']}}" 
+                                class="form-control txt_price" 
+                                value="{{ $price['price'] }}"
+                            >
+                        @endif
                     </td>
                     <td>
                         @if ($price['is_complusory'] == 1)

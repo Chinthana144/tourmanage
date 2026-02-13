@@ -43,9 +43,38 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
-                    <td>
-                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
-                    </td>
+                    @switch($price['price_mode_id'])
+                        @case(1)
+                            <td>People: {{$item['adults'] + $item['children']}}</td>
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                                >
+                            </td>
+                        @break
+                        @case(4)
+                            <td>Room(s): {{$item['rooms_count']}}</td>
+                            <td>Price: {{$price['price']}}</td>
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{$item['rooms_count'] * $price['price']}}"
+                                >
+                            </td>
+                        @break
+                        @default
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{ $price['price'] }}"
+                                >
+                            </td>
+                        @break
+                    @endswitch
                     <td>
                         @if ($price['is_complusory'] == 1)
                             <span class="badge bg-primary">Complusory</span>
@@ -76,9 +105,39 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
-                    <td>
-                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
-                    </td>
+                    
+                    @switch($price['price_mode_id'])
+                        @case(1)
+                            <td>People: {{$item['adults'] + $item['children']}}</td>
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                                >
+                            </td>
+                        @break
+                        @case(4)
+                            <td>Room(s): {{$item['rooms_count']}}</td>
+                            <td>Price: {{$price['price']}}</td>
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{$item['rooms_count'] * $price['price']}}"
+                                >
+                            </td>
+                        @break
+                        @default
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{ $price['price'] }}"
+                                >
+                            </td>
+                        @break
+                    @endswitch
                     <td>
                         @if ($price['is_complusory'] == 1)
                             <span class="badge bg-primary">Complusory</span>
@@ -109,9 +168,38 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
-                    <td>
-                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
-                    </td>
+                    @switch($price['price_mode_id'])
+                        @case(1)
+                            <td>People: {{$item['adults'] + $item['children']}}</td>
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                                >
+                            </td>
+                        @break
+                        @case(4)
+                            <td>Room(s): {{$item['rooms_count']}}</td>
+                            <td>Price: {{$price['price']}}</td>
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{$item['rooms_count'] * $price['price']}}"
+                                >
+                            </td>
+                        @break
+                        @default
+                            <td>
+                                <input type="number" step="0.01" 
+                                    name="price_{{$item['id']}}_{{$price['id']}}" 
+                                    class="form-control txt_price" 
+                                    value="{{ $price['price'] }}"
+                                >
+                            </td>
+                        @break
+                    @endswitch
                     <td>
                         @if ($price['is_complusory'] == 1)
                             <span class="badge bg-primary">Complusory</span>
