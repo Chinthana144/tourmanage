@@ -108,7 +108,7 @@ class TravelMediaController extends Controller
             'price_mode_id'=> $request->input('cmb_price_mode'),
             'description'=> $request->input('description'),
             'price'=> $request->input('price'),
-            'is_complusory'=> $request->has('chk_compulsory') ? 1 : 0,
+            'is_compulsory'=> $request->has('chk_compulsory') ? 1 : 0,
             'status'=> 1, //active
         ]);
 
@@ -116,4 +116,47 @@ class TravelMediaController extends Controller
             ->with('success', 'Travel Price added successfully!');
 
     }//store travel price
+
+    public function updateTravelPrice(Request $request)
+    {
+        $travel_price_id = $request->input('travel_price_id');
+        
+
+        $travel_price = TravelPrices::find($travel_price_id);
+        $travel_price->season_id = $request->input('edit_cmb_season');
+        $travel_price->package_id = $request->input('edit_cmb_package');
+        $travel_price->price_mode_id = $request->input('edit_cmb_price_mode');
+        $travel_price->description = $request->input('edit_description');
+        $travel_price->price = $request->input('edit_price');
+        $travel_price->is_compulsory = $request->has('edit_chk_compulsory') ? 1 : 0;
+
+        $travel_price->save();
+
+        $travel_media_id = $travel_price->travel_media_id;
+
+        return redirect()->route('travel_price.view', ['travel_media_id' => $travel_media_id])
+            ->with('success', 'Travel Price updated successfully!');
+
+    }
+
+    public function getOneTravelPrice(Request $request)
+    {
+        $travel_price_id = $request->input('travel_price_id');
+
+        $travel_price = TravelPrices::find($travel_price_id);
+
+        return response()->json([
+            'id' => $travel_price_id,
+            'season_id' => $travel_price->season_id,
+            'season' => $travel_price->season->name,
+            'package_id' => $travel_price->package_id,
+            'package' => $travel_price->package->name,
+            'price_mode_id' => $travel_price->price_mode_id,
+            'price_mode' => $travel_price->priceMode->name,
+            'description' => $travel_price->description,
+            'price' => $travel_price->price,
+            'is_compulsory' => $travel_price->is_compulsory,
+            'status' => $travel_price->status,
+        ]);
+    }//get one travel price
 }//class

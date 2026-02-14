@@ -27,7 +27,7 @@
                             <td>{{ $price->priceMode->name }}</td>
                             <td>{{ $price->description }}</td>
                             <td>
-                                @if ($price->is_complusory == 1)
+                                @if ($price->is_compulsory == 1)
                                     <span class="badge bg-primary">Compulsory</span>
                                 @else
                                     <span class="badge bg-secondary">Optional</span>
@@ -45,6 +45,7 @@
     </div>
 
     @include('travel_media.add_travel_price_modal')
+    @include('travel_media.edit_travel_price_modal')
 
     <script src="{{ asset('js/travel_price.js') }}"></script>
 @endsection

@@ -161,7 +161,9 @@ Route::middleware('auth')->group(function () {
     //travel prices
     Route::get('/show-travel-price', [TravelMediaController::class, 'showTravelPrice'])->name('travel_price.view');
     Route::post('/store-travel-price', [TravelMediaController::class, 'storeTravelPrice'])->name('travel_price.store');
-
+    Route::post('/update-travel-price', [TravelMediaController::class, 'updateTravelPrice'])->name('travel_price.update');
+    Route::get('/getOneTravelPrice', [TravelMediaController::class, 'getOneTravelPrice']);
+    
     //travel packages
     Route::get('/packages', [PackageController::class, 'index'])->name('packages.index');
     Route::get('/create-package', [PackageController::class, 'create'])->name('packages.create');

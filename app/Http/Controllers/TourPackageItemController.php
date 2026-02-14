@@ -22,6 +22,7 @@ use App\Models\TourRequest;
 use App\Models\TourRooms;
 use App\Models\TourRouteItems;
 use App\Models\Tours;
+use App\Models\TravelPrices;
 use Carbon\Carbon;
 use Illuminate\Container\Attributes\Auth as AttributesAuth;
 use Illuminate\Http\Request;
@@ -259,7 +260,51 @@ class TourPackageItemController extends Controller
                 //============================= Travel Media ================================//
                 case 'App\Models\TravelMedia':
                     # get travel price
-
+                    $standard_price = TravelPrices::where('travel_media_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+                    foreach ($standard_price as $price) {
+                        $essential_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->price_mode_id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
+                    $comfort_price = TravelPrices::where('travel_media_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+                    foreach($comfort_price as $price){
+                        $classic_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->price_mode_id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach                
+                    $premium_price = TravelPrices::where('travel_media_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+                    foreach($premium_price as $price){
+                        $signature_price[] = [
+                            'id' => $price->id,
+                            'season_id' => $price->season_id,
+                            'season' => $price->season->name,
+                            'price_mode_id' => $price->price_mode_id,
+                            'price_mode' => $price->priceMode->name,
+                            'description' => $price->description,
+                            'price' => $price->price,
+                            'is_complusory' => $price->is_complusory,
+                        ];
+                    }//foreach
                 break;
             }//switch
 

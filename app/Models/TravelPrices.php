@@ -13,7 +13,7 @@ class TravelPrices extends Model
         'price_mode_id',
         'description',
         'price',
-        'is_complusory',
+        'is_compulsory',
         'status',
     ];
 
@@ -24,16 +24,16 @@ class TravelPrices extends Model
 
     public function season()
     {
-        return $this->belongsTo(Seasons::class, 'travel_media_id');
+        return $this->belongsTo(Seasons::class, 'season_id');
     }//location
 
     public function package()
     {
-        return $this->belongsTo(TourPackages::class, 'travel_media_id');
+        return $this->belongsTo(TourPackages::class, 'package_id');
     }//location
 
     public function priceMode()
     {
-        return $this->belongsTo(PriceModes::class, 'travel_media_id');
+        return $this->belongsTo(PriceModes::class, 'price_mode_id');
     }//location
 }//class
