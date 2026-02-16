@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activities;
 use App\Models\ActivityPrices;
 use App\Models\BedTypes;
 use App\Models\BoardingType;
@@ -22,6 +23,7 @@ use App\Models\TourRequest;
 use App\Models\TourRooms;
 use App\Models\TourRouteItems;
 use App\Models\Tours;
+use App\Models\TravelMedia;
 use App\Models\TravelPrices;
 use Carbon\Carbon;
 use Illuminate\Container\Attributes\Auth as AttributesAuth;
@@ -344,26 +346,194 @@ class TourPackageItemController extends Controller
                         ->get();
 
                     foreach($standard_price as $price){
-                        if($request->has('chk_price_'.$item->id."_".$price->id)){
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $price->price, 1);
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $comfort_price = LocationPrices::where('location_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+
+                    foreach($comfort_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $premium_price = LocationPrices::where('location_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+
+                    foreach($premium_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
                 break;
                 case 'App\Models\Hotels':
                     # get location price
+                    $standard_price = HotelPrices::where('hotel_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+
+                    foreach($standard_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $comfort_price = HotelPrices::where('hotel_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+
+                    foreach($comfort_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $premium_price = HotelPrices::where('hotel_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+
+                    foreach($premium_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
                 break;
                 case 'App\Models\Restaurants':
                     # get restautant price
+                    $standard_price = RestaurantPrices::where('restaurant_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+
+                    foreach($standard_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $comfort_price = RestaurantPrices::where('restaurant_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+
+                    foreach($comfort_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $premium_price = RestaurantPrices::where('restaurant_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+
+                    foreach($premium_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
                 break;
                 case 'App\Models\Activities':
                     # get activity price
+                    $standard_price = ActivityPrices::where('activity_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+
+                    foreach($standard_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $comfort_price = ActivityPrices::where('activity_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+
+                    foreach($comfort_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $premium_price = ActivityPrices::where('activity_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+
+                    foreach($premium_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
                 break;
                 case 'App\Models\TravelMedia':
                     # get location price
+                    $standard_price = TravelPrices::where('travel_media_id', $item->item_id)
+                        ->where('package_id', 1)
+                        ->get();
+
+                    foreach($standard_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $comfort_price = TravelPrices::where('travel_media_id', $item->item_id)
+                        ->where('package_id', 2)
+                        ->get();
+
+                    foreach($comfort_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
+
+                    $premium_price = TravelPrices::where('travel_media_id', $item->item_id)
+                        ->where('package_id', 3)
+                        ->get();
+
+                    foreach($premium_price as $price){
+                        if($request->has('chk_price_'.$item->id."_".$price->id))
+                        {
+                            $txt_price = $request->input('price_'.$item->id."_".$price->id);
+                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
+                        }
+                    }//foreach
                 break;
             }//switch
         }//foreach 
         
+        return redirect()->route('quotation.index');
+
     }//store Items
 
 }//class
@@ -371,18 +541,20 @@ class TourPackageItemController extends Controller
 //===================== Functions =====================//
 function createTourPackageItem($tour_id, $season_id, $package_id, $price_mode_id, $component_type, $component_id, $description, $price, $status)
 {
-    $tour_package_item = TourPackageItems::create(
+    $tour_package_item = TourPackageItems::updateOrCreate(
         [
             'tour_id'=> $tour_id,
             'season_id' => $season_id,
             'package_id' => $package_id,
-            'price_mode_id' => $price_mode_id,
             'component_type' => $component_type,
             'component_id' => $component_id,
+        ],
+        [
+            'price_mode_id' => $price_mode_id,
             'description' => $description,
             'price' => $price,
             'status' => $status,
-        ]
+        ],
     );
 
     return $tour_package_item ? true : false;

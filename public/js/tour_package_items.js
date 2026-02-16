@@ -13,7 +13,16 @@ $(document).ready(function () {
         var txt_price = $(this).closest('tr').find('.txt_price').val();
 
         console.log(txt_price);
+        // alert(txt_price);
         
+    });
+
+    $("#div_main").on('keyup', '.txt_distance', function(){
+        var distance = $(this).val();
+        var pericePerKm = $(this).data('price-per-km');
+        $(this).closest('tr').find('.txt_price').val();
+
+        alert(pericePerKm);
     });
 
 });//jQuery

@@ -11,8 +11,44 @@
                     @csrf
                     <input type="hidden" name="tour_id" value="{{ $tour->id }}">
                 @foreach ($data as $item)
-                    <div class="card mb-2">
-                        <div class="card-header">
+                    <div 
+                        @switch($item['item_type'])
+                            @case('App\Models\Locations')
+                                class="card border-primary mb-2"
+                            @break
+                            @case('App\Models\Hotels')
+                                class="card border-success mb-2"
+                            @break
+                            @case('App\Models\Restaurants')
+                                class="card border-warning mb-2"
+                            @break
+                            @case('App\Models\Activities')
+                                class="card border-info mb-2"
+                            @break
+                            @case('App\Models\TravelMedia')
+                                class="card border-secondary mb-2"
+                            @break
+                        @endswitch    
+                    >
+                        <div 
+                            @switch($item['item_type'])
+                                @case('App\Models\Locations')
+                                    class="card-header bg-primary text-white"
+                                @break
+                                @case('App\Models\Hotels')
+                                    class="card-header bg-success text-white"
+                                @break
+                                @case('App\Models\Restaurants')
+                                    class="card-header bg-warning text-white"
+                                @break
+                                @case('App\Models\Activities')
+                                    class="card-header bg-info text-white"
+                                @break
+                                @case('App\Models\TravelMedia')
+                                    class="card-header bg-secondary text-white"
+                                @break
+                            @endswitch
+                        >
                             <h6>
                                 {{ $item['name'] }}
                                 <span class="badge bg-primary float-end">Day {{ $item['day_no'] }}</span>

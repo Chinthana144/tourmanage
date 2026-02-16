@@ -43,9 +43,27 @@
                     <td>{{$price['season']}}</td>
                     <td>{{$price['price_mode']}}</td>
                     <td>{{$price['description']}}</td>
-                    <td>
-                        <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
-                    </td>
+                    @if ($price['price_mode_id'] == 1)
+                        <td>
+                            People: {{$item['adults'] + $item['children']}}
+                        </td> 
+                        <td>Price: {{ $price['price'] }}</td>
+                        <td>
+                            <input type="number" step="0.01" 
+                                name="price_{{$item['id']}}_{{$price['id']}}" 
+                                class="form-control txt_price" 
+                                value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                            >
+                        </td>
+                    @else
+                        <td>
+                            <input type="number" step="0.01" 
+                                name="price_{{$item['id']}}_{{$price['id']}}" 
+                                class="form-control txt_price" 
+                                value="{{$price['price']}}"
+                            >
+                        </td>
+                    @endif
                     <td>
                         @if ($price['is_complusory'] == 1)
                             <span class="badge bg-primary">Complusory</span>

@@ -104,6 +104,7 @@
                         <td>
                             <input type="number" step="0.01"
                                 name="distance_{{$item['id']}}_{{$price['id']}}"
+                                data-price-per-km="{{ $price['price'] }}"
                                 class="form-control txt_distance"
                                 value="1"
                             >
@@ -167,7 +168,7 @@
                         <td>
                             <input type="number" step="0.01" 
                                 name="price_{{$item['id']}}_{{$price['id']}}" 
-                                class="form-control txt_price" 
+                                class="form-control txt_price"
                                 value="{{ $price['price'] }}"
                             >
                         </td> 
