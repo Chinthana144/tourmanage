@@ -9,12 +9,13 @@
             {{-- quotation form --}}
             <div class="container">
                 <h5>Genarate Quotation</h5> 
-                <form action="" method="post">
+                <form action="{{ route('quotation.store') }}" method="post">
+                    @csrf
                     <input type="hidden" name="tour_id" value="{{$tour->id}}">
                     <input type="hidden" name="tour_request_id" value="{{$tour->tour_request_id}}"> 
                     <div class="row">
                         <div class="col-md-6">
-                            <input type="date" name="valid_date" class="form-control">
+                            <input type="date" name="valid_date" class="form-control" required>
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-primary w-100">Generate Quotation</button>

@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\QuotationItems;
 use App\Models\Quotations;
+use App\Models\TourPackageItems;
 use App\Models\Tours;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class QuotationController extends Controller
 {
@@ -19,24 +23,79 @@ class QuotationController extends Controller
 
     public function store(Request $request)
     {
-        $year = Carbon::now()->year;
+        $quotation_no = generateQuotationNo();
 
-        $last_quotation = Quotations::where("quotation_no", 'LIKE', '-%')
-            ->orderBy('quotation_no', 'desc')
-            ->first();
+        $tour_id = $request->input('tour_id');
+        $tour = Tours::find($tour_id);
+        $tour_request_id = $tour->tour_request_id;
 
-        $nextNumber = 1;
+        $user_id = Auth::user()->id;
 
-        if($last_quotation){
-            //extract number
-            $lastNumber = intval(substr($last_quotation->quotation_no, 5));
-            $nextNumber = $lastNumber + 1;
-        }//has tour
-        else{
-            $nextNumber = 1;
-        }
+        //create quotatuion
+        $quotation = Quotations::create([
+            'quotation_no' => $quotation_no,
+            'tour_request_id' => $tour_request_id,
+            'tour_id' => $tour_id,
+            'valid_until' => $request->input('valid_date'),
+            'package_prices' => null,
+            'status' => 1,
+            'user_id' => $user_id,
+        ]);
 
-        $quotation_no = $year . '-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+        // add quotation Items
+        $essential_prices = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 1)
+            ->select(
+                'component_type', 
+                DB::raw('SUM(price) AS total_price'),
+                DB::raw('COUNT(*) AS total_count'),
+            )
+            ->groupBy('component_type')
+            ->get();
+        foreach($essential_prices as $price){
+            createQuotationItems($quotation->id, 1, $price->component_type, $price->total_price);
+        }//foreach
+
+
+        $classic_prices = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 2)
+            ->select(
+                'component_type', 
+                DB::raw('SUM(price) AS total_price'),
+                DB::raw('COUNT(*) AS total_count'),
+            )
+            ->groupBy('component_type')
+            ->get();
+        foreach($classic_prices as $price){
+            createQuotationItems($quotation->id, 2, $price->component_type, $price->total_price);
+        }//foreach
+
+        $signature_prices = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 3)
+            ->select(
+                'component_type', 
+                DB::raw('SUM(price) AS total_price'),
+                DB::raw('COUNT(*) AS total_count'),
+            )
+            ->groupBy('component_type')
+            ->get();
+        foreach($signature_prices as $price){
+            createQuotationItems($quotation->id, 2, $price->component_type, $price->total_price);
+        }//foreach
+
+        $package_prices = [
+            'essential_prices' => $essential_prices,
+            'classic_prices' => $classic_prices,
+            'signature_prices' => $signature_prices,
+        ];
+
+        $quotation->package_prices = json_encode($package_prices);
+        $quotation->save();
+
+        //pdf
+        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation'));
+
+        return $pdf->stream('Quotation-' . $quotation->quotation_no);
     }
 
     public function generatePdf(Request $request)
@@ -52,3 +111,38 @@ class QuotationController extends Controller
         return $pdf->stream('Quotation-' . $quotation->quotation_no);
     }//generate pdf
 }//class
+
+function generateQuotationNo()
+{
+    $year = Carbon::now()->year;
+
+    $last_quotation = Quotations::where("quotation_no", 'LIKE', '-%')
+        ->orderBy('quotation_no', 'desc')
+        ->first();
+
+    $nextNumber = 1;
+
+    if($last_quotation){
+        //extract number
+        $lastNumber = intval(substr($last_quotation->quotation_no, 5));
+        $nextNumber = $lastNumber + 1;
+    }//has tour
+    else{
+        $nextNumber = 1;
+    }
+
+    $quotation_no = $year . '-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
+    return $quotation_no;
+}
+
+function createQuotationItems($quotation_id, $package_id, $component_type, $amount){
+    $quotation_item = QuotationItems::created([
+        'quotation_id' => $quotation_id,
+        'tour_package_id' => $package_id,
+        'item_type' => $component_type,
+        'amount' => $amount,
+    ]);
+
+    return $quotation_item;
+}

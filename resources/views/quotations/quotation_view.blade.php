@@ -18,19 +18,19 @@
                     <tr>
                         <td>{{ $quotation->quotation_no }}</td>
                         <td>
-                            {{ $quotation->tourRequest->customer->first_name . " " . $quotation->tourRequest->customer->last_name }}
+                            {{ $quotation->tourRequest->customer_name }}
                             <br>
-                            {{ $quotation->tourRequest->customer->email }}
+                            {{ $quotation->tourRequest->customer_email }}
                         </td>
                         <td>{{ $quotation->valid_until }}</td>
-                        <td>
+                        {{-- <td>
                             @php
                                 $prices = json_decode($quotation->package_prices);
                             @endphp
                             @foreach ($prices as $price)
-                                {{ $price->name .": ". $price->amount }} <br>
+                                {{ $price->component_type .": ". $price->amount }} <br>
                             @endforeach
-                        </td>
+                        </td> --}}
                         <td>
                             <form action="{{ route('quotation.generate') }}" method="post">
                                 @csrf

@@ -31,7 +31,6 @@ class TourRequestController extends Controller
     public function create(Request $request)
     {
         $customer_id = $request->input('hide_customer_id');
-        $customer = Customers::find($customer_id);
         $tour_purposes = TourPurposes::all();
 
         return view('tour_requests.request_create', compact('customer', 'tour_purposes'));
