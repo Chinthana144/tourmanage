@@ -29,6 +29,7 @@ use Carbon\Carbon;
 use Illuminate\Container\Attributes\Auth as AttributesAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TourPackageItemController extends Controller
 {
@@ -532,7 +533,76 @@ class TourPackageItemController extends Controller
             }//switch
         }//foreach 
         
-        return redirect()->route('quotation.index');
+        //fetch package data
+        $essential_packages = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 1)
+            ->get();
+
+        $classic_packages = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 2)
+            ->get();
+
+        $signature_packages = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 3)
+            ->get();
+
+        // get price groups
+        $essential_prices = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 1)
+            ->select(
+                'component_type', 
+                DB::raw('SUM(price) AS total_price'),
+                DB::raw('COUNT(*) AS total_count'),
+            )
+            ->groupBy('component_type')
+            ->get();
+
+        $classic_prices = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 2)
+            ->select(
+                'component_type', 
+                DB::raw('SUM(price) AS total_price'),
+                DB::raw('COUNT(*) AS total_count'),
+            )
+            ->groupBy('component_type')
+            ->get();
+
+        $signature_prices = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 3)
+            ->select(
+                'component_type', 
+                DB::raw('SUM(price) AS total_price'),
+                DB::raw('COUNT(*) AS total_count'),
+            )
+            ->groupBy('component_type')
+            ->get();
+
+        // get price totals
+        $essential_total = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 1)
+            ->sum('price');
+
+        $classic_total = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 2)
+            ->sum('price');
+
+        $signature_total = TourPackageItems::where('tour_id', $tour_id)
+            ->where('package_id', 3)
+            ->sum('price');
+
+        return view('tour_package_items.tour_package_summary', 
+            compact(
+                'tour', 
+                'essential_prices',
+                'classic_prices',
+                'signature_prices',
+                'essential_packages', 
+                'classic_packages', 
+                'signature_packages', 
+                'essential_total', 
+                'classic_total', 
+                'signature_total'
+                ));
 
     }//store Items
 

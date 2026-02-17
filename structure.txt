@@ -3,7 +3,11 @@
 * hotel.js, location.js, restaurants.js-> remove AJAX for province, district and cities
 
 //main page
-top video ---------- done
+top video ----------------------------- done
+add destinations ---------------------- done
+add Hotels
+add Restaurants (optional)
+add Activities
 gallery - after sometime
 contact page - remove link
 redesign - 3 packages - essential, classic, signature
@@ -17,3 +21,6 @@ redesign - 3 packages - essential, classic, signature
 //Activities
 
 //Travel Media
+
+//package items
+get totals using
