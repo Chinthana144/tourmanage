@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
+            $table->string('tour_number');
+            $table->foreignId('tour_request_id');
             $table->string('title');
             $table->text('description')->nullable();
             $table->date('start_date');
@@ -21,7 +23,8 @@ return new class extends Migration
             $table->integer('total_nights');
             $table->integer('adults');
             $table->integer('children');
-            $table->unsignedInteger('currency_id');
+            $table->integer('infants');
+            $table->integer('rooms_per_hotel');
             $table->decimal('sub_total', 10, 2);
             $table->decimal('discount_amount', 10, 2);
             $table->decimal('tax_amount', 10, 2);

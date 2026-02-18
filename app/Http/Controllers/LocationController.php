@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Cities;
 use App\Models\Districts;
+use App\Models\LocationPrices;
 use App\Models\Locations;
+use App\Models\Packages;
+use App\Models\PriceModes;
 use App\Models\Provinces;
+use App\Models\Seasons;
+use App\Models\TourPackages;
+use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
@@ -27,8 +33,8 @@ class LocationController extends Controller
      */
     public function create()
     {
-        $provinces = Provinces::all();
-        return view('locations.location_create', compact('provinces'));
+        $travel_countries = TravelCountries::all();
+        return view('locations.location_create', compact('travel_countries'));
     }
 
     /**
@@ -37,24 +43,14 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         $location = new Locations();
-        $province_id = $request->input('cmb_province');
-        $district_id = $request->input('cmb_district');
-        $city_id = $request->input('cmb_city');
 
-        $province = Provinces::find($province_id);
-        $district = Districts::find($district_id);
-        $city = Cities::find($city_id);
-
-        $location->province_name = $province ? $province->name_en : '';
-        $location->district_name = $district ? $district->name_en : '';
-        $location->city_name = $city ? $city->name_en : '';
-        $location->city_id = $city_id;
-
+        $location->travel_country_id = $request->input('cmb_travel_country');
         $location->name = $request->input('txt_location_name');
-        $location->description = $request->input('location_description');
+        $location->description = $request->input('txt_description');
 
-        $location->latitude = $request->input('txt_latitude');
-        $location->longitude = $request->input('txt_longitude');
+        $location->display = $request->has('chk_display') ? 1 : 0;
+
+        $location->popularity = $request->input('popularity');
 
         if($request->hasFile('primary_image')) {
             $file = $request->file('primary_image');
@@ -112,18 +108,9 @@ class LocationController extends Controller
         $location_id = $request->input('hide_location_id');
         $location = Locations::find($location_id);
 
-        $provinces = Provinces::all();
+        $travel_countries = TravelCountries::all();
 
-        $city_id = $location->city_id;
-        $city = Cities::find($city_id);
-        $district = Districts::where('id',$city->district_id)->first();
-        $district_id = $district->id;
-        $province_id = $district->province_id;
-
-        $districts = Districts::where('province_id', $province_id)->get();
-        $cities = Cities::where('district_id', $district_id)->get();
-
-        return view('locations.location_update', compact('location', 'provinces', 'province_id', 'districts', 'district_id', 'cities', 'city_id'));
+        return view('locations.location_update', compact('location', 'travel_countries'));
     }
 
     /**
@@ -135,24 +122,13 @@ class LocationController extends Controller
 
         $location = Locations::find($location_id);
 
-        $province_id = $request->input('cmb_province');
-        $district_id = $request->input('cmb_district');
-        $city_id = $request->input('cmb_city');
-
-        $province = Provinces::find($province_id);
-        $district = Districts::find($district_id);
-        $city = Cities::find($city_id);
-
-        $location->province_name = $province ? $province->name_en : '';
-        $location->district_name = $district ? $district->name_en : '';
-        $location->city_name = $city ? $city->name_en : '';
-        $location->city_id = $city_id;
-
+        $location->travel_country_id = $request->input('cmb_travel_country');
         $location->name = $request->input('txt_location_name');
-        $location->description = $request->input('location_description');
+        $location->description = $request->input('txt_description');
 
-        $location->latitude = $request->input('txt_latitude');
-        $location->longitude = $request->input('txt_longitude');
+        $location->display = $request->has('chk_display') ? 1 : 0;
+
+        $location->popularity = $request->input('popularity');
 
         if($request->hasFile('primary_image')){
             $oldImagePath = public_path('images/locations/'. $location->primary_image);
@@ -244,6 +220,84 @@ class LocationController extends Controller
         //
     }
 
+//===================================== Price ==================================//
+    public function showLocationPrices(Request $request)
+    {
+        $location_id = $request->input('hide_location_id');
+        $location = Locations::find($location_id);
+
+        $location_prices = LocationPrices::where('location_id', $location_id)->paginate(10);
+        
+        //get necessary data
+        $seasons = Seasons::all();
+        $packages = TourPackages::all();
+        $price_modes = PriceModes::all();
+
+        return view('locations.location_price_view', compact('location', 'location_prices', 'seasons', 'packages', 'price_modes'));
+    }
+
+    public function storeLocationPrice(Request $request)
+    {
+        $location_id = $request->input('hide_location_id');
+        LocationPrices::create([
+            'location_id' => $location_id,
+            'season_id' => $request->input('cmb_season'),
+            'package_id' => $request->input('cmb_package'),
+            'price_mode_id' => $request->input('cmb_price_mode'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'is_compulsory' => $request->has('chk_compulsory') ? 1 : 0,
+            'status' => 1,
+        ]);
+
+        return redirect()
+            ->route('location_prices.view', ['hide_location_id' => $location_id])
+            ->with('success', 'Price added successfully!');
+    }//store location price
+
+    public function updateLocationPrice(Request $request)
+    {
+        $price_id = $request->input('hide_price_id');
+
+        $location_price = LocationPrices::find($price_id);
+        $location_id = $location_price->location_id;
+
+        $location_price->season_id = $request->input('cmb_edit_season');
+        $location_price->package_id = $request->input('cmb_edit_package');
+        $location_price->price_mode_id = $request->input('cmb_edit_price_mode');
+        $location_price->description = $request->input('edit_description');
+        $location_price->price = $request->input('edit_price');
+        $location_price->is_compulsory = $request->has('chk_edit_compulsory') ? 1 : 0;
+
+        $location_price->save();
+
+        return redirect()
+            ->route('location_prices.view', ['hide_location_id' => $location_id])
+            ->with('success', 'Price added successfully!');
+
+    }//update location price
+
+    public function getOneLocationPrice(Request $request)
+    {
+        $price_id = $request->input('price_id');
+        $location_price = LocationPrices::find($price_id);
+
+        return response()->json([
+            'id' => $price_id,
+            'season_id' => $location_price->season_id,
+            'season' => $location_price->season->name,
+            'package_id' => $location_price->package_id,
+            'package' => $location_price->package->name,
+            'price_mode_id' => $location_price->price_mode_id,
+            'price_mode' => $location_price->priceMode->name,
+            'description' => $location_price->description,
+            'price' => $location_price->price,
+            'is_compulsory' => $location_price->is_compulsory,
+            'status' => $location_price->status,
+        ]);
+
+    }//get one location price ajax
+
     /*
     * location ajax methods
     */
@@ -253,31 +307,4 @@ class LocationController extends Controller
         return response()->json($locations);
     }
 
-    /*
-    * get district by province id
-    */
-    public function getDistrictByProvince(Request $request)
-    {
-        $province_id = $request->input('province_id');
-
-        $districts = Districts::where('province_id', $province_id)->get();
-        return response()->json($districts);
-    }
-
-    //get cities by district id
-    public function getCityByDistrict(Request $request)
-    {
-        $district_id = $request->input('district_id');
-
-        $cities = Cities::where('district_id', $district_id)->get();
-        return response()->json($cities);
-    }
-
-    //get one city by id
-    public function getOneCityById(Request $request)
-    {
-        $city_id = $request->input('city_id');
-        $city = Cities::find($city_id);
-        return response()->json($city);
-    }
 }

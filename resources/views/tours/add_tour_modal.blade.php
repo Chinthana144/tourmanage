@@ -8,11 +8,12 @@
 
       <form action="{{ route('tours.store') }}" method="post">
         @csrf
+        <input type="hidden" name="tour_request_id" id="tour_request_id">
         <div class="modal-body">
             <div class="row">
               <div class="col-md-12 mb-2">
                   <label for="">Title</label>
-                  <input type="text" name="txt_title" class="form-control">
+                  <input type="text" name="txt_title" id="txt_title" class="form-control">
               </div>
               <div class="col-md-12 mb-2">
                   <label for="">Description</label>
@@ -20,37 +21,37 @@
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">Start Date</label>
-                  <input type="date" name="start_date" class="form-control">
+                  <input type="date" name="start_date" id="tour_start_date" class="form-control">
               </div>
               <div class="col-md-6 mb-2">
                   <label for="">End Date</label>
-                  <input type="date" name="end_date" class="form-control">
+                  <input type="date" name="end_date" id="tour_end_date" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
                   <label for="">Number of Days</label>
                   <input type="number" name="num_days" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
                   <label for="">Number of Nights</label>
                   <input type="number" name="num_nights" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
-                  <label for="">Number of Adults</label>
-                  <input type="number" name="num_adults" class="form-control">
+              <div class="col-md-4 mb-2">
+                  <label for="">Rooms per Hotel</label>
+                  <input type="number" name="rooms_per_hotel" id="rooms_per_hotel" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
-                  <label for="">Number of Children</label>
-                  <input type="number" name="num_children" class="form-control">
+              <div class="col-md-4 mb-2">
+                  <label for="">Adults</label>
+                  <input type="number" name="num_adults" id="tour_num_adults" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
-                  <label for="">Select Currency Type</label>
-                  <select name="cmb_currencies" id="cmb_currencies" class="form-select">
-                    @foreach ($currencies as $currency)
-                      <option value="{{ $currency->id }}">{{ $currency->name }}</option>                       
-                    @endforeach
-                  </select>
+              <div class="col-md-4 mb-2">
+                  <label for="">Children</label>
+                  <input type="number" name="num_children" id="tour_num_children" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
+              <div class="col-md-4 mb-2">
+                  <label for="">Infants</label>
+                  <input type="number" name="num_infants" id="tour_num_infants" class="form-control">
+              </div>
+              <div class="col-md-12 mb-2">
                   <label for="">Notes</label>
                   <input type="text" name="txt_notes" class="form-control">
               </div>

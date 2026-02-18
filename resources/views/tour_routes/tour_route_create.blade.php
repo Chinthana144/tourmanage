@@ -6,7 +6,7 @@
             <h5>Create Tour Route</h5>
         </div>
         <div class="card-body">
-            <table class="table">
+            <table class="table" id="tbl_tour_route">
                 <tr>
                     <th>No</th>
                     <th>Day No</th>
@@ -18,7 +18,7 @@
                     <th>Action</th>
                 </tr>
                 @foreach ($routes as $route)
-                    <tr>
+                    <tr data-id='{{ $route->id }}'>
                         <td>{{ $route->order_no }}</td>
                         <td>Day {{ $route->day_no }}</td>
                         <td>
@@ -43,11 +43,12 @@
                             @endswitch
                         </td>
                         <td>{{ $route->routable->name }}</td>
-                        <td>{{ $route->price_adult }}</td>
-                        <td>{{ $route->price_adult }}</td>
-                        <td>{{ $route->price_adult }}</td>
+                        <td>{{ $route->total_price_adult }}</td>
+                        <td>{{ $route->total_price_child }}</td>
+                        <td>{{ $route->line_total }}</td>
                         <td>
                             <div class="d-flex gap-2 align-items-center">
+                                <button class="btn btn-info btn-sm btn_open_info"><i class="bx bx-tab"></i></button>
                                 <form action="{{ route('tour_route.order_up') }}" method="post">
                                     @csrf
                                     <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
@@ -74,19 +75,20 @@
             </table>
 
             <div class="border border-primary rounded p-2">
+                <div class="d-flex">
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_location">Location</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_hotel">Hotel</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_restaurant">Restaurant</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_activities">Activities</button>
+                    <button class="btn btn-outline-primary mt-2 mb-2 w-100" id="btn_show_travel">Travel</button>
+                </div>  
+                <p>
+                    Arrival: <b>{{ $tour->start_date }}</b> 
+                    Return: <b>{{ $tour->end_date }}</b>
+                </p>
+
                 <div class="row">
-                    <div class="col-md-3">
-                        <label for="">Select Type</label>
-                        <select name="cmb_routeble_type" id="cmb_routeble_type" class="form-select">
-                            <option value="0">--- Select Routable Type ---</option>
-                            <option value="location">Location</option>
-                            <option value="hotel">Hotel</option>
-                            <option value="restaurants">Restaurant</option>
-                            <option value="activities">Activities</option>
-                            <option value="travel">Travel</option>
-                        </select>
-                    </div>
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         {{-- div Locations --}}
                         <div id="div_locations">
                             <h5 class="mt-2">Locations</h5>
@@ -102,6 +104,10 @@
                                         <label for="">Select Location</label>
                                         <select name="loc_cmb_locations" id="loc_cmb_locations" class="form-select"></select>
                                     </div>
+                                    <div class="col-md-12">
+                                        <label for="">Select Location</label>
+                                        <textarea name="loc_note" id="loc_note" cols="30" rows="3" class="form-control"></textarea>
+                                    </div>
                                 </div>
                                 <button class="btn btn-primary float-end mt-2">Add Location</button>
                             </form>
@@ -110,10 +116,54 @@
 
                         {{-- div Hotels --}}
                         <div id="div_hotels">
-                            <form action="" method="post">
+                            <form action="{{ route('tour_route.hotel_store') }}" method="post">
                                 @csrf
                                 <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                                add hotel room and boarding type
+                                <input type="hidden" name="hot_tour_request_id" id="hot_tour_request_id" value="{{ $tour_request->id }}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mt-2">Hotels & Rooms</h5>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="">Day No</label>
+                                        <input type="number" name="hot_day_no" id="hot_day_no" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Hotels</label>
+                                        <select name="cmb_hotels" id="cmb_hotels" class="form-select"></select>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Boarding type</label>
+                                        <select name="hot_boarding_type" id="hot_boarding_type" class="form-select"></select>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Check in date</label>
+                                        <input type="date" name="hot_checkin_date" id="hot_checkin_date" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Check out date</label>
+                                        <input type="date" name="hot_checkout_date" id="hot_checkout_date" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Number of Nights</label>
+                                        <input type="number" name="hot_num_nights" id="hot_num_nights" class="form-control" required>
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <label for="">Notes</label>
+                                        <input type="text" name="hot_note" id="hot_note" class="form-control">
+                                    </div>
+                                    
+                                    <div class="col-md-12 mt-2">
+                                        <h6>
+                                            Customer Requested Group Composition
+                                            <button type="button" class="btn btn-primary float-end btn-sm" id="btn_open_add_room">Add Room</button>
+                                        </h6>
+                                    </div>
+                                    {{-- rooms loaded by jQuery,  --}}
+                                    <div class="col-md-12 mt-2" id="hot_div_people"></div>
+
+                                </div>
+                                <button class="btn btn-primary float-end mt-3">Add Hotel & Rooms</button>
                             </form>
                         </div>
                         {{-- div Hotels --}}
@@ -226,6 +276,10 @@
                                         <label for="">Total Price for Children</label>
                                         <input type="number" step="0.01" name="act_total_price_child" id="act_total_price_child" class="form-control" readonly>
                                     </div>
+                                    <div class="col-md-12 mt-2">
+                                        <label for="">Note</label>
+                                        <textarea name="act_note" id="act_note" cols="30" rows="3" class="form-control"></textarea>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary float-end mt-2">Add to Route</button>
                             </form>
@@ -260,7 +314,7 @@
                                     </div>
 
                                     <div class="col-md-6 mt-2">
-                                        <label for="">Select start type</label>
+                                        <label for="">Select End Type</label>
                                         <select name="tvl_end_type" id="tvl_end_type" class="form-select">
                                             <option value="0">--- Select Start Type ---</option>
                                             <option value="1">Location</option>
@@ -309,4 +363,8 @@
     </div>
 
     <script src="{{ asset('js/tour_route.js') }}"></script>
+
+    @include('tour_routes.room_add_modal')
+    @include('tour_routes.room_edit_modal')
+    @include('tour_routes.route_info_modal')
 @endsection

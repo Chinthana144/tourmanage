@@ -4,21 +4,44 @@ namespace App\Http\Controllers;
 
 use App\Models\Currency;
 use App\Models\Tours;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TourController extends Controller
 {
     public function index()
     {
+
         $tours = Tours::all();
         $currencies = Currency::all();
 
         return view('tours.tour_view', compact('tours', 'currencies'));
     }//index
 
-    public function store(Request $request) 
-    {   
+    public function store(Request $request)
+    {
+        $year = Carbon::now()->year;
+
+        $last_tour = Tours::where("tour_number", 'LIKE', '-%')
+            ->orderBy('tour_number', 'desc')
+            ->first();
+
+        $nextNumber = 1;
+
+        if($last_tour){
+            //extract number
+            $lastNumber = intval(substr($last_tour->tour_number, 5));
+            $nextNumber = $lastNumber + 1;
+        }//has tour
+        else{
+            $nextNumber = 1;
+        }
+
+        $tour_number = $year . '-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
         Tours::create([
+            'tour_number' => $tour_number,
+            'tour_request_id' => $request->input('tour_request_id'),
             'title' => $request->input('txt_title'),
             'description' => $request->input('txt_description'),
             'start_date' => $request->input('start_date'),
@@ -26,8 +49,9 @@ class TourController extends Controller
             'total_days' => $request->input('num_days'),
             'total_nights' => $request->input('num_nights'),
             'adults' => $request->input('num_adults'),
-            'children' => $request->input('num_children'),
-            'currency_id' => $request->input('cmb_currencies'),
+            'children' => $request->input('num_children') ?? 0,
+            'infants' => $request->input('num_infants') ?? 0,
+            'rooms_per_hotel' => $request->input('rooms_per_hotel'),
             'sub_total' => 0,
             'discount_amount' => 0,
             'tax_amount' => 0,
@@ -52,7 +76,8 @@ class TourController extends Controller
         $tour->total_nights = $request->input('edit_num_nights');
         $tour->adults = $request->input('edit_num_adults');
         $tour->children = $request->input('edit_num_children');
-        $tour->currency_id = $request->input('edit_cmb_currencies');
+        $tour->infants = $request->input('edit_num_infants');
+        $tour->rooms_per_hotel = $request->input('edit_rooms_per_hotel');
         $tour->note = $request->input('txt_edit_notes');
 
         $tour->save();

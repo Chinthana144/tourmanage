@@ -10,4 +10,9 @@ class TourRequestLocations extends Model
         'tour_request_id',
         'location_id',
     ];
+
+    public function locations()
+    {
+        return $this->belongsTo(Locations::class, 'location_id');
+    }
 }

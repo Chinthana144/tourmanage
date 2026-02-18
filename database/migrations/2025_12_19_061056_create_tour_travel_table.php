@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tour_travel', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tour_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('tour_route_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('tour_route_id');
             $table->foreignId('travel_media_id')->constrained()->cascadeOnDelete();
             $table->morphs('startable'); // startable_id, startable_type
             $table->morphs('endable');   // endable_id, endable_type

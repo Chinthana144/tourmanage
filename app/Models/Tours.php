@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Tours extends Model
 {
     protected $fillable = [
+        'tour_number',
+        'tour_request_id',
         'title',
         'description',
         'start_date',
@@ -15,7 +17,8 @@ class Tours extends Model
         'total_nights',
         'adults',
         'children',
-        'currency_id',
+        'infants',
+        'rooms_per_hotel',
         'sub_total',
         'discount_amount',
         'tax_amount',
@@ -23,4 +26,9 @@ class Tours extends Model
         'status',
         'note',
     ];
+
+    public function tourRequest()
+    {
+        return $this->belongsTo(TourRequest::class, 'tour_request_id');
+    }
 }//class

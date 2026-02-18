@@ -9,39 +9,31 @@ class Locations extends Model
     protected $table = 'locations';
 
     protected $fillable = [
+        'travel_country_id',
         'name',
         'description',
-        'city_id',
-        'city_name',
-        'disctrict_name',
-        'province_name',
-        'latitude',
-        'longitude',
         'primary_image',
         'image1',
         'image2',
         'image3',
         'image4',
+        'popularity',
         'status',
+        'display',
     ];
-
-    public function city()
-    {
-        return $this->belongsTo(Cities::class, 'city_id');
-    }
 
     public function stoppable()
     {
         return $this->morphMany(PackageRoutes::class, 'stoppable');
     }
 
-    public function routable()
+    public function item()
     {
-        return $this->morphMany(TourRoutes::class, 'routable');
+        return $this->morphMany(TourRouteItems::class, 'item');
     }
 
-    public function activities()
+    public function travelCountry()
     {
-        return $this->hasMany(Activities::class, 'location_id');
+        return $this->belongsTo(TravelCountries::class, 'travel_country_id');
     }
 }//class

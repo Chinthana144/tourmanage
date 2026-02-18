@@ -1,0 +1,330 @@
+@charset "UTF-8";
+
+/* Fonts */
+:root {
+  --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --heading-font: "Raleway",  sans-serif;
+  --nav-font: "Poppins",  sans-serif;
+}
+
+/* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
+:root {
+  --background-color: #1f1e1e; /* Background color for the entire website, including individual sections */
+  --default-color: #fdfdfd; /* Default color used for the majority of the text content across the entire website */
+  --heading-color: #ffffff; /* Color for headings, subheadings and title throughout the website */
+  --accent-color: #B8860B; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --surface-color: #4c4c4c; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
+  --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
+  --border-color: #7b7676; /*border color*/
+  --input-color: #3c3c3c;/* input background color*/
+}
+
+/* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
+:root {
+  --nav-color: #ffffff;  /* The default color of the main navmenu links */
+  --nav-hover-color: #B8860B; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
+  --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
+  --nav-dropdown-color: #292726; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #B8860B; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+}
+
+/* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
+
+.light-background {
+  --background-color: #faf9f6;
+  --surface-color: #302d2d;
+}
+
+.dark-background {
+  --background-color: #031013;
+  --default-color: #ffffff;
+  --heading-color: #ffffff;
+  --surface-color: #2f2d2d;
+  --contrast-color: #ffffff;
+}
+
+/* Smooth scroll */
+:root {
+  scroll-behavior: smooth;
+}
+
+/*--------------------------------------------------------------
+# General Styling & Shared Classes
+--------------------------------------------------------------*/
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+  font-family: var(--default-font);
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+}
+
+/* ------------------------------------------------------------------
+* Header section style
+---------------------------------------------------------------------*/
+.header-section{
+  position: relative;
+}
+
+.header-section .container{
+    text-align: center;
+    position: relative;
+    z-index: 0;
+    padding-top: 30px;
+}
+
+.header-section .container h2{
+    font-size: 1.5rem;
+    color: var(--default-color);
+}
+
+.header-section #img_background{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+}
+
+.data-section .container .destination-card{
+    padding: 10px;
+    background-color: var(--surface-color);
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.data-section .container .destination-card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.data-section .container .destination-card .image-wrapper img{
+    overflow: hidden;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.data-section .container .destination-card .image-wrapper{
+    position: relative;
+}
+
+.data-section .container .destination-card .image-wrapper .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+#flash_message{
+    position: absolute;
+    z-index: 1000;
+    width: 50%;
+    text-align: center;
+    margin-left: 25%;
+    padding: 5px;
+    border-radius: 10px;
+}
+.success {
+    background: #d1fae5;
+    color: #065f46;
+}
+.error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+.data-section .btn-submit{
+    background-color: var(--accent-color);
+}
+
+/*-------------------------------------------------------------
+div Search
+--------------------------------------------------------------*/
+.div_search{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid;
+    border-color: var(--border-color);
+    width: fit-content;
+    padding: 2px;
+    border-radius: 4px;
+    background-color: var(--surface-color);
+}
+.div_search .text-search{
+    border: none;
+    background-color: var(--surface-color);
+}
+.div_search .text-search:focus{
+    border: none;
+    outline: none;
+}
+.div_search .btn-search{
+    border: none;
+    background-color: inherit;
+    color: var(--default-color);
+}
+
+/*-------------------------------------------------------------
+Destination Card
+--------------------------------------------------------------*/
+.destination-card{
+    background-color: var(--surface-color);
+    border-radius: 10px;
+    padding: 5px;
+    transition: all 0.3s;
+    border: 1px solid var(--border-color);
+}
+.destination-card:hover{
+    transform: translateY(-4px);
+    border: 1px solid var(--accent-color);
+}
+.destination-card .image-container{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+.destination-card .image-container img{
+    border-radius: 5px;
+}
+.destination-card .content{
+    padding: 5px 10px;
+}
+
+/*-------------------------------------------------------
+forms
+--------------------------------------------------------*/
+.form-submit .form-set{
+    background-color: var(--surface-color);
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+/*-------------------------------------------------------
+inputs
+--------------------------------------------------------*/
+.form-submit .form-select{
+    background-color: var(--input-color);
+    border-color: var(--border-color);
+    color: var(--default-color);
+}
+.form-submit .form-input{
+    background-color: var(--input-color);
+    border-color: var(--border-color);
+    color: var(--default-color);
+    padding: 8px 6px;
+    font-size: 18px;
+}
+
+.form-submit .btn-submit{
+    background-color: var(--accent-color);
+}
+
+#right_image{
+    border-radius: 10px;
+    overflow: hidden;
+}
+#right_image img{
+    max-height: 100vh;
+}
+
+
+/*-------------------------------------------------------
+request proegress
+--------------------------------------------------------*/
+#div_navigator{
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#div_navigator .ball{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgb(220, 210, 210);
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: all 0.5s;
+}
+
+#div_navigator .bar{
+  width: 60px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: rgb(32, 132, 32);
+  box-shadow: 0px 5px 10px 4px rgba(16, 212, 19, 0.1);
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: all 0.3s;
+}
+
+
+/*-------------------------------------------------------
+About page
+-------------------------------------------------------*/
+.about_card{
+    margin: 0px 2px;
+    background-color: var(--surface-color);
+    border-radius: 10px;
+    padding: 20px 20px;
+    height: 100%;
+    border: 1px solid var(--surface-color);
+    transition: all 0.3s;
+}
+.about_card:hover{
+    border: 1px solid var(--accent-color);
+}
+.about_card p{
+    text-align: justify;
+}
+.about_card .img_container{
+    width: 50%;
+    margin-left: 25%;
+    border-radius: 50%;
+    background-color: dimgrey;
+}
+.about_card .img_container .img_icon{
+    width: 50%;
+    margin: 25% 25%;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.about_card .img_container .img_icon:hover{
+    width: 60%;
+    margin: 20% 20%;
+}
+
+.about_card h4{
+    margin: 15px 0;
+}
+
+#akagi_logo{
+    width: 50%;
+    margin-left: 25%;
+    position: relative;
+}

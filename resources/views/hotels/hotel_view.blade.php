@@ -9,104 +9,90 @@
             </h5>
         </div>
         <div class="card-body">
-            @foreach ($facility_data as $fd)
+            @foreach ($hotels as $hotel)
                 <div class="card mt-2">
                     <div class="card-header">
-                        <h5>{{ $fd['hotel']->name }}</h5>
+                        <h5>{{ $hotel->name }}</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3">
                                 <p>
-                                    <strong>Province: </strong>{{ $fd['hotel']->province->name_en }} <br>
-                                    <strong>District: </strong>{{ $fd['hotel']->district->name_en }} <br>
-                                    <strong>City: </strong>{{ $fd['hotel']->city->name_en }}
-                                </p>
-                            </div>
-                            <div class="col-md-3">
-                                <p>
-                                    <strong>Address: </strong>{{ $fd['hotel']->address }} <br>
-                                    <strong>Phone: </strong>{{ $fd['hotel']->phone }} <br>
-                                    <strong>Email: </strong>{{ $fd['hotel']->email }}
-                                </p>
-                            </div>
+                                    <strong>Address: </strong>{{ $hotel->address }} <br>
+                                    <strong>Phone: </strong>{{ $hotel->phone }} <br>
 
-                                <div class="col-md-3">
-                                <p>
-                                    <strong>Website: </strong>{{ $fd['hotel']->website }} <br>
-                                    <strong>Star Rating: </strong>{{ $fd['hotel']->star_rating }}
                                 </p>
                             </div>
 
                             <div class="col-md-3">
                                 <p>
-                                    <strong>Latitude: </strong>{{ $fd['hotel']->latitude }} <br>
-                                    <strong>Longitude: </strong>{{ $fd['hotel']->longitude }}
+                                    <strong>Email: </strong>{{ $hotel->email }} <br>
+                                    <strong>Website: </strong>{{ $hotel->website }} <br>
+                                    <strong>Star Rating: </strong>{{ $hotel->star_rating }}
                                 </p>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="">Populatiry</label>
+                                <div class="div_populatiry">
+                                    <i class="icon_star star_one {{$hotel->star_rating >= 1 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="1"></i>
+                                    <i class="icon_star star_two {{$hotel->star_rating >= 2 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="2"></i>
+                                    <i class="icon_star star_three {{$hotel->star_rating >= 3 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="3"></i>
+                                    <i class="icon_star star_four {{$hotel->star_rating >= 4 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="4"></i>
+                                    <i class="icon_star star_five {{$hotel->star_rating >= 5 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="5"></i>
+                                    <input type="hidden" name="star_rating" id="star_rating" value="{{$hotel->star_rating}}">
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="">Populatiry</label>
+                                <div class="div_populatiry">
+                                    <i class="icon_star star_one {{$hotel->popularity >= 1 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="1"></i>
+                                    <i class="icon_star star_two {{$hotel->popularity >= 2 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="2"></i>
+                                    <i class="icon_star star_three {{$hotel->popularity >= 3 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="3"></i>
+                                    <i class="icon_star star_four {{$hotel->popularity >= 4 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="4"></i>
+                                    <i class="icon_star star_five {{$hotel->popularity >= 5 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="5"></i>
+                                    <input type="hidden" name="popularity" id="popularity" value="{{$hotel->popularity}}">
+                                </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{ asset('images/hotels/' . $fd['hotel']->cover_image) }}" alt="" srcset="" style="width: 100%; height:auto; border-radius: 8px;">
+                                <img src="{{ asset('images/hotels/' . $hotel->cover_image) }}" alt="" srcset="" style="width: 100%; height:auto; border-radius: 8px;">
                             </div>
 
                             <div class="col-md-4">
-                                <img src="{{ asset('images/hotels/' . $fd['hotel']->image1) }}" alt="" srcset="" style="width: 100%; height:auto; border-radius: 8px;">
+                                <img src="{{ asset('images/hotels/' . $hotel->image1) }}" alt="" srcset="" style="width: 100%; height:auto; border-radius: 8px;">
                             </div>
 
                             <div class="col-md-4">
-                                <img src="{{ asset('images/hotels/' . $fd['hotel']->image2) }}" alt="" srcset="" style="width: 100%; height:auto; border-radius: 8px;">
+                                <img src="{{ asset('images/hotels/' . $hotel->image2) }}" alt="" srcset="" style="width: 100%; height:auto; border-radius: 8px;">
                             </div>
-                        </div>
-
-                        <div>
-                            <p>
-                                <strong>Facilities: </strong>
-                                @foreach ($fd['facilities'] as $flt)
-                                    {{ $flt->name . ' | ' }}
-                                @endforeach
-                            </p>
                         </div>
 
                         <div class="row mt-2">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
+                                <form action="{{ route('hotel_price.view') }}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">
+                                    <button type="submit" class="btn btn-outline-primary"><i class="bx bx-dollar"></i>Hotel Prices</button>
+                                </form>
+                            </div>
+
+                            <div class="col-md-2">
                                 <form action="{{ route('hotels.edit') }}" method="get">
                                     @csrf
-                                    <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
-                                    <button type="submit" class="btn btn-success">Edit Hotel</button>
-                                </form>
-                            </div>
-
-                            <div class="col-md-2">
-                                <form action="{{ route('facilities.edit') }}" method="get">
-                                    @csrf
-                                    <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
-                                    <button type="submit" class="btn btn-warning">Facilities</button>
-                                </form>
-                            </div>
-
-                            <div class="col-md-2">
-                                <form action="{{ route('hotelrooms.index') }}" method="get">
-                                    @csrf
-                                    <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
-                                    <button type="submit" class="btn btn-secondary">Hotel Rooms</button>
-                                </form>
-                            </div>
-
-                            <div class="col-md-2">
-                                <form action="{{ route('hotelprices.index') }}" method="get">
-                                    @csrf
-                                    <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
-                                    <button type="submit" class="btn btn-primary">Hotel Prices</button>
+                                    <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">
+                                    <button type="submit" class="btn btn-outline-warning">Edit Hotel</button>
                                 </form>
                             </div>
 
                             <div class="col-md-2">
                                 <form action="{{ route('hotel.remove') }}" method="post">
                                     @csrf
-                                    <input type="hidden" name="hide_hotel_id" value="{{ $fd['hotel']->id }}">
-                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                    <input type="hidden" name="hide_hotel_id" value="{{ $hotel->id }}">
+                                    <button type="submit" class="btn btn-outline-danger">Remove</button>
                                 </form>
                             </div>
                         </div>

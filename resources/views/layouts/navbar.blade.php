@@ -1,11 +1,11 @@
   <nav>
     <div class="navbar">
       <i class='bx bx-menu'></i>
-      <div><img src="{{ asset('images/company/akagi_logo_6.png') }}" alt="" style="width: 50px; height:auto;"></div>
-      <div class="logo"><a href="#">Akagi eXperience</a></div>
+      <div><img src="{{ asset('images/company/logo_2.png') }}" alt="" style="width: 50px; height:auto;"></div>
+      <div class="logo"><a href="#">Akagi eXperiences</a></div>
       <div class="nav-links">
         <div class="sidebar-logo">
-          <span class="logo-name">Akagi eXperience</span>
+          <span class="logo-name">Akagi eXperiences</span>
           <i class='bx bx-x'></i>
         </div>
         <ul class="links">
@@ -14,10 +14,11 @@
             <a href="#">Packages</a>
             <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
             <ul class="htmlCss-sub-menu sub-menu">
-              <li><a href="/packages">Packages</a></li>
-              <li><a href="#">Package Routes</a></li>
-              <li><a href="#">Package Settings</a></li>
-              <li class="more">
+                <li><a href="{{ route('main.index') }}">Main Page</a></li>
+                <li><a href="/packages">Packages</a></li>
+                <li><a href="#">Package Routes</a></li>
+                <li><a href="#">Package Settings</a></li>
+                <li class="more">
                 <span><a href="#">More</a>
                 <i class='bx bxs-chevron-right arrow more-arrow'></i>
               </span>
@@ -37,6 +38,7 @@
               <li><a href="/locations">Locations</a></li>
               <li><a href="/hotels">Hotels</a></li>
               <li><a href="/restaurants">Restaurants</a></li>
+              <li><a href="/activities">Activities</a></li>
               <li><a href="/travel-media">Travel Media</a></li>
             </ul>
           </li>
@@ -56,9 +58,8 @@
             <a href="#">Quotations</a>
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
-              <li><a href="/customers">Customers</a></li>
               <li><a href="/tour-requests">Tour Requests</a></li>
-              <li><a href="#">Tour Quotation</a></li>
+              <li><a href="{{ route('quotation.index') }}">Tour Quotation</a></li>
               <li><a href="#">Tour Pricing</a></li>
             </ul>
           </li>
@@ -68,7 +69,7 @@
             <i class='bx bxs-chevron-down js-arrow arrow'></i>
             <ul class="js-sub-menu sub-menu">
               <li><a href="/users">Users</a></li>
-              <li><a href="#">Form Validation</a></li>
+              <li><a href="/partners">Partners</a></li>
               <li><a href="#">Card Slider</a></li>
               <li><a href="#">Complete Website</a></li>
             </ul>

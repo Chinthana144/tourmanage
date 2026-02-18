@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BoardingType;
 use App\Models\Cities;
 use App\Models\Districts;
 use App\Models\Facilities;
 use App\Models\HotelFacilities;
+use App\Models\HotelPrices;
 use App\Models\Hotels;
+use App\Models\PriceModes;
 use App\Models\Provinces;
+use App\Models\Seasons;
+use App\Models\TourPackages;
+use App\Models\TravelCountries;
 use Illuminate\Http\Request;
 
 class Hotelcontroller extends Controller
@@ -20,30 +26,7 @@ class Hotelcontroller extends Controller
         $hotels = Hotels::where('status', 1)
             ->paginate(5);
 
-        $hotel_data = [];
-        $facility_data = [];
-
-        foreach($hotels as $hotel)
-        {
-            $facilities = HotelFacilities::join('facilities', 'hotel_facilities.facility_id', '=', 'facilities.id')
-                ->where('hotel_id', $hotel->id)
-                ->get();
-
-            $facility_data[] = [
-                'hotel' => $hotel,
-                'facilities' => $facilities
-            ];
-        }//foreach
-
-        // $hotel_data[] = [
-        //     'hotel' => $hotels,
-        //     'facilities' => $facility_data
-        // ];
-
-
-        // dd($facility_data);
-
-        return view('hotels.hotel_view', compact('hotels', 'facility_data', 'hotel_data'));
+        return view('hotels.hotel_view', compact('hotels'));
     }
 
     /**
@@ -51,9 +34,8 @@ class Hotelcontroller extends Controller
      */
     public function create()
     {
-        $provinces = Provinces::all();
-
-        return view('hotels.hotel_create', compact('provinces'));
+        $travel_countries = TravelCountries::all();
+        return view('hotels.hotel_create', compact('travel_countries'));
     }
 
     /**
@@ -61,22 +43,15 @@ class Hotelcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $province_id = $request->input('cmb_province');
-        $district_id = $request->input('cmb_district');
-        $city_id = $request->input('cmb_city');
-
         $hotel = new Hotels();
         $hotel->name = $request->input('txt_hotel_name');
         $hotel->address = $request->input('txt_hotel_address');
         $hotel->phone = $request->input('txt_hotel_phone');
         $hotel->email = $request->input('txt_hotel_email');
         $hotel->website = $request->input('txt_hotel_website');
-        $hotel->star_rating = $request->input('txt_hotel_rating');
-        $hotel->latitude = $request->input('txt_hotel_latitude');
-        $hotel->longitude = $request->input('txt_hotel_longitude');
-        $hotel->province_id = $province_id;
-        $hotel->district_id = $district_id;
-        $hotel->city_id = $city_id;
+        $hotel->star_rating = $request->input('star_rating');
+        $hotel->popularity = $request->input('popularity');
+        $hotel->status = 1; //active
 
         // Handle file uploads
         if ($request->hasFile('cover_image')) {
@@ -100,17 +75,7 @@ class Hotelcontroller extends Controller
 
         $hotel->save();
 
-        //fetch facilities
-        $general_facilities = Facilities::where('facilities_type_id', 1)->get();
-        $food_drink_facilities = Facilities::where('facilities_type_id', 2)->get();
-        $wellness_recreation_facilities = Facilities::where('facilities_type_id', 3)->get();
-        $services_facilities = Facilities::where('facilities_type_id', 4)->get();
-        $family_kids_facilities = Facilities::where('facilities_type_id', 5)->get();
-        $outdoors_activities_facilities = Facilities::where('facilities_type_id', 6)->get();
-        $in_room_facilities = Facilities::where('facilities_type_id', 7)->get();
-
-        return view('hotels.facilities_add', compact('hotel', 'general_facilities', 'food_drink_facilities', 'wellness_recreation_facilities', 'services_facilities', 'family_kids_facilities', 'outdoors_activities_facilities', 'in_room_facilities'));
-
+        return redirect()->route('hotels.index');
     }
 
     /**
@@ -126,18 +91,10 @@ class Hotelcontroller extends Controller
      */
     public function edit(Request $request)
     {
+        $travel_countries = TravelCountries::all();
         $hotel_id = $request->input('hide_hotel_id');
         $hotel = Hotels::find($hotel_id);
-
-        $province_id = $hotel->province_id;
-        $district_id = $hotel->district_id;
-        $city_id = $hotel->city_id;
-
-        $provinces = Provinces::all();
-        $districts = Districts::where('province_id', $province_id)->get();
-        $cities = Cities::where('district_id', $district_id)->get();
-
-        return view('hotels.hotel_edit', compact('hotel', 'provinces', 'districts', 'cities'));
+        return view('hotels.hotel_edit', compact('hotel', 'travel_countries'));
     }
 
     /**
@@ -146,9 +103,6 @@ class Hotelcontroller extends Controller
     public function update(Request $request)
     {
         $hotel_id = $request->input('hide_hotel_id');
-        $province_id = $request->input('cmb_province');
-        $district_id = $request->input('cmb_district');
-        $city_id = $request->input('cmb_city');
 
         $hotel = Hotels::find($hotel_id);
         $hotel->name = $request->input('txt_hotel_name');
@@ -156,12 +110,9 @@ class Hotelcontroller extends Controller
         $hotel->phone = $request->input('txt_hotel_phone');
         $hotel->email = $request->input('txt_hotel_email');
         $hotel->website = $request->input('txt_hotel_website');
-        $hotel->star_rating = $request->input('txt_hotel_rating');
-        $hotel->latitude = $request->input('txt_hotel_latitude');
-        $hotel->longitude = $request->input('txt_hotel_longitude');
-        $hotel->province_id = $province_id;
-        $hotel->district_id = $district_id;
-        $hotel->city_id = $city_id;
+        $hotel->star_rating = $request->input('star_rating');
+        $hotel->popularity = $request->input('popularity');
+        $hotel->status = 1; //active
 
         // Handle file uploads
         if ($request->hasFile('cover_image')) {
@@ -221,7 +172,7 @@ class Hotelcontroller extends Controller
 
         $hotel->save();
 
-        return redirect()->route('hotels.index')->with('success', 'Facilities added successfully.');
+        return redirect()->route('hotels.index')->with('success', 'Hotel removed successfully.');
     }//remove
 
     //get hotels
@@ -229,5 +180,97 @@ class Hotelcontroller extends Controller
         $hotels = Hotels::where('status', 1)->get();
 
         return response()->json($hotels);
+    }
+
+//======================================== Hotel Prices =======================================//
+    public function showHotelPrices(Request $request)
+    {
+        $hotel_id = $request->input('hide_hotel_id');
+        $hotel = Hotels::find($hotel_id);
+
+        $hotel_prices = HotelPrices::where('hotel_id', $hotel_id)->paginate(10);
+
+        //get necessary data
+        $seasons = Seasons::all();
+        $packages = TourPackages::all();
+        $price_modes = PriceModes::all();
+        $boarding_types = BoardingType::all();
+
+        return view('hotels.hotel_price_view', compact('hotel', 'hotel_prices', 'seasons', 'packages', 'price_modes', 'boarding_types'));
+    }//show hotel prices
+
+    public function storeHotelPrice(Request $request)
+    {
+        $hotel_id = $request->input('hide_hotel_id');
+
+        $hotel_price = HotelPrices::create([
+            'hotel_id' => $hotel_id,
+            'season_id' => $request->input('cmb_season'),
+            'package_id' => $request->input('cmb_package'),
+            'price_mode_id' => $request->input('cmb_price_mode'),
+            'bording_type_id' => $request->input('cmb_boarding_type'),
+            'description' => $request->input('description'),
+            'price' => $request->input('price'),
+            'is_compulsory' =>$request->has('chk_compulsory'),
+            'status' => 1,
+        ]);
+
+        if($hotel_price){
+            return redirect()->route('hotel_price.view', ['hide_hotel_id' => $hotel_id])
+                ->with('success', 'Hotel Price added successfully!');
+        }//ok
+        else{
+            return redirect()->route('hotel_price.view', ['hide_hotel_id' => $hotel_id])
+                ->with('error', 'Hotel Price added failed!');
+        }
+        
+    }//store hotel price
+
+    public function updateHotelPrice(Request $request)
+    {
+        $price_id = $request->input('hide_price_id');
+        $hotel_price = HotelPrices::find($price_id);
+
+        $hotel_id = $hotel_price->hotel_id;
+
+        $hotel_price->season_id = $request->input('cmb_edit_season');
+        $hotel_price->package_id = $request->input('cmb_edit_package');
+        $hotel_price->price_mode_id = $request->input('cmb_edit_price_mode');
+        $hotel_price->bording_type_id = $request->input('cmb_edit_boarding_type');
+        $hotel_price->description = $request->input('edit_description');
+        $hotel_price->price = $request->input('edit_price');
+        $hotel_price->is_compulsory = $request->has('chk_edit_compulsory') ? 1 : 0 ;
+
+        $hotel_price->save();
+
+        return redirect()->route('hotel_price.view', ['hide_hotel_id' => $hotel_id])
+                ->with('success', 'Hotel Price added successfully!');        
+    }//update hotel price
+
+    public function getOneHotelPrice(Request $request)
+    {
+        $price_id = $request->input('price_id');
+        $hotel_price = HotelPrices::find($price_id);
+
+        return response()->json([
+            'id' => $hotel_price->id,
+            'season_id' => $hotel_price->season_id,
+            'package_id' =>$hotel_price->package_id,
+            'price_mode_id' => $hotel_price->price_mode_id,
+            'bording_type_id' => $hotel_price->bording_type_id,
+            'description' => $hotel_price->description,
+            'price' => $hotel_price->price,
+            'is_compulsory' => $hotel_price->is_compulsory,
+            'status' => $hotel_price->status,
+        ]);
+
+    }//get one hotel price
+
+    //get boarding types
+    public function getBoardingTypes()
+    {
+        $boarding_types = BoardingType::all();
+
+        return response()->json($boarding_types);
     }
 }//class

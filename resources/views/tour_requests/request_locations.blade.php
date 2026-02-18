@@ -11,7 +11,7 @@
                     @csrf
                     <input type="hidden" name="tour_request_id" value="{{ $tour_request->id }}">               
                     @foreach ($locations as $location)
-                        <div class="card">
+                        <div class="card mb-1">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -45,6 +45,7 @@
                                                         type="checkbox" 
                                                         id="Loc_{{ $location->id }}"
                                                         style="width:4rem; height:2rem;"
+                                                        {{ in_array($location->id, $selected_locations) ? 'checked' : '' }}
                                                     >
                                                     <label class="form-check-label m-2" for="Loc_{{ $location->id }}">
                                                         Select

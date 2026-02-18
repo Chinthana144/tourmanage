@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('hotel_prices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('hotel_id');
-            $table->unsignedBigInteger('boarding_type_id');
-            $table->unsignedBigInteger('hotel_room_type_id');
-            $table->String('season_name');
-            $table->date('season_start_date');
-            $table->date('season_end_date');
-            $table->decimal('price_per_night', 10, 2);
+            $table->foreignId('hotel_id');
+            $table->foreignId('season_id');
+            $table->foreignId('package_id');
+            $table->foreignId('price_mode_id');
+            $table->foreignId('bording_type_id');
+            $table->String('description');
+            $table->decimal('price', 10, 2);
+            $table->tinyInteger('is_compulsory');
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }

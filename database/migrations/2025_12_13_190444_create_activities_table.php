@@ -13,20 +13,19 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('location_id');
+            $table->foreignId('travel_country_id');
             $table->string('name');
             $table->integer('category_id');
-            $table->string('description');
+            $table->text('description');
             $table->tinyInteger('is_paid')->default(0);
-            $table->integer('pricing_type_id')->nullable();
-            $table->decimal('price_adult', 10, 2)->nullable();
-            $table->decimal('price_child', 10, 2)->nullable();
-            $table->decimal('group_price', 10, 2)->nullable();
             $table->integer('duration_minutes');
             $table->integer('best_time_id');
             $table->tinyInteger('is_optional');
             $table->tinyInteger('requires_guide');
-            $table->text('notes')->nullable();
+            $table->string('cover_image');
+            $table->string('image1')->nullable();
+            $table->string('image2')->nullable();
+            $table->smallInteger('popularity');
             $table->tinyInteger('status');
             $table->timestamps();
         });

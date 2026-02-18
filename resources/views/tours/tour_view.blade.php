@@ -5,7 +5,6 @@
         <div class="card-header">
             <h5>
                 Tours
-                <button id="btn_add_tour" class="btn btn-primary btn-sm float-end">Add Tour</button>
             </h5>
         </div>
         <div class="card-body">
@@ -15,13 +14,17 @@
                     <th>Date</th>
                     <th>Days</th>
                     <th>People</th>
+                    <th>Room(s)</th>
                     <th>Price</th>
                     <th>Grand Total</th>
                     <th>Action</th>
                 </tr>
                 @foreach ($tours as $tour)
                     <tr data-id = "{{ $tour->id }}">
-                        <td>{{ $tour->title }}</td>
+                        <td>
+                            {{ $tour->tour_number }} <br>
+                            {{ $tour->title }}
+                        </td>
                         <td>
                             Start: <b>{{ $tour->start_date }}</b>
                             <br>
@@ -37,6 +40,7 @@
                             <br>
                             Children: <b>{{ $tour->children }}</b>
                         </td>
+                        <th>{{$tour->rooms_per_hotel}}</th>
                         <td>
                             Sub Total: <b>{{ $tour->sub_total }}</b>
                             <br>
@@ -47,10 +51,11 @@
                         <td>{{ $tour->grand_total }}</td>
                         <td>
                             <button class="btn btn-warning btn-sm btn_edit_tour">Edit</button>
-                            <form action="{{ route('tour_route.index') }}" method="get">
+
+                            <form action="{{ route('tour_route_items.index') }}" method="get">
                                 @csrf
                                 <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                                <button type="submit" class="btn btn-success btn-sm mt-2">Routes</button>
+                                <button type="submit" class="btn btn-primary btn-sm mt-2" @disabled($tour->status >= 2)>Route Items</button>
                             </form>
                         </td>
                     </tr>

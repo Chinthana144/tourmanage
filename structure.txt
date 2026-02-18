@@ -1,120 +1,26 @@
-// database structure
+//todo list
+* remove facilities
+* hotel.js, location.js, restaurants.js-> remove AJAX for province, district and cities
 
-//---- walk through ----//
-* laravel install
-* breeze install
-* user roles
-* users
-* locations
-* hotels
-* hotel rooms
-* tourists
-* tourist health
-* travel packages
-* travel package route
-* tours
-* tour members
-* hotel booking
+//main page
+top video ----------------------------- done
+add destinations ---------------------- done
+add Hotels
+add Restaurants (optional)
+add Activities
+gallery - after sometime
+contact page - remove link
+redesign - 3 packages - essential, classic, signature
 
-//requirements
-* Quatations
-* hotel booking
+//Locations
 
-//--- tables --- //
-//users
-firstname
-lastname
-email
-password
-phone
-profile_pic
-status
+//Hotels
 
-//roles
-admin
-owner
-manager
-accountant
-sales agent
-booking manager
-guide
-hotel user
-intern
+//Restaurants
 
-//locations
-name
-description
-city
-district
-privince
-latitude
-longitude
-primary image
-image1
-image2
-image3
-image4
+//Activities
 
-//hotels
-name
-address
-email
-phone
-province_id
-district_id
-city_id
-website
-star_rating
-latitude
-longitude
-cover_image
-image1
-image2
-sales_person
-sales_person_contact
+//Travel Media
 
-//hotel facilities
-
-//facilities_types
-name
-
-//facilities
-name
-facility_type_id
-
-//hotel_facilities
-hotel_id
-facility_id
-
-//hotel booking
-hotel pricing
-hotel packages
-Seasonalpackages (off season / season)
-Suppliment
-
-
-//hotel
-rooms
-boarding type
-
-//restaurants
-restaurants
-restaurant_meals ----> polymorphic with tour_route
-meal_types
-
-resturant meal
-meal_types
-
-tour_travel
-
-tour request 
-tour request rooms
-tour request locations or activities
-
-tour route -> add hotels and rooms
-
-tour route quotation generator
-
-
-//= = = = = = = = = =  Pending List =  = = = = = = = = =//
-* tour request foreign key delete on cascade
+//package items
+get totals using
