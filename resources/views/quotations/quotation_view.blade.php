@@ -32,7 +32,7 @@
                             @endforeach
                         </td> --}}
                         <td>
-                            <form action="{{ route('quotation.generate') }}" method="post">
+                            <form action="{{ route('quotation.generate') }}" method="get">
                                 @csrf
                                 <input type="hidden" name="hide_quotation_id" value="{{ $quotation->id }}">
                                 <button class="btn btn-outline-danger btn-sm w-100">Generate PDF</button>

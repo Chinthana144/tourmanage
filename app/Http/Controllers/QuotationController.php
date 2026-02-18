@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class QuotationController extends Controller
 {
@@ -92,10 +93,7 @@ class QuotationController extends Controller
         $quotation->package_prices = json_encode($package_prices);
         $quotation->save();
 
-        //pdf
-        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation'));
-
-        return $pdf->stream('Quotation-' . $quotation->quotation_no);
+        return redirect()->route('quotation.generate', ['hide_quotation_id' => $quotation->id ]);
     }
 
     public function generatePdf(Request $request)
@@ -103,10 +101,26 @@ class QuotationController extends Controller
         $quotation_id = $request->input('hide_quotation_id');
         $quotation = Quotations::find($quotation_id);
 
-        $tour_request_id = $quotation->tour_request_id;
+        // $tour_request_id = $quotation->tour_request_id;
         $tour_id = $quotation->tour_id;
 
-        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation'));
+        // change tour status
+        $tour = Tours::find($tour_id);
+        if($tour->status < 2){
+            $tour->status = 2;
+            $tour->save();
+        }
+
+        //generate QR code
+        $payment_url = url('https://akagiexp.com/payment-demo/' . $quotation->id);
+
+        //generate qr code
+        $qr_code = base64_encode(
+            QrCode::size(100)
+                ->generate($payment_url)
+        );
+
+        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation', 'qr_code'));
 
         return $pdf->stream('Quotation-' . $quotation->quotation_no);
     }//generate pdf

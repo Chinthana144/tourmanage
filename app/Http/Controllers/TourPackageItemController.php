@@ -75,7 +75,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                                         
@@ -91,7 +91,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                     
@@ -107,7 +107,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                 break;
@@ -126,7 +126,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                     $comfort_price = HotelPrices::where('hotel_id', $item->item_id)
@@ -141,7 +141,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                     
@@ -157,7 +157,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                 break;
@@ -176,7 +176,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                     $comfort_price = RestaurantPrices::where('restaurant_id', $item->item_id)
@@ -191,7 +191,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                     
@@ -207,7 +207,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                 break;
@@ -226,7 +226,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                     $comfort_price = ActivityPrices::where('activity_id', $item->item_id)
@@ -241,7 +241,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach                
                     $premium_price = ActivityPrices::where('activity_id', $item->item_id)
@@ -256,7 +256,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                 break;
@@ -275,7 +275,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                     $comfort_price = TravelPrices::where('travel_media_id', $item->item_id)
@@ -290,7 +290,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach                
                     $premium_price = TravelPrices::where('travel_media_id', $item->item_id)
@@ -305,7 +305,7 @@ class TourPackageItemController extends Controller
                             'price_mode' => $price->priceMode->name,
                             'description' => $price->description,
                             'price' => $price->price,
-                            'is_complusory' => $price->is_complusory,
+                            'is_compulsory' => $price->is_compulsory,
                         ];
                     }//foreach
                 break;

@@ -65,7 +65,7 @@
                         </td>
                     @endif
                     <td>
-                        @if ($price['is_complusory'] == 1)
+                        @if ($price['is_compulsory'] == 1)
                             <span class="badge bg-primary">Complusory</span>
                         @else
                             <span class="badge bg-secondary">optional</span>
@@ -98,7 +98,7 @@
                         <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
                     </td>
                     <td>
-                        @if ($price['is_complusory'] == 1)
+                        @if ($price['is_compulsory'] == 1)
                             <span class="badge bg-primary">Complusory</span>
                         @else
                             <span class="badge bg-secondary">optional</span>
@@ -131,7 +131,7 @@
                         <input type="number" step="0.01" name="price_{{$item['id']}}_{{$price['id']}}" class="form-control txt_price" value="{{$price['price']}}">
                     </td>
                     <td>
-                        @if ($price['is_complusory'] == 1)
+                        @if ($price['is_compulsory'] == 1)
                             <span class="badge bg-primary">Complusory</span>
                         @else
                             <span class="badge bg-secondary">optional</span>

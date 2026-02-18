@@ -55,7 +55,7 @@
                             <form action="{{ route('tour_route_items.index') }}" method="get">
                                 @csrf
                                 <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                                <button type="submit" class="btn btn-primary btn-sm mt-2">Route Items</button>
+                                <button type="submit" class="btn btn-primary btn-sm mt-2" @disabled($tour->status >= 2)>Route Items</button>
                             </form>
                         </td>
                     </tr>

@@ -243,7 +243,7 @@ Route::middleware('auth')->group(function () {
     //quotations
     Route::get('/quotations', [QuotationController::class, 'index'])->name('quotation.index');
     Route::post('/store-quotation', [QuotationController::class, 'store'])->name('quotation.store');
-    Route::post('/generatePdf', [QuotationController::class, 'generatePdf'])->name('quotation.generate');
+    Route::get('/generatePdf', [QuotationController::class, 'generatePdf'])->name('quotation.generate');
 });
 
 // Route::get('/template', function () {
