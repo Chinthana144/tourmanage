@@ -47,8 +47,9 @@
                     @if ($price['price_mode_id'] == 5)
                         <td>
                             <input type="number" step="0.01"
-                                name="distance_{{$item['id']}}_{{$price['id']}}"
+                                name="distance_{{$item['id']}}_{{$price['id']}}"                                
                                 class="form-control txt_distance"
+                                data-price-per-km="{{ $price['price'] }}"
                                 value="1"
                             >
                         </td>
@@ -64,7 +65,7 @@
                             <input type="number" step="0.01" 
                                 name="price_{{$item['id']}}_{{$price['id']}}" 
                                 class="form-control txt_price" 
-                                value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                                value="{{$price['price']}}"
                             >
                         </td>
                     @endif

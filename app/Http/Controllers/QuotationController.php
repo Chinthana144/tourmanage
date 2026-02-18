@@ -122,7 +122,7 @@ class QuotationController extends Controller
 
         $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation', 'qr_code'));
 
-        return $pdf->stream('Quotation-' . $quotation->quotation_no);
+        return $pdf->stream('Quotation-' . $quotation->quotation_no . '.pdf');
     }//generate pdf
 }//class
 
@@ -130,7 +130,7 @@ function generateQuotationNo()
 {
     $year = Carbon::now()->year;
 
-    $last_quotation = Quotations::where("quotation_no", 'LIKE', '-%')
+    $last_quotation = Quotations::where("quotation_no", 'LIKE', $year.'-%')
         ->orderBy('quotation_no', 'desc')
         ->first();
 

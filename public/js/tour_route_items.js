@@ -26,6 +26,12 @@ $(document).ready(function () {
         $("#div_activities").css('display', 'none');
         $("#div_travel").css('display', 'none');
 
+        $("#btn_locations").removeClass('btn-outline-primary').addClass('btn-primary');
+        $("#btn_hotels").removeClass('btn-success').addClass('btn-outline-success');
+        $("#btn_restaurants").removeClass('btn-warning').addClass('btn-outline-warning');
+        $("#btn_activities").removeClass('btn-info').addClass('btn-outline-info');
+        $("#btn_travel").removeClass('btn-secondary').addClass('btn-outline-secondary');
+
         //get all locations
         $.ajax({
             type: "get",
@@ -55,6 +61,12 @@ $(document).ready(function () {
         $("#div_activities").css('display', 'none');
         $("#div_travel").css('display', 'none');
 
+        $("#btn_locations").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_hotels").removeClass('btn-outline-success').addClass('btn-success');
+        $("#btn_restaurants").removeClass('btn-warning').addClass('btn-outline-warning');
+        $("#btn_activities").removeClass('btn-info').addClass('btn-outline-info');
+        $("#btn_travel").removeClass('btn-secondary').addClass('btn-outline-secondary');
+
         //get all hotels
         $.ajax({
             type: "get",
@@ -82,6 +94,12 @@ $(document).ready(function () {
         $("#div_restaurants").css('display', 'block');
         $("#div_activities").css('display', 'none');
         $("#div_travel").css('display', 'none');
+
+        $("#btn_locations").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_hotels").removeClass('btn-success').addClass('btn-outline-success');
+        $("#btn_restaurants").removeClass('btn-outline-warning').addClass('btn-warning');
+        $("#btn_activities").removeClass('btn-info').addClass('btn-outline-info');
+        $("#btn_travel").removeClass('btn-secondary').addClass('btn-outline-secondary');
 
         //get all restaurants
         $.ajax({
@@ -111,6 +129,12 @@ $(document).ready(function () {
         $("#div_activities").css('display', 'block');
         $("#div_travel").css('display', 'none');
 
+        $("#btn_locations").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_hotels").removeClass('btn-success').addClass('btn-outline-success');
+        $("#btn_restaurants").removeClass('btn-warning').addClass('btn-outline-warning');
+        $("#btn_activities").removeClass('btn-outline-info').addClass('btn-info');
+        $("#btn_travel").removeClass('btn-secondary').addClass('btn-outline-secondary');
+
         //get all activities
         $.ajax({
             type: "get",
@@ -138,6 +162,12 @@ $(document).ready(function () {
         $("#div_restaurants").css('display', 'none');
         $("#div_activities").css('display', 'none');
         $("#div_travel").css('display', 'block');
+
+        $("#btn_locations").removeClass('btn-primary').addClass('btn-outline-primary');
+        $("#btn_hotels").removeClass('btn-success').addClass('btn-outline-success');
+        $("#btn_restaurants").removeClass('btn-warning').addClass('btn-outline-warning');
+        $("#btn_activities").removeClass('btn-info').addClass('btn-outline-info');
+        $("#btn_travel").removeClass('btn-outline-secondary').addClass('btn-secondary');
 
         //get all travel media
         $.ajax({

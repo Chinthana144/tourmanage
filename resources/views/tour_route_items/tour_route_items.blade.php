@@ -58,10 +58,10 @@
                 
                 <div class="d-flex gap-2 align-items-center">
                     <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_locations">Locations</button>
-                    <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_hotels">Hotels</button>
-                    <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_restaurants">Restaurants</button>
-                    <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_activities">Activities</button>
-                    <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_travel">Travel</button>
+                    <button class="btn btn-outline-success ms-1 me-1 w-100" id="btn_hotels">Hotels</button>
+                    <button class="btn btn-outline-warning ms-1 me-1 w-100" id="btn_restaurants">Restaurants</button>
+                    <button class="btn btn-outline-info ms-1 me-1 w-100" id="btn_activities">Activities</button>
+                    <button class="btn btn-outline-secondary ms-1 me-1 w-100" id="btn_travel">Travel</button>
                 </div>
 
                 {{-- Location --}}
@@ -141,7 +141,7 @@
                                 <input type="text" name="res_note" class="form-control">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-primary float-end mt-2 w-100">Add Restaurant</button>
+                                <button class="btn btn-primary float-end mt-4 w-100">Add Restaurant</button>
                             </div>
                         </div>
                     </form>
@@ -168,7 +168,7 @@
                                 <input type="text" name="act_note" class="form-control">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-primary float-end mt-2 w-100">Add Activity</button>
+                                <button class="btn btn-primary float-end mt-4 w-100">Add Activity</button>
                             </div>
                         </div>
                         
@@ -195,7 +195,7 @@
                                 <input type="text" name="tvl_note" class="form-control">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-primary float-end mt-2 w-100">Add Travel Media</button>
+                                <button class="btn btn-primary float-end mt-4 w-100">Add Travel Media</button>
                             </div>
                         </div>
                     </form>

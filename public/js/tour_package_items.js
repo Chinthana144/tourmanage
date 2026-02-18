@@ -20,9 +20,14 @@ $(document).ready(function () {
     $("#div_main").on('keyup', '.txt_distance', function(){
         var distance = $(this).val();
         var pericePerKm = $(this).data('price-per-km');
-        $(this).closest('tr').find('.txt_price').val();
 
-        alert(pericePerKm);
+        if(distance == null)
+        {
+            distance = 0;
+        }
+
+        var price = parseFloat(pericePerKm) * parseFloat(distance);
+        $(this).closest('tr').find('.txt_price').val(price);
     });
 
 });//jQuery
