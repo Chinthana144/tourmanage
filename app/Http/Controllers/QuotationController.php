@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\QuotationItems;
 use App\Models\Quotations;
 use App\Models\TourPackageItems;
+use App\Models\TourRouteItems;
 use App\Models\Tours;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -111,6 +112,21 @@ class QuotationController extends Controller
             $tour->save();
         }
 
+        //get destinations
+        $destinations = TourRouteItems::where('tour_id', $tour_id)
+            ->where('item_type', 'App\Models\Locations')
+            ->get();
+        
+        //get hotels
+        $hotels = TourRouteItems::where('tour_id', $tour_id)
+            ->where('item_type', 'App\Models\Hotels')
+            ->get();
+
+        //get activities
+        $activities = TourRouteItems::where('tour_id', $tour_id)
+            ->where('item_type', 'App\Models\Activities')
+            ->get();
+
         //generate QR code
         $payment_url = url('https://akagiexp.com/payment-demo/' . $quotation->id);
 
@@ -120,7 +136,7 @@ class QuotationController extends Controller
                 ->generate($payment_url)
         );
 
-        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation', 'qr_code'));
+        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation', 'destinations', 'hotels', 'activities', 'qr_code'));
 
         return $pdf->stream('Quotation-' . $quotation->quotation_no . '.pdf');
     }//generate pdf
