@@ -310,30 +310,6 @@ VALUES
 (26, 'No Preference', 'No specific dietary restrictions or preferences.', NULL, NULL),
 (27, 'Other', 'Other or custom dietary preference not listed above.', NULL, NULL);
 
-
--- add room types
-INSERT INTO `room_types`(`name`) VALUES
-('Standard Room'),
-('Superior Room'),
-('Deluxe Room'),
-('Premier Room'),
-('Executive Room'),
-('Family Room'),
-('Triple Room'),
-('Quad Room'),
-('Junior Suite'),
-('Executive Suite'),
-('Family Suite'),
-('Deluxe Suite'),
-('Presidential Suite'),
-('Cabana'),
-('Chalet'),
-('Villa Room'),
-('Garden View Room'),
-('Ocean View Room'),
-('Mountain View Room'),
-('Pool View Room');
-
 -- add bed types
 INSERT INTO `bed_types` (`name`) VALUES
 ('Single Bed'),
@@ -425,32 +401,6 @@ INSERT INTO `price_modes`(`name`) VALUES
 INSERT INTO `seasons`(`name`) VALUES
 ('Season'),
 ('Off Season');
-
--- add hotel price modes
-INSERT INTO `hotel_price_modes`(`name`) VALUES
-('Extra Bed – Adult'),
-('Extra Bed – Child'),
-('Baby Cot / Crib'),
-('Room Upgrade (Higher Category)'),
-('Sea / City / Landmark View Upgrade'),
-('Early Check-in'),
-('Late Check-out'),
-('Breakfast Supplement (BB)'),
-('Half Board Supplement (HB)'),
-('Full Board Supplement (FB)'),
-('All Inclusive Supplement (AI)'),
-('Tourism / City Tax'),
-('Municipality / Local Fee'),
-('Service Charge'),
-('VAT / GST'),
-('Resort Fee'),
-('Spa / Wellness Access'),
-('Pool / Beach Access'),
-('Executive Lounge Access'),
-('Complimentary Upgrade (Subject to Availability)'),
-('Welcome Amenities (Fruits / Drinks)'),
-('Express Check-in / Concierge Service'),
-('Other');
 
 -- add travel countries
 INSERT INTO `travel_countries`(`name`) VALUES

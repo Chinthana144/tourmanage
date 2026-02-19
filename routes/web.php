@@ -2,12 +2,8 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FacilitiesController;
 use App\Http\Controllers\Hotelcontroller;
-use App\Http\Controllers\HotelPriceController;
-use App\Http\Controllers\HotelRoomController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PackageController;
@@ -24,13 +20,11 @@ use App\Http\Controllers\TourPackageItemController;
 use App\Http\Controllers\TourRequestController;
 use App\Http\Controllers\TourRequestLocationController;
 use App\Http\Controllers\TourRequestPeopleController;
-use App\Http\Controllers\TourRequestRoomController;
 use App\Http\Controllers\TourRoomController;
 use App\Http\Controllers\TourRouteItemController;
 use App\Http\Controllers\TravelMediaController;
 use App\Http\Controllers\UserController;
 use App\Models\TouristHealth;
-use App\Models\TourRequestRooms;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -59,9 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tourpackages', [MainController::class, 'tourPackageView'])->name('main.tour_packages');
     Route::get('/showCustomerRegister', [MainController::class, 'showCustomerRegister'])->name('main.show_customer_register');
     Route::post('/requestStore', [TourRequestController::class, 'requestStore'])->name('main.store_request');
-    Route::post('/addGroupComposition', [TourRequestPeopleController::class, 'storeRequestPeople']);
     Route::post('/tourDestination', [MainController::class, 'tourDestination'])->name('main.tour_destination');
-    Route::post('/toggleTourDestinations', [TourRequestLocationController::class, 'toggleTourDestinations']);
     Route::get('/about', [MainController::class, 'aboutView'])->name('main.about');
 
     //users
@@ -108,13 +100,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-hotel-price', [Hotelcontroller::class, 'storeHotelPrice'])->name('hotel_price.store');
     Route::post('/update-hotel-price', [Hotelcontroller::class, 'updateHotelPrice'])->name('hotel_price.update');
     Route::get('/getOneHotelPrice', [Hotelcontroller::class, 'getOneHotelPrice']);
-
-    //hotel rooms
-    Route::get('/hotel-rooms', [HotelRoomController::class, 'index'])->name('hotelrooms.index');
-    Route::post('/store-hotel-room', [HotelRoomController::class, 'store'])->name('hotelrooms.store');
-    Route::put('/update-hotel-room', [HotelRoomController::class, 'update'])->name('hotelrooms.update');
-    Route::post('/destroy-hotel-room', [HotelRoomController::class, 'destroy'])->name('hotelrooms.destroy');
-    Route::get('/getOneRoom', [HotelRoomController::class, 'getOneRoom']);
 
     //restaurants
     Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
@@ -196,19 +181,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/delete-tour-request', [TourRequestController::class, 'destroy'])->name('tour_request.destroy');
     Route::get('/getOneRequest', [TourRequestController::class, 'getOneRequest']);
 
-    //tour request people
-    Route::get('/tour-request-people', [TourRequestPeopleController::class, 'index'])->name('tour_request_people.index');
-    Route::post('/storeRequestPeople', [TourRequestPeopleController::class, 'storeRequestPeople']);
-    Route::get('/getAllRequestPeople', [TourRequestPeopleController::class, 'getAllRequestPeople']);
-    Route::get('/getOneRequestPeople', [TourRequestPeopleController::class, 'getOneRequestPeople']);
-    Route::post('/removeRequestPeople', [TourRequestPeopleController::class, 'removeRequestPeople']);
-
-    //tour request location
-    Route::get('/tour-request-location', [TourRequestLocationController::class, 'index'])->name('tour_request_location.index');
-    Route::post('store-tour-request-location', [TourRequestLocationController::class, 'store'])->name('tour_request_location.store');
-    Route::post('/storeTourRequestLocation', [TourRequestLocationController::class, 'storeTourRequestLocation']);
-    Route::get('/getRequestLocations', [TourRequestLocationController::class, 'getRequestLocations']);
-
     //tours
     Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
     Route::post('/store-tours', [TourController::class, 'store'])->name('tours.store');
@@ -235,10 +207,6 @@ Route::middleware('auth')->group(function () {
     //tour hotels
     Route::post('/store-tour-hotel', [TourHotelController::class, 'store'])->name('tour_hotel.store');
     Route::post('/update-tour-hotel', [TourHotelController::class, 'update'])->name('tour_hotel.update');
-
-    //tour rooms
-    Route::post('/store-tour-room', [TourRoomController::class, 'store'])->name('tour_request_room.store');
-    Route::delete('/destroy-tour-room', [TourRoomController::class, 'destroy'])->name('tour_request_room.destroy');
 
     //quotations
     Route::get('/quotations', [QuotationController::class, 'index'])->name('quotation.index');
