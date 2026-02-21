@@ -11,11 +11,17 @@
                     <th>Quotation No</th>
                     <th>Customer</th>
                     <th>Valid Date</th>
-                    <th>Package Prices</th>
+                    <th>Essential</th>
+                    <th>Classic</th>
+                    <th>Signature</th>
+                    <th>User</th>
                     <th>Action</th>
                 </tr> 
                 @foreach ($quotations as $quotation)
                     <tr>
+                        @php
+                            $prices = json_decode($quotation->package_prices);
+                        @endphp
                         <td>{{ $quotation->quotation_no }}</td>
                         <td>
                             {{ $quotation->tourRequest->customer_name }}
@@ -23,14 +29,22 @@
                             {{ $quotation->tourRequest->customer_email }}
                         </td>
                         <td>{{ $quotation->valid_until }}</td>
-                        {{-- <td>
-                            @php
-                                $prices = json_decode($quotation->package_prices);
-                            @endphp
-                            @foreach ($prices as $price)
-                                {{ $price->component_type .": ". $price->amount }} <br>
+                        <td>
+                            @foreach ($prices->essential_prices as $price)
+                                {{ Str::substr($price->component_type, 11) .": ". $price->total_price }} <br>
                             @endforeach
-                        </td> --}}
+                        </td>
+                        <td>
+                            @foreach ($prices->classic_prices as $price)
+                                {{ Str::substr($price->component_type, 11)  .": ". $price->total_price }} <br>
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($prices->signature_prices as $price)
+                                {{ Str::substr($price->component_type, 11)  .": ". $price->total_price }} <br>
+                            @endforeach
+                        </td>
+                        <td>{{ $quotation->user->first_name ." ". $quotation->user->last_name }}</td>
                         <td>
                             <form action="{{ route('quotation.generate') }}" method="get">
                                 @csrf

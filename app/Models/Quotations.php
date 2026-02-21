@@ -31,4 +31,9 @@ class Quotations extends Model
         return $this->hasMany(QuotationItems::class, 'quotation_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }//class

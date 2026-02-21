@@ -18,7 +18,7 @@ class QuotationController extends Controller
 {
     public function index()
     {
-        $quotations = Quotations::all();
+        $quotations = Quotations::orderBy('id', 'DESC')->paginate(10);
 
         return view('quotations.quotation_view', compact('quotations'));
     }

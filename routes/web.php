@@ -203,6 +203,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-package-items', [TourPackageItemController::class, 'index'])->name('tour_package_items.index');
     Route::post('/store-tour-package-item', [TourPackageItemController::class, 'store'])->name('tour_package_items.store');
     Route::post('/store-package-items', [TourPackageItemController::class, 'storePackageItems'])->name('package_items.store');
+    Route::get('/show-package-summary', [TourPackageItemController::class, 'showPackageSummary'])->name('package_summary.show');
 
     //tour hotels
     Route::post('/store-tour-hotel', [TourHotelController::class, 'store'])->name('tour_hotel.store');

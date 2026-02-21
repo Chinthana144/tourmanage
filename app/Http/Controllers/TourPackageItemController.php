@@ -533,6 +533,15 @@ class TourPackageItemController extends Controller
             }//switch
         }//foreach 
         
+        return redirect()->route('package_summary.show', ['tour_id' => $tour_id]);
+
+    }//store Items
+
+    public function showPackageSummary(Request $request)
+    {
+        $tour_id = $request->input('tour_id');
+        $tour = Tours::find($tour_id);
+
         //fetch package data
         $essential_packages = TourPackageItems::where('tour_id', $tour_id)
             ->where('package_id', 1)
@@ -603,10 +612,10 @@ class TourPackageItemController extends Controller
                 'classic_total', 
                 'signature_total'
                 ));
-
-    }//store Items
-
+    }
 }//class
+
+
 
 //===================== Functions =====================//
 function createTourPackageItem($tour_id, $season_id, $package_id, $price_mode_id, $component_type, $component_id, $description, $price, $status)

@@ -80,31 +80,31 @@
                                 <div class="div_image_container">
                                     <div class="img_slide">
                                         @if ($location->primary_image)
-                                            <img src="{{ asset($location->primary_image) }}" alt="Location Image">
+                                            <img src="{{ asset($location->primary_image) }}" alt="Location Image" id="img_display_{{$location->id}}">
                                         @endif
                                     </div>
                                     <div class="div_image_gallery">
-                                        <div class="div_gallery_items" data-image="{{$location->primary_image}}">
+                                        <div class="div_gallery_items" data-image="{{$location->primary_image}}" data-id="{{$location->id}}">
                                             @if ($location->primary_image)
                                                 <img src="{{ asset($location->primary_image) }}" alt="Location Image">
                                             @endif
                                         </div>
-                                        <div class="div_gallery_items" data-image="{{$location->image1}}">
+                                        <div class="div_gallery_items" data-image="{{$location->image1}}" data-id="{{$location->id}}">
                                             @if ($location->image1)
                                                 <img src="{{ asset($location->image1) }}" alt="Image 1">
                                             @endif
                                         </div>
-                                        <div class="div_gallery_items" data-image="{{$location->image2}}">
+                                        <div class="div_gallery_items" data-image="{{$location->image2}}" data-id="{{$location->id}}">
                                             @if ($location->image2)
                                                 <img src="{{ asset($location->image2) }}" alt="Image 2">
                                             @endif
                                         </div>
-                                        <div class="div_gallery_items" data-image="{{$location->image3}}">
+                                        <div class="div_gallery_items" data-image="{{$location->image3}}" data-id="{{$location->id}}">
                                             @if ($location->image3)
                                                 <img src="{{ asset($location->image3) }}" alt="Image 3">
                                             @endif
                                         </div>
-                                        <div class="div_gallery_items" data-image="{{$location->image4}}">
+                                        <div class="div_gallery_items" data-image="{{$location->image4}}" data-id="{{$location->id}}">
                                             @if ($location->image4)
                                                 <img src="{{ asset($location->image4) }}" alt="Image 4">
                                             @endif
