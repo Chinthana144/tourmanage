@@ -83,6 +83,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "essential"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>
@@ -122,7 +123,7 @@
                             <input type="number" step="0.01" 
                                 name="price_{{$item['id']}}_{{$price['id']}}" 
                                 class="form-control txt_price" 
-                                value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                                value="{{$price['price']}}"
                             >
                         </td>
                     @endif
@@ -140,6 +141,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "classic"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>
@@ -162,6 +164,7 @@
                         <td>
                             <input type="number" step="0.01"
                                 name="distance_{{$item['id']}}_{{$price['id']}}"
+                                data-price-per-km="{{ $price['price'] }}"
                                 class="form-control txt_distance"
                                 value="1"
                             >
@@ -169,7 +172,7 @@
                         <td>
                             <input type="number" step="0.01" 
                                 name="price_{{$item['id']}}_{{$price['id']}}" 
-                                class="form-control txt_price"
+                                class="form-control txt_price" 
                                 value="{{ $price['price'] }}"
                             >
                         </td> 
@@ -178,7 +181,7 @@
                             <input type="number" step="0.01" 
                                 name="price_{{$item['id']}}_{{$price['id']}}" 
                                 class="form-control txt_price" 
-                                value="{{($item['adults'] + $item['children']) * $price['price']}}"
+                                value="{{$price['price']}}"
                             >
                         </td>
                     @endif
@@ -196,6 +199,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "signature"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>

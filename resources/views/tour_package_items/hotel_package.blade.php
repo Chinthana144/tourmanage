@@ -46,6 +46,7 @@
                     @switch($price['price_mode_id'])
                         @case(1)
                             <td>People: {{$item['adults'] + $item['children']}}</td>
+                            <td>Price: {{$price['price']}}</td>
                             <td>
                                 <input type="number" step="0.01" 
                                     name="price_{{$item['id']}}_{{$price['id']}}" 
@@ -88,6 +89,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "essential"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>
@@ -109,6 +111,7 @@
                     @switch($price['price_mode_id'])
                         @case(1)
                             <td>People: {{$item['adults'] + $item['children']}}</td>
+                            <td>Price: {{$price['price']}}</td>
                             <td>
                                 <input type="number" step="0.01" 
                                     name="price_{{$item['id']}}_{{$price['id']}}" 
@@ -129,6 +132,8 @@
                             </td>
                         @break
                         @default
+                            <td>Room(s): {{$item['rooms_count']}}</td>
+                            <td>Price: {{$price['price']}}</td>
                             <td>
                                 <input type="number" step="0.01" 
                                     name="price_{{$item['id']}}_{{$price['id']}}" 
@@ -151,6 +156,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "classic"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>
@@ -171,6 +177,7 @@
                     @switch($price['price_mode_id'])
                         @case(1)
                             <td>People: {{$item['adults'] + $item['children']}}</td>
+                            <td>Price: {{$price['price']}}</td>
                             <td>
                                 <input type="number" step="0.01" 
                                     name="price_{{$item['id']}}_{{$price['id']}}" 
@@ -191,6 +198,8 @@
                             </td>
                         @break
                         @default
+                            <td>Room(s): {{$item['rooms_count']}}</td>
+                            <td>Price: {{$price['price']}}</td>
                             <td>
                                 <input type="number" step="0.01" 
                                     name="price_{{$item['id']}}_{{$price['id']}}" 
@@ -213,6 +222,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "signature"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>

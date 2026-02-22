@@ -77,6 +77,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "essential"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>
@@ -110,6 +111,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "classic"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>
@@ -143,6 +145,7 @@
                             name="chk_price_{{$item['id']}}_{{$price['id']}}"
                             class="chk_price"
                             data-item-id ="{{ $item['id'] }}"
+                            data-package-type = "signature"
                             style="width:1.5rem; height:1.5rem;"
                         >
                     </td>
