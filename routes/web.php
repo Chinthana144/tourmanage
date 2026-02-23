@@ -3,6 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GuideController;
 use App\Http\Controllers\Hotelcontroller;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MainController;
@@ -213,6 +214,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/quotations', [QuotationController::class, 'index'])->name('quotation.index');
     Route::post('/store-quotation', [QuotationController::class, 'store'])->name('quotation.store');
     Route::get('/generatePdf', [QuotationController::class, 'generatePdf'])->name('quotation.generate');
+
+    //guides
+    Route::get('/guides', [GuideController::class, 'index'])->name('guide.index');
 });
 
 // Route::get('/template', function () {

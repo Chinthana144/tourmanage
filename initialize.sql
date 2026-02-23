@@ -375,13 +375,6 @@ INSERT INTO `tour_purposes`(`name`) VALUES
 ('Educational Tour'),
 ('Custom / Tailor-Made Tour');
 
--- add group composition
-INSERT INTO `group_compositions`(`name`) VALUES
-('Singles'),
-('Couples'),
-('Families'),
-('Friends');
-
 -- add tour packages
 INSERT INTO `tour_packages`(`name`) VALUES
 ('Akagi Essential'),

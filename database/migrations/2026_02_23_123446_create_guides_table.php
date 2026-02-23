@@ -11,9 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('group_compositions', function (Blueprint $table) {
+        Schema::create('guides', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('password');
+            $table->string('profile_image');
+            $table->json('languages');
+            $table->smallInteger('rate');
+            $table->foreignId('travel_media_id')->nullable();
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
@@ -23,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group_compositions');
+        Schema::dropIfExists('guides');
     }
 };
