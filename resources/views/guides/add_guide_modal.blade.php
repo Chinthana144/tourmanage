@@ -9,6 +9,8 @@
       <form action="" method="post">
         @csrf
         <div class="modal-body">
+            <label for="">Select travel media</label>
+            <select name="cmb_travel_media" id="cmb_travel_media" class="form-control" style="width: 100%;"></select>
             <label for="">Name</label>
             <input type="text" name="name" class="form-control mb-2">
             <label for="">Phone</label>
@@ -17,6 +19,7 @@
             <input type="text" name="name" class="form-control mb-2">
             <label for="">Password (Mobile app access)</label>
             <input type="password" name="name" class="form-control mb-2">
+            
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

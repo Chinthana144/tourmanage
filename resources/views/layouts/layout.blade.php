@@ -17,6 +17,9 @@
 
      {{-- common styles --}}
      <link rel="stylesheet" href="{{ asset('css/common_style.css') }}">
+
+     {{-- seelct 2 libruary --}}
+     <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
    </head>
 <body>
 
@@ -27,7 +30,7 @@
 
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/navbar.js') }}"></script>
-
+    <script src="{{ asset('js/select2.min.js') }}"></script>
 
 </body>
 </html>

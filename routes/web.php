@@ -143,6 +143,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/remove-travel-media', [TravelMediaController::class, 'remove'])->name('travel_media.remove');
     Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
     Route::get('/getTravelMedia', [TravelMediaController::class, 'getTravelMedia']);
+    Route::get('/searchTravelMedia', [TravelMediaController::class, 'searchTravelMedia']);
 
     //travel prices
     Route::get('/show-travel-price', [TravelMediaController::class, 'showTravelPrice'])->name('travel_price.view');
