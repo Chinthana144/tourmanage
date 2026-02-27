@@ -1,12 +1,12 @@
-<div class="modal" tabindex="-1" id="add_guide_modal">
+<div class="modal" tabindex="-1" id="edit_guide_modal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add Guide</h5>
+        <h5 class="modal-title">Update Guide</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <form action="{{ route('guide.store') }}" method="post" enctype="multipart/form-data">
+      <form action="" method="post" enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
             <div class="row">

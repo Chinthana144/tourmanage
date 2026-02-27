@@ -218,6 +218,7 @@ Route::middleware('auth')->group(function () {
 
     //guides
     Route::get('/guides', [GuideController::class, 'index'])->name('guide.index');
+    Route::post('/store-guide', [GuideController::class, 'store'])->name('guide.store');
 });
 
 // Route::get('/template', function () {
