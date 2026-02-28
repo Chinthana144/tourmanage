@@ -44,17 +44,17 @@ popularity Stars
 /*--------------------------------------------
 Guide start rate
 ---------------------------------------------*/
-#div_guide_rate{
+.div_guide_rate{
     display: flex;
     flex-direction: row;
 }
-#div_guide_rate i{
+.div_guide_rate i{
     font-size: 24px;
     transition: all 0.4s;
     color: rgb(234, 234, 21);   
 }
 
-#div_guide_rate i:hover{
+.div_guide_rate i:hover{
     transform: scale(1.1);
 }
 

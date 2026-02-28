@@ -68,7 +68,7 @@
 
                   {{-- rate --}}
                   <label for="" class="mt-2">Rate</label>
-                  <div id="div_guide_rate">
+                  <div class="div_guide_rate">
                       <i class="bx bx-star icon_star star_one" data-value="1"></i>
                       <i class="bx bx-star icon_star star_two" data-value="2"></i>
                       <i class="bx bx-star icon_star star_three" data-value="3"></i>

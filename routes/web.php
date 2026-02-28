@@ -219,6 +219,8 @@ Route::middleware('auth')->group(function () {
     //guides
     Route::get('/guides', [GuideController::class, 'index'])->name('guide.index');
     Route::post('/store-guide', [GuideController::class, 'store'])->name('guide.store');
+    Route::put('/update-guide', [GuideController::class, 'update'])->name('guide.update');
+    Route::get('/getOneGuide', [GuideController::class, 'getOneGuide']);
 });
 
 // Route::get('/template', function () {

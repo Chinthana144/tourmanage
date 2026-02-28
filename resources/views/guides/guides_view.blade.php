@@ -47,7 +47,7 @@
                             @endif
                         </td>
                         <td>
-                            <div id="div_guide_rate">
+                            <div class="div_guide_rate">
                                 <i class="icon_star star_one {{ $guide->rate >=1 ? 'bx bxs-star':'bx bx-star' }}" data-value="1"></i>
                                 <i class="icon_star star_two {{ $guide->rate >=2 ? 'bx bxs-star':'bx bx-star' }}" data-value="2"></i>
                                 <i class="icon_star star_three {{ $guide->rate >=3 ? 'bx bxs-star':'bx bx-star' }}" data-value="3"></i>
@@ -74,6 +74,7 @@
     </div>
 
     @include('guides.add_guide_modal')
+    @include('guides.edit_guide_modal')
 
     <script src="{{ asset('js/guide_view.js') }}"></script>
 @endsection
