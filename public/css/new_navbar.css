@@ -1,0 +1,74 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.side-navbar{
+    width: 270px;
+    background-color: rgb(3, 12, 93);
+    border-radius: 10px;
+    position: fixed;
+    height: 100vh;
+}
+
+.side-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px;
+}
+#img_navbar_logo{
+    width: 56px;
+    height: 56px;
+}
+
+.navbar .navbar-list{
+    list-style: none;
+}
+.navbar-item{
+    margin: 16px 0px;
+    /* background-color: aliceblue; */
+}
+.nav-link{
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    margin: 30px 20px;
+}
+
+#route-list{
+    margin-left: 48px;
+    background-color: #221199;
+    border-radius: 5px;
+}
+#route-list .route-items{
+    list-style: none;
+    padding: 5px;
+    transition: all 0.4s ease;
+}
+#route-list .route-items a{
+    text-decoration: none;
+    color: #fdfdfd;
+    transition: all 0.4s ease;
+}
+#route-list .route-items a:hover{
+    text-decoration: none;
+    color: #111;
+}
+#route-list .route-items:hover{
+    background-color: #fdfdfd;
+    color: #111;
+}
+
+.btn_menu_toggler{
+    border: none;
+    color: #fdfdfd;
+    background-color: inherit;
+    font-size: 22px;
+    margin: 5px 0;
+    padding: 5px;
+    width: 100%;
+    text-align: left;
+}

@@ -221,6 +221,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/store-guide', [GuideController::class, 'store'])->name('guide.store');
     Route::put('/update-guide', [GuideController::class, 'update'])->name('guide.update');
     Route::get('/getOneGuide', [GuideController::class, 'getOneGuide']);
+
+    //test new side navigation bar
+    Route::get('/new-navbar', function(){
+        return view('layouts.new_navbar');
+    });
 });
 
 // Route::get('/template', function () {
