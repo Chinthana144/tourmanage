@@ -10,6 +10,9 @@
     border-radius: 10px;
     position: fixed;
     height: 100vh;
+    overflow: auto;
+    overflow-x: hidden;
+    transition: all 0.4s ease;
 }
 
 .side-header{
@@ -30,43 +33,82 @@
 .navbar-item{
     margin: 16px 0px;
     /* background-color: aliceblue; */
+    transition: all 0.4s ease;
 }
 .nav-link{
     color: #fff;
     text-decoration: none;
-    font-size: 22px;
-    margin: 30px 20px;
+    font-size: 18px;
+}
+.nav-button{
+    width: 100%;
+    background-color: inherit;
+    /* border: none; */
+    color: #fff;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
-#route-list{
+.div_label{
+    display: none;
+    color: #fff;
+    background-color: #221199;
+    position: fixed;
+    z-index: 100;
+    left: 56px;
+    width: 180px;
+    padding: 10px 0;
+}
+.link-hover{
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s ease;
+}
+.link-hover:hover{
+    background-color: #2211aa;
+}
+.btn_menu_item{
+    width: 100%;
+    background-color: inherit;
+    color: #fff;
+    border: none;
+    padding: 5px 0;
+}
+
+.drop-list{
     margin-left: 48px;
     background-color: #221199;
     border-radius: 5px;
+    display: none;
+    /* transition: all 0.4s ease; */
 }
-#route-list .route-items{
+.drop-list .route-items{
     list-style: none;
     padding: 5px;
     transition: all 0.4s ease;
 }
-#route-list .route-items a{
+.drop-list .route-items a{
     text-decoration: none;
     color: #fdfdfd;
     transition: all 0.4s ease;
 }
-#route-list .route-items a:hover{
+.drop-list .route-items a:hover{
     text-decoration: none;
     color: #111;
 }
-#route-list .route-items:hover{
+.drop-list .route-items:hover{
     background-color: #fdfdfd;
     color: #111;
 }
 
 .btn_menu_toggler{
-    border: none;
+    /* border: none; */
     color: #fdfdfd;
     background-color: inherit;
-    font-size: 22px;
+    font-size: 18px;
     margin: 5px 0;
     padding: 5px;
     width: 100%;
