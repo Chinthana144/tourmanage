@@ -2,10 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .side-navbar{
-    width: 270px;
+    width: 56px;
     background-color: rgb(3, 12, 93);
     border-radius: 10px;
     position: fixed;
@@ -17,7 +18,7 @@
 
 .side-header{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px 15px;
@@ -26,12 +27,55 @@
     width: 56px;
     height: 56px;
 }
+.toggler{
+    font-size: 18px;
+    background-color: #e9e9e9;
+    color: #111;
+    border: none;
+    padding: 5px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all 0.4s ease;
+    justify-content: center;
+}
+.toggler:hover{
+    background-color: #fff;
+}
+.icon_out{
+    transform: rotate(180deg);
+}
+.icon_in{
+    transform: rotate(-180deg);
+}
 
+/* ---  Content ---- */
+#div_page{
+    margin-left: 56px;
+    transition: all 0.4s ease;
+}
+#content_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+}
+#btn_logout{
+    background-color: inherit;
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-item-label{
+    display: none;
+    margin-left: 10px;
+}
 .navbar .navbar-list{
     list-style: none;
 }
 .navbar-item{
-    margin: 16px 0px;
+    /* margin: 16px 0px; */
     /* background-color: aliceblue; */
     transition: all 0.4s ease;
 }
@@ -43,13 +87,19 @@
 .nav-button{
     width: 100%;
     background-color: inherit;
-    /* border: none; */
+    border: none;
+    border-radius: 10px;
     color: #fff;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding: 16px 0;
+    transition: all 0.4s ease;
+}
+.nav-button:hover{
+    background-color: #2211aa;
 }
 
 .div_label{
@@ -65,43 +115,25 @@
 .link-hover{
     text-decoration: none;
     color: #fff;
-    transition: all 0.4s ease;
 }
-.link-hover:hover{
-    background-color: #2211aa;
-}
+
 .btn_menu_item{
     width: 100%;
     background-color: inherit;
     color: #fff;
     border: none;
     padding: 5px 0;
+    transition: all 0.4s ease;
+}
+.btn_menu_item:hover{
+    background-color: #221188;
 }
 
-.drop-list{
-    margin-left: 48px;
-    background-color: #221199;
-    border-radius: 5px;
+#route_menu{
     display: none;
-    /* transition: all 0.4s ease; */
 }
-.drop-list .route-items{
-    list-style: none;
-    padding: 5px;
-    transition: all 0.4s ease;
-}
-.drop-list .route-items a{
-    text-decoration: none;
-    color: #fdfdfd;
-    transition: all 0.4s ease;
-}
-.drop-list .route-items a:hover{
-    text-decoration: none;
-    color: #111;
-}
-.drop-list .route-items:hover{
-    background-color: #fdfdfd;
-    color: #111;
+.div_menu{
+    background-color: #2211aa;
 }
 
 .btn_menu_toggler{
