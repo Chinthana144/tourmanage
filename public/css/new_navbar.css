@@ -49,24 +49,6 @@
     transform: rotate(-180deg);
 }
 
-/* ---  Content ---- */
-#div_page{
-    margin-left: 56px;
-    transition: all 0.4s ease;
-}
-#content_header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 5px;
-}
-#btn_logout{
-    background-color: inherit;
-    font-size: 22px;
-    border: none;
-    cursor: pointer;
-}
-
 .nav-item-label{
     display: none;
     margin-left: 10px;
@@ -145,4 +127,59 @@
     padding: 5px;
     width: 100%;
     text-align: left;
+}
+
+
+/* ---  Content ---- */
+#div_page{
+    margin-left: 56px;
+    transition: all 0.4s ease;
+}
+#content_desktop_header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 5px;
+}
+#btn_logout{
+    background-color: inherit;
+    font-size: 22px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ------------------ mobile Nav bar ------------------ */
+#content_mobile_header{
+    display: none;
+    background-color: #221188;
+    padding: 5px;
+}
+#btn_mobile_toggler{
+    display: block;
+    background-color: inherit;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+}
+
+/* ------------------ responsive design for mobile ------------------ */
+@media screen and (max-width: 600px){
+    #side_navbar{
+        display: none;
+    }
+    #content_desktop_header{
+        display: none;
+    }
+    #div_page{
+        margin: 0;
+    }
+    #content_mobile_header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: #fff;
+    }
+    #btn_logout{
+        color: #fff;
+    }
 }

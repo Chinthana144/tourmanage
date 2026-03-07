@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">    
-    <title>New Nav bar</title>
+    <title>Akagi eXperiences</title>
 
     <link rel="stylesheet" href="{{ asset('bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/new_navbar.css') }}">
 
-
 </head>
 <body>
     <div id="div_main">
+        {{-- side navigation bar --}}
         <aside class="side-navbar" id="side_navbar">
             <header class="side-header">
                 <a href="#">
@@ -38,7 +38,18 @@
                                 <span class="nav-item-label">Home</span>
                             </button>
                         </a> 
-                                        
+                    </li>
+
+                    <li class="navbar-item">
+                        <div class="div_label">
+                            <a href="#" class="link-hover">Packages</a>
+                        </div> 
+                        <a href="#" class="nav-link">
+                            <button class="nav-button">
+                                <i class="bi bi-stack"></i>
+                                <span class="nav-item-label">Packages</span>
+                            </button>
+                        </a> 
                     </li>
 
                     <li class="navbar-item">
@@ -92,8 +103,28 @@
                 </ul>
             </nav>
         </aside>
+
+        {{-- mobile navigation bar --}}
+        <div id="div_mobile_navbar">
+            <div id="content_mobile_header">
+                <button id="btn_mobile_toggler"><i class="bi bi-list"></i></button>
+                <h3>Akagi Experiences</h3>
+                <a href="{{ route('logout') }}">
+                    <button id="btn_logout"><i class="bi bi-power"></i></button>    
+                </a>
+            </div>
+            <nav class="navbar">
+                <a href="#">
+                    <button>
+                        <i class="bi bi-house-fill nav_icon"></i>
+                        Home
+                    </button>
+                </a>
+            </nav>
+        </div>
+
         <div id="div_page">
-            <div id="content_header">
+            <div id="content_desktop_header">
                 <h3>Akagi Experiences</h3>
                 <a href="{{ route('logout') }}">
                     <button id="btn_logout"><i class="bi bi-power"></i></button>    
