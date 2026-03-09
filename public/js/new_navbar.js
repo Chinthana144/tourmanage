@@ -1,10 +1,11 @@
 $(document).ready(function () {
     var navbarExpanded = true;
+    var mobileNavbarExpanded = false;
 
     $("#btn_toggler").click(function (e) { 
         e.preventDefault();
         var width = $("#side_navbar").css('width');
-        console.log(width);
+        // console.log(width);
         
         if($("#side_navbar").css('width') == '270px')
         {
@@ -59,6 +60,18 @@ $(document).ready(function () {
         }//hover out
     );
 
+    $("#btn_nav_packages").click(function(e){
+        e.preventDefault();
+        if(!navbarExpanded){
+            if($("#package_menu").css('display') == 'none'){
+                $("#package_menu").fadeIn(300);
+            }
+            else{
+                $("#package_menu").fadeOut(300);
+            }
+        }
+    });
+
     $("#btn_nav_routes").click(function (e) { 
         e.preventDefault();
         if(!navbarExpanded){
@@ -70,4 +83,28 @@ $(document).ready(function () {
             }
         }
     });
+
+    //=================== Mobile navbar =================//
+    $("#btn_mobile_toggler").click(function(){
+        if(mobileNavbarExpanded == false){
+            $("#navbar_mobile").fadeIn(300);
+            mobileNavbarExpanded = true;
+        }
+        else{
+            $("#navbar_mobile").fadeOut(300);
+            mobileNavbarExpanded = false;
+        }
+    });
+
+    $("#btn_nav_routes_mobile").click(function (e) { 
+        e.preventDefault();
+        if($("#route_menu_mobile").css('display') == 'none')
+        {
+            $("#route_menu_mobile").css('display', 'block');
+        }
+        else{
+            $("#route_menu_mobile").css('display', 'none');
+        }
+    });
+
 });

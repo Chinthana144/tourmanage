@@ -1,3 +1,11 @@
+/* define colors */
+:root{
+    --primary-color:  rgb(3, 12, 93);
+    --text-highlight-color: #fff;
+    --menu-color: #221199;
+    --menu-hover-color: #222288;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -7,7 +15,7 @@
 
 .side-navbar{
     width: 56px;
-    background-color: rgb(3, 12, 93);
+    background-color: var(--primary-color);
     border-radius: 10px;
     position: fixed;
     height: 100vh;
@@ -40,7 +48,7 @@
     justify-content: center;
 }
 .toggler:hover{
-    background-color: #fff;
+    background-color: var(--text-highlight-color);
 }
 .icon_out{
     transform: rotate(180deg);
@@ -62,16 +70,16 @@
     transition: all 0.4s ease;
 }
 .nav-link{
-    color: #fff;
+    color: var(--text-highlight-color);
     text-decoration: none;
     font-size: 18px;
 }
-.nav-button{
+.nav_button{
     width: 100%;
     background-color: inherit;
     border: none;
     border-radius: 10px;
-    color: #fff;
+    color: var(--text-highlight-color);
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -80,13 +88,13 @@
     padding: 16px 0;
     transition: all 0.4s ease;
 }
-.nav-button:hover{
+.nav_button:hover{
     background-color: #2211aa;
 }
 
 .div_label{
     display: none;
-    color: #fff;
+    color: var(--text-highlight-color);
     background-color: #221199;
     position: fixed;
     z-index: 100;
@@ -96,26 +104,24 @@
 }
 .link-hover{
     text-decoration: none;
-    color: #fff;
+    color: var(--text-highlight-color);
 }
 
 .btn_menu_item{
     width: 100%;
     background-color: inherit;
-    color: #fff;
+    color: var(--text-highlight-color);
     border: none;
     padding: 5px 0;
     transition: all 0.4s ease;
 }
 .btn_menu_item:hover{
-    background-color: #221188;
+    background-color: var(--menu-hover-color);
 }
 
-#route_menu{
-    display: none;
-}
 .div_menu{
-    background-color: #2211aa;
+    display: none;
+    background-color: var(--menu-color);
 }
 
 .btn_menu_toggler{
@@ -149,17 +155,53 @@
 }
 
 /* ------------------ mobile Nav bar ------------------ */
+#navbar_mobile{
+    display: none;
+    width: 60%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 32px;
+    background-color: var(--primary-color);
+}
 #content_mobile_header{
     display: none;
-    background-color: #221188;
+    background-color: var(--primary-color);
     padding: 5px;
 }
 #btn_mobile_toggler{
     display: block;
     background-color: inherit;
-    color: #fff;
+    color: var(--text-highlight-color);
     border: none;
     font-size: 20px;
+}
+.btn_nav_mobile{
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    padding: 10px 0;
+    color: #eee;
+    transition: all 0.4s ease;
+}
+.btn_nav_mobile:hover{
+    background-color: var(--menu-hover-color);
+    color: var(--text-highlight-color);
+}
+.div_mobile_menu{
+    display: none;
+    background-color: var(--menu-color);
+}
+
+/* footer */
+#footer{
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    bottom: 0;
+    text-align: right;
+    font-size: 11px;
 }
 
 /* ------------------ responsive design for mobile ------------------ */
@@ -168,7 +210,7 @@
         display: none;
     }
     #content_desktop_header{
-        display: none;
+        display: none;  
     }
     #div_page{
         margin: 0;
