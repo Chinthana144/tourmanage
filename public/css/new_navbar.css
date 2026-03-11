@@ -3,7 +3,7 @@
     --primary-color:  rgb(3, 12, 93);
     --text-highlight-color: #fff;
     --menu-color: #221199;
-    --menu-hover-color: #222288;
+    --menu-hover-color: #2121c7;
 }
 
 *{
@@ -20,7 +20,6 @@
     position: fixed;
     height: 100vh;
     overflow: auto;
-    overflow-x: hidden;
     transition: all 0.4s ease;
 }
 
@@ -57,23 +56,12 @@
     transform: rotate(-180deg);
 }
 
-.nav-item-label{
-    display: none;
-    margin-left: 10px;
+.navbar{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
 }
-.navbar .navbar-list{
-    list-style: none;
-}
-.navbar-item{
-    /* margin: 16px 0px; */
-    /* background-color: aliceblue; */
-    transition: all 0.4s ease;
-}
-.nav-link{
-    color: var(--text-highlight-color);
-    text-decoration: none;
-    font-size: 18px;
-}
+
 .nav_button{
     width: 100%;
     background-color: inherit;
@@ -85,7 +73,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 16px 0;
+    padding: 16px 16px;
     transition: all 0.4s ease;
 }
 .nav_button:hover{
@@ -93,48 +81,70 @@
 }
 
 .div_label{
-    display: none;
-    color: var(--text-highlight-color);
-    background-color: #221199;
     position: fixed;
-    z-index: 100;
     left: 56px;
-    width: 180px;
-    padding: 10px 0;
-}
-.link-hover{
-    text-decoration: none;
-    color: var(--text-highlight-color);
+    z-index: 100;
 }
 
-.btn_menu_item{
+
+
+/*--- Nav Items ---*/
+.nav_link{
+    text-decoration: none;
+}
+#desktop_nav_items{
+    list-style: none;
+    padding: 0;
     width: 100%;
+}
+.list_items{
+    color: var(--text-highlight-color);
+}
+.list_item_label{
+    display: none;
+    margin-left: 10px;
+}
+.div_nav_hover{
+    display: none;
+    position: fixed;
+    left: 56px;
+    z-index: 200;
+    width: 160px;
+    padding: 5px;
+    background-color: var(--menu-color);
+    justify-content: center;
+}
+
+.flag_button{
+    width: 100%;
+    border: none;
+    border-radius: 5px;
     background-color: inherit;
     color: var(--text-highlight-color);
-    border: none;
     padding: 5px 0;
     transition: all 0.4s ease;
 }
-.btn_menu_item:hover{
+.flag_button:hover{
     background-color: var(--menu-hover-color);
 }
 
 .div_menu{
     display: none;
+    padding: 5px;
     background-color: var(--menu-color);
 }
-
-.btn_menu_toggler{
-    /* border: none; */
-    color: #fdfdfd;
-    background-color: inherit;
-    font-size: 18px;
-    margin: 5px 0;
-    padding: 5px;
+.menu_button{
     width: 100%;
-    text-align: left;
+    border: none;
+    border-radius: 5px;
+    background-color: inherit;
+    color: var(--text-highlight-color);
+    padding: 5px 0;
+    transition: all 0.4s ease;
 }
-
+.menu_button:hover{
+    background-color: var(--menu-hover-color);
+}
 
 /* ---  Content ---- */
 #div_page{

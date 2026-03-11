@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.new_navbar')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/location.css') }}">

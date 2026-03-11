@@ -9,6 +9,7 @@ $(document).ready(function () {
         
         if($("#side_navbar").css('width') == '270px')
         {
+            //minimize
             var width = $("#side_navbar").css('width');
             $("#side_navbar").css('width', '56px');
             
@@ -17,13 +18,13 @@ $(document).ready(function () {
             //header setup
             $(".side-header").css('flex-direction', 'column');
 
-            $(".nav-item-label").css('display', 'none');
+            $(".list_item_label").css('display', 'none');
             $(".div_menu").css('display', 'none');
-            $(".nav-button i").css('margin', '0');
             $("#div_page").css('margin-left', '56px');
             $("#btn_toggler").removeClass('icon_in');
         }
         else{
+            //expand
             $("#side_navbar").css('width', '270px');
 
             navbarExpanded = false;
@@ -31,24 +32,24 @@ $(document).ready(function () {
             //header setup
             $(".side-header").css('flex-direction', 'row');
 
-            $(".nav-item-label").css('display', 'block');
-            $(".div_label").fadeOut(200);
-            $("#div_page").css('margin-left', '270px');
+            $(".list_item_label").css('display', 'block');
+            $(".div_nav_hover").fadeOut(200);
+            // $("#div_page").css('margin-left', '270px');
             $("#btn_toggler").addClass('icon_in');
         }
     });
 
     //hover
-    $(".nav-button").hover(
+    $(".nav_button").hover(
         function(){
             if(navbarExpanded){
-                var label = $(this).closest('.navbar-item').find('.div_label');
-                $(".div_label").fadeOut(200);
-                label.fadeIn(200);
+                var label = $(this).closest('.list_items').find('.div_nav_hover');
+                $(".div_nav_hover").fadeOut(200);
+                label.fadeIn(200);                
             }
         },
         function(){
-            var label = $(this).closest('.navbar-item').find('.div_label');
+            var label = $(this).closest('.list_items').find('.div_nav_hover');
             label.hover(
                 function(){
                     label.css('display', 'block');
@@ -72,14 +73,14 @@ $(document).ready(function () {
         }
     });
 
-    $("#btn_nav_routes").click(function (e) { 
+    $("#btn_nav_route").click(function (e) { 
         e.preventDefault();
         if(!navbarExpanded){
-            if($("#route_menu").css('display') == 'none'){
-                $("#route_menu").fadeIn(300);
+            if($("#div_route_menu").css('display') == 'none'){
+                $("#div_route_menu").fadeIn(300);
             }
             else{
-                $("#route_menu").fadeOut(200);
+                $("#div_route_menu").fadeOut(200);
             }
         }
     });
