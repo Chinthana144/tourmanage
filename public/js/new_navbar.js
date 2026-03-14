@@ -73,6 +73,20 @@ $(document).ready(function () {
         }
     });
 
+    // package menu toggle
+    $("#btn_nav_package").click(function (e) { 
+        e.preventDefault();
+        if(!navbarExpanded){
+            if($("#div_package_menu").css('display') == 'none'){
+                $("#div_package_menu").fadeIn(300);
+            }
+            else{
+                $("#div_package_menu").fadeOut(200);
+            }
+        }
+    });
+
+    // route menu toggle
     $("#btn_nav_route").click(function (e) { 
         e.preventDefault();
         if(!navbarExpanded){
@@ -81,6 +95,45 @@ $(document).ready(function () {
             }
             else{
                 $("#div_route_menu").fadeOut(200);
+            }
+        }
+    });
+
+    // quotation menu toggle
+    $("#btn_nav_quotation").click(function (e) { 
+        e.preventDefault();
+        if(!navbarExpanded){
+            if($("#div_quotation_menu").css('display') == 'none'){
+                $("#div_quotation_menu").fadeIn(300);
+            }
+            else{
+                $("#div_quotation_menu").fadeOut(200);
+            }
+        }
+    });
+
+    // asset menu toggle
+    $("#btn_nav_asset").click(function (e) { 
+        e.preventDefault();
+        if(!navbarExpanded){
+            if($("#div_asset_menu").css('display') == 'none'){
+                $("#div_asset_menu").fadeIn(300);
+            }
+            else{
+                $("#div_asset_menu").fadeOut(200);
+            }
+        }
+    });
+
+    // settings menu toggle
+    $("#btn_nav_settings").click(function (e) { 
+        e.preventDefault();
+        if(!navbarExpanded){
+            if($("#div_settings_menu").css('display') == 'none'){
+                $("#div_settings_menu").fadeIn(300);
+            }
+            else{
+                $("#div_settings_menu").fadeOut(200);
             }
         }
     });

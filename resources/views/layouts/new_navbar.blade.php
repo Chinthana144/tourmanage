@@ -31,6 +31,23 @@
             <nav class="navbar">
 
                 <ul id="desktop_nav_items">
+
+                    {{-- Main Page --}}
+                    <li class="list_items">
+                        <div class="div_nav_hover">
+                            <a href="{{ route('main.index') }}" class="nav_link">
+                                <button class="flag_button">Main Page</button>
+                            </a>
+                        </div>
+                        <a href="{{ route('main.index') }}" class="nav_link">
+                            <button class="nav_button">
+                                <i class="bi bi-bookmark-fill"></i>
+                                <span class="list_item_label">Main Page</span>
+                            </button>
+                        </a>
+                    </li>
+
+                    {{-- Home --}}
                     <li class="list_items">
                         <div class="div_nav_hover">
                             <a href="/dashboard" class="nav_link">
@@ -44,21 +61,49 @@
                             </button>
                         </a>
                     </li>
+
+                    {{-- packages --}}
+                    <li class="list_items">
+                        <div class="div_nav_hover">
+                            <a href="/packages" class="nav_link">
+                                <button class="flag_button">Packages</button>
+                            </a>
+                            <a href="/packages" class="nav_link">
+                                <button class="flag_button">Package Routes</button>
+                            </a>
+                        </div>
+                        <a href="#" class="nav_link">
+                            <button id="btn_nav_package" class="nav_button">
+                                <i class="bi bi-stack"></i>
+                                <span class="list_item_label">Packages</span>
+                            </button>
+                        </a>
+                        <div id="div_package_menu" class="div_menu">
+                            <a href="/locations" class="nav_link">
+                                <button class="menu_button">Packages</button>
+                            </a>
+                            <a href="/locations" class="nav_link">
+                                <button class="menu_button">Package Routes</button>
+                            </a>
+                        </div>
+                    </li>
+
+                    {{-- Routes --}}
                     <li class="list_items">
                         <div class="div_nav_hover">
                             <a href="/locations" class="nav_link">
                                 <button class="flag_button">Locations</button>
                             </a>
-                            <a href="/locations" class="nav_link">
+                            <a href="/hotels" class="nav_link">
                                 <button class="flag_button">Hotels</button>
                             </a>
-                            <a href="/locations" class="nav_link">
+                            <a href="/restaurants" class="nav_link">
                                 <button class="flag_button">Restaurants</button>
                             </a>
-                            <a href="/locations" class="nav_link">
+                            <a href="/activities" class="nav_link">
                                 <button class="flag_button">Activities</button>
                             </a>
-                            <a href="/locations" class="nav_link">
+                            <a href="/travel-media" class="nav_link">
                                 <button class="flag_button">Travel Media</button>
                             </a>
                         </div>
@@ -85,9 +130,83 @@
                                 <button class="menu_button">Travel Media</button>
                             </a>
                         </div>
-                    </li>
+                    </li> 
+                    
+                    {{-- quotations --}}
                     <li class="list_items">
-                        home
+                        <div class="div_nav_hover">
+                            <a href="/tour-requests" class="nav_link">
+                                <button class="flag_button">Tour Requests</button>
+                            </a>
+                            <a href="{{ route('quotation.index') }}" class="nav_link">
+                                <button class="flag_button">Quotations</button>
+                            </a>
+                        </div>
+                        <a href="#" class="nav_link">
+                            <button id="btn_nav_quotation" class="nav_button">
+                                <i class="bi bi-card-text"></i>
+                                <span class="list_item_label">Quotations</span>
+                            </button>
+                        </a>
+                        <div id="div_quotation_menu" class="div_menu">
+                            <a href="/tour-requests" class="nav_link">
+                                <button class="menu_button">Tour Requests</button>
+                            </a>
+                            <a href="{{ route('quotation.index') }}" class="nav_link">
+                                <button class="menu_button">Quotations</button>
+                            </a>
+                        </div>
+                    </li>
+
+                    {{-- assets people --}}
+                    <li class="list_items">
+                        <div class="div_nav_hover">
+                            <a href="/partners" class="nav_link">
+                                <button class="flag_button">Partners</button>
+                            </a>
+                            <a href="/guides" class="nav_link">
+                                <button class="flag_button">Guides</button>
+                            </a>
+                            <a href="#" class="nav_link">
+                                <button class="flag_button">Tourists</button>
+                            </a>
+                        </div>
+                        <a href="#" class="nav_link">
+                            <button id="btn_nav_asset" class="nav_button">
+                                <i class="bi bi-people-fill"></i>
+                                <span class="list_item_label">Assets</span>
+                            </button>
+                        </a>
+                        <div id="div_asset_menu" class="div_menu">
+                            <a href="/partners" class="nav_link">
+                                <button class="menu_button">Partners</button>
+                            </a>
+                            <a href="/guides" class="nav_link">
+                                <button class="menu_button">Guides</button>
+                            </a>
+                            <a href="#" class="nav_link">
+                                <button class="menu_button">Tourists</button>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="list_items">
+                        <div class="div_nav_hover">
+                            <a href="/users" class="nav_link">
+                                <button class="flag_button">Users</button>
+                            </a>
+                        </div>
+                        <a href="#" class="nav_link">
+                            <button id="btn_nav_settings" class="nav_button">
+                                <i class="bi bi-gear-fill"></i>
+                                <span class="list_item_label">Settings</span>
+                            </button>
+                        </a>
+                        <div id="div_settings_menu" class="div_menu">
+                            <a href="/users" class="nav_link">
+                                <button class="menu_button">Users</button>
+                            </a>
+                        </div>
                     </li>
                 </ul>
                 
