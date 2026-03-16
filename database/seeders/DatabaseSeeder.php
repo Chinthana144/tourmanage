@@ -22,6 +22,14 @@ class DatabaseSeeder extends Seeder
             BoardingTypeSeeder::class,
             MealTypeSeeder::class,
             ActivityCategorySeeder::class,
+            ActivityTimeSeeder::class,
+            CurrencySeeder::class,
+            TourPurposeSeeder::class,
+            TourPackageSeeder::class,
+            PriceModeSeeder::class,
+            SeasonSeeder::class,
+            TravelCountrySeeder::class,
+            TourBudgetSeeder::class,
         ]);
     }
 }
