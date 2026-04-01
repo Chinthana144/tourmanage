@@ -46,11 +46,11 @@
                         <div class="col-md-6">
                             <label for="">Star Rating</label>
                             <div class="div_start_rating">
-                                <i class="bx bx-star icon_star star_rate_one" data-value="1"></i>
-                                <i class="bx bx-star icon_star star_rate_two" data-value="2"></i>
-                                <i class="bx bx-star icon_star star_rate_three" data-value="3"></i>
-                                <i class="bx bx-star icon_star star_rate_four" data-value="4"></i>
-                                <i class="bx bx-star icon_star star_rate_five" data-value="5"></i>
+                                <i class="bi bi-star icon_star star_rate_one" data-value="1"></i>
+                                <i class="bi bi-star icon_star star_rate_two" data-value="2"></i>
+                                <i class="bi bi-star icon_star star_rate_three" data-value="3"></i>
+                                <i class="bi bi-star icon_star star_rate_four" data-value="4"></i>
+                                <i class="bi bi-star icon_star star_rate_five" data-value="5"></i>
                                 <input type="hidden" name="star_rating" id="star_rating" value="0">
                             </div>
                         </div>
@@ -58,11 +58,11 @@
                         <div class="col-md-6">
                             <label for="">Popularity</label>
                             <div class="div_populatiry">
-                                <i class="bx bx-star icon_star star_one" data-value="1"></i>
-                                <i class="bx bx-star icon_star star_two" data-value="2"></i>
-                                <i class="bx bx-star icon_star star_three" data-value="3"></i>
-                                <i class="bx bx-star icon_star star_four" data-value="4"></i>
-                                <i class="bx bx-star icon_star star_five" data-value="5"></i>
+                                <i class="bi bi-star icon_star star_one" data-value="1"></i>
+                                <i class="bi bi-star icon_star star_two" data-value="2"></i>
+                                <i class="bi bi-star icon_star star_three" data-value="3"></i>
+                                <i class="bi bi-star icon_star star_four" data-value="4"></i>
+                                <i class="bi bi-star icon_star star_five" data-value="5"></i>
                                 <input type="hidden" name="popularity" id="popularity" value="0">
                             </div>
                         </div>

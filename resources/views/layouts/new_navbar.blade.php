@@ -6,11 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">    
     <title>Akagi eXperiences</title>
 
+    {{-- bootstrap icons --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/new_navbar.css') }}">
 
     {{-- bootstrap css --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/new_navbar.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('css/common_style.css') }}">
 
     {{-- jQuery --}}
     <script src="{{ asset('js/jquery-3.7.1.min.js') }}"></script>

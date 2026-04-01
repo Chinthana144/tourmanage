@@ -29,20 +29,24 @@
                         <td>{{ $travel_media->price_per_km }}</td>
                         <td>
                             <div class="div_populatiry">
-                                <i class="bx bx-star star_one {{$travel_media->popularity >= 1 ? 'bx bxs-star':'bx bx-star' }}" data-value="1"></i>
-                                <i class="bx bx-star star_two {{$travel_media->popularity >= 2 ? 'bx bxs-star':'bx bx-star' }}" data-value="2"></i>
-                                <i class="bx bx-star star_three {{$travel_media->popularity >= 3? 'bx bxs-star':'bx bx-star' }}" data-value="3"></i>
-                                <i class="bx bx-star star_four {{$travel_media->popularity >= 4 ? 'bx bxs-star':'bx bx-star' }}" data-value="4"></i>
-                                <i class="bx bx-star star_five {{$travel_media->popularity >= 5 ? 'bx bxs-star':'bx bx-star' }}" data-value="5"></i>
+                                <i class="{{$travel_media->popularity >= 1 ? 'bi bi-star-fill':'bi bi-star' }}" data-value="1"></i>
+                                <i class="{{$travel_media->popularity >= 2 ? 'bi bi-star-fill':'bi bi-star' }}" data-value="2"></i>
+                                <i class="{{$travel_media->popularity >= 3? 'bi bi-star-fill':'bi bi-star' }}" data-value="3"></i>
+                                <i class="{{$travel_media->popularity >= 4 ? 'bi bi-star-fill':'bi bi-star' }}" data-value="4"></i>
+                                <i class="{{ $travel_media->popularity >= 5 ? 'bi bi-star-fill':'bi bi-star' }}" data-value="5"></i>
                             </div>
                         </td>
                         <td>
                             <div class="d-flex">
-                                <button class="btn btn-sm btn-outline-warning me-2 btn_edit_travel_media"><i class="bx bx-edit"></i></button>
+                                <button class="btn btn-sm btn-outline-warning me-2 btn_edit_travel_media">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
                                 <form action="{{ route('travel_price.view') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="travel_media_id" value="{{ $travel_media->id }}">
-                                    <button type="submit" class="btn btn-outline-primary btn-sm"><i class="bx bx-dollar"></i></button>
+                                    <button type="submit" class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </button>
                                 </form>
                             </div>
                             
@@ -64,4 +68,5 @@
     @include('travel_media.edit_travel_modal')
 
     <script src="{{ asset('js/travel_view.js') }}"></script>
+    <script src="{{ asset('js/common_script.js') }}"></script>
 @endsection
