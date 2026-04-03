@@ -12,6 +12,8 @@ class Quotations extends Model
         'tour_id',
         'valid_until',
         'package_prices',
+        'payment_token',
+        'payment_token_expite_at',
         'status',
         'user_id',
     ];

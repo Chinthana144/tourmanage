@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class QuotationController extends Controller
@@ -54,6 +55,7 @@ class QuotationController extends Controller
             )
             ->groupBy('component_type')
             ->get();
+
         foreach($essential_prices as $price){
             createQuotationItems($quotation->id, 1, $price->component_type, $price->total_price);
         }//foreach
@@ -92,6 +94,8 @@ class QuotationController extends Controller
         ];
 
         $quotation->package_prices = json_encode($package_prices);
+        $quotation->payment_token = Str::uuid();
+        $quotation->payment_token_expite_at = now()->addDays(30);
         $quotation->save();
 
         return redirect()->route('quotation.generate', ['hide_quotation_id' => $quotation->id ]);

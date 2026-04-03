@@ -48,7 +48,9 @@ class TourPackageItemController extends Controller
         //necessary data
         $seasons = Seasons::all();
 
-        $route_items = TourRouteItems::where('tour_id', $tour_id)->get();
+        $route_items = TourRouteItems::where('tour_id', $tour_id)
+            ->OrderBy('order_no', 'ASC')
+            ->get();
 
         $data = [];
 
@@ -350,7 +352,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -362,7 +364,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -374,7 +376,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Locations::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
                 break;
@@ -388,7 +390,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -400,7 +402,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -412,7 +414,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Hotels::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
                 break;
@@ -426,7 +428,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -438,7 +440,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -450,7 +452,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Restaurants::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
                 break;
@@ -464,7 +466,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -476,7 +478,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -488,7 +490,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, Activities::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
                 break;
@@ -502,7 +504,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -514,7 +516,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
 
@@ -526,7 +528,7 @@ class TourPackageItemController extends Controller
                         if($request->has('chk_price_'.$item->id."_".$price->id))
                         {
                             $txt_price = $request->input('price_'.$item->id."_".$price->id);
-                            createTourPackageItem($tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
+                            createTourPackageItem($item->id, $tour_id, $price->season_id, $price->package_id, $price->price_mode_id, TravelMedia::class, $item->item_id, $price->description, $txt_price, 1);
                         }
                     }//foreach
                 break;
@@ -618,10 +620,11 @@ class TourPackageItemController extends Controller
 
 
 //===================== Functions =====================//
-function createTourPackageItem($tour_id, $season_id, $package_id, $price_mode_id, $component_type, $component_id, $description, $price, $status)
+function createTourPackageItem($item_id, $tour_id, $season_id, $package_id, $price_mode_id, $component_type, $component_id, $description, $price, $status)
 {
     $tour_package_item = TourPackageItems::updateOrCreate(
         [
+            'tour_route_item_id'=>$item_id,
             'tour_id'=> $tour_id,
             'season_id' => $season_id,
             'package_id' => $package_id,
