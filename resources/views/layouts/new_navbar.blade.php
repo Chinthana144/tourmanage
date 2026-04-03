@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">    
     <title>Akagi eXperiences</title>
 
-    {{-- bootstrap icons --}}
-    <link rel="stylesheet" href="{{ asset('bootstrap-icons/bootstrap-icons.css') }}">
-
     {{-- bootstrap css --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
+     {{-- bootstrap icons --}}
+    <link rel="stylesheet" href="{{ asset('bootstrap-icons/bootstrap-icons.css') }}">
 
     <link rel="stylesheet" href="{{ asset('css/new_navbar.css') }}">
 
@@ -136,9 +136,12 @@
                         </div>
                     </li> 
                     
-                    {{-- quotations --}}
+                    {{-- tours --}}
                     <li class="list_items">
                         <div class="div_nav_hover">
+                            <a href="/tours" class="nav_link">
+                                <button class="flag_button">Tours</button>
+                            </a>
                             <a href="/tour-requests" class="nav_link">
                                 <button class="flag_button">Tour Requests</button>
                             </a>
@@ -149,10 +152,13 @@
                         <a href="#" class="nav_link">
                             <button id="btn_nav_quotation" class="nav_button">
                                 <i class="bi bi-card-text"></i>
-                                <span class="list_item_label">Quotations</span>
+                                <span class="list_item_label">Tours</span>
                             </button>
                         </a>
                         <div id="div_quotation_menu" class="div_menu">
+                            <a href="/tours" class="nav_link">
+                                <button class="menu_button">Tours</button>
+                            </a>
                             <a href="/tour-requests" class="nav_link">
                                 <button class="menu_button">Tour Requests</button>
                             </a>

@@ -301,9 +301,9 @@ $(document).ready(function () {
                     htmlItems += "<td>"+ val.item_name +"</td>";
                     htmlItems += "<td>"+ val.notes +"</td>";
                     htmlItems += "<td><div class='d-flex'>";
-                    htmlItems += "<button class='btn btn-outline-success btn-sm ms-1 btn_move_up'><i class='bx bx-caret-up'></i></button>";
-                    htmlItems += "<button class='btn btn-outline-success btn-sm ms-1 btn_move_down'><i class='bx bx-caret-down'></i></button>";
-                    htmlItems += "<button class='btn btn-outline-danger btn-sm ms-1 btn_delete_item'><i class='bx bx-trash'></i></button>";
+                    htmlItems += "<button class='btn btn-outline-success btn-sm ms-1 btn_move_up'><i class='bi bi-arrow-up'></i></button>";
+                    htmlItems += "<button class='btn btn-outline-success btn-sm ms-1 btn_move_down'><i class='bi bi-arrow-down'></i></button>";
+                    htmlItems += "<button class='btn btn-outline-danger btn-sm ms-1 btn_delete_item'><i class='bi bi-trash'></i></button>";
                     htmlItems += "</div></td>";
                     htmlItems += "</tr>";
                 });

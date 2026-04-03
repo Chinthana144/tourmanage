@@ -5,7 +5,6 @@ $(document).ready(function () {
         }
     });
 
-    
 
     $("#div_main").on('click', '.chk_price', function(){
         var itemID = $(this).data('item-id');

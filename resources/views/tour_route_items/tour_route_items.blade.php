@@ -39,16 +39,15 @@
                                 @break
                                 @default
                                     <span class="badge bg-secondary">Unidentified</span>
-
                             @endswitch
                         </td>
                         <td>{{ $item->item->name }}</td>
                         <td>{{ $item->notes }}</td>
                         <td>
                             <div class="d-flex">
-                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_up"><i class="bx bx-caret-up"></i></button>
-                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_down"><i class="bx bx-caret-down"></i></button>
-                                <button class="btn btn-outline-danger btn-sm ms-1 btn_delete_item"><i class="bx bx-trash"></i></button>
+                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_up"><i class="bi bi-arrow-up"></i></button>
+                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_down"><i class="bi bi-arrow-down"></i></button>
+                                <button class="btn btn-outline-danger btn-sm ms-1 btn_delete_item"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -206,7 +205,7 @@
                 <form action="{{ route('tour_package_items.index') }}" method="get">
                     @csrf
                     <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                    <button class="btn btn-primary float-end">Continue <i class="bx bx-"></i></button>
+                    <button class="btn btn-primary float-end">Continue <i class="bi bi-arrow-right"></i></button>
                 </form>
             </div>
 
