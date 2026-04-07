@@ -132,7 +132,7 @@ class QuotationController extends Controller
             ->get();
 
         //generate QR code
-        $payment_url = url('https://akagiexp.com/payment-demo/' . $quotation->payment_token);
+        $payment_url = url('http://127.0.0.1:8000/payment/'. $quotation->quotation_no . "?token=" . $quotation->payment_token);
 
         //generate qr code
         $qr_code = base64_encode(
@@ -140,7 +140,7 @@ class QuotationController extends Controller
                 ->generate($payment_url)
         );
 
-        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation', 'destinations', 'hotels', 'activities', 'qr_code'));
+        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation', 'destinations', 'hotels', 'activities', 'qr_code', 'payment_url'));
 
         return $pdf->stream('Quotation-' . $quotation->quotation_no . '.pdf');
     }//generate pdf

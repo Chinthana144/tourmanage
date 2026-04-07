@@ -237,6 +237,8 @@
         </tr>
     </table>
 
+    <p>{{ $payment_url }}</p>
+
     <div id="div_footer">
         <p>
             Thank you for choosing <b>Akagi eXperiences</b>. <br>
