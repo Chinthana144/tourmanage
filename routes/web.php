@@ -10,6 +10,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\RestaurantController;
@@ -231,5 +232,9 @@ Route::middleware('auth')->group(function () {
 // Route::get('/template', function () {
 //     return view('layouts.template');
 // });
+
+//quotation payment 
+Route::get('/payment/{quotation_no}', [PaymentController::class, 'show'])
+    ->middleware('quotation.payment'); 
 
 require __DIR__.'/auth.php';

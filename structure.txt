@@ -4,6 +4,11 @@
 * remove hotel rooms
 * remove hotel rooms
 
+//Payment 
+ - payment page
+ - payment link
+ - payment middleware
+
 //main page
 top video ----------------------------- done
 add destinations ---------------------- done

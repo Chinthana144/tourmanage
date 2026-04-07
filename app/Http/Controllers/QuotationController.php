@@ -132,7 +132,7 @@ class QuotationController extends Controller
             ->get();
 
         //generate QR code
-        $payment_url = url('https://akagiexp.com/payment-demo/' . $quotation->id);
+        $payment_url = url('https://akagiexp.com/payment-demo/' . $quotation->payment_token);
 
         //generate qr code
         $qr_code = base64_encode(
