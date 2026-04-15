@@ -1,34 +1,16 @@
-@extends('main.layout')
-    
-    {{-- header with navigation --}}
-    @include('main.navigation')
+@extends('main.page_layout')
 
-  @section('content')
-          {{-- main --}}
+<link rel="stylesheet" href="{{ asset('css/main_page.css') }}">
+
+@section('page_content')
     <main class="main">
-      
-      <!-- Travel Hero Section -->
-      <section id="travel-hero" class="travel-hero section dark-background">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <div class="video-wrapper">
-                        <video autoplay muted loop playsinline class="bg-video">
-                        <source src="{{ asset('videos/vid_sunset.mp4') }}" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="content">
-                        <h1>Travel Beyond The Ordinary.</h1>
-                        <p class="lead">Curated journeys combining culture, comfort, and unforgettable experiences across remarkable destinations.</p>
-                        <div class="d-flex flex-wrap gap-3 mt-4">
-                            {{-- <a href="#" class="btn btn-primary">Design Custom Tour</a> --}}
-                            {{-- <a href="#" class="btn btn-outline-light">View Our Pre-arranged Tours</a> --}}
-                        </div>
-                    </div>
-                </div>
+        <section class="section header-section">
+            <img src="{{asset('images/main/sigiriya_1.jpg')}}" alt="" id="img_background">
+            <div class="container">
+                <h2>Package Selection</h2>
+                <div><span>Select your package here!</span> <span class="description-title">page description</span></div>
             </div>
-        </div>
-      </section>
+        </section>
 
         @php
             $package_prices = json_decode($quotation->package_prices);
@@ -37,7 +19,7 @@
             $signature_total = 0;
         @endphp
 
-      <section id="why-us" class="why-us section">
+        <section id="why-us" class="why-us section">
         <div class="container">
             <div class="section-header text-center">
               <h3>Welcome {{ $quotation->tourRequest->customer_name }}</h3>
@@ -49,8 +31,8 @@
               </p>
               <p>Please Select your package and proceed for payment.</p>
               <div class="row">
-                <div class="col-md-4">
-                    <h5>Agaki Essential Package</h5>
+                <div class="col-md-4 border border-primary rounded p-2">
+                    <h5>Agaki Essential</h5>
                     <table class="table table-bordered text-white">
                         @foreach ($package_prices->essential_prices as $price)
                             @php
@@ -67,11 +49,19 @@
                         </tr>
                     </table> 
 
+                    <p class="text-start">
+                        <span><i class="bi bi-check-lg"></i></span> Basic Location Access<br>
+                        <span><i class="bi bi-check-lg"></i></span> 3 Star Hotels<br>
+                        <span><i class="bi bi-check-lg"></i></span> Basic Activities<br>
+                        <span><i class="bi bi-check-lg"></i></span> 3 Star Restaurant & Meals<br>
+                        <span><i class="bi bi-check-lg"></i></span> Basic Travel Media <br>
+                    </p>
+
                     <button class="btn btn-primary">Select Akagi Essential - ${{ $essential_total }}</button>
                 </div>
 
-                <div class="col-md-4">
-                    <h5>Akagi Classic Package</h5>
+                <div class="col-md-4 border border-primary rounded p-2">
+                    <h5>Akagi Classic</h5>
                     <table class="table table-bordered text-white">
                         @foreach ($package_prices->classic_prices as $price)
                             @php
@@ -88,11 +78,19 @@
                         </tr>
                     </table>
 
+                    <p class="text-start">
+                        <span><i class="bi bi-check-lg"></i></span> Standard Location Access<br>
+                        <span><i class="bi bi-check-lg"></i></span> 4 Star Hotels<br>
+                        <span><i class="bi bi-check-lg"></i></span> Standard Activities<br>
+                        <span><i class="bi bi-check-lg"></i></span> 4 Star Restaurant & Meals<br>
+                        <span><i class="bi bi-check-lg"></i></span> Standard Travel Media <br>
+                    </p>
+
                     <button class="btn btn-primary">Select Akagi Classic - ${{ $classic_total }}</button>
                 </div>
 
-                <div class="col-md-4">
-                    <h5>Akagi Signature Package</h5>
+                <div class="col-md-4 border border-primary rounded p-2">
+                    <h5>Akagi Signature</h5>
                     <table class="table table-bordered text-white">
                         @foreach ($package_prices->signature_prices as $price)
                             @php
@@ -109,6 +107,14 @@
                         </tr>
                     </table>
 
+                    <p class="text-start">
+                        <span><i class="bi bi-check-lg"></i></span> VIP Location Access<br>
+                        <span><i class="bi bi-check-lg"></i></span> 5 Star Hotels<br>
+                        <span><i class="bi bi-check-lg"></i></span> VIP Activities<br>
+                        <span><i class="bi bi-check-lg"></i></span> 5 Star Restaurant & Meals<br>
+                        <span><i class="bi bi-check-lg"></i></span> VIP Travel Media <br>
+                    </p>
+
                     <button class="btn btn-primary">Select Akagi Signature - ${{$signature_total}}</button>
                 </div>
               </div>
@@ -124,6 +130,7 @@
                 @foreach ($tour_route as $route)
                     <div class="row mb-2">
                         @switch($route->item_type)
+
                             @case('App\Models\Locations')
                                 <div class="col-md-1">
                                     Day {{ $route->day_no }}
@@ -136,6 +143,7 @@
                                     <p>{{ $route->item->description }}</p>
                                 </div>
                                 @break
+
                             @case('App\Models\Hotels')
                                 <div class="col-md-1">
                                     Day {{ $route->day_no }}
@@ -181,20 +189,7 @@
                 @endforeach
             </div>
         </section>
-
     </main>
 
     @include('main.footer')
-
-    <script>
-      // video
-      document.addEventListener('DOMContentLoaded', function () {
-        const video = document.querySelector('.bg-video');
-        if (video) {
-            video.playbackRate = 0.8; // half speed
-        }
-      });
-    </script>
-
-  @endsection
-
+@endsection

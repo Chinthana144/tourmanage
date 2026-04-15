@@ -57,6 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/requestStore', [TourRequestController::class, 'requestStore'])->name('main.store_request');
     Route::post('/tourDestination', [MainController::class, 'tourDestination'])->name('main.tour_destination');
     Route::get('/about', [MainController::class, 'aboutView'])->name('main.about');
+    Route::get('/contact', [MainController::class, 'contactView'])->name('main.contact');
+    Route::post('/storeContactMessage', [MainController::class, 'storeContactMessage'])->name('main.store_contact_message');
 
     //users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
