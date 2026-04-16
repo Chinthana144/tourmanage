@@ -17,7 +17,11 @@
                 <div class="row">
                     <div class="col-md-3"></div>
                     @if (session('success'))
-                        <p>{{ session('message') }}pasha... </p>
+                        <p class="text-success">
+                            Your message has been sent, one of our team member will contact you soon!
+                            <br>
+                            Thanks from Akagi Experiences.
+                        </p>
                     @else
                         <div class="col-md-6">
                             <form action="{{ route('main.store_contact_message') }}" method="post">

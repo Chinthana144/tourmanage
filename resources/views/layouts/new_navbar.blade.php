@@ -221,6 +221,7 @@
                 </ul>
                 
             </nav>
+
         </aside>
 
         {{-- ============================================================================= --}}
@@ -269,12 +270,23 @@
             </nav>
         </div>
 
+        {{-- ============================================================================= --}}
+        {{-- =========================== Navigation bar header =========================== --}}
+        {{-- ============================================================================= --}}
+
         <div id="div_page">
             <div id="content_desktop_header">
                 <h3>Akagi Experiences</h3>
-                <a href="{{ route('logout') }}">
-                    <button id="btn_logout"><i class="bi bi-power"></i></button>    
-                </a>
+
+                <div>
+                    <button class="btn_icon">
+                        <i class="bi bi-bell"></i>
+                    </button>
+                    <a href="{{ route('logout') }}">
+                        <button id="btn_logout"><i class="bi bi-power"></i></button>    
+                    </a>
+                </div>
+                
             </div>
             <div id="div_content">
                 @yield('content')

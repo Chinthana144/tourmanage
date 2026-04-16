@@ -85,13 +85,20 @@ class MainController extends Controller
             'message'=>'required',
         ]);
 
-        ContactMessages::created([
+        $message = ContactMessages::create([
             'email' => $validator['email'],
             'message' => $validator['message'],
             'status' => 1,
         ]);
 
-        return redirect()->route('main.contact')->with('success', 'Your message successfully sent!');
+        if($message)
+        {
+            return redirect()->route('main.contact')->with('success', 'Your message successfully sent!');
+        }
+        else{
+            return redirect()->route('main.contact')->with('error', 'Something went wrong!');
+        }
+        
     }
 
 }//class
