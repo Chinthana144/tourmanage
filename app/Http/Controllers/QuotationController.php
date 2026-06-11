@@ -5,19 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\QuotationItems;
 use App\Models\Quotations;
 use App\Models\TourPackageItems;
+use App\Models\TourRouteItems;
 use App\Models\Tours;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class QuotationController extends Controller
 {
     public function index()
     {
-        $quotations = Quotations::all();
+        $quotations = Quotations::orderBy('id', 'DESC')->paginate(10);
 
         return view('quotations.quotation_view', compact('quotations'));
     }
@@ -53,6 +55,7 @@ class QuotationController extends Controller
             )
             ->groupBy('component_type')
             ->get();
+
         foreach($essential_prices as $price){
             createQuotationItems($quotation->id, 1, $price->component_type, $price->total_price);
         }//foreach
@@ -91,6 +94,8 @@ class QuotationController extends Controller
         ];
 
         $quotation->package_prices = json_encode($package_prices);
+        $quotation->payment_token = Str::uuid();
+        $quotation->payment_token_expite_at = now()->addDays(30);
         $quotation->save();
 
         return redirect()->route('quotation.generate', ['hide_quotation_id' => $quotation->id ]);
@@ -111,8 +116,23 @@ class QuotationController extends Controller
             $tour->save();
         }
 
+        //get destinations
+        $destinations = TourRouteItems::where('tour_id', $tour_id)
+            ->where('item_type', 'App\Models\Locations')
+            ->get();
+        
+        //get hotels
+        $hotels = TourRouteItems::where('tour_id', $tour_id)
+            ->where('item_type', 'App\Models\Hotels')
+            ->get();
+
+        //get activities
+        $activities = TourRouteItems::where('tour_id', $tour_id)
+            ->where('item_type', 'App\Models\Activities')
+            ->get();
+
         //generate QR code
-        $payment_url = url('https://akagiexp.com/payment-demo/' . $quotation->id);
+        $payment_url = url('http://127.0.0.1:8000/payment/'. $quotation->quotation_no . "?token=" . $quotation->payment_token);
 
         //generate qr code
         $qr_code = base64_encode(
@@ -120,9 +140,9 @@ class QuotationController extends Controller
                 ->generate($payment_url)
         );
 
-        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation', 'qr_code'));
+        $pdf = Pdf::loadView('pdf.quotation_1', compact('quotation', 'destinations', 'hotels', 'activities', 'qr_code', 'payment_url'));
 
-        return $pdf->stream('Quotation-' . $quotation->quotation_no);
+        return $pdf->stream('Quotation-' . $quotation->quotation_no . '.pdf');
     }//generate pdf
 }//class
 
@@ -130,7 +150,7 @@ function generateQuotationNo()
 {
     $year = Carbon::now()->year;
 
-    $last_quotation = Quotations::where("quotation_no", 'LIKE', '-%')
+    $last_quotation = Quotations::where("quotation_no", 'LIKE', $year.'-%')
         ->orderBy('quotation_no', 'desc')
         ->first();
 

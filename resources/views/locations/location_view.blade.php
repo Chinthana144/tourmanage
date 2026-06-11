@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.new_navbar')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/location.css') }}">
@@ -26,11 +26,11 @@
 
                                 <label for="">Populatiry</label>
                                 <div class="div_populatiry">
-                                    <i class="icon_star star_one {{$location->popularity >= 1 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="1"></i>
-                                    <i class="icon_star star_two {{$location->popularity >= 2 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="2"></i>
-                                    <i class="icon_star star_three {{$location->popularity >= 3 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="3"></i>
-                                    <i class="icon_star star_four {{$location->popularity >= 4 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="4"></i>
-                                    <i class="icon_star star_five {{$location->popularity >= 5 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="5"></i>
+                                    <i class="icon_star star_one {{$location->popularity >= 1 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="1"></i>
+                                    <i class="icon_star star_two {{$location->popularity >= 2 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="2"></i>
+                                    <i class="icon_star star_three {{$location->popularity >= 3 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="3"></i>
+                                    <i class="icon_star star_four {{$location->popularity >= 4 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="4"></i>
+                                    <i class="icon_star star_five {{$location->popularity >= 5 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="5"></i>
                                     <input type="hidden" name="popularity" id="popularity" value="{{$location->popularity}}">
                                 </div>
 
@@ -80,31 +80,31 @@
                                 <div class="div_image_container">
                                     <div class="img_slide">
                                         @if ($location->primary_image)
-                                            <img src="{{ asset($location->primary_image) }}" alt="Location Image">
+                                            <img src="{{ asset($location->primary_image) }}" alt="Location Image" id="img_display_{{$location->id}}">
                                         @endif
                                     </div>
                                     <div class="div_image_gallery">
-                                        <div class="div_gallery_items" data-image="{{$location->primary_image}}">
+                                        <div class="div_gallery_items" data-image="{{$location->primary_image}}" data-id="{{$location->id}}">
                                             @if ($location->primary_image)
                                                 <img src="{{ asset($location->primary_image) }}" alt="Location Image">
                                             @endif
                                         </div>
-                                        <div class="div_gallery_items" data-image="{{$location->image1}}">
+                                        <div class="div_gallery_items" data-image="{{$location->image1}}" data-id="{{$location->id}}">
                                             @if ($location->image1)
                                                 <img src="{{ asset($location->image1) }}" alt="Image 1">
                                             @endif
                                         </div>
-                                        <div class="div_gallery_items" data-image="{{$location->image2}}">
+                                        <div class="div_gallery_items" data-image="{{$location->image2}}" data-id="{{$location->id}}">
                                             @if ($location->image2)
                                                 <img src="{{ asset($location->image2) }}" alt="Image 2">
                                             @endif
                                         </div>
-                                        <div class="div_gallery_items" data-image="{{$location->image3}}">
+                                        <div class="div_gallery_items" data-image="{{$location->image3}}" data-id="{{$location->id}}">
                                             @if ($location->image3)
                                                 <img src="{{ asset($location->image3) }}" alt="Image 3">
                                             @endif
                                         </div>
-                                        <div class="div_gallery_items" data-image="{{$location->image4}}">
+                                        <div class="div_gallery_items" data-image="{{$location->image4}}" data-id="{{$location->id}}">
                                             @if ($location->image4)
                                                 <img src="{{ asset($location->image4) }}" alt="Image 4">
                                             @endif

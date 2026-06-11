@@ -49,7 +49,7 @@
             <ul class="js-sub-menu sub-menu">
               <li><a href="/tours">Tours</a></li>
               <li><a href="/tourists">Touists</a></li>
-              <li><a href="#">Tour Packages</a></li>
+              <li><a href="#">Bookings</a></li>
               <li><a href="#">Package Routes</a></li>
             </ul>
           </li>
@@ -70,7 +70,7 @@
             <ul class="js-sub-menu sub-menu">
               <li><a href="/users">Users</a></li>
               <li><a href="/partners">Partners</a></li>
-              <li><a href="#">Card Slider</a></li>
+              <li><a href="/guides">Guides</a></li>
               <li><a href="#">Complete Website</a></li>
             </ul>
           </li>

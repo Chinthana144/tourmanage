@@ -1,11 +1,11 @@
-@extends('layouts.layout')
+@extends('layouts.new_navbar')
 
 @section('content')
     <div class="card">
         <div class="card-header">
             <h5>Tour Package Items</h5>
         </div>
-        <div class="card-body">
+        <div class="card-body" style="padding-bottom: 70px;">
             <div class="container container-md" id="div_main">
                 <form action="{{ route('package_items.store') }}" method="post">
                     @csrf
@@ -80,8 +80,35 @@
                     </div>
                 @endforeach
 
-                <button type="submit" class="btn btn-primary float-end">Submit & Continue</button>
+                <button type="submit" class="btn btn-primary float-end mb-6">Submit & Continue</button>
                 </form>
+            </div>
+
+            <div id="div_totals" 
+                style="position:fixed; 
+                    bottom:0; 
+                    padding:5px;
+                    z-index:100; 
+                    border-radius:10px;
+                    width:80%; 
+                    margin-left:10%;
+                    color:white;
+                    background-color: rgba(43, 55, 185, 1);"
+                >
+                <div style="display:flex; flex-direction:row; justify-content:space-around;">
+                    <div>
+                        Akagi Essential
+                        <h5 id="h5_essential_total"></h5>
+                    </div>
+                    <div>
+                        Akagi Classic
+                        <h5 id="h5_classic_total"></h5>
+                    </div>
+                    <div>
+                        Akagi Signature
+                        <h5 id="h5_signature_total"></h5>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

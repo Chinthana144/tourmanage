@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactMessages;
 use App\Models\Countries;
 use App\Models\Locations;
 use App\Models\Packages;
@@ -71,4 +72,33 @@ class MainController extends Controller
     {
         return view('main.about');
     }
+
+    public function contactView()
+    {
+        return view('main.contact');
+    }
+
+    public function storeContactMessage(Request $request)
+    {
+        $validator = $request->validate([
+            'email'=> 'required|email',
+            'message'=>'required',
+        ]);
+
+        $message = ContactMessages::create([
+            'email' => $validator['email'],
+            'message' => $validator['message'],
+            'status' => 1,
+        ]);
+
+        if($message)
+        {
+            return redirect()->route('main.contact')->with('success', 'Your message successfully sent!');
+        }
+        else{
+            return redirect()->route('main.contact')->with('error', 'Something went wrong!');
+        }
+        
+    }
+
 }//class

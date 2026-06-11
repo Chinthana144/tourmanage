@@ -12,6 +12,8 @@ class Quotations extends Model
         'tour_id',
         'valid_until',
         'package_prices',
+        'payment_token',
+        'payment_token_expite_at',
         'status',
         'user_id',
     ];
@@ -29,6 +31,11 @@ class Quotations extends Model
     public function quotationItem()
     {
         return $this->hasMany(QuotationItems::class, 'quotation_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
 }//class

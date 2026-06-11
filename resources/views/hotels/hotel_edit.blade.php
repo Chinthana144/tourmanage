@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.new_navbar')
 
 @section('content')
     <div class="card">
@@ -48,11 +48,11 @@
                         <div class="col-md-6">
                             <label for="">Star Rating</label>
                             <div class="div_start_rating">
-                                <i class="bx bx-star icon_star star_rate_one {{$hotel->star_rating >= 1 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="1"></i>
-                                <i class="bx bx-star icon_star star_rate_two {{$hotel->star_rating >= 2 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="2"></i>
-                                <i class="bx bx-star icon_star star_rate_three {{$hotel->star_rating >= 3 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="3"></i>
-                                <i class="bx bx-star icon_star star_rate_four {{$hotel->star_rating >= 4 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="4"></i>
-                                <i class="bx bx-star icon_star star_rate_five {{$hotel->star_rating >= 5 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="5"></i>
+                                <i class="bi bi-star icon_star star_rate_one {{$hotel->star_rating >= 1 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="1"></i>
+                                <i class="bi bi-star icon_star star_rate_two {{$hotel->star_rating >= 2 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="2"></i>
+                                <i class="bi bi-star icon_star star_rate_three {{$hotel->star_rating >= 3 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="3"></i>
+                                <i class="bi bi-star icon_star star_rate_four {{$hotel->star_rating >= 4 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="4"></i>
+                                <i class="bi bi-star icon_star star_rate_five {{$hotel->star_rating >= 5 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="5"></i>
                                 <input type="hidden" name="star_rating" id="star_rating" value="{{ $hotel->star_rating }}">
                             </div>
                         </div>
@@ -60,11 +60,11 @@
                         <div class="col-md-6">
                             <label for="">Popularity</label>
                             <div class="div_populatiry">
-                                <i class="bx bx-star icon_star star_one {{$hotel->popularity >= 1 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="1"></i>
-                                <i class="bx bx-star icon_star star_two {{$hotel->popularity >= 2 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="2"></i>
-                                <i class="bx bx-star icon_star star_three {{$hotel->popularity >= 3 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="3"></i>
-                                <i class="bx bx-star icon_star star_four {{$hotel->popularity >= 4 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="4"></i>
-                                <i class="bx bx-star icon_star star_five {{$hotel->popularity >= 5 ? 'bx bxs-star' : 'bx bx-star'}}" data-value="5"></i>
+                                <i class="bi bi-star icon_star star_one {{$hotel->popularity >= 1 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="1"></i>
+                                <i class="bi bi-star icon_star star_two {{$hotel->popularity >= 2 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="2"></i>
+                                <i class="bi bi-star icon_star star_three {{$hotel->popularity >= 3 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="3"></i>
+                                <i class="bi bi-star icon_star star_four {{$hotel->popularity >= 4 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="4"></i>
+                                <i class="bi bi-star icon_star star_five {{$hotel->popularity >= 5 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="5"></i>
                                 <input type="hidden" name="popularity" id="popularity" value="{{$hotel->popularity}}">
                             </div>
                         </div>

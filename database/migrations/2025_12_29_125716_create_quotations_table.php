@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('tour_id');
             $table->date('valid_until');
             $table->json('package_prices')->nullable();
+            $table->string('payment_token')->unique()->nullable();
+            $table->timestamp('payment_token_expite_at')->nullable();
             $table->smallInteger('status');
             $table->foreignId('user_id');
             $table->timestamps();

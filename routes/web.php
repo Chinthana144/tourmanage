@@ -2,17 +2,15 @@
 
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FacilitiesController;
+use App\Http\Controllers\GuideController;
 use App\Http\Controllers\Hotelcontroller;
-use App\Http\Controllers\HotelPriceController;
-use App\Http\Controllers\HotelRoomController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageRouteController;
 use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\RestaurantController;
@@ -24,13 +22,11 @@ use App\Http\Controllers\TourPackageItemController;
 use App\Http\Controllers\TourRequestController;
 use App\Http\Controllers\TourRequestLocationController;
 use App\Http\Controllers\TourRequestPeopleController;
-use App\Http\Controllers\TourRequestRoomController;
 use App\Http\Controllers\TourRoomController;
 use App\Http\Controllers\TourRouteItemController;
 use App\Http\Controllers\TravelMediaController;
 use App\Http\Controllers\UserController;
 use App\Models\TouristHealth;
-use App\Models\TourRequestRooms;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -59,10 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/tourpackages', [MainController::class, 'tourPackageView'])->name('main.tour_packages');
     Route::get('/showCustomerRegister', [MainController::class, 'showCustomerRegister'])->name('main.show_customer_register');
     Route::post('/requestStore', [TourRequestController::class, 'requestStore'])->name('main.store_request');
-    Route::post('/addGroupComposition', [TourRequestPeopleController::class, 'storeRequestPeople']);
     Route::post('/tourDestination', [MainController::class, 'tourDestination'])->name('main.tour_destination');
-    Route::post('/toggleTourDestinations', [TourRequestLocationController::class, 'toggleTourDestinations']);
     Route::get('/about', [MainController::class, 'aboutView'])->name('main.about');
+    Route::get('/contact', [MainController::class, 'contactView'])->name('main.contact');
+    Route::post('/storeContactMessage', [MainController::class, 'storeContactMessage'])->name('main.store_contact_message');
 
     //users
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
@@ -109,13 +105,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/update-hotel-price', [Hotelcontroller::class, 'updateHotelPrice'])->name('hotel_price.update');
     Route::get('/getOneHotelPrice', [Hotelcontroller::class, 'getOneHotelPrice']);
 
-    //hotel rooms
-    Route::get('/hotel-rooms', [HotelRoomController::class, 'index'])->name('hotelrooms.index');
-    Route::post('/store-hotel-room', [HotelRoomController::class, 'store'])->name('hotelrooms.store');
-    Route::put('/update-hotel-room', [HotelRoomController::class, 'update'])->name('hotelrooms.update');
-    Route::post('/destroy-hotel-room', [HotelRoomController::class, 'destroy'])->name('hotelrooms.destroy');
-    Route::get('/getOneRoom', [HotelRoomController::class, 'getOneRoom']);
-
     //restaurants
     Route::get('/restaurants', [RestaurantController::class, 'index'])->name('restaurants.index');
     Route::get('/create-restaurants', [RestaurantController::class, 'create'])->name('restaurants.create');
@@ -157,6 +146,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/remove-travel-media', [TravelMediaController::class, 'remove'])->name('travel_media.remove');
     Route::get('/getOneTravelMedia', [TravelMediaController::class, 'getOneTravelMedia']);
     Route::get('/getTravelMedia', [TravelMediaController::class, 'getTravelMedia']);
+    Route::get('/searchTravelMedia', [TravelMediaController::class, 'searchTravelMedia']);
 
     //travel prices
     Route::get('/show-travel-price', [TravelMediaController::class, 'showTravelPrice'])->name('travel_price.view');
@@ -196,19 +186,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/delete-tour-request', [TourRequestController::class, 'destroy'])->name('tour_request.destroy');
     Route::get('/getOneRequest', [TourRequestController::class, 'getOneRequest']);
 
-    //tour request people
-    Route::get('/tour-request-people', [TourRequestPeopleController::class, 'index'])->name('tour_request_people.index');
-    Route::post('/storeRequestPeople', [TourRequestPeopleController::class, 'storeRequestPeople']);
-    Route::get('/getAllRequestPeople', [TourRequestPeopleController::class, 'getAllRequestPeople']);
-    Route::get('/getOneRequestPeople', [TourRequestPeopleController::class, 'getOneRequestPeople']);
-    Route::post('/removeRequestPeople', [TourRequestPeopleController::class, 'removeRequestPeople']);
-
-    //tour request location
-    Route::get('/tour-request-location', [TourRequestLocationController::class, 'index'])->name('tour_request_location.index');
-    Route::post('store-tour-request-location', [TourRequestLocationController::class, 'store'])->name('tour_request_location.store');
-    Route::post('/storeTourRequestLocation', [TourRequestLocationController::class, 'storeTourRequestLocation']);
-    Route::get('/getRequestLocations', [TourRequestLocationController::class, 'getRequestLocations']);
-
     //tours
     Route::get('/tours', [TourController::class, 'index'])->name('tours.index');
     Route::post('/store-tours', [TourController::class, 'store'])->name('tours.store');
@@ -231,23 +208,35 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-package-items', [TourPackageItemController::class, 'index'])->name('tour_package_items.index');
     Route::post('/store-tour-package-item', [TourPackageItemController::class, 'store'])->name('tour_package_items.store');
     Route::post('/store-package-items', [TourPackageItemController::class, 'storePackageItems'])->name('package_items.store');
+    Route::get('/show-package-summary', [TourPackageItemController::class, 'showPackageSummary'])->name('package_summary.show');
 
     //tour hotels
     Route::post('/store-tour-hotel', [TourHotelController::class, 'store'])->name('tour_hotel.store');
     Route::post('/update-tour-hotel', [TourHotelController::class, 'update'])->name('tour_hotel.update');
 
-    //tour rooms
-    Route::post('/store-tour-room', [TourRoomController::class, 'store'])->name('tour_request_room.store');
-    Route::delete('/destroy-tour-room', [TourRoomController::class, 'destroy'])->name('tour_request_room.destroy');
-
     //quotations
     Route::get('/quotations', [QuotationController::class, 'index'])->name('quotation.index');
     Route::post('/store-quotation', [QuotationController::class, 'store'])->name('quotation.store');
     Route::get('/generatePdf', [QuotationController::class, 'generatePdf'])->name('quotation.generate');
+
+    //guides
+    Route::get('/guides', [GuideController::class, 'index'])->name('guide.index');
+    Route::post('/store-guide', [GuideController::class, 'store'])->name('guide.store');
+    Route::put('/update-guide', [GuideController::class, 'update'])->name('guide.update');
+    Route::get('/getOneGuide', [GuideController::class, 'getOneGuide']);
+
+    //test new side navigation bar
+    Route::get('/new-navbar', function(){
+        return view('layouts.new_navbar');
+    });
 });
 
 // Route::get('/template', function () {
 //     return view('layouts.template');
 // });
+
+//quotation payment 
+Route::get('/payment/{quotation_no}', [PaymentController::class, 'show'])
+    ->middleware('quotation.payment'); 
 
 require __DIR__.'/auth.php';

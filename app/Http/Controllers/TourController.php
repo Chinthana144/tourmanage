@@ -22,7 +22,7 @@ class TourController extends Controller
     {
         $year = Carbon::now()->year;
 
-        $last_tour = Tours::where("tour_number", 'LIKE', '-%')
+        $last_tour = Tours::where("tour_number", 'LIKE', $year.'-%')
             ->orderBy('tour_number', 'desc')
             ->first();
 

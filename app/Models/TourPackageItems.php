@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TourPackageItems extends Model
 {
     protected $fillable = [
+        'tour_route_item_id',
         'tour_id',
         'season_id',
         'package_id',
@@ -21,6 +22,11 @@ class TourPackageItems extends Model
     public function component()
     {
         return $this->morphTo();
+    }
+
+    public function tourRouteItem()
+    {
+        return $this->belongsTo(TourRouteItems::class, 'tour_route_item_id');
     }
 
     public function tour()

@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.new_navbar')
 
 @section('content')
     <div class="card">
@@ -56,10 +56,9 @@
                         </td>
                         <td>
                             <div class="d-flex">
-                                <button class="btn btn-warning btn_edit_request" data-id="{{$request->id}}"><i class="bx bx-edit"></i></button>
-                                <button class="btn btn-success ms-1 btn_add_tour" data-id="{{$request->id}}"><i class="bx bx-plus"></i>Tour</button>
+                                <button class="btn btn-warning btn_edit_request" data-id="{{$request->id}}"><i class="bi bi-pencil-fill"></i></button>
+                                <button class="btn btn-success ms-1 btn_add_tour" data-id="{{$request->id}}"><i class="bi bi-plus"></i> Tour</button>
                             </div>
-
                         </td>
                     </tr>
                 @endforeach

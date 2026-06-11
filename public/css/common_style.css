@@ -7,8 +7,9 @@ popularity Stars
 }
 .div_populatiry i{
     font-size: 24px;
-    transition: all 0.4s;
     color: rgb(234, 234, 21);
+    margin-left: 2px;
+    transition: all 0.4s;
 }
 
 .div_populatiry i:hover{
@@ -30,7 +31,7 @@ popularity Stars
 
 .div_edit_populatiry{
     display: flex;
-    flex-direction: row; 
+    flex-direction: row;
 }
 .div_edit_populatiry i{
     font-size: 24px;
@@ -38,6 +39,23 @@ popularity Stars
     color: rgb(234, 234, 21);
 }
 .div_edit_populatiry i:hover{
+    transform: scale(1.1);
+}
+
+/*--------------------------------------------
+Guide start rate
+---------------------------------------------*/
+.div_guide_rate{
+    display: flex;
+    flex-direction: row;
+}
+.div_guide_rate i{
+    font-size: 24px;
+    transition: all 0.4s;
+    color: rgb(234, 234, 21);   
+}
+
+.div_guide_rate i:hover{
     transform: scale(1.1);
 }
 

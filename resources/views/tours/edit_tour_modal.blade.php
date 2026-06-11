@@ -57,10 +57,6 @@
                   <label for="">Notes</label>
                   <input type="text" name="txt_edit_notes" id="txt_edit_notes" class="form-control">
               </div>
-              <div class="col-md-6 mb-2">
-                  <label for="">Notes</label>
-                  <input type="text" name="txt_edit_notes" id="txt_edit_notes" class="form-control">
-              </div>
             </div>
 
             <p id="p_prices"></p>

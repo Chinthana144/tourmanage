@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('tour_package_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('tour_route_item_id');
             $table->foreignId("tour_id");
             $table->foreignId('season_id');
             $table->foreignId('package_id');

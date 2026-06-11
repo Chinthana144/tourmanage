@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.new_navbar')
 
 @section('content')
     <div class="card">
@@ -39,16 +39,15 @@
                                 @break
                                 @default
                                     <span class="badge bg-secondary">Unidentified</span>
-
                             @endswitch
                         </td>
                         <td>{{ $item->item->name }}</td>
                         <td>{{ $item->notes }}</td>
                         <td>
                             <div class="d-flex">
-                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_up"><i class="bx bx-caret-up"></i></button>
-                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_down"><i class="bx bx-caret-down"></i></button>
-                                <button class="btn btn-outline-danger btn-sm ms-1 btn_delete_item"><i class="bx bx-trash"></i></button>
+                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_up"><i class="bi bi-arrow-up"></i></button>
+                                <button class="btn btn-outline-success btn-sm ms-1 btn_move_down"><i class="bi bi-arrow-down"></i></button>
+                                <button class="btn btn-outline-danger btn-sm ms-1 btn_delete_item"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -58,10 +57,10 @@
                 
                 <div class="d-flex gap-2 align-items-center">
                     <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_locations">Locations</button>
-                    <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_hotels">Hotels</button>
-                    <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_restaurants">Restaurants</button>
-                    <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_activities">Activities</button>
-                    <button class="btn btn-outline-primary ms-1 me-1 w-100" id="btn_travel">Travel</button>
+                    <button class="btn btn-outline-success ms-1 me-1 w-100" id="btn_hotels">Hotels</button>
+                    <button class="btn btn-outline-warning ms-1 me-1 w-100" id="btn_restaurants">Restaurants</button>
+                    <button class="btn btn-outline-info ms-1 me-1 w-100" id="btn_activities">Activities</button>
+                    <button class="btn btn-outline-secondary ms-1 me-1 w-100" id="btn_travel">Travel</button>
                 </div>
 
                 {{-- Location --}}
@@ -141,7 +140,7 @@
                                 <input type="text" name="res_note" class="form-control">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-primary float-end mt-2 w-100">Add Restaurant</button>
+                                <button class="btn btn-primary float-end mt-4 w-100">Add Restaurant</button>
                             </div>
                         </div>
                     </form>
@@ -168,7 +167,7 @@
                                 <input type="text" name="act_note" class="form-control">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-primary float-end mt-2 w-100">Add Activity</button>
+                                <button class="btn btn-primary float-end mt-4 w-100">Add Activity</button>
                             </div>
                         </div>
                         
@@ -195,7 +194,7 @@
                                 <input type="text" name="tvl_note" class="form-control">
                             </div>
                             <div class="col-md-3">
-                                <button class="btn btn-primary float-end mt-2 w-100">Add Travel Media</button>
+                                <button class="btn btn-primary float-end mt-4 w-100">Add Travel Media</button>
                             </div>
                         </div>
                     </form>
@@ -206,7 +205,7 @@
                 <form action="{{ route('tour_package_items.index') }}" method="get">
                     @csrf
                     <input type="hidden" name="hide_tour_id" value="{{ $tour->id }}">
-                    <button class="btn btn-primary float-end">Continue <i class="bx bx-"></i></button>
+                    <button class="btn btn-primary float-end">Continue <i class="bi bi-arrow-right"></i></button>
                 </form>
             </div>
 

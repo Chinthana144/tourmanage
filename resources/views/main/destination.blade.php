@@ -35,7 +35,14 @@
                         <div class="destination-card">
                             <div class="image-wrapper">
                             <img src="{{ asset($destination->primary_image) }}" alt="Destination" class="img-fluid">
-                            @if ($destination->display)
+                            <div class="overlay" style="padding: 2px">
+                                <i class="{{ $destination->popularity >= 1 ? 'bi bi-star-fill' : 'bi bi-star'}}"></i>
+                                <i class="{{ $destination->popularity >= 2 ? 'bi bi-star-fill' : 'bi bi-star'}}"></i>
+                                <i class="{{ $destination->popularity >= 3 ? 'bi bi-star-fill' : 'bi bi-star'}}"></i>
+                                <i class="{{ $destination->popularity >= 4 ? 'bi bi-star-fill' : 'bi bi-star'}}"></i>
+                                <i class="{{ $destination->popularity >= 5 ? 'bi bi-star-fill' : 'bi bi-star'}}"></i>
+                            </div>
+                            {{-- @if ($destination->display)
                                 <div class="overlay">
                                     <div class="badge">Displayed</div>
                                 </div>
@@ -43,7 +50,7 @@
                                 <div class="overlay">
                                     <div class="badge">Not Displayed</div>
                                 </div>
-                            @endif
+                            @endif --}}
                             
                             </div>
                             <div class="content">

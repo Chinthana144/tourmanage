@@ -32,11 +32,11 @@
         
             <label for="">Populatiry</label>
             <div class="div_edit_populatiry">
-                <i class="bx bx-star icon_star star_edit_one" data-value="1"></i>
-                <i class="bx bx-star icon_star star_edit_two" data-value="2"></i>
-                <i class="bx bx-star icon_star star_edit_three" data-value="3"></i>
-                <i class="bx bx-star icon_star star_edit_four" data-value="4"></i>
-                <i class="bx bx-star icon_star star_edit_five" data-value="5"></i>
+                <i class="bi bi-star icon_star star_edit_one" data-value="1"></i>
+                <i class="bi bi-star icon_star star_edit_two" data-value="2"></i>
+                <i class="bi bi-star icon_star star_edit_three" data-value="3"></i>
+                <i class="bi bi-star icon_star star_edit_four" data-value="4"></i>
+                <i class="bi bi-star icon_star star_edit_five" data-value="5"></i>
                 <input type="hidden" name="edit_popularity" id="edit_popularity" value="0">
             </div>
           </div>

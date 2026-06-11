@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.new_navbar')
 
 @section('content')
     <div class="card">
@@ -25,6 +25,17 @@
                                     Website: <b>{{$restaurant->website}}</b>
                                 </p>
                             </div>
+                            <div class="col-md-4">
+                                <label for="">Populatiry</label>
+                                <div class="div_populatiry">
+                                    <i class="icon_star star_one {{$restaurant->popularity >= 1 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="1"></i>
+                                    <i class="icon_star star_two {{$restaurant->popularity >= 2 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="2"></i>
+                                    <i class="icon_star star_three {{$restaurant->popularity >= 3 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="3"></i>
+                                    <i class="icon_star star_four {{$restaurant->popularity >= 4 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="4"></i>
+                                    <i class="icon_star star_five {{$restaurant->popularity >= 5 ? 'bi bi-star-fill' : 'bi bi-star'}}" data-value="5"></i>
+                                    <input type="hidden" name="popularity" id="popularity" value="{{$restaurant->popularity}}">
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-4">
@@ -39,7 +50,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-2 mt-3">
                                 <form action="{{ route('restaurant_price.view') }}" method="get">
                                     @csrf
                                     <input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">

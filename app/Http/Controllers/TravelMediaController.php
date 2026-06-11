@@ -81,7 +81,22 @@ class TravelMediaController extends Controller
         return response()->json($travel_media);
     }
 
+    public function searchTravelMedia(Request $request)
+    {
+        $search = $request->input('q');
+
+        $travel_media = TravelMedia::Where('name', "LIKE", "%{$search}%")
+            ->orWhere('vehicle_No', 'LIKE', "%{$search}%")
+            ->limit(20)
+            ->get();
+
+        return response()->json($travel_media);
+    }
+
+    //===========================================================================//
     //============================= Travel Price ================================//
+    //===========================================================================//
+
     public function showTravelPrice(Request $request)
     {
         $travel_media_id = $request->input('travel_media_id');

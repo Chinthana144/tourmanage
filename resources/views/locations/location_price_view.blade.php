@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.new_navbar')
 
 @section('content')
     <div class="card">
@@ -35,7 +35,7 @@
                             </td>
                             <td>{{ $price->price }}</td>
                             <td>
-                                <button class="btn btn-outline-warning btn-sm btn_edit_price" data-id="{{ $price->id }}"><i class="bx bx-edit"></i></button>
+                                <button class="btn btn-outline-warning btn-sm btn_edit_price" data-id="{{ $price->id }}"><i class="bi bi-pencil-fill"></i></button>
                             </td>
                         </tr>                        
                     @endforeach
